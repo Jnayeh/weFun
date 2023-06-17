@@ -1,0 +1,65 @@
+@import url('./menu-button.css');
+@import url('./nav-list.css');
+
+/** 
+  *
+  *  Navbar CSS
+  *
+  *
+  */
+.navigation {
+  z-index: 1000;
+  /* box-shadow: -12px 1px 10px 2px rgba(160, 160, 160, 0.308); */
+
+  /* position: fixed; */
+  @apply items-center;
+}
+
+.navigation.nav-open {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+/** 
+  *
+  * Navigation menu CSS 
+  *
+  *
+  */
+
+.navigation-menu {
+  margin-left: auto;
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navigation-menu ul {
+  align-items: center;
+  padding: 0;
+}
+
+.navigation-menu li {
+  /* removes default disc bullet for li tags and applies margin to left & right side*/
+  list-style-type: none;
+  display: flex;
+}
+
+/** 
+  *
+  * Brand name and logo CSS 
+  *
+  *
+  */
+.brand-name span {
+  text-decoration: none;
+  padding-left: 10px;
+  font-weight: bold;
+  @apply dark:text-white text-black;
+  font-size: 1.7rem;
+}
+
+.brand-name img {
+  height: 27px;
+  width: auto;
+}
