@@ -120,7 +120,7 @@ export default function Navbar() {
       <nav className="mx-auto flex h-[60px] max-w-[1500px] items-center justify-between p-2">
         <BrandName />
         <Suspense>
-          <ToggleButton className="fixed right-16 scale-75 md:hidden" />
+          <ToggleButton className="fixed right-16 scale-75 md:hidden z-10" />
           <NavPopup />
         </Suspense>
         <div className="navigation-menu flex">
