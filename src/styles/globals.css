@@ -3,14 +3,88 @@
 @tailwind utilities;
 
 :root {
-    font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
 
-  
-    color-scheme: light dark;
-    color: #242424;
-  
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+  color-scheme: dark light;
+  color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: all 0.15s ease;
+}
+
+/* Scroll */
+
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+  @apply bg-white;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-700;
+  border: 3px solid transparent;
+  border-radius: 10px;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-red-600;
+
+  transition: background-color 400ms linear;
+}
+
+.dark {
+  color-scheme: dark;
+}
+.light {
+  color-scheme: light;
+}
+
+.dark *::-webkit-scrollbar-track {
+  @apply bg-gray-900;
+}
+
+.dark *::-webkit-scrollbar-thumb {
+  @apply bg-white;
+}
+
+.dark *::-webkit-scrollbar-thumb:hover {
+  @apply bg-yellow-300;
+}
+
+/* Scroller */
+
+.custom-scroller::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scroller::-webkit-scrollbar-track {
+  @apply my-2 rounded-3xl bg-gray-500;
+}
+
+.custom-scroller::-webkit-scrollbar-thumb {
+  @apply rounded-3xl bg-red-600;
+  border: 0px solid transparent;
+}
+
+.custom-scroller::-webkit-scrollbar-thumb:hover {
+  @apply bg-red-700;
+
+  transition: background-color 400ms linear;
+}
+
+.dark .custom-scroller::-webkit-scrollbar-track {
+  @apply bg-gray-200;
+}
