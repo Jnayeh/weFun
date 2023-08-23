@@ -24,10 +24,6 @@
   display: block;
 }
 
-.menu-button:hover #nav-icon span {
-  background-color: #acacac;
-}
-
 #nav-icon.nav-open span {
   background-color: #ff0000;
 }
