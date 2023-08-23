@@ -18,10 +18,10 @@ const Header = () => {
   return (
     <header className="header ">
       <div className="header_text_container">
-        <h1 className="heading_primary text-secondary dark:text-white">
+        <h1 className="heading_primary  dark:text-white">
           Make your daily experiences <span className="text-primary "> memorable </span>
         </h1>
-        <p className="heading_paragraph text-secondary dark:text-white">
+        <p className="heading_paragraph  dark:text-white">
           On a mission to build a network of entertainment where you can share and practice your hobbies with people who
           have the same interests as you.
         </p>
