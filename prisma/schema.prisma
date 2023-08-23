@@ -2,23 +2,17 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-    provider = "prisma-client-js"
+    provider        = "prisma-client-js"
     previewFeatures = ["jsonProtocol"]
 }
 
 datasource db {
-    provider = "sqlite"
+    provider = "mysql"
     // NOTE: When using mysql or sqlserver, uncomment the @db.Text annotations in model Account below
     // Further reading:
     // https://next-auth.js.org/adapters/prisma#create-the-prisma-schema
     // https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#string
     url      = env("DATABASE_URL")
-}
-
-model Example {
-    id        String   @id @default(cuid())
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
 }
 
 // Necessary for Next auth
@@ -28,12 +22,12 @@ model Account {
     type              String
     provider          String
     providerAccountId String
-    refresh_token     String? // @db.Text
-    access_token      String? // @db.Text
+    refresh_token     String? @db.Text
+    access_token      String? @db.Text
     expires_at        Int?
     token_type        String?
     scope             String?
-    id_token          String? // @db.Text
+    id_token          String? @db.Text
     session_state     String?
     user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -64,4 +58,43 @@ model VerificationToken {
     expires    DateTime
 
     @@unique([identifier, token])
+}
+
+model Category {
+    id         Int        @id @default(autoincrement())
+    label      String
+    details    String?    @db.Text
+    image      String?
+    visible    Boolean    @default(true)
+    createdAt  DateTime   @default(now())
+    modifiedAt DateTime   @default(now()) @updatedAt
+    activities Activity[]
+}
+
+model Activity {
+    id                Int      @id @default(autoincrement())
+    label             String
+    description       String   @db.Text
+    price             Float
+    visible           Boolean  @default(true)
+    discount          Float    @default(0)
+    capacity          Int
+    activity_duration Int
+    createdAt         DateTime @default(now())
+    modifiedAt        DateTime @default(now()) @updatedAt
+
+    Category   Category @relation(fields: [categoryId], references: [id])
+    categoryId Int
+    images     Image[]
+}
+
+model Image {
+    id         Int      @id @default(autoincrement())
+    filename   String   
+    size       Int
+    createdAt  DateTime @default(now())
+    modifiedAt DateTime @default(now()) @updatedAt
+
+    Activity   Activity? @relation(fields: [activityId], references: [id])
+    activityId Int?
 }
