@@ -4,9 +4,9 @@ import { useRouter } from 'next/router';
 export default function NotFound() {
     const navigate = useRouter();
     return (
-      <div className="fixed min-w-full  min-h-screen flex items-center">
+      <div className="min-w-full min-h-screen flex items-center">
         <section className=" mx-auto px-6 lg:flex lg:items-center lg:gap-12">
-          <div className="w-full lg:w-1/2">
+          <div className="w-full lg:w-1/2 lg:min-w-[280px]">
             <h1 className=" text-2xl font-semibold text-gray-800 dark:text-white md:text-3xl">Page not found</h1>
             <p className="mt-4 text-gray-500 dark:text-gray-400">
               Sorry, the page you are looking for doesn't exist.Here are some helpful links:
@@ -28,7 +28,7 @@ export default function NotFound() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
                 </svg>
   
-                <span>Go back</span>
+                <span >Go back</span>
               </button>
   
               <Link
