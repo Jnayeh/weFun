@@ -5,18 +5,18 @@ import {
   protectedProcedure,
 } from "~/server/api/trpc";
 
+import { migrate } from "drizzle-orm/mysql2/migrator";
+import { db } from "~/db";
+
 export const exampleRouter = createTRPCRouter({
   hello: publicProcedure
     .input(z.object({ text: z.string() }))
-    .query(({ input }) => {
+    .query(async ({ input }) => {
+      /* await migrate(db, { migrationsFolder: "drizzle" }); */
       return {
         greeting: `Hello ${input.text}`,
       };
     }),
-
-  getAll: publicProcedure.query(({ ctx }) => {
-    return ctx.prisma.example.findMany();
-  }),
 
   getSecretMessage: protectedProcedure.query(() => {
     return "you can now see this secret message!";
