@@ -6,15 +6,15 @@ import { Fragment } from "react";
 export default function NavPopup() {
   const { data: session } = useSession();
   return (
-    <div className="nav-popup fixed right-4 top-3 text-right">
-      <Menu as="div" className="relative inline-block text-left">
+    <div className="md:hidden z-30 right-3 top-0 text-right">
+      <Menu as="div" className="text-left">
         {({ open }) => (
           <>
             <Menu.Button
               className={
                 open
-                  ? "menu-button right-0 rounded-xl dark:bg-gray-200"
-                  : "menu-button right-0 rounded-xl bg-white dark:bg-gray-700"
+                  ? "menu-button right-2 rounded-lg dark:bg-gray-200"
+                  : "menu-button right-2 rounded-lg bg-white dark:bg-gray-700"
               }
               aria-label="navigation menu button"
               title="navigation menu button"
@@ -35,7 +35,7 @@ export default function NavPopup() {
               leaveFrom="transform opacity-100 scale-100"
               leaveTo="transform opacity-0 scale-95"
             >
-              <Menu.Items className="absolute right-0 mt-6 w-[90vw] origin-top-right flex flex-col gap-1 divide-y divide-gray-100 rounded-md bg-white p-1 text-lg font-bold shadow-lg ring-1  ring-black ring-opacity-5 focus:outline-none">
+              <Menu.Items className="absolute right-1 top-14 w-[90vw] origin-top-right flex flex-col gap-1 divide-y divide-gray-100 rounded-md bg-white p-1 text-lg font-bold shadow-lg ring-1  ring-black ring-opacity-5 focus:outline-none">
                 <Menu.Item>
                   {({ active }) => (
                     <Link

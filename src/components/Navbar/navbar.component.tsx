@@ -118,7 +118,7 @@ export default function Navbar() {
 
   const { data: session } = useSession();
   return (
-    <div className="navigation fixed min-w-full justify-center bg-white dark:bg-gray-800 ">
+    <div className="navigation sticky top-0 z-30 min-w-full justify-center bg-white dark:bg-gray-800 ">
       <nav className="mx-auto flex h-[60px] max-w-[1500px] items-center justify-between p-2">
         <BrandName />
         <Suspense>

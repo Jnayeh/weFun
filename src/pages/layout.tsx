@@ -14,9 +14,7 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
-      <div className="pb-[60px]">
       <Navbar />
-      </div>
       <main>{children}</main>
       <Footer />
     </>
