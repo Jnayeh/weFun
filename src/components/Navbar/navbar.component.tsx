@@ -1,23 +1,21 @@
 /* import { useScroll } from 'Hooks/useScroll'; */
 import React, { lazy, Suspense, useEffect, useState, useRef } from "react";
 
-import { BsArrowRight } from "@react-icons/all-files/bs/BsArrowRight";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import NavPopup from "./nav-popup";
 import { useTheme } from "next-themes";
 import { signOut, useSession } from "next-auth/react";
+import { cn } from "@/lib/utils";
 /* const NavPopup = lazy(() => import("./nav-popup")); */
 
 export default function Navbar() {
   const indicatorRef = useRef<HTMLSpanElement>(null);
   const navListRef = useRef<HTMLUListElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
   const searchRef = useRef<HTMLLIElement>(null);
 
   const location = useRouter().pathname;
-  const [searched, setSearched] = useState("");
   const [isSearching, setIsSearching] = useState(false);
 
   function slideHorizontal(
@@ -75,9 +73,8 @@ export default function Navbar() {
         }
       });
 
-      const activeLink =
-        navListRef.current.querySelector<HTMLAnchorElement>(".active-link");
-
+      /* 
+      const activeLink = navListRef.current.querySelector<HTMLAnchorElement>(".active-link");
       if (activeLink && indicatorRef.current) {
         navListRef.current.addEventListener("mouseleave", () => {
           items.forEach((item) => {
@@ -86,10 +83,10 @@ export default function Navbar() {
               slideHorizontal(activeLink, items, indicatorRef);
           });
         });
-      }
+      } */
     }
   };
-
+/* 
   useEffect(() => {
     // add event listener for clicks on the document
     document.addEventListener("click", handleClickOutside);
@@ -98,7 +95,7 @@ export default function Navbar() {
       document.removeEventListener("click", handleClickOutside);
     };
   }, []);
-
+ */
   /**
    * Adding event listeners on component mount
    */
@@ -119,18 +116,21 @@ export default function Navbar() {
   const { data: session } = useSession();
   return (
     <div className="navigation sticky top-0 z-30 min-w-full justify-center bg-white dark:bg-gray-800 ">
-      <nav className="mx-auto flex h-[60px] max-w-[1500px] items-center justify-between p-2">
+      <nav className="mx-auto flex h-[60px] w-full max-w-[1500px] items-center justify-between p-2 pl-4">
         <BrandName />
         <Suspense>
-          {/* <ToggleButton className="fixed right-16 scale-75 md:hidden z-10" /> */}
+        <div className="flex justify-end items-center w-60">
+          <ToggleButton className="scale-75 md:hidden z-10" />
           <NavPopup />
+        </div>
         </Suspense>
-        <div className="navigation-menu flex">
-          {/* <ToggleButton className="hidden scale-75 md:block" /> */}
+
+        <div className=" m-auto w-full h-11 items-center justify-end hidden md:flex">
+          <ToggleButton className="scale-75 " />
           <ul
-            className={`nav-list hidden text-black dark:text-white md:flex ${
+            className={cn(`nav-list items-center p-0 h-full list-none hidden text-black dark:text-white md:flex ${
               isSearching ? "w-0" : ""
-            }`}
+            }`)}
             ref={navListRef}
           >
             <li>

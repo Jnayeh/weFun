@@ -1,4 +1,5 @@
-import { type NextPage } from "next";
+import { InferGetServerSidePropsType, type NextPage } from "next";
+import { createServerSideHelpers } from "@trpc/react-query/server"
 import { signIn, signOut, useSession } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
@@ -6,8 +7,35 @@ import Link from "next/link";
 import Header from "~/components/Header/header.component";
 import { api } from "~/utils/api";
 import Layout from "./layout";
+import { appRouter } from "~/server/api/root";
+import SuperJSON from "superjson";
+import { createInnerTRPCContext } from "~/server/api/trpc";
+import { getServerAuthSession } from "~/server/auth";
+import { IncomingMessage, ServerResponse } from "http";
 
-const Home: NextPage = () => {
+export const getServerSideProps = async (ctx: { req: IncomingMessage & { cookies: Partial<{ [key: string]: string; }>; }; res: ServerResponse<IncomingMessage>; }) => {
+  const session = await getServerAuthSession(ctx);
+  // would usually get id from url or something
+  const id = 5;
+
+  const ssg = createServerSideHelpers({
+    router: appRouter,
+    ctx: createInnerTRPCContext({session}),
+    transformer: SuperJSON,
+  });
+
+  // `prefetch` does not return the result and never throws - if
+  // you need that behavior, use `fetch` instead.
+  await ssg.example.hello.prefetch({ text: "from tRPC" });
+
+  return {
+    props: {
+      trpcState: ssg.dehydrate(),
+      id,
+    },
+  };
+};
+const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = () => {
   const hello = api.example.hello.useQuery({ text: "from tRPC" });
 
   return (

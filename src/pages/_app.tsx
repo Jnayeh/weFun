@@ -12,19 +12,14 @@ import Layout from "./layout";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
-  pageProps: { session, ...pageProps },
+  pageProps,
 }) => {
-  const { setTheme } = useTheme();
-
-  useEffect(() => {
-    // Apply the saved theme on initial load
-    setTheme(localStorage.getItem("theme") || "light");
-  }, []);
+  
 
   // Use getLayout function if it's defined in the Component
   const getLayout = Component.getLayout || ((page: React.ReactNode) => page);
   return (
-    <SessionProvider session={session}>
+    <SessionProvider session={pageProps.session}>
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
       {getLayout(
           <Component {...pageProps} />

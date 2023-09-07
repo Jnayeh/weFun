@@ -101,3 +101,10 @@ export const images = mysqlTable('images', {
   activityId: int('activityId')
   .references(() => categories.id, { onDelete: "cascade" }),
 });
+
+export type User = typeof users._.model.select; 
+export type Category = typeof categories._.model.select; 
+export type Activity = typeof activities._.model.select & {
+  category?: Category
+}; 
+export type Image = typeof images._.model.select; 
