@@ -64,7 +64,7 @@ export default function Footer() {
   return (
     <footer className=" m-2 rounded-xl dark:bg-gray-900">
       <div className="flex flex-col justify-center sm:items-center xl:flex-row xl:items-start">
-        <section className="flex w-full max-w-[1000px] flex-wrap items-start justify-between sm:flex-row sm:justify-evenly lg:mx-auto xl:mx-2">
+        <section className="flex w-full max-w-[1000px] flex-col items-start justify-between sm:flex-row sm:justify-evenly lg:mx-auto xl:mx-2">
           {link_list.map((item, index) => {
             return (
               <div key={index} className="p-4 sm:px-2 lg:p-4">

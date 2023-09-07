@@ -1,4 +1,3 @@
-
 /* import { useScroll } from 'Hooks/useScroll'; */
 import React, { lazy, Suspense, useEffect, useState, useRef } from "react";
 
@@ -7,6 +6,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import NavPopup from "./nav-popup";
+import { useTheme } from "next-themes";
+import { signOut, useSession } from "next-auth/react";
 /* const NavPopup = lazy(() => import("./nav-popup")); */
 
 export default function Navbar() {
@@ -115,16 +116,17 @@ export default function Navbar() {
     }
   };
 
+  const { data: session } = useSession();
   return (
-    <div className="navigation min-w-full justify-center dark:bg-gray-800">
+    <div className="navigation sticky top-0 z-30 min-w-full justify-center bg-white dark:bg-gray-800 ">
       <nav className="mx-auto flex h-[60px] max-w-[1500px] items-center justify-between p-2">
         <BrandName />
         <Suspense>
-          <ToggleButton className="fixed right-16 scale-75 md:hidden z-10" />
+          {/* <ToggleButton className="fixed right-16 scale-75 md:hidden z-10" /> */}
           <NavPopup />
         </Suspense>
         <div className="navigation-menu flex">
-          <ToggleButton className="hidden scale-75 md:block" />
+          {/* <ToggleButton className="hidden scale-75 md:block" /> */}
           <ul
             className={`nav-list hidden text-black dark:text-white md:flex ${
               isSearching ? "w-0" : ""
@@ -180,18 +182,26 @@ export default function Navbar() {
                 Categories
               </Link>
             </li>
-            <li>
-              <Link
-                href="/login"
-                className={
-                  location == "/"
-                    ? "nav-item is-active active-link"
-                    : "nav-item "
-                }
-              >
-                Login
-              </Link>
-            </li>
+            {session ? (
+              <li>
+                <button className="rounded-md bg-slate-500 px-4 py-2 text-slate-100" onClick={() => void signOut()}>
+                  Sign out
+                </button>
+              </li>
+            ) : (
+              <li>
+                <Link
+                  href="/auth/signin"
+                  className={
+                    location == "/auth/signin"
+                      ? "nav-item is-active active-link"
+                      : "nav-item "
+                  }
+                >
+                  Login
+                </Link>
+              </li>
+            )}
 
             <span
               aria-hidden
@@ -199,7 +209,8 @@ export default function Navbar() {
               ref={indicatorRef}
             ></span>
           </ul>
-          <li
+
+          {/* <li
             ref={searchRef}
             onFocus={() => {
               inputRef.current?.onfocus;
@@ -266,7 +277,7 @@ export default function Navbar() {
                 />
               </button>
             </label>
-          </li>
+          </li> */}
         </div>
       </nav>
     </div>
@@ -277,7 +288,7 @@ function BrandName() {
   /* const scrolled = useScroll(); */
   return (
     <div className="brand-name flex items-center">
-      <Image src="/favicon.ico" alt="brand logo" height={40} width={40}/>
+      <Image src="/favicon.ico" alt="brand logo" height={40} width={40} />
       {/* <span>All We Do</span> */}
     </div>
   );
@@ -288,50 +299,24 @@ function BrandName() {
  */
 
 function ToggleButton({ ...props }: React.HTMLAttributes<HTMLButtonElement>) {
-  const [isDark, setDark] = useState(false);
+  const { theme, setTheme } = useTheme();
 
+  const toggleTheme = () => {
+    /* 
+    const rootElement = document.documentElement;
+    rootElement.classList.remove('dark');
+    rootElement.classList.add('light'); 
+    */
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+  };
   useEffect(() => {
-    const rootElement = document.documentElement;
-
-    if (
-      localStorage.theme === 'dark' ||
-      (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-    ) {
-      setDark(true);
-      rootElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      setDark(false);
-      rootElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
-
-    return () => {
-      console.log('MyComponent unmounted');
-    };
+    let clientTheme = localStorage.getItem("theme") ?? "system";
+    setTheme(clientTheme);
   }, []);
-
-  function toggleTheme() {
-    const rootElement = document.documentElement;
-
-    if (isDark) {
-      rootElement.classList.remove('dark');
-      rootElement.classList.add('light');
-      localStorage.setItem('theme', 'light');
-      setDark(false);
-    } else {
-      rootElement.classList.add('dark');
-      rootElement.classList.remove('light');
-      localStorage.setItem('theme', 'dark');
-      setDark(true);
-    }
-  }
   return (
-    <button
-      {...props}
-      onClick={toggleTheme}
-      aria-label=" dark mode toggle"
-    >
+    <button {...props} onClick={toggleTheme} aria-label=" dark mode toggle">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="53"
@@ -341,14 +326,14 @@ function ToggleButton({ ...props }: React.HTMLAttributes<HTMLButtonElement>) {
         <g id="Group_19" data-name="Group 19" transform="translate(-384 -20)">
           <g
             id="Component_12_6"
-            data-name="Component 12 – 6"
+            data-name="Component 12_6"
             transform="translate(384 20)"
           >
             <g
               id="Rectangle_9"
               data-name="Rectangle 9"
               transform="translate(3)"
-              fill={isDark ? "#5a97d5" : "rgb(30 41 59)"}
+              fill={theme == "light" ? "#1e293b" : "#5a97d5"}
               strokeWidth="1"
             >
               <rect width="47" height="56" rx="22" stroke="none" />
@@ -370,14 +355,14 @@ function ToggleButton({ ...props }: React.HTMLAttributes<HTMLButtonElement>) {
               fill="#b8bbe9"
               stroke="#707070"
               strokeWidth="1"
-              opacity={isDark ? "0" : "100"}
+              opacity={theme == "light" ? "100" : "0"}
             />
             {/* Sun icon */}
             <g
               id="Group_18"
               data-name="Group 18"
               transform="translate(1422 -11767.014)"
-              opacity={isDark ? "100" : "0"}
+              opacity={theme == "light" ? "0" : "100"}
             >
               <path
                 id="Center-2"

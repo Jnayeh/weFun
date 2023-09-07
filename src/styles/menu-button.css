@@ -24,10 +24,6 @@
   display: block;
 }
 
-.menu-button:hover #nav-icon span {
-  background-color: #acacac;
-}
-
 #nav-icon.nav-open span {
   background-color: #ff0000;
 }
@@ -96,15 +92,4 @@
   -moz-transform: rotate(45deg);
   -o-transform: rotate(45deg);
   transform: rotate(45deg);
-}
-
-@media screen and (min-width: 768px) {
-  /**
-    * Popup menu is hidden 
-    * and leaves place for the navigation list
-    *
-    */
-  .nav-popup {
-    display: none;
-  }
 }
