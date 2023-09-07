@@ -15,9 +15,5 @@ export const prisma =
 
 if (env.NODE_ENV !== "production") globalForPrisma.prisma = prisma; */
 
-const client = await mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  database: 'wefun'
-});
+const client = await mysql.createConnection(env.DATABASE_URL);
 export const db = drizzle(client,{ logger: true });

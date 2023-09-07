@@ -6,15 +6,14 @@ import { Fragment } from "react";
 export default function NavPopup() {
   const { data: session } = useSession();
   return (
-    <div className="md:hidden z-30 right-3 top-0 text-right">
+    <div className="md:hidden z-30 text-right">
       <Menu as="div" className="text-left">
         {({ open }) => (
           <>
             <Menu.Button
-              className={
-                open
-                  ? "menu-button right-2 rounded-lg dark:bg-gray-200"
-                  : "menu-button right-2 rounded-lg bg-white dark:bg-gray-700"
+              className={` border-0 p-2 h-10 w-10 transition-colors right-2 rounded-lg ${open
+                ? " dark:bg-gray-200"
+                : " bg-white dark:bg-gray-700"}`
               }
               aria-label="navigation menu button"
               title="navigation menu button"
