@@ -12,6 +12,7 @@ import SuperJSON from "superjson";
 import { createInnerTRPCContext } from "~/server/api/trpc";
 import { getServerAuthSession } from "~/server/auth";
 import { IncomingMessage, ServerResponse } from "http";
+import { NextPageWithLayout } from "./_app";
 
 export const getServerSideProps = async (ctx: { req: IncomingMessage & { cookies: Partial<{ [key: string]: string; }>; }; res: ServerResponse<IncomingMessage>; }) => {
   const session = await getServerAuthSession(ctx);
@@ -35,7 +36,7 @@ export const getServerSideProps = async (ctx: { req: IncomingMessage & { cookies
     },
   };
 };
-const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = () => {
+const Home: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSideProps>> = () => {
   const hello = api.example.hello.useQuery({ text: "from tRPC" });
 
   return (

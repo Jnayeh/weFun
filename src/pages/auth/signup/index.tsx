@@ -2,13 +2,14 @@ import { useState } from 'react';
 import { signIn, useSession } from 'next-auth/react';
 import { z } from 'zod';
 import { useForm, Controller } from 'react-hook-form';
+import { NextPageWithLayout } from '~/pages/_app';
 
 const SignInSchema = z.object({
   email: z.string().email('Invalid email'),
   password: z.string().min(6, 'Password must be at least 6 characters'),
 });
 
-const SignIn = () => {
+const SignUp: NextPageWithLayout = () => {
   const [success, setSuccess] = useState(false);
   const { data: session } = useSession();
   const {
@@ -77,4 +78,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;

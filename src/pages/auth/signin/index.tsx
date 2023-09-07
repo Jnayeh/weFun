@@ -6,13 +6,14 @@ import { AiFillGoogleCircle } from "@react-icons/all-files/ai/AiFillGoogleCircle
 import { FaFacebook } from "@react-icons/all-files/fa/FaFacebook";
 import { FcGoogle } from "@react-icons/all-files/fc/FcGoogle";
 import Layout from "~/pages/layout";
+import { NextPageWithLayout } from "~/pages/_app";
 
 const SignInSchema = z.object({
   email: z.string().email("Invalid email"),
   password: z.string().min(6, "Password must be at least 6 characters"),
 });
 
-const SignIn = () => {
+const SignIn: NextPageWithLayout = () => {
   const [success, setSuccess] = useState(false);
   const { data: session } = useSession();
   const {

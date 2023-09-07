@@ -1,6 +1,4 @@
-import { GetServerSideProps, type NextPage } from "next";
 import Head from "next/head";
-import Link from "next/link";
 import Image from "next/image";
 
 import { api } from "~/utils/api";
@@ -19,6 +17,7 @@ import { Button } from "@/components/ui/button";
 import { FaHeart } from "@react-icons/all-files/fa/FaHeart";
 import { BiHeart } from "@react-icons/all-files/bi/BiHeart";
 import { BiSearchAlt } from "@react-icons/all-files/bi/BiSearchAlt";
+import { NextPageWithLayout } from "../_app";
 
 /* type ServerSidePageProps = {
   serializedData?: string;
@@ -48,7 +47,7 @@ export const getServerSideProps = async () => {
     };
   }
 }; */
-const ActivitiesPage: NextPage = () => {
+const ActivitiesPage: NextPageWithLayout = () => {
   
   const { data, isLoading, error } = api.activity.getAll.useQuery({
     name: "",

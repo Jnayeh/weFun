@@ -25,6 +25,7 @@ import { IncomingMessage, ServerResponse } from "http";
 import { createServerSideHelpers } from "@trpc/react-query/server";
 import { createInnerTRPCContext } from "~/server/api/trpc";
 import defaultImage from "~/Assets/Images/placeholder.webp"
+import { NextPageWithLayout } from "../_app";
 
 /* 
 export const getServerSideProps = async (ctx: { req: IncomingMessage & { cookies: Partial<{ [key: string]: string; }>; }; res: ServerResponse<IncomingMessage>; }) => {
@@ -78,7 +79,7 @@ export const getServerSideProps = async (ctx: {
   };
 };
 
-const CategoriesPage: NextPage = (
+const CategoriesPage: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSideProps>> = (
   props: InferGetServerSidePropsType<typeof getServerSideProps>
 ) => {
   const data = props.trpcState
