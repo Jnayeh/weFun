@@ -17,7 +17,7 @@ export const users = mysqlTable("users", {
   emailVerified: timestamp("emailVerified", {
     mode: "date",
     fsp: 3,
-  }).onUpdateNow(),
+  }),
   image: varchar("image", { length: 255 }),
 });
 
@@ -102,9 +102,9 @@ export const images = mysqlTable('images', {
   .references(() => categories.id, { onDelete: "cascade" }),
 });
 
-export type User = typeof users._.model.select; 
-export type Category = typeof categories._.model.select; 
-export type Activity = typeof activities._.model.select & {
+export type User = typeof users.$inferSelect;
+export type Category = typeof categories.$inferSelect;
+export type Activity = typeof activities.$inferSelect & {
   category?: Category
 }; 
-export type Image = typeof images._.model.select; 
+export type Image = typeof images.$inferSelect; 
