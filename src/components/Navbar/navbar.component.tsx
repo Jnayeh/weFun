@@ -8,7 +8,6 @@ import NavPopup from "./nav-popup";
 import { useTheme } from "next-themes";
 import { signOut, useSession } from "next-auth/react";
 import { cn } from "@/lib/utils";
-/* const NavPopup = lazy(() => import("./nav-popup")); */
 
 export default function Navbar() {
   const indicatorRef = useRef<HTMLSpanElement>(null);
@@ -86,7 +85,7 @@ export default function Navbar() {
       } */
     }
   };
-/* 
+  /* 
   useEffect(() => {
     // add event listener for clicks on the document
     document.addEventListener("click", handleClickOutside);
@@ -119,18 +118,20 @@ export default function Navbar() {
       <nav className="mx-auto flex h-[60px] w-full max-w-[1500px] items-center justify-between p-2 pl-4">
         <BrandName />
         <Suspense>
-        <div className="flex justify-end items-center w-60">
-          <ToggleButton className="scale-75 md:hidden z-10" />
-          <NavPopup />
-        </div>
+          <div className="flex w-60 items-center justify-end">
+            <ToggleButton className="z-10 scale-75 md:hidden" />
+            <NavPopup />
+          </div>
         </Suspense>
 
-        <div className=" m-auto w-full h-11 items-center justify-end hidden md:flex">
+        <div className=" m-auto hidden h-11 w-full items-center justify-end md:flex">
           <ToggleButton className="scale-75 " />
           <ul
-            className={cn(`nav-list items-center p-0 h-full list-none hidden text-black dark:text-white md:flex ${
-              isSearching ? "w-0" : ""
-            }`)}
+            className={cn(
+              `nav-list hidden h-full list-none items-center p-0 text-black dark:text-white md:flex ${
+                isSearching ? "w-0" : ""
+              }`
+            )}
             ref={navListRef}
           >
             <li>
@@ -184,7 +185,10 @@ export default function Navbar() {
             </li>
             {session ? (
               <li>
-                <button className="rounded-md bg-slate-500 px-4 py-2 text-slate-100" onClick={() => void signOut()}>
+                <button
+                  className="rounded-md bg-slate-500 px-4 py-2 text-slate-100"
+                  onClick={() => void signOut()}
+                >
                   Sign out
                 </button>
               </li>
@@ -296,9 +300,12 @@ function BrandName() {
 
 /**
  * Dark theme toggle
+ * React Element
  */
 
-function ToggleButton({ ...props }: React.HTMLAttributes<HTMLButtonElement>) {
+export function ToggleButton({
+  ...props
+}: React.HTMLAttributes<HTMLButtonElement>) {
   const { theme, setTheme } = useTheme();
 
   const toggleTheme = () => {

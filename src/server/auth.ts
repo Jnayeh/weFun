@@ -1,4 +1,4 @@
-import NextAuth from "next-auth";
+
 import { type GetServerSidePropsContext } from "next";
 import {
   getServerSession,
@@ -12,6 +12,7 @@ import { env } from "~/env.mjs";
 import { db } from "~/db";
 import Credentials from "next-auth/providers/credentials";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
+import { Adapter } from "next-auth/adapters";
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -50,7 +51,7 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   },
-  adapter: DrizzleAdapter(db),
+  adapter: DrizzleAdapter(db) as Adapter,
   providers: [
     GoogleProvider({
       clientId: env.GOOGLE_CLIENT_ID,
