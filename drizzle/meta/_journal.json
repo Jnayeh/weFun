@@ -29,6 +29,13 @@
       "when": 1691709857140,
       "tag": "0003_previous_pandemic",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1694240872960,
+      "tag": "0004_peaceful_forge",
+      "breakpoints": true
     }
   ]
 }
