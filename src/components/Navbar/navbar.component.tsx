@@ -117,7 +117,7 @@ export default function Navbar(props: { navBarClass?: string }) {
   return (
     <div
       className={cn(
-        `navigation sticky top-0 z-30 min-w-full justify-center bg-white bg-opacity-10 backdrop-blur-[2px] dark:bg-gray-800 dark:bg-opacity-30 dark:backdrop-blur-[2px] ${navBarClass}`
+        `navigation sticky top-0 z-30 min-w-full justify-center bg-white bg-opacity-10 backdrop-blur-[2px] dark:bg-gray-800 dark:bg-opacity-20 dark:backdrop-blur-[2px] md:bg-opacity-90 dark:md:bg-opacity-90 ${navBarClass}`
       )}
     >
       <nav className="mx-auto flex h-[60px] w-full max-w-[1500px] items-center justify-between p-2 pl-4">
@@ -296,13 +296,13 @@ export default function Navbar(props: { navBarClass?: string }) {
 function BrandName() {
   /* const scrolled = useScroll(); */
   return (
-    <div className="brand-name flex items-center">
+    <div className="brand-name flex flex-shrink-0 items-center">
       <Image
         src="/favicon.ico"
         alt="brand logo"
         height={40}
         width={40}
-        className=" drop-shadow-md"
+        className=" drop-shadow-md "
       />
       {/* <span>All We Do</span> */}
     </div>

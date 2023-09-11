@@ -22,6 +22,7 @@ import { NextPageWithLayout } from "~/pages/_app";
 import Link from "next/link";
 import defaultImage from "~/Assets/Images/placeholder.webp";
 import ImageWithFallback from "~/components/ImageWithFallback";
+import { api } from "~/utils/api";
 
 /* 
 export const getServerSideProps = async (ctx: { req: IncomingMessage & { cookies: Partial<{ [key: string]: string; }>; }; res: ServerResponse<IncomingMessage>; }) => {
@@ -52,36 +53,11 @@ const CategoriesPage: NextPage<InferGetServerSidePropsType<typeof getServerSideP
   const data = serializedData? SuperJSON.parse<Category[]>(serializedData) : [];
 
 */
-export const getServerSideProps = async (ctx: {
-  req: IncomingMessage & { cookies: Partial<{ [key: string]: string }> };
-  res: ServerResponse<IncomingMessage>;
-}) => {
-  const session = await getServerAuthSession(ctx);
 
-  const ssg = createServerSideHelpers({
-    router: appRouter,
-    ctx: createInnerTRPCContext({ session }),
-    transformer: SuperJSON,
-  });
-
-  // `prefetch` does not return the result and never throws - if
-  // you need that behavior, use `fetch` instead.
-  const categories = await ssg.category.getAll.fetch();
-
-  return {
-    props: {
-      trpcState: SuperJSON.stringify(categories),
-    },
-  };
-};
-
-const CategoriesPage: NextPageWithLayout<
-  InferGetServerSidePropsType<typeof getServerSideProps>
-> = (props: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const data = props.trpcState
-    ? SuperJSON.parse<Category[]>(props.trpcState)
-    : [];
-
+const CategoriesPage: NextPageWithLayout = () => {
+  let { data, isLoading} = api.category.getAll.useQuery(
+    undefined,
+  { refetchOnMount: false, refetchOnWindowFocus: false, staleTime:  24 * 60 * 60 * 1000});
   return (
     <>
       <Head>
@@ -97,17 +73,18 @@ const CategoriesPage: NextPageWithLayout<
           " mx-auto flex min-h-[300px] max-w-[97%] flex-col items-center gap-2 py-4"
         )}
       >
-        {data && data.length && data.length > 1 ? (
+        { isLoading ? <p>loading...</p> :
+        data && data.length && data.length > 1 ? (
           <>
           <h2>Popular categories</h2>
           <Categories 
           data={data.slice(0,4)}
-          ulClass="grid w-full grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-6 md:grid-cols-4 lg:grid-cols-5"
+          ulClass="grid w-full grid-cols-2 gap-2 sm:gap-4 lg:grid-cols-4 max-w-xl lg:max-w-[1200px]"
           cardClass="relative flex justify-between rounded-2xl bg-slate-50 dark:bg-slate-800"
           cardHeaderClass="flex flex-shrink-0 flex-grow justify-center  p-1"
           cardImageClass="aspect-square w-[50px] rounded-md object-cover"
           cardContentClass="flex flex-col items-end justify-between rounded-r-2xl p-2 transition-all"
-          cardTitleClass="md:text-lg line-clamp-1 overflow-hidden text-ellipsis text-end text-base font-bold hover:line-clamp-2"
+          cardTitleClass="md:text-lg text-end text-base font-bold line-clamp-1 text-elipsis flex-shrink"
           cardLinkClass="self-end bg-transparent p-0 px-1 text-sm underline-offset-4 hover:underline focus:underline hover:text-red-600"
           />
           <h2>All categories</h2>

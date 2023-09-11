@@ -52,7 +52,8 @@ const ActivitiesPage: NextPageWithLayout = () => {
   
   const { data, isLoading, error } = api.activity.getAll.useQuery({
     name: "",
-  });
+  },
+  { refetchOnMount: false, refetchOnWindowFocus: false, staleTime: 3000});
 
   return (
     <>
