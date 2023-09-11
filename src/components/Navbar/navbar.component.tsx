@@ -9,7 +9,8 @@ import { useTheme } from "next-themes";
 import { signOut, useSession } from "next-auth/react";
 import { cn } from "@/lib/utils";
 
-export default function Navbar() {
+export default function Navbar(props: { navBarClass?: string }) {
+  const { navBarClass } = props;
   const indicatorRef = useRef<HTMLSpanElement>(null);
   const navListRef = useRef<HTMLUListElement>(null);
   const searchRef = useRef<HTMLLIElement>(null);
@@ -114,11 +115,15 @@ export default function Navbar() {
 
   const { data: session } = useSession();
   return (
-    <div className="navigation sticky top-0 z-30 min-w-full justify-center bg-white dark:bg-gray-800 ">
+    <div
+      className={cn(
+        `navigation sticky top-0 z-30 min-w-full justify-center bg-white bg-opacity-10 backdrop-blur-[2px] dark:bg-gray-800 dark:bg-opacity-30 dark:backdrop-blur-[2px] ${navBarClass}`
+      )}
+    >
       <nav className="mx-auto flex h-[60px] w-full max-w-[1500px] items-center justify-between p-2 pl-4">
         <BrandName />
         <Suspense>
-          <div className="flex w-60 items-center justify-end">
+          <div className="z-40 flex w-60 items-center justify-end">
             <ToggleButton className="z-10 scale-75 md:hidden" />
             <NavPopup />
           </div>
@@ -292,7 +297,13 @@ function BrandName() {
   /* const scrolled = useScroll(); */
   return (
     <div className="brand-name flex items-center">
-      <Image src="/favicon.ico" alt="brand logo" height={40} width={40} />
+      <Image
+        src="/favicon.ico"
+        alt="brand logo"
+        height={40}
+        width={40}
+        className=" drop-shadow-md"
+      />
       {/* <span>All We Do</span> */}
     </div>
   );

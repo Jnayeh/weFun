@@ -12,8 +12,8 @@ export default function NavPopup() {
           <>
             <Menu.Button
               className={` border-0 p-2 h-10 w-10 transition-colors right-2 rounded-lg ${open
-                ? " dark:bg-gray-200"
-                : " bg-white dark:bg-gray-700"}`
+                ? "bg-white dark:bg-gray-200"
+                : "bg-white  dark:bg-gray-700"}`
               }
               aria-label="navigation menu button"
               title="navigation menu button"

@@ -9,12 +9,13 @@ import Navbar from "~/components/Navbar/navbar.component";
 
 interface LayoutProps {
   children: React.ReactNode;
+  navBarClass?: string
 }
 
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+const Layout: React.FC<LayoutProps> = ({ children, navBarClass }) => {
   return (
     <>
-      <Navbar />
+      <Navbar navBarClass={navBarClass}/>
       {children}
       <Footer />
     </>
