@@ -23,6 +23,7 @@ import Link from "next/link";
 import defaultImage from "~/Assets/Images/placeholder.webp";
 import ImageWithFallback from "~/components/ImageWithFallback";
 import { api } from "~/utils/api";
+import { boolean } from "drizzle-orm/mysql-core";
 
 /* 
 export const getServerSideProps = async (ctx: { req: IncomingMessage & { cookies: Partial<{ [key: string]: string; }>; }; res: ServerResponse<IncomingMessage>; }) => {
@@ -53,11 +54,35 @@ const CategoriesPage: NextPage<InferGetServerSidePropsType<typeof getServerSideP
   const data = serializedData? SuperJSON.parse<Category[]>(serializedData) : [];
 
 */
+export const getServerSideProps = async (ctx: {
+  req: IncomingMessage & { cookies: Partial<{ [key: string]: string }> };
+  res: ServerResponse<IncomingMessage>;
+}) => {
+  const session = await getServerAuthSession(ctx);
 
-const CategoriesPage: NextPageWithLayout = () => {
-  let { data, isLoading} = api.category.getAll.useQuery(
-    undefined,
-  { refetchOnMount: false, refetchOnWindowFocus: false, staleTime:  24 * 60 * 60 * 1000});
+  const ssg = createServerSideHelpers({
+    router: appRouter,
+    ctx: createInnerTRPCContext({ session }),
+    transformer: SuperJSON,
+  });
+
+  // `prefetch` does not return the result and never throws - if
+  // you need that behavior, use `fetch` instead.
+  const categories = await ssg.category.getAll.fetch();
+
+  return {
+    props: {
+      trpcState: SuperJSON.stringify(categories),
+    },
+  };
+}
+const CategoriesPage: NextPageWithLayout<
+  InferGetServerSidePropsType<typeof getServerSideProps>
+> = (props: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  let data = props.trpcState
+    ? SuperJSON.parse<Category[]>(props.trpcState)
+    : [];
+
   return (
     <>
       <Head>
@@ -73,8 +98,7 @@ const CategoriesPage: NextPageWithLayout = () => {
           " mx-auto flex min-h-[300px] max-w-[97%] flex-col items-center gap-2 py-4"
         )}
       >
-        { isLoading ? <p>loading...</p> :
-        data && data.length && data.length > 1 ? (
+        { data && data.length && data.length > 1 ? (
           <>
           <h2>Popular categories</h2>
           <Categories 
@@ -117,13 +141,6 @@ const Categories = (props: {
     cardTitleClass,
     cardLinkClass,
   } = props;
-  const images = [
-    "https://www.yohoadventures.com/wp-content/uploads/2014/10/DSC02773-1-1024x768.jpg",
-    "https://blog.efoodhandlers.com/wp-content/uploads/2020/01/AdobeStock_222953589-1024x683.jpeg",
-    "https://magazine.bluekarmasecrets.com/wp-content/uploads/2019/10/retreatbox4.jpg",
-    "https://outdoortrip-web.s3.eu-central-1.amazonaws.com/130-barcelona-city-bike-tour/barcelona-city-bike-tour.5b7d66b2e8cf8-full.jpg",
-    "https://www.trendz4friend.com/wp-content/uploads/2021/06/artclasses1.jpg",
-  ];
   return (
     <ul
       className={cn(
@@ -131,23 +148,23 @@ const Categories = (props: {
           `grid w-full grid-cols-2 gap-4 gap-y-10 sm:grid-cols-3 sm:gap-6 sm:gap-y-12 md:grid-cols-4 lg:grid-cols-5`
       )}
     >
-      {data.map((act, index) => {
+      {data.map((cat, index) => {
         return (
           <Card
-            key={act.id}
+            key={cat.id}
             className={cn(
               cardClass ??
-                `relative flex flex-col justify-between rounded-2xl bg-slate-50 hover:translate-y-1 dark:bg-slate-600 [&:nth-child(1)]:col-span-2`
+                `relative flex flex-col justify-between rounded-2xl bg-slate-50 hover:translate-y-1 dark:bg-slate-600 [&:nth-child(1)]:col-span-2  [&:last-child]:col-end-auto`
             )}
           >
             {/*lg:[&:nth-child(1)]:col-span-1 [&:nth-child(3)]:row-span-2 [&:nth-child(3)>div>img]:h-full */}
             <CardHeader className={cn(cardHeaderClass ?? "flex flex-grow p-0")}>
               <ImageWithFallback
-                src={images[index] ?? defaultImage.src}
+                src={cat.image ?? defaultImage.src}
                 fallBackSrc={defaultImage}
                 placeholder="blur"
                 blurDataURL={defaultImage.src}
-                alt={act.label ?? "category"}
+                alt={cat.label ?? "category"}
                 className={cn(
                   cardImageClass ??
                     "h-48 w-full rounded-2xl object-cover shadow-md sm:h-40 md:h-60 "
@@ -167,8 +184,9 @@ const Categories = (props: {
                   cardTitleClass ??
                     "line-clamp-1 text-lg font-bold hover:line-clamp-2 sm:text-xl"
                 )}
+                title={cat.label ?? ''}
               >
-                {act.label}
+                {cat.label}
               </CardTitle>
 
               <Link
@@ -197,10 +215,10 @@ return (
       `grid w-full grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-6 md:grid-cols-4 lg:grid-cols-5`
     )}
   >
-    {data.map((act, index) => {
+    {data.map((cat, index) => {
       return (
         <Card
-          key={act.id}
+          key={cat.id}
           className={cn(
             `relative flex justify-between rounded-2xl bg-slate-50 hover:translate-y-1 dark:bg-slate-800 `
           )}
@@ -211,7 +229,7 @@ return (
               fallBackSrc={defaultImage}
               placeholder="blur"
               blurDataURL={defaultImage.src}
-              alt={act.label ?? "category"}
+              alt={cat.label ?? "category"}
               className={cn(
                 " aspect-square w-[50px] rounded-md object-cover"
               )}
@@ -225,7 +243,7 @@ return (
                 "md:text-md line-clamp-1 overflow-hidden text-ellipsis text-end text-base font-bold hover:line-clamp-2"
               )}
             >
-              {act.label}
+              {cat.label}
             </CardTitle>
 
             <Link
