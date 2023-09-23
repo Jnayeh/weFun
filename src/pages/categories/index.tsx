@@ -23,7 +23,6 @@ import Link from "next/link";
 import defaultImage from "~/Assets/Images/placeholder.webp";
 import ImageWithFallback from "~/components/ImageWithFallback";
 import { api } from "~/utils/api";
-import { boolean } from "drizzle-orm/mysql-core";
 
 /* 
 export const getServerSideProps = async (ctx: { req: IncomingMessage & { cookies: Partial<{ [key: string]: string; }>; }; res: ServerResponse<IncomingMessage>; }) => {

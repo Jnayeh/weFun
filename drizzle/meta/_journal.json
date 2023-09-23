@@ -36,6 +36,13 @@
       "when": 1694240872960,
       "tag": "0004_peaceful_forge",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1695481721770,
+      "tag": "0005_pink_imperial_guard",
+      "breakpoints": true
     }
   ]
 }
