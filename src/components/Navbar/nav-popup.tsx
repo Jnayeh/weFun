@@ -6,20 +6,19 @@ import { Fragment } from "react";
 export default function NavPopup() {
   const { data: session } = useSession();
   return (
-    <div className="md:hidden z-30 text-right">
+    <div className="md:hidden z-50 text-right scale-90">
       <Menu as="div" className="text-left">
         {({ open }) => (
           <>
             <Menu.Button
-              className={` border-0 p-2 h-10 w-10 transition-colors right-2 rounded-lg ${open
-                ? "bg-white dark:bg-gray-200"
+              className={` border-4 border-black dark:border-transparent p-[6px] h-10 w-10 transition-colors right-2 rounded-full  ${open
+                ? "bg-white dark:bg-gray-200 border-white"
                 : "bg-white  dark:bg-gray-700"}`
               }
               aria-label="navigation menu button"
-              title="navigation menu button"
               aria-haspopup="listbox"
             >
-              <div id="nav-icon" className={open ? "nav-open" : ""}>
+              <div id="nav-icon" className={open ? " nav-open" : ""}>
                 <span className="bg-black dark:bg-white"></span>
                 <span className="bg-black dark:bg-white"></span>
                 <span className="bg-black dark:bg-white"></span>
@@ -34,7 +33,7 @@ export default function NavPopup() {
               leaveFrom="transform opacity-100 scale-100"
               leaveTo="transform opacity-0 scale-95"
             >
-              <Menu.Items className="absolute right-1 top-14 w-[90vw] origin-top-right flex flex-col gap-1 divide-y divide-gray-100 rounded-md bg-white p-1 text-lg font-bold shadow-lg ring-1  ring-black ring-opacity-5 focus:outline-none">
+              <Menu.Items className=" z-50 absolute right-1 top-14 w-[90vw] origin-top-right flex flex-col gap-1 divide-y divide-gray-100 rounded-md bg-white p-1 text-lg font-bold shadow-lg ring-1  ring-black ring-opacity-5 focus:outline-none">
                 <Menu.Item>
                   {({ active }) => (
                     <Link

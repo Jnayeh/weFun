@@ -1,5 +1,3 @@
-import { InferGetServerSidePropsType, type NextPage } from "next";
-import { createServerSideHelpers } from "@trpc/react-query/server"
 import { signIn, signOut, useSession } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
@@ -7,36 +5,12 @@ import Link from "next/link";
 import Header from "~/components/Header/header.component";
 import { api } from "~/utils/api";
 import Layout from "./layout";
-import { appRouter } from "~/server/api/root";
-import SuperJSON from "superjson";
-import { createInnerTRPCContext } from "~/server/api/trpc";
-import { getServerAuthSession } from "~/server/auth";
-import { IncomingMessage, ServerResponse } from "http";
+
 import { NextPageWithLayout } from "./_app";
+import { Button } from "@/components/ui/button";
+import Reviews from "../components/reviews";
 
-export const getServerSideProps = async (ctx: { req: IncomingMessage & { cookies: Partial<{ [key: string]: string; }>; }; res: ServerResponse<IncomingMessage>; }) => {
-  const session = await getServerAuthSession(ctx);
-  // would usually get id from url or something
-  const id = 5;
-
-  const ssg = createServerSideHelpers({
-    router: appRouter,
-    ctx: createInnerTRPCContext({session}),
-    transformer: SuperJSON,
-  });
-
-  // `prefetch` does not return the result and never throws - if
-  // you need that behavior, use `fetch` instead.
-  await ssg.example.hello.prefetch({ text: "from tRPC" });
-
-  return {
-    props: {
-      trpcState: ssg.dehydrate(),
-      id,
-    },
-  };
-};
-const Home: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSideProps>> = () => {
+const Home: NextPageWithLayout = () => {
   const hello = api.example.hello.useQuery({ text: "from tRPC" });
 
   return (
@@ -47,49 +21,29 @@ const Home: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSideP
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main className=" mx-auto flex max-w-[90%] flex-col items-center justify-center gap-2 py-4">
-        <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-          <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-            Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
-          </h1>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
+      <main className=" relative mx-auto flex max-w-[90%] flex-col items-center justify-center gap-2 py-4">
+        <section
+          id="findMore"
+          className="relative mx-auto flex justify-center rounded-full"
+        >
+          <div className="border-darkslategray-300 relative flex w-[300px] justify-start rounded-full border-[1px] border-solid [&>*]:px-10">
+            <Button className="flex w-full justify-start rounded-full bg-transparent py-[2px] leading-[138%] tracking-[0.16em] hover:bg-gray-200 dark:hover:bg-gray-800">
+              search
+            </Button>
             <Link
-              className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-              href="https://create.t3.gg/en/usage/first-steps"
-              target="_blank"
+              href="explore"
+              className=" absolute end-0 flex h-full items-center rounded-full bg-black text-sm font-black leading-[140.5%] text-white dark:bg-slate-600"
             >
-              <h3 className="text-2xl font-bold">First Steps →</h3>
-              <div className="text-lg">
-                Just the basics - Everything you need to know to set up your
-                database and authentication.
-              </div>
-            </Link>
-            <Link
-              className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-              href="https://create.t3.gg/en/introduction"
-              target="_blank"
-            >
-              <h3 className="text-2xl font-bold">Documentation →</h3>
-              <div className="text-lg">
-                Learn more about Create T3 App, the libraries it uses, and how
-                to deploy it.
-              </div>
+              <span className="uppercase">find more</span>
             </Link>
           </div>
-          <div className="flex flex-col items-center gap-2">
-            <p className="text-2xl text-white">
-              {hello.data ? hello.data.greeting : "Loading tRPC query..."}
-            </p>
-            <AuthShowcase />
-          </div>
-        </div>
+        </section>
+        <Reviews/>
       </main>
     </>
   );
 };
-Home.getLayout = (page: React.ReactNode) => (
-  <Layout>{page}</Layout>
-);
+Home.getLayout = (page: React.ReactNode) => <Layout>{page}</Layout>;
 export default Home;
 
 const AuthShowcase: React.FC = () => {

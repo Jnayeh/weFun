@@ -117,14 +117,35 @@ export default function Navbar(props: { navBarClass?: string }) {
   return (
     <div
       className={cn(
-        `navigation sticky top-0 z-30 min-w-full justify-center bg-white bg-opacity-10 backdrop-blur-[2px] dark:bg-gray-800 dark:bg-opacity-20 dark:backdrop-blur-[2px] md:bg-opacity-90 dark:md:bg-opacity-90 ${navBarClass}`
+        `navigation sticky top-0 z-30 min-w-full justify-center bg-white bg-opacity-70 backdrop-blur dark:bg-gray-800 dark:bg-opacity-20 dark:backdrop-blur-md md:bg-opacity-90 dark:md:bg-opacity-90 ${navBarClass}`
       )}
     >
-      <nav className="mx-auto flex h-[60px] w-full max-w-[1500px] items-center justify-between p-2 pl-4">
-        <BrandName />
+      <nav className="mx-auto flex h-[60px] w-full max-w-[1500px] items-center justify-between p-2 pl-4 border-b-2">
+        <div className=" w-8  rounded-full md:hidden  dark:bg-slate-300 shadow-black shadow-inner">
+          <Image
+            src="/user.svg"
+            alt="brand logo"
+            height={40}
+            width={40}
+            className="rounded-full "
+            onClick={()=>{
+              
+            }}
+          />
+        </div>
+        <div className="brand-name flex flex-shrink-0 items-center">
+          {/* <Image
+            src="/brand-name.png"
+            alt="brand logo"
+            height={60}
+            width={60}
+            className=" w-12 rounded-md"
+          /> */}
+          <span> LOGO</span>
+        </div>
         <Suspense>
-          <div className="z-40 flex w-60 items-center justify-end">
-            <ToggleButton className="z-10 scale-75 md:hidden" />
+          <div className="z-40 flex items-center justify-end">
+            <ToggleButton className="z-10 scale-[60%] md:hidden" />
             <NavPopup />
           </div>
         </Suspense>
@@ -289,22 +310,6 @@ export default function Navbar(props: { navBarClass?: string }) {
           </li> */}
         </div>
       </nav>
-    </div>
-  );
-}
-
-function BrandName() {
-  /* const scrolled = useScroll(); */
-  return (
-    <div className="brand-name flex flex-shrink-0 items-center">
-      <Image
-        src="/favicon.ico"
-        alt="brand logo"
-        height={40}
-        width={40}
-        className=" drop-shadow-md "
-      />
-      {/* <span>All We Do</span> */}
     </div>
   );
 }
