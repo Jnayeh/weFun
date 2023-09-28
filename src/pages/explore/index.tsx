@@ -1,0 +1,59 @@
+import Head from "next/head";
+
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
+import { cn } from "@/lib/utils";
+import { NextPageWithLayout } from "~/pages/_app";
+
+const CategoriesPage: NextPageWithLayout = () => {
+  return (
+    <>
+      <Head>
+        <title>FunVendors - Explore our experiences</title>
+        <meta
+          name="description"
+          content="List of Categories from different providers"
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+        <SheetDemo/>
+    </>
+  );
+};
+
+export function SheetDemo() {
+  return (
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button variant="outline">Open</Button>
+      </SheetTrigger>
+      <SheetContent side="right" className=" z-[500]">
+        <SheetHeader>
+          <SheetTitle>Edit profile</SheetTitle>
+          <SheetDescription>
+            Make changes to your profile here. Click save when you're done.
+          </SheetDescription>
+        </SheetHeader>
+        <SheetFooter>
+          <SheetClose asChild>
+            <Button type="submit">Save changes</Button>
+          </SheetClose>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
+  )
+}
+
+CategoriesPage.getLayout = (page: React.ReactNode) => <>{page}</>;
+export default CategoriesPage;
