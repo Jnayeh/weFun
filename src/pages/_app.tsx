@@ -7,6 +7,7 @@ import "~/styles/navbar.styles.css";
 import "~/styles/footer.styles.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { NextPage } from "next";
+import { NextIntlProvider } from "next-intl";
 
 export type NextPageWithLayout<P = {}> = NextPage<P> & {
   getLayout?: (page: React.ReactNode) => React.ReactNode;
@@ -23,7 +24,9 @@ const MyApp: AppType<{ session: Session | null }> = ({
   return (
     <SessionProvider session={pageProps.session}>
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-        {getLayout(<Component {...pageProps} />)}
+        <NextIntlProvider messages={pageProps.messages}>
+          {getLayout(<Component {...pageProps} />)}
+        </NextIntlProvider>
       </ThemeProvider>
     </SessionProvider>
   );
