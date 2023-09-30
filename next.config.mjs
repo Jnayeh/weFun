@@ -30,8 +30,9 @@ const config = {
    * @see https://github.com/vercel/next.js/issues/41980
    */
   i18n: {
-    locales: ["en"],
-    defaultLocale: "en",
+    locales: ["en","ar-tn","ar","fr"],
+    defaultLocale: "ar-tn",
+    localeDetection: false
   },
 };
 export default config;
