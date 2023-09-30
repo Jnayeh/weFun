@@ -24,6 +24,13 @@ module.exports = {
         },
       }, */
       colors: {
+        tomato: {
+          "100": "#f65e39",
+          "200": "#ec6139",
+          "300": "#e95b47",
+        },
+        linen: "#f2f0e4",
+        beige: "#e9ead8",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -57,6 +64,12 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+      },
+      fontFamily: {
+        rubik: "Rubik",
+        montserrat: "Montserrat",
+        "stretch-pro": "'Stretch Pro'",
+        "strretch-sans": "'STRRETCH SANS'",
       },
       borderRadius: {
         lg: "var(--radius)",

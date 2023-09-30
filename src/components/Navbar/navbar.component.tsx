@@ -1,5 +1,5 @@
 /* import { useScroll } from 'Hooks/useScroll'; */
-import React, { lazy, Suspense, useEffect, useState, useRef } from "react";
+import React, { lazy, Suspense, useEffect, useState, useRef, useLayoutEffect } from "react";
 
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -17,6 +17,7 @@ export default function Navbar(props: { navBarClass?: string }) {
 
   const location = useRouter().pathname;
   const [isSearching, setIsSearching] = useState(false);
+  const [onMobile, setOnMobile] = useState(false);
 
   function slideHorizontal(
     el: HTMLElement,
@@ -60,6 +61,7 @@ export default function Navbar(props: { navBarClass?: string }) {
       const items =
         navListRef.current.querySelectorAll<HTMLElement>(".nav-item");
       items.forEach((item) => {
+          setOnMobile(true);
         if (item && indicatorRef.current) {
           setTimeout(() => {
             item.style.transition = "0.4s";
@@ -86,6 +88,10 @@ export default function Navbar(props: { navBarClass?: string }) {
       } */
     }
   };
+  /**
+   * Adding event listeners on component mount
+   * 
+   */
   /* 
   useEffect(() => {
     // add event listener for clicks on the document
@@ -97,7 +103,7 @@ export default function Navbar(props: { navBarClass?: string }) {
   }, []);
  */
   /**
-   * Adding event listeners on component mount
+   * Sliding on location change
    */
   useEffect(() => {
     sliding();
@@ -117,10 +123,10 @@ export default function Navbar(props: { navBarClass?: string }) {
   return (
     <div
       className={cn(
-        `navigation sticky top-0 z-30 min-w-full justify-center bg-white bg-opacity-70 backdrop-blur dark:bg-gray-800 dark:bg-opacity-20 dark:backdrop-blur-md md:bg-opacity-90 dark:md:bg-opacity-90 ${navBarClass}`
+        `navigation sticky top-0 z-30 min-w-full justify-center bg-beige bg-opacity-70 backdrop-blur dark:bg-gray-800 dark:bg-opacity-20 dark:backdrop-blur-md md:bg-opacity-90 dark:md:bg-opacity-90 shadow-lg ${navBarClass}`
       )}
     >
-      <nav className="mx-auto flex h-[60px] w-full max-w-[1500px] items-center justify-between p-2 pl-4 border-b-2">
+      <nav className="mx-auto flex h-[60px] w-full max-w-[1500px] items-center justify-between p-2 pl-4">
         <div className=" w-8  rounded-full md:hidden  dark:bg-slate-300 shadow-black shadow-inner">
           <Image
             src="/user.svg"

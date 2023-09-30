@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import { Menu, Transition } from "@headlessui/react";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
@@ -6,15 +7,16 @@ import { Fragment } from "react";
 export default function NavPopup() {
   const { data: session } = useSession();
   return (
-    <div className="md:hidden z-50 text-right scale-90">
+    <div className="z-50 scale-90 text-right md:hidden">
       <Menu as="div" className="text-left">
         {({ open }) => (
           <>
             <Menu.Button
-              className={` border-4 border-black dark:border-transparent p-[6px] h-10 w-10 transition-colors right-2 rounded-full  ${open
-                ? "bg-white dark:bg-gray-200 border-white"
-                : "bg-white  dark:bg-gray-700"}`
-              }
+              className={cn(` right-2 h-10 w-10 rounded-full border-4 border-black p-[6px] transition-colors dark:border-transparent bg-white bg-opacity-70 dark:bg-opacity-100 ${
+                open
+                  ? "  dark:bg-gray-200 border-transparent"
+                  : " dark:bg-gray-700 dark:border-white"
+              }`)}
               aria-label="navigation menu button"
               aria-haspopup="listbox"
             >
@@ -27,13 +29,13 @@ export default function NavPopup() {
             <Transition
               as={Fragment}
               enter="transition ease-out duration-100"
-              enterFrom="transform opacity-0 scale-95"
+              enterFrom="transform opacity-0 scale-75"
               enterTo="transform opacity-100 scale-100"
               leave="transition ease-in duration-75"
               leaveFrom="transform opacity-100 scale-100"
-              leaveTo="transform opacity-0 scale-95"
+              leaveTo="transform opacity-0 scale-75"
             >
-              <Menu.Items className=" z-50 absolute right-1 top-14 w-[90vw] origin-top-right flex flex-col gap-1 divide-y divide-gray-100 rounded-md bg-white p-1 text-lg font-bold shadow-lg ring-1  ring-black ring-opacity-5 focus:outline-none">
+              <Menu.Items className=" absolute right-1 top-14 z-50 flex w-[90vw] origin-top-right flex-col gap-1 divide-y divide-gray-100 rounded-md bg-white p-1 text-lg font-bold shadow-lg ring-1  ring-black ring-opacity-5 focus:outline-none">
                 <Menu.Item>
                   {({ active }) => (
                     <Link
@@ -49,6 +51,7 @@ export default function NavPopup() {
                 <Menu.Item>
                   {({ active }) => (
                     <Link
+                      prefetch={true}
                       className={`${
                         active ? "bg-gray-500 text-white" : "text-gray-900"
                       } group flex w-full items-center rounded-md px-2 py-2 `}
@@ -73,6 +76,7 @@ export default function NavPopup() {
                 <Menu.Item>
                   {({ active }) => (
                     <Link
+                      prefetch
                       className={`${
                         active ? "bg-gray-500 text-white" : "text-gray-900"
                       } group flex w-full items-center rounded-md px-2 py-2 `}
@@ -84,7 +88,10 @@ export default function NavPopup() {
                 </Menu.Item>
                 {session ? (
                   <Menu.Item>
-                    <button className="rounded-md bg-slate-500 px-4 py-1 w-full text-slate-100" onClick={() => void signOut()}>
+                    <button
+                      className="w-full rounded-md bg-slate-500 px-4 py-1 text-slate-100"
+                      onClick={() => void signOut()}
+                    >
                       Sign out
                     </button>
                   </Menu.Item>
