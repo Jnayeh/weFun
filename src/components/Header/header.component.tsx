@@ -1,47 +1,42 @@
-
-
 // image imports
-import JumpingMan from '~/Assets/Images/jumping_man.png';
-import WoofBall from '~/Assets/Images/woof-ball.svg';
-import SaturnImage from '~/Assets/Images/saturn.svg';
-import SunImage from '~/Assets/Images/sun.svg';
-import LeafImage from '~/Assets/Images/leaf.svg';
-import LocationImage from '~/Assets/Images/location.svg';
+import JumpingMan from "~/Assets/Images/jumping_man.png";
+import WoofBall from "~/Assets/Images/woof-ball.svg";
+import SaturnImage from "~/Assets/Images/saturn.svg";
+import SunImage from "~/Assets/Images/sun.svg";
+import LeafImage from "~/Assets/Images/leaf.svg";
+import LocationImage from "~/Assets/Images/location.svg";
 
 // icons imports
-import { BsChevronDown } from '@react-icons/all-files/bs/BsChevronDown';
-import Link from 'next/link';
-import Image from 'next/image';
-
+import { BsChevronDown } from "@react-icons/all-files/bs/BsChevronDown";
+import Link from "next/link";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
 
 const Header = () => {
   return (
-    <header className="lg:pt-20  flex flex-col-reverse lg:flex-row justify-center items-center py-7 lg:px-6 max-w-[1500px] mx-auto ">
-      <div className="w-4/5 pt-8 sm:pt-0 sm:pl-10 lg:pl-20 lg:w-1/2">
-        <h1 className="lg:text-[3.5rem] xl:text-7xl text-4xl dark:text-white ">
-          Make your daily experiences <span className="text-primary "> memorable </span>
+    <header className="mx-auto  flex max-w-[1500px] flex-col-reverse items-center justify-center py-4 lg:flex-row lg:px-6 lg:pt-4 ">
+      <div className="w-4/5 pt-8 sm:pl-10 sm:pt-0 lg:w-1/2 lg:pl-20">
+        <h1 className=" flex flex-col justify-start text-center md:text-start text-4xl font-extrabold leading-none dark:text-white lg:text-[3.5rem] xl:text-7xl">
+          Make your daily experiences{" "}
+          <span className="text-primary "> memorable </span>
         </h1>
-        <p className="py-8 max-w-md dark:text-white">
-          On a mission to build a network of entertainment where you can share and practice your hobbies with people who
-          have the same interests as you.
+        <p className="text-center md:text-start max-w-md py-8 text-lg dark:text-white font-semibold">
+          Practice your hobbies with people who have the same interests as you.
         </p>
-        <div className="header_link_container ">
-          <Link href="#" className="mt-14 uppercase lg:text-3xl text-2xl font-bold dark:text-white">
-            Choose <span className="text-primary "> the plan </span> that
-            <p className="flex items-center gap-1">
-              suits you <BsChevronDown size={32} className="inline-block" strokeWidth={0.4} />
-            </p>
-          </Link>
-        </div>
+        <button className=" justify-self-center w-full max-w-sm rounded-full bg-primary px-9 py-3 text-lg font-light text-white hover:bg-red-700 2xs:text-2xl sm:top-[290px] sm:ml-[50px] sm:scale-100 md:ml-[150px] lg:ml-[75px] lg:text-base xl:top-[400px] xl:ml-[50px] xl:text-2xl">
+          Find out more
+        </button>
       </div>
-      <div className="h-[450px] xl:h-[600px] w-4/5 lg:w-1/2 relative sm:pr-32 flex my-14 lg:mt-0 lg:max-w-[600px]">
-        <Image src={SaturnImage} alt="sun_image" className=" absolute top-28 sm:left-16 z-0 scale-75 xs:scale-100" />
-        <Image src={LeafImage} alt="leaf_image" className="absolute top-1 right-1 scale-75 xs:scale-100" />
-        <Image src={SunImage} alt="sun_image" className="absolute top-44 -right-0 sm:-right-6 scale-75 xs:scale-100" />
-        <Image src={LocationImage} alt="location_image" className="absolute bottom-5  left-32 scale-75 xs:scale-100" />
-        <Image src={JumpingMan} alt="jumping_man" className="h-[370px] w-auto xs:h-[450px] xl:h-[600px] absolute right-1  lg:right-2 z-0" loading='eager' fetchPriority="high" />
-        <Image src={WoofBall} alt="woof-ball" className="h-[70px] xs:h-[85px] xl:h-[120px] w-auto absolute -top-10 ml-10 sm:right-[295px] md:-top-10 lg:right-96 z-0" />
-        <button className="absolute top-[460px] sm:top-[290px] xl:top-[400px] hover:bg-red-700 sm:scale-100 ml-[20px] sm:ml-[50px] md:ml-[150px] xl:ml-[50px] lg:ml-[75px] z-0 text-lg 2xs:text-2xl lg:text-base xl:text-2xl text-white font-light bg-primary py-3 px-9 rounded-full">Find out more</button>
+      <div className="relative flex h-[450px] w-full md:w-4/5 md:h-[600px] sm:pr-32 lg:mt-0 lg:w-1/2 lg:max-w-[600px] xl:h-[800px]">
+        <Image
+          src="/Frame_hero_pic.svg"
+          alt="jumping_man"
+          className="absolute right-1 z-0 h-[450px] w-auto md:h-[600px]  lg:right-2 xl:h-[800px]"
+          loading="eager"
+          fetchPriority="high"
+          width={600}
+          height={600}
+        />
       </div>
     </header>
   );
