@@ -1,16 +1,5 @@
-// image imports
-import JumpingMan from "~/Assets/Images/jumping_man.png";
-import WoofBall from "~/Assets/Images/woof-ball.svg";
-import SaturnImage from "~/Assets/Images/saturn.svg";
-import SunImage from "~/Assets/Images/sun.svg";
-import LeafImage from "~/Assets/Images/leaf.svg";
-import LocationImage from "~/Assets/Images/location.svg";
 
-// icons imports
-import { BsChevronDown } from "@react-icons/all-files/bs/BsChevronDown";
-import Link from "next/link";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
 
 const Header = () => {
   return (
