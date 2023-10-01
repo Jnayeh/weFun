@@ -12,7 +12,7 @@ export default function NavPopup() {
         {({ open }) => (
           <>
             <Menu.Button
-              className={cn(` right-2 h-10 w-10 rounded-full border-4 border-black p-[6px] transition-colors dark:border-transparent bg-white bg-opacity-70 dark:bg-opacity-100 ${
+              className={cn(` right-2 h-10 w-10 rounded-full border-4 border-black p-[6px] transition-colors dark:border-transparent bg-white bg-opacity-20 dark:bg-opacity-50 ${
                 open
                   ? "  dark:bg-gray-200 border-transparent"
                   : " dark:bg-gray-700 dark:border-white"
@@ -20,7 +20,7 @@ export default function NavPopup() {
               aria-label="navigation menu button"
               aria-haspopup="listbox"
             >
-              <div id="nav-icon" className={open ? " nav-open" : ""}>
+              <div id="nav-icon" className={open ? " nav-open" : " [&>*]:hover:bg-red-500"}>
                 <span className="bg-black dark:bg-white"></span>
                 <span className="bg-black dark:bg-white"></span>
                 <span className="bg-black dark:bg-white"></span>

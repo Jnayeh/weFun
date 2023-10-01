@@ -127,7 +127,7 @@ export default function Navbar(props: { navBarClass?: string }) {
       )}
     >
       <nav className="mx-auto flex h-[60px] w-full max-w-[1500px] items-center justify-between p-2 pl-4">
-        <div className=" w-8  rounded-full md:hidden  dark:bg-slate-300 shadow-black shadow-inner">
+        <div className=" w-8  rounded-full md:hidden dark:bg-white dark:bg-opacity-60 shadow-black shadow-inner">
           <Image
             src="/user.svg"
             alt="brand logo"

@@ -2,9 +2,8 @@ import type { NextPage } from "next";
 
 const Reviews: NextPage = () => {
   return (
-    <div className=" relative w-full h-[407px] overflow-hidden text-center text-sm text-white font-rubik">
-      <div className="absolute top-[0px] left-[1px] w-full h-full overflow-hidden">
-        <div className="absolute top-[0px] left-[0px] bg-darkslategray-300 w-full h-full " />
+    <section className=" w-full h-[407px] overflow-hidden text-center text-sm text-white font-rubik bg-oldlace">
+      <div className="relative mx-auto w-[400px]  h-full overflow-hidden">
         <div className="absolute top-[89px] left-[53px] text-17xl font-black">
           “
         </div>
@@ -39,7 +38,7 @@ const Reviews: NextPage = () => {
           src="/ellipse-5@2x.png"
         />
       </div>
-    </div>
+    </section>
   );
 };
 

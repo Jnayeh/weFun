@@ -107,7 +107,6 @@
 
 ::-webkit-scrollbar-track {
   background-color: transparent;
-  @apply bg-white;
 }
 
 ::-webkit-scrollbar-thumb {
