@@ -40,23 +40,23 @@ const Home: NextPageWithLayout = () => {
           </b>
           <div className="h-4 w-[16.51px] rounded-[50%] bg-linen" />
         </div>
-        <section className="max-w-md">
+        <section className=" max-w-7xl w-[90%]">
           <h2 className=" p-6 text-center font-montserrat text-3xl font-extrabold uppercase">
             TOP <br /> Places
           </h2>
-          <div className="flex flex-row items-start justify-start gap-[8px]">
+          <div className="flex flex-row items-start justify-start gap-2">
             <img
-              className="relative h-[695px] w-[400px] rounded-xl object-cover"
+              className="relative h-[695px] w-[80%] rounded-xl object-cover flex-grow"
               alt=""
               src="/unsplashuhkoydaijhw1@2x.png"
             />
             <img
-              className="relative h-[695px] w-[25px] rounded-xl object-cover"
+              className="relative h-[695px] w-6 rounded-xl object-cover"
               alt=""
               src="/unsplashzej4hpqlr5o@2x.png"
             />
             <img
-              className="relative h-[695px] w-2.5 rounded-xl object-cover"
+              className="relative h-[695px] w-4 rounded-xl object-cover"
               alt=""
               src="/unsplash9fmdypcv8mq@2x.png"
             />
@@ -71,6 +71,9 @@ const Home: NextPageWithLayout = () => {
           </div>
         </section>
         <section className="relative mb-4 h-[1000px] w-full">
+        <h2 className="absolute top-12 flex justify-center font-rubik text-center text-[7vw] sm:text-[5vw] md:text-[6vw] lg:text-[4vw] font-medium leading-[138%] tracking-[0.16em] text-black uppercase w-[80%] mx-[10%]">
+                discover <br/> the best activities <br/>  with one swipe
+          </h2>
           <img
             className="h-full w-full object-cover"
             alt=""
@@ -94,28 +97,28 @@ const Home: NextPageWithLayout = () => {
           </div>
         </section>
 
-        <section className="max-w-md">
+        <section className="w-[90%] max-w-7xl ">
           <h2 className=" p-6 text-center font-montserrat text-3xl font-extrabold uppercase">
             top <br /> activities
           </h2>
-          <div className="flex flex-row items-start justify-start gap-[8px]">
+          <div className="flex flex-row items-start justify-start gap-2">
             <img
-              className="relative h-[695px] w-[400px] rounded-xl object-cover"
+              className="relative h-[695px] w-[80%] rounded-xl object-cover flex-grow"
               alt=""
               src="/unsplashuhkoydaijhw1@2x.png"
             />
             <img
-              className="relative h-[695px] w-[25px] rounded-xl object-cover"
+              className="relative h-[695px] w-6 rounded-xl object-cover"
               alt=""
               src="/unsplashzej4hpqlr5o@2x.png"
             />
             <img
-              className="relative h-[695px] w-2.5 rounded-xl object-cover"
+              className="relative h-[695px] w-4 rounded-xl object-cover"
               alt=""
               src="/unsplash9fmdypcv8mq@2x.png"
             />
           </div>
-          
+
           <div className="flex justify-center p-8">
             <Link
               href="activities"
