@@ -71,7 +71,7 @@ const Home: NextPageWithLayout = () => {
           </div>
         </section>
         <section className="relative mb-4 h-[1000px] w-full">
-        <h2 className="absolute top-12 flex justify-center font-rubik text-center text-[7vw] sm:text-[5vw] md:text-[6vw] lg:text-[4vw] font-medium leading-[138%] tracking-[0.16em] text-black uppercase w-[80%] mx-[10%]">
+        <h2 className="absolute top-12 flex justify-center font-rubik text-center text-[7vw] sm:text-[5vw] md:text-[38px] font-medium leading-[138%] tracking-[0.16em] text-black uppercase w-[80%] mx-[10%]">
                 discover <br/> the best activities <br/>  with one swipe
           </h2>
           <img

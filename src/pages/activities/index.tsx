@@ -14,6 +14,7 @@ import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { FaHeart } from "@react-icons/all-files/fa/FaHeart";
+import { FaLocationArrow } from "@react-icons/all-files/fa/FaLocationArrow";
 import { BiHeart } from "@react-icons/all-files/bi/BiHeart";
 import { BiSearchAlt } from "@react-icons/all-files/bi/BiSearchAlt";
 import { NextPageWithLayout } from "~/pages/_app";
@@ -131,7 +132,7 @@ const Activities = (props: { data: Activity[] }) => {
   return (
     <ul
       className={cn(
-        `grid w-full grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 md:grid-cols-4`
+        `grid w-full grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-x-4 md:grid-cols-3 gap-y-14 px-2`
       )}
     >
       {data.map((act, index) => {
@@ -139,22 +140,20 @@ const Activities = (props: { data: Activity[] }) => {
           <Card
             key={act.id}
             className={cn(
-              `flex flex-col justify-between overflow-hidden rounded-3xl bg-slate-50 dark:bg-slate-600 [&:nth-child(1)>div>img]:max-h-48 lg:[&:nth-child(1)>div>img]:max-h-full [&:nth-child(1)]:col-span-2 lg:[&:nth-child(1)]:col-span-1 ${
-                data.length > 4 ? "[&:nth-child(2)]:row-span-2" : ""
-              } `
+              `flex flex-col justify-between rounded-3xl bg-slate-50 dark:bg-slate-600 [&>div>img]:aspect-[19/9] lg:[&>div>img]:aspect-video relative`
             )}
           >
-            <CardHeader className="relative flex-shrink flex-grow p-3 pb-0">
+            <CardHeader className="relative flex-shrink flex-grow p-0">
               <ImageWithFallback
                 src={images[index] ?? defaultImage.src}
                 fallBackSrc={defaultImage}
                 blurDataURL={defaultImage.src}
                 alt={act.label ?? "activity"}
-                className="aspect-video h-full w-full rounded-2xl object-cover shadow-md"
+                className="aspect-video h-full w-full rounded-t-3xl object-cover shadow-md"
                 width={800}
                 height={800}
               />
-              <Button className="text-brand-500 absolute right-5 top-5 flex items-center justify-center rounded-full bg-white p-2 hover:cursor-pointer">
+              <Button className="text-brand-500 absolute right-2 top-2 flex items-center justify-center rounded-full bg-white p-2 hover:cursor-pointer sm:scale-90 md:scale-75">
                 <div className="flex h-6 w-6 items-center justify-center rounded-full text-2xl hover:bg-gray-50">
                   {act.id % 2 == 0 ? (
                     <FaHeart fill="red" />
@@ -164,28 +163,30 @@ const Activities = (props: { data: Activity[] }) => {
                 </div>
               </Button>
             </CardHeader>
-            <CardContent className="p-3 py-2 [&>*]:line-clamp-1">
+            <CardContent className="px-5 pt-8 pb-1 [&>*]:line-clamp-1 ">
               <CardTitle title={act.label ?? ''}>{act.label}</CardTitle>
             </CardContent>
-            <CardFooter className="flex justify-between px-4 ">
+            <CardFooter className="flex justify-between px-5 pt-1 pb-10">
+            {act.location ? (
+                <h4 className=" font-medium text-red-600 dark:text-slate-50 flex items-baseline">
+                  <FaLocationArrow className=" scale-75"/>
+                  {act.location}
+                </h4>
+              ) : ""}
+              
               <div className="flex">
               {act.discount ?
-              <h4 className={cn(`whitespace-nowrap pr-1 font-semibold`)}>
+              <h4 className={cn(`whitespace-nowrap pr-1 font-normal`)}>
                 {(act.price * (100-8)/100) + " DT"}
               </h4>
               : ""}
-              <h4 className={cn(`whitespace-nowrap pr-1 ${act.discount ? "line-through text-xs":'font-semibold'}`)}>
+              <h4 className={cn(`whitespace-nowrap pr-1 ${act.discount ? "line-through text-xs font-bold":'font-normal'}`)}>
                 {act.price + " DT"}
               </h4>
               </div>
-              {act.discount ? (
-                <h4 className=" font-extrabold text-red-600 dark:text-slate-50">
-                  {"-" + act.discount}%
-                </h4>
-              ) : ""}
             </CardFooter>
-            <Button className=" m-2 w-[90%] max-w-[16rem] self-center rounded-xl bg-slate-700 py-1 text-lg font-bold text-white shadow-sm dark:bg-white dark:text-slate-700">
-              Book now
+            <Button className="absolute bottom-0 w-[94%] self-center rounded-3xl bg-tomato-300 py-1 text-lg  text-white shadow-sm h-14 -my-7 font-semibold md:scale-[80%]">
+              View details
             </Button>
           </Card>
         );
