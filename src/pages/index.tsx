@@ -44,19 +44,19 @@ const Home: NextPageWithLayout = () => {
           <h2 className=" p-6 text-center font-montserrat text-3xl font-extrabold uppercase">
             TOP <br /> Places
           </h2>
-          <div className="flex flex-row items-start justify-start gap-2">
+          <div className="flex flex-row items-start justify-start gap-2 h-[75vh] ">
             <img
-              className="relative h-[695px] w-[80%] rounded-xl object-cover flex-grow"
+              className="relative h-full w-[80%] rounded-xl object-cover flex-grow"
               alt=""
               src="/unsplashuhkoydaijhw1@2x.png"
             />
             <img
-              className="relative h-[695px] w-6 rounded-xl object-cover"
+              className="relative h-full w-6 rounded-xl object-cover"
               alt=""
               src="/unsplashzej4hpqlr5o@2x.png"
             />
             <img
-              className="relative h-[695px] w-4 rounded-xl object-cover"
+              className="relative h-full w-4 rounded-xl object-cover"
               alt=""
               src="/unsplash9fmdypcv8mq@2x.png"
             />
@@ -101,19 +101,19 @@ const Home: NextPageWithLayout = () => {
           <h2 className=" p-6 text-center font-montserrat text-3xl font-extrabold uppercase">
             top <br /> activities
           </h2>
-          <div className="flex flex-row items-start justify-start gap-2">
+          <div className="flex flex-row items-start justify-start gap-2 h-[75vh] ">
             <img
-              className="relative h-[695px] w-[80%] rounded-xl object-cover flex-grow"
+              className="relative h-full w-[80%] rounded-xl object-cover flex-grow"
               alt=""
               src="/unsplashuhkoydaijhw1@2x.png"
             />
             <img
-              className="relative h-[695px] w-6 rounded-xl object-cover"
+              className="relative h-full w-6 rounded-xl object-cover"
               alt=""
               src="/unsplashzej4hpqlr5o@2x.png"
             />
             <img
-              className="relative h-[695px] w-4 rounded-xl object-cover"
+              className="relative h-full w-4 rounded-xl object-cover"
               alt=""
               src="/unsplash9fmdypcv8mq@2x.png"
             />
