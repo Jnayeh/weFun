@@ -23,6 +23,7 @@ import Link from "next/link";
 import defaultImage from "~/Assets/Images/placeholder.webp";
 import ImageWithFallback from "~/components/ImageWithFallback";
 import { api } from "~/utils/api";
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 
 /* 
 export const getServerSideProps = async (ctx: { req: IncomingMessage & { cookies: Partial<{ [key: string]: string; }>; }; res: ServerResponse<IncomingMessage>; }) => {
@@ -74,7 +75,7 @@ export const getServerSideProps = async (ctx: {
       trpcState: SuperJSON.stringify(categories),
     },
   };
-}
+};
 const CategoriesPage: NextPageWithLayout<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = (props: InferGetServerSidePropsType<typeof getServerSideProps>) => {
@@ -97,21 +98,61 @@ const CategoriesPage: NextPageWithLayout<
           " mx-auto flex min-h-[300px] max-w-[97%] flex-col items-center gap-2 py-4"
         )}
       >
-        { data && data.length && data.length > 1 ? (
+        {data && data.length && data.length > 1 ? (
           <>
-          <h2>Popular categories</h2>
-          <Categories 
-          data={data.slice(0,4)}
-          ulClass="grid w-full grid-cols-2 gap-2 sm:gap-4 lg:grid-cols-4 max-w-xl lg:max-w-[1200px]"
-          cardClass="relative flex justify-between rounded-2xl bg-slate-50 dark:bg-slate-800"
-          cardHeaderClass="flex flex-shrink-0 flex-grow justify-center  p-1"
-          cardImageClass="aspect-square w-[50px] rounded-md object-cover"
-          cardContentClass="flex flex-col items-end justify-between rounded-r-2xl p-2 transition-all"
-          cardTitleClass="md:text-lg text-end text-base font-bold line-clamp-1 text-elipsis flex-shrink"
-          cardLinkClass="self-end bg-transparent p-0 px-1 text-sm underline-offset-4 hover:underline focus:underline hover:text-red-600"
-          />
-          <h2>All categories</h2>
-          <Categories data={data} />
+            <h2>Popular categories</h2>
+            <Categories
+              data={data.slice(0, 4)}
+              ulClass="grid w-full grid-cols-2 gap-2 sm:gap-4 lg:grid-cols-4 max-w-xl lg:max-w-[1200px]"
+              cardClass="relative flex justify-between rounded-2xl bg-slate-50 dark:bg-slate-800"
+              cardHeaderClass="flex flex-shrink-0 flex-grow justify-center  p-1"
+              cardImageClass="aspect-square w-[50px] rounded-md object-cover"
+              cardContentClass="flex flex-col items-end justify-between rounded-r-2xl p-2 transition-all"
+              cardTitleClass="md:text-lg text-end text-base font-bold line-clamp-1 text-elipsis flex-shrink"
+              cardLinkClass="self-end bg-transparent p-0 px-1 text-sm underline-offset-4 hover:underline focus:underline hover:text-red-600"
+            />
+            <h2>All categories</h2>
+            <ul className={cn(`grid w-full grid-cols-1`)}>
+              <ResponsiveMasonry
+                columnsCountBreakPoints={{ 100: 2, 640: 3, 1024: 4 }}
+              >
+                <Masonry gutter="10px">
+                  {data.map((cat, index) => {
+                    return (
+                      <Card
+                        key={cat.id}
+                        className={cn(
+                          `relative flex flex-col justify-between overflow-hidden rounded-2xl bg-slate-50 hover:translate-y-1  dark:bg-slate-600`
+                        )}
+                      >
+                        {/*lg:[&:nth-child(1)]:col-span-1 [&:nth-child(3)]:row-span-2 [&:nth-child(3)>div>img]:h-full */}
+                        <CardHeader className={cn("flex flex-grow p-0")}>
+                          <ImageWithFallback
+                            src={cat.image ?? defaultImage.src}
+                            fallBackSrc={defaultImage}
+                            placeholder="blur"
+                            blurDataURL={defaultImage.src}
+                            alt={cat.label ?? "category"}
+                            className={cn(
+                              "h-full rounded-2xl object-cover shadow-md "
+                            )}
+                            width={800}
+                            height={800}
+                          />
+                          <Link
+                            className="absolute flex h-full w-full items-end bg-gradient-to-b from-transparent from-85% to-gray-700 p-1 px-3 text-lg
+                             font-bold text-white drop-shadow-xl sm:text-xl"
+                            href={`categories/${cat.id}`}
+                          >
+                            <span className="line-clamp-1">{cat.label}</span>
+                          </Link>
+                        </CardHeader>
+                      </Card>
+                    );
+                  })}
+                </Masonry>
+              </ResponsiveMasonry>
+            </ul>
           </>
         ) : (
           <p>Can not find any Categories </p>
@@ -129,6 +170,7 @@ const Categories = (props: {
   cardContentClass?: string;
   cardTitleClass?: string;
   cardLinkClass?: string;
+  cardHeaderLinkClass?: string;
 }) => {
   const {
     data,
@@ -139,12 +181,13 @@ const Categories = (props: {
     cardContentClass,
     cardTitleClass,
     cardLinkClass,
+    cardHeaderLinkClass,
   } = props;
   return (
     <ul
       className={cn(
         ulClass ??
-          `grid w-full grid-cols-2 gap-4 gap-y-10 sm:grid-cols-3 sm:gap-6 sm:gap-y-12 md:grid-cols-4 lg:grid-cols-5`
+          `grid w-full grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 md:grid-cols-4 lg:grid-cols-5 `
       )}
     >
       {data.map((cat, index) => {
@@ -153,7 +196,7 @@ const Categories = (props: {
             key={cat.id}
             className={cn(
               cardClass ??
-                `relative flex flex-col justify-between rounded-2xl bg-slate-50 hover:translate-y-1 dark:bg-slate-600 [&:nth-child(1)]:col-span-2  [&:last-child]:col-end-auto`
+                `relative flex flex-col justify-between rounded-2xl bg-slate-50 hover:translate-y-1 dark:bg-slate-600 `
             )}
           >
             {/*lg:[&:nth-child(1)]:col-span-1 [&:nth-child(3)]:row-span-2 [&:nth-child(3)>div>img]:h-full */}
@@ -165,12 +208,14 @@ const Categories = (props: {
                 blurDataURL={defaultImage.src}
                 alt={cat.label ?? "category"}
                 className={cn(
-                  cardImageClass ??
-                    "h-48 w-full rounded-2xl object-cover shadow-md sm:h-40 md:h-60 "
+                  cardImageClass ?? "h-full rounded-2xl object-cover shadow-md "
                 )}
                 width={800}
                 height={800}
               />
+              <Link className={cn(cardHeaderLinkClass ?? `hidden`)} href={""}>
+                <span className="line-clamp-1">{cat.label}</span>
+              </Link>
             </CardHeader>
             <CardContent
               className={cn(
@@ -183,7 +228,7 @@ const Categories = (props: {
                   cardTitleClass ??
                     "line-clamp-1 text-lg font-bold hover:line-clamp-2 sm:text-xl"
                 )}
-                title={cat.label ?? ''}
+                title={cat.label ?? ""}
               >
                 {cat.label}
               </CardTitle>
