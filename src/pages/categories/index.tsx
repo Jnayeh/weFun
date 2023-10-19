@@ -140,7 +140,7 @@ const CategoriesPage: NextPageWithLayout<
                             height={800}
                           />
                           <Link
-                            className="absolute flex h-full w-full items-end bg-gradient-to-b from-transparent from-80% to-gray-800 p-1 px-3 text-lg
+                            className="absolute flex h-full w-full items-end bg-gradient-to-b from-transparent from-80% to-red-600 p-1 px-3 text-lg
                              font-bold text-white drop-shadow-xl sm:text-xl"
                             href={`categories/${cat.id}`}
                           >
