@@ -5,43 +5,8 @@
     {
       "idx": 0,
       "version": "5",
-      "when": 1691617576975,
-      "tag": "0000_melodic_wasp",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "5",
-      "when": 1691618055795,
-      "tag": "0001_absent_harry_osborn",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "5",
-      "when": 1691619064728,
-      "tag": "0002_majestic_blazing_skull",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "5",
-      "when": 1691709857140,
-      "tag": "0003_previous_pandemic",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "5",
-      "when": 1694240872960,
-      "tag": "0004_peaceful_forge",
-      "breakpoints": true
-    },
-    {
-      "idx": 5,
-      "version": "5",
-      "when": 1695481721770,
-      "tag": "0005_pink_imperial_guard",
+      "when": 1697742107614,
+      "tag": "0000_bumpy_timeslip",
       "breakpoints": true
     }
   ]

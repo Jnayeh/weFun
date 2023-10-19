@@ -13,6 +13,43 @@ CREATE TABLE `accounts` (
 	CONSTRAINT `accounts_provider_providerAccountId` PRIMARY KEY(`provider`,`providerAccountId`)
 );
 --> statement-breakpoint
+CREATE TABLE `activities` (
+	`id` int NOT NULL,
+	`label` varchar(255),
+	`description` text,
+	`location` varchar(255),
+	`price` real NOT NULL,
+	`visible` int NOT NULL DEFAULT 1,
+	`discount` real DEFAULT 0,
+	`capacity` int NOT NULL,
+	`activity_duration` int NOT NULL,
+	`createdAt` timestamp,
+	`modifiedAt` timestamp ON UPDATE CURRENT_TIMESTAMP,
+	`categoryId` int NOT NULL,
+	CONSTRAINT `activities_id` PRIMARY KEY(`id`)
+);
+--> statement-breakpoint
+CREATE TABLE `categories` (
+	`id` int NOT NULL,
+	`label` varchar(255),
+	`details` text,
+	`image` varchar(255),
+	`visible` int DEFAULT 1,
+	`createdAt` timestamp,
+	`modifiedAt` timestamp ON UPDATE CURRENT_TIMESTAMP,
+	CONSTRAINT `categories_id` PRIMARY KEY(`id`)
+);
+--> statement-breakpoint
+CREATE TABLE `images` (
+	`id` int NOT NULL,
+	`filename` varchar(255),
+	`size` int,
+	`createdAt` timestamp,
+	`modifiedAt` timestamp ON UPDATE CURRENT_TIMESTAMP,
+	`activityId` int,
+	CONSTRAINT `images_id` PRIMARY KEY(`id`)
+);
+--> statement-breakpoint
 CREATE TABLE `sessions` (
 	`sessionToken` varchar(255) NOT NULL,
 	`userId` varchar(255) NOT NULL,
@@ -25,7 +62,7 @@ CREATE TABLE `users` (
 	`name` varchar(255),
 	`email` varchar(255) NOT NULL,
 	`role` varchar(20) NOT NULL DEFAULT 'user',
-	`emailVerified` timestamp(3) ON UPDATE CURRENT_TIMESTAMP,
+	`emailVerified` timestamp(3),
 	`image` varchar(255),
 	CONSTRAINT `users_id` PRIMARY KEY(`id`)
 );
@@ -38,4 +75,6 @@ CREATE TABLE `verificationToken` (
 );
 --> statement-breakpoint
 ALTER TABLE `accounts` ADD CONSTRAINT `accounts_userId_users_id_fk` FOREIGN KEY (`userId`) REFERENCES `users`(`id`) ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE `activities` ADD CONSTRAINT `activities_categoryId_categories_id_fk` FOREIGN KEY (`categoryId`) REFERENCES `categories`(`id`) ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE `images` ADD CONSTRAINT `images_activityId_categories_id_fk` FOREIGN KEY (`activityId`) REFERENCES `categories`(`id`) ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE `sessions` ADD CONSTRAINT `sessions_userId_users_id_fk` FOREIGN KEY (`userId`) REFERENCES `users`(`id`) ON DELETE cascade ON UPDATE no action;

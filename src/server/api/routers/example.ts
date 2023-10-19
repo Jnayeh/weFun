@@ -12,7 +12,7 @@ export const exampleRouter = createTRPCRouter({
   hello: publicProcedure
     .input(z.object({ text: z.string() }))
     .query(async ({ input }) => {
-      await migrate(db, { migrationsFolder: "drizzle" });
+      /* await migrate(db, { migrationsFolder: "drizzle" }); */
       return {
         greeting: `Hello ${input.text}`,
       };
