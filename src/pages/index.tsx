@@ -23,7 +23,7 @@ export function getStaticProps(props: { locale: string }) {
 const Home: NextPageWithLayout = () => {
   const hello = api.example.hello.useQuery(
     { text: "from tRPC" },
-    { refetchOnMount: false, refetchOnWindowFocus: false }
+    { refetchOnMount: false, refetchOnWindowFocus: false, staleTime: 1000 * 60 * 2 }
   );
   const t = useTranslations("Home");
   return (
