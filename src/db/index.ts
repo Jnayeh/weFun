@@ -18,4 +18,4 @@ if (env.NODE_ENV !== "production") globalForPrisma.prisma = prisma; */
 
 const client = await mysql.createConnection(env.DATABASE_URL);
 export const db = drizzle(client,{ logger: true });
-await migrate(db, { migrationsFolder: "drizzle" });
+/* await migrate(db, { migrationsFolder: "drizzle" }); */
