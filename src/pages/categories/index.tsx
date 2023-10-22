@@ -1,4 +1,4 @@
-import { InferGetServerSidePropsType } from "next";
+import { InferGetServerSidePropsType, InferGetStaticPropsType } from "next";
 import Head from "next/head";
 
 import Layout from "../layout";
@@ -14,7 +14,6 @@ import { appRouter } from "~/server/api/root";
 import { Category } from "~/db/schema";
 import SuperJSON from "superjson";
 import { cn } from "@/lib/utils";
-import { getServerAuthSession } from "~/server/auth";
 import { IncomingMessage, ServerResponse } from "http";
 import { createServerSideHelpers } from "@trpc/react-query/server";
 import { createInnerTRPCContext } from "~/server/api/trpc";
@@ -24,6 +23,7 @@ import defaultImage from "~/Assets/Images/placeholder.webp";
 import ImageWithFallback from "~/components/ImageWithFallback";
 import { api } from "~/utils/api";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
+import { getAuth } from "@clerk/nextjs/server";
 
 /* 
 export const getServerSideProps = async (ctx: { req: IncomingMessage & { cookies: Partial<{ [key: string]: string; }>; }; res: ServerResponse<IncomingMessage>; }) => {
@@ -58,21 +58,22 @@ export const getServerSideProps = async (ctx: {
   req: IncomingMessage & { cookies: Partial<{ [key: string]: string }> };
   res: ServerResponse<IncomingMessage>;
 }) => {
-  const session = await getServerAuthSession(ctx);
-
+  const auth = getAuth(ctx.req);
   const ssg = createServerSideHelpers({
     router: appRouter,
-    ctx: createInnerTRPCContext({ session }),
+    ctx: createInnerTRPCContext({
+      auth
+    }),
     transformer: SuperJSON,
   });
 
   // `prefetch` does not return the result and never throws - if
   // you need that behavior, use `fetch` instead.
-  const categories = await ssg.category.getAll.fetch();
+  const categories = await ssg.category.getAllProtected.fetch();
 
   return {
     props: {
-      trpcState: SuperJSON.stringify(categories),
+      trpcState: SuperJSON.stringify(categories)
     },
   };
 };

@@ -1,19 +1,18 @@
 /* import { useScroll } from 'Hooks/useScroll'; */
-import React, { lazy, Suspense, useEffect, useState, useRef, useLayoutEffect } from "react";
+import React, { Suspense, useEffect, useState, useRef } from "react";
 
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import NavPopup from "./nav-popup";
 import { useTheme } from "next-themes";
-import { signOut, useSession } from "next-auth/react";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@clerk/nextjs";
 
 export default function Navbar(props: { navBarClass?: string }) {
   const { navBarClass } = props;
   const indicatorRef = useRef<HTMLSpanElement>(null);
   const navListRef = useRef<HTMLUListElement>(null);
-  const searchRef = useRef<HTMLLIElement>(null);
 
   const location = useRouter().pathname;
   const [isSearching, setIsSearching] = useState(false);
@@ -109,17 +108,7 @@ export default function Navbar(props: { navBarClass?: string }) {
     sliding();
   }, [location]);
 
-  const handleClickOutside = (event: MouseEvent) => {
-    // check if click happened outside of the nav element
-    if (
-      searchRef.current &&
-      !searchRef.current.contains(event.target as HTMLElement)
-    ) {
-      setIsSearching(false);
-    }
-  };
-
-  const { data: session } = useSession();
+  const { isLoaded, isSignedIn, signOut} = useAuth();
   return (
     <div
       className={cn(
@@ -215,11 +204,11 @@ export default function Navbar(props: { navBarClass?: string }) {
                 Categories
               </Link>
             </li>
-            {session ? (
+            {isSignedIn ? (
               <li>
                 <button
                   className="rounded-md bg-slate-500 px-4 py-2 text-slate-100"
-                  onClick={() => void signOut()}
+                  onClick={() => signOut()}
                 >
                   Sign out
                 </button>

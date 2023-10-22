@@ -1,11 +1,11 @@
 import { cn } from "@/lib/utils";
+import { useAuth } from "@clerk/nextjs";
 import { Menu, Transition } from "@headlessui/react";
-import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { Fragment } from "react";
 
 export default function NavPopup() {
-  const { data: session } = useSession();
+  const { isLoaded, signOut, isSignedIn } = useAuth();
   return (
     <div className="z-50 scale-90 text-right md:hidden">
       <Menu as="div" className="text-left">
@@ -86,7 +86,7 @@ export default function NavPopup() {
                     </Link>
                   )}
                 </Menu.Item>
-                {session ? (
+                {isSignedIn ? (
                   <Menu.Item>
                     <button
                       className="w-full rounded-md bg-slate-500 px-4 py-1 text-slate-100"
