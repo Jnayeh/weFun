@@ -61,7 +61,7 @@ const SignIn: NextPageWithLayout = () => {
     }
     return signIn.authenticateWithRedirect({
       strategy,
-      redirectUrl: "/",
+      redirectUrl: "/auth/signin",
       redirectUrlComplete: "/",
     });
   };
