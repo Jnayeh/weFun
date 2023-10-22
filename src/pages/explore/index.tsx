@@ -2,7 +2,7 @@ import Head from "next/head";
 
 import { NextPageWithLayout } from "~/pages/_app";
 
-const CategoriesPage: NextPageWithLayout = () => {
+const ExplorePage: NextPageWithLayout = () => {
   return (
     <>
       <Head>
@@ -18,5 +18,5 @@ const CategoriesPage: NextPageWithLayout = () => {
 };
 
 
-CategoriesPage.getLayout = (page: React.ReactNode) => <>{page}</>;
-export default CategoriesPage;
+ExplorePage.getLayout = (page: React.ReactNode) => <>{page}</>;
+export default ExplorePage;
