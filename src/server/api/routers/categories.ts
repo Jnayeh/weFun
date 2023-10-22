@@ -7,7 +7,7 @@ import {
 } from "~/server/api/trpc";
 
 export const categoryRouter = createTRPCRouter({
-  getAll: publicProcedure
+  getAllProtected: protectedProcedure
     .query(({ ctx }) => {
       return ctx.db.select().from(categories);
     }),

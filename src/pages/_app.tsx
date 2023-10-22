@@ -1,5 +1,3 @@
-import { type Session } from "next-auth";
-import { SessionProvider } from "next-auth/react";
 import { AppProps, type AppType } from "next/app";
 import { api } from "~/utils/api";
 import "~/styles/globals.css";
@@ -8,6 +6,7 @@ import "~/styles/footer.styles.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { NextPage } from "next";
 import { NextIntlProvider } from "next-intl";
+import { ClerkProvider } from "@clerk/nextjs";
 
 export type NextPageWithLayout<P = {}> = NextPage<P> & {
   getLayout?: (page: React.ReactNode) => React.ReactNode;
@@ -15,20 +14,20 @@ export type NextPageWithLayout<P = {}> = NextPage<P> & {
 type WithLayoutProps = AppProps & {
   Component: NextPageWithLayout;
 };
-const MyApp: AppType<{ session: Session | null }> = ({
+const MyApp: AppType = ({
   Component,
   pageProps,
 }: WithLayoutProps) => {
   // Use getLayout function if it's defined in the Component
   const getLayout = Component.getLayout || ((page: React.ReactNode) => page);
   return (
-    <SessionProvider session={pageProps.session}>
+    <ClerkProvider {...pageProps}>
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
         <NextIntlProvider messages={pageProps.messages}>
           {getLayout(<Component {...pageProps} />)}
         </NextIntlProvider>
       </ThemeProvider>
-    </SessionProvider>
+    </ClerkProvider>
   );
 };
 
