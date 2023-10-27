@@ -105,9 +105,9 @@ const CategoriesPage: NextPageWithLayout<
             <Categories
               data={data.slice(0, 4)}
               ulClass="grid w-full grid-cols-2 gap-2 sm:gap-4 lg:grid-cols-4 max-w-xl lg:max-w-[1200px]"
-              cardClass="relative flex justify-between rounded-2xl bg-slate-50 dark:bg-slate-800"
+              cardClass="relative flex justify-between rounded-xl bg-slate-50 dark:bg-slate-800"
               cardHeaderClass="flex flex-shrink-0 flex-grow justify-center  p-1"
-              cardImageClass="aspect-square w-[50px] rounded-md object-cover"
+              cardImageClass="aspect-square w-[60px] rounded-md object-cover"
               cardContentClass="flex flex-col items-end justify-between rounded-r-2xl p-2 transition-all"
               cardTitleClass="md:text-lg text-end text-base font-bold line-clamp-1 text-elipsis flex-shrink"
               cardLinkClass="self-end bg-transparent p-0 px-1 text-sm underline-offset-4 hover:underline focus:underline hover:text-red-600"
@@ -141,7 +141,7 @@ const CategoriesPage: NextPageWithLayout<
                             height={800}
                           />
                           <Link
-                            className="absolute flex h-full w-full items-end bg-gradient-to-b from-transparent from-80% to-red-600 p-1 px-3 text-lg
+                            className="absolute flex h-full w-full items-end bg-gradient-to-b from-transparent from-80% to-black p-1 px-3 text-lg
                              font-bold text-white drop-shadow-xl sm:text-xl"
                             href={`categories/${cat.id}`}
                           >
@@ -156,7 +156,7 @@ const CategoriesPage: NextPageWithLayout<
             </ul>
           </>
         ) : (
-          <p>Can not find any Categories </p>
+          <p> Can not find any Categories </p>
         )}
       </main>
     </>
