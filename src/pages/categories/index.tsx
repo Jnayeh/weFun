@@ -69,7 +69,7 @@ export const getServerSideProps = async (ctx: {
 
   // `prefetch` does not return the result and never throws - if
   // you need that behavior, use `fetch` instead.
-  const categories = await ssg.category.getAllProtected.fetch();
+  const categories = await ssg.category.getAll.fetch();
 
   return {
     props: {
@@ -135,7 +135,7 @@ const CategoriesPage: NextPageWithLayout<
                             blurDataURL={defaultImage.src}
                             alt={cat.label ?? "category"}
                             className={cn(
-                              "h-full rounded-2xl object-cover shadow-md "
+                              "h-full rounded-2xl object-cover shadow-md"
                             )}
                             width={800}
                             height={800}

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { activities, categories } from "~/db/schema";
+import { categories } from "~/db/schema";
 import {
   createTRPCRouter,
   publicProcedure,
@@ -7,7 +7,7 @@ import {
 } from "~/server/api/trpc";
 
 export const categoryRouter = createTRPCRouter({
-  getAllProtected: protectedProcedure
+  getAll: publicProcedure
     .query(({ ctx }) => {
       return ctx.db.select().from(categories);
     }),
