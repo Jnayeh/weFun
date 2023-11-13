@@ -1,45 +1,38 @@
-import { cn, useEffectOnce } from "@/lib/utils";
+import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import img1 from '../Assets/Images/unsplashuhkoydaijhw1@2x.png'
 
 type ImageWithFallbackProps = React.HTMLAttributes<HTMLDivElement> & {};
 
 const SlidingCards = (props: ImageWithFallbackProps) => {
   const { className, ...rest } = props;
   const containerRef = useRef<HTMLDivElement>(null);
-  const [activeSlide, SetSlideState] = useState(1);
+  const [activeSlide, SetActiveSlide] = useState<number>(0)
 
-  function addTouchFunctionality() {
-    let touchstartX = 0;
-    let touchendX = 0;
 
-    function checkDirection() {
-      if (touchendX < touchstartX - 30) {
-        
-          if (activeSlide < 3) SetSlideState(activeSlide+1);
-        console.log(
-          "swiped left!" + touchstartX + " to:" + activeSlide
-        );
+  const cardImages = [img1, img1, img1, img1, img1]
+
+  const handleSwipe = (event: MouseEvent | TouchEvent, info: any) => {
+    const { offset, velocity } = info;
+
+    // Set a threshold to determine if it's a swipe
+    const isSwipe = Math.abs(offset.x) > 50 && Math.abs(velocity.x) > 1;
+
+    if (isSwipe) {
+      // Determine the direction of the swipe
+      const direction = offset.x > 0 ? 'right' : 'left';
+
+      // Handle the swipe direction as needed
+      if (direction == "right" && activeSlide > 0) {
+        SetActiveSlide(activeSlide-1)
       }
-      if (touchendX > touchstartX + 30) {
-        
-        if (activeSlide > 1) SetSlideState(activeSlide-1);
-        console.log(
-          "swiped right!" + touchstartX + " to:" + activeSlide
-        );
+      else if (direction=="left" && activeSlide < (cardImages.length - 1) ) {
+        SetActiveSlide(activeSlide+1)
       }
     }
-    console.log("added listeners");
-    containerRef.current!.addEventListener("touchstart", (e) => {
-      touchstartX = e.changedTouches[0]!.screenX;
-    });
-    containerRef.current!.addEventListener("touchend", (e) => {
-      touchendX = e.changedTouches[0]!.screenX;
-      checkDirection();
-    });
-  }
-
-  useEffect(addTouchFunctionality,[]);
+  };
 
   useEffect(() => {
     console.log("useEffected: " + activeSlide);
@@ -49,31 +42,43 @@ const SlidingCards = (props: ImageWithFallbackProps) => {
     <div
       ref={containerRef}
       className={cn(
-        `flex h-[75vh] flex-row items-start justify-center gap-2 transition-all duration-200 ease-out ${className}`
+        `flex justify-center gap-2 ${className}`
       )}
       {...rest}
     >
-      <Image
-        className={`relative h-full ${activeSlide==1 ? "w-[80%] flex-grow " : activeSlide==2 ? "w-5" : "w-3"} rounded-xl object-cover`}
-        alt=""
-        src="/unsplashuhkoydaijhw1@2x.png"
-        width={800}
-        height={800}
-      />
-      <Image
-        className={`relative h-full ${activeSlide==2 ? "w-[80%] flex-grow " : "w-5"} rounded-xl object-cover`}
-        alt=""
-        src="/unsplashzej4hpqlr5o@2x.png"
-        width={800}
-        height={800}
-      />
-      <Image
-        className={`relative h-full ${activeSlide==3 ? "w-[80%] flex-grow " : activeSlide==2 ? "w-5" : "w-3"} rounded-xl object-cover`}
-        alt=""
-        src="/unsplash9fmdypcv8mq@2x.png"
-        width={800}
-        height={800}
-      />
+        {[0, 1, 2, 3, 4].map((index) => (
+            <motion.div
+            key={index}
+            className={`card cursor-pointer h-[69vh] bg-cover bg-center rounded-xl `}
+            variants={{
+              expanded: {
+                width: "80%",
+                transition: {
+                  duration: 0.2
+                }
+              },
+              collapsed: {
+                width: Math.abs(activeSlide - index) ==1 ? '20px': '12px',
+                transition: {
+                  duration: 0.2
+                }
+              },
+            }}
+            initial="collapsed"
+            animate={index === activeSlide ? 'expanded': 'collapsed'}
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            onDragEnd={handleSwipe}
+          >
+            <Image
+                className={cn(`relative h-full ${index === activeSlide ? 'w-full': ' touch-none'} rounded-xl object-cover`)}
+                alt=""
+                src={cardImages[index]??""}
+                width={800}
+                height={800}
+            />
+          </motion.div>
+        ))}
     </div>
   );
 };

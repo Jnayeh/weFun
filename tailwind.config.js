@@ -2,11 +2,11 @@
 module.exports = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   theme: {
     container: {
       center: true,
@@ -25,9 +25,9 @@ module.exports = {
       }, */
       colors: {
         tomato: {
-          "100": "#f65e39",
-          "200": "#ec6139",
-          "300": "#e95b47",
+          100: "#f65e39",
+          200: "#ec6139",
+          300: "#e95b47",
         },
         linen: "#f2f0e4",
         oldlace: "#0B2A36",
@@ -72,11 +72,6 @@ module.exports = {
         "stretch-pro": "'Stretch Pro'",
         "strretch-sans": "'STRRETCH SANS'",
       },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
-      },
       keyframes: {
         "accordion-down": {
           from: { height: 0 },
@@ -85,6 +80,22 @@ module.exports = {
         "accordion-up": {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: 0 },
+        },
+        "scroll-left": {
+          "0%": {
+            transform: "translateX(0%)",
+          },
+          "100%": {
+            transform: "translateX(-50%)",
+          },
+        },
+        "scroll-right": {
+          "0%": {
+            transform: "translateX(-100%)",
+          },
+          "100%": {
+            transform: "translateX(0%)",
+          },
         },
       },
       height: {
@@ -107,10 +118,11 @@ module.exports = {
         // => @media (min-width: 1536px) { ... }
       },
       animation: {
+        marquee: "scroll-left 30s linear infinite", // 'scroll-right' if you want the animation in the opposite direction
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
   },
   plugins: [require("tailwindcss-animate")],
-}
+};

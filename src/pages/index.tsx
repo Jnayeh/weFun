@@ -2,7 +2,6 @@ import Head from "next/head";
 import Link from "next/link";
 
 import Header from "~/components/Header/header.component";
-import { api } from "~/utils/api";
 import Layout from "./layout";
 
 import { NextPageWithLayout } from "./_app";
@@ -21,6 +20,14 @@ export function getStaticProps(props: { locale: string }) {
 
 const Home: NextPageWithLayout = () => {
   const t = useTranslations("Home");
+  const SpinningText = [0, 1, 2, 3].map((index) => {
+    return (
+      <div className="flex items-center " key= {index}>
+        <b className=" inline-block whitespace-nowrap px-2">PLAN-BOOK-ENJOY</b>
+        <div className="h-4 w-[16.51px] rounded-[50%] bg-linen" />
+      </div>
+    );
+  });
   return (
     <>
       <Head>
@@ -32,12 +39,15 @@ const Home: NextPageWithLayout = () => {
 
       <main className=" relative mx-auto flex flex-col items-center justify-center gap-2 py-4">
         <div className="flex h-[60px] w-full items-center gap-4 overflow-hidden bg-gray-800 font-rubik text-5xl text-beige">
-          <b className=" inline-block whitespace-nowrap px-2 [color:linear-gradient(#e9ead8,_#e9ead8),_#d9d9d9]">
-            PLAN-BOOK-ENJOY
-          </b>
-          <div className="h-4 w-[16.51px] rounded-[50%] bg-linen" />
+          <div
+            className="flex animate-marquee whitespace-nowrap py-2"
+            role="marquee"
+          >
+            <div className="flex items-center ">{SpinningText}</div>
+            <div className="flex items-center ">{SpinningText}</div>
+          </div>
         </div>
-        <section className=" w-[90%] max-w-7xl">
+        <section className=" mb-2 w-[90%] max-w-7xl">
           <h2 className=" p-6 text-center font-montserrat text-3xl font-extrabold uppercase">
             TOP <br /> Places
           </h2>
