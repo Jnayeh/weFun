@@ -9,6 +9,8 @@ import { Button } from "@/components/ui/button";
 import Reviews from "../components/reviews";
 import { useTranslations } from "next-intl";
 import SlidingCards from "~/components/SlidingCards";
+import { api } from "~/utils/api";
+import { Skeleton } from "@/components/ui/skeleton";
 export function getStaticProps(props: { locale: string }) {
   const { locale } = props;
   return {
@@ -20,9 +22,14 @@ export function getStaticProps(props: { locale: string }) {
 
 const Home: NextPageWithLayout = () => {
   const t = useTranslations("Home");
+  const { data, isLoading, error } = api.category.getAll.useQuery(undefined, {
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    staleTime: 3000,
+  });
   const SpinningText = [0, 1, 2, 3].map((index) => {
     return (
-      <div className="flex items-center " key= {index}>
+      <div className="flex items-center " key={index}>
         <b className=" inline-block whitespace-nowrap px-2">PLAN-BOOK-ENJOY</b>
         <div className="h-4 w-[16.51px] rounded-[50%] bg-linen" />
       </div>
@@ -47,11 +54,26 @@ const Home: NextPageWithLayout = () => {
             <div className="flex items-center ">{SpinningText}</div>
           </div>
         </div>
-        <section className=" mb-2 w-[90%] max-w-7xl">
+        <section className=" mb-2 w-[90%] xl:max-w-[2000px]">
           <h2 className=" p-6 text-center font-montserrat text-3xl font-extrabold uppercase">
             TOP <br /> Places
           </h2>
-          <SlidingCards />
+          {data && data.length && data.length > 1 ? (
+            <SlidingCards dataList={data} />
+          ) : (
+            <div className="flex h-[69vh] justify-center gap-2">
+              <Skeleton
+                className="flex-grow h-full w-full animate-pulse rounded-[40px]  bg-slate-400 "
+              />
+              <Skeleton
+                className="h-full w-10 animate-pulse rounded-[40px]  bg-slate-400 "
+              />
+              <Skeleton
+                className="h-full w-4 animate-pulse rounded-[40px]  bg-slate-400 "
+              />
+            </div>
+          )}
+
           <div className="flex justify-center p-8">
             <Link
               href="regions"
@@ -92,7 +114,21 @@ const Home: NextPageWithLayout = () => {
           <h2 className=" p-6 text-center font-montserrat text-3xl font-extrabold uppercase">
             top <br /> activities
           </h2>
-          <SlidingCards />
+          {data && data.length && data.length > 1 ? (
+            <SlidingCards dataList={data} />
+          ) : (
+            <div className="flex h-[69vh] justify-center gap-2">
+              <Skeleton
+                className="flex-grow h-full w-full animate-pulse rounded-[40px]  bg-slate-400 "
+              />
+              <Skeleton
+                className="h-full w-10 animate-pulse rounded-[40px]  bg-slate-400 "
+              />
+              <Skeleton
+                className="h-full w-4 animate-pulse rounded-[40px]  bg-slate-400 "
+              />
+            </div>
+          )}
 
           <div className="flex justify-center p-8">
             <Link
