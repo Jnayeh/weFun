@@ -8,9 +8,8 @@ import { NextPageWithLayout } from "./_app";
 import { Button } from "@/components/ui/button";
 import Reviews from "../components/reviews";
 import { useTranslations } from "next-intl";
-import SlidingCards from "~/components/SlidingCards";
 import { api } from "~/utils/api";
-import { Skeleton } from "@/components/ui/skeleton";
+import SlidingCards, { SlidingCardsSkeleton } from "~/components/SlidingCards";
 export function getStaticProps(props: { locale: string }) {
   const { locale } = props;
   return {
@@ -61,17 +60,7 @@ const Home: NextPageWithLayout = () => {
           {data && data.length && data.length > 1 ? (
             <SlidingCards dataList={data} />
           ) : (
-            <div className="flex h-[69vh] justify-center gap-2">
-              <Skeleton
-                className="flex-grow h-full w-full animate-pulse rounded-[40px]  bg-slate-400 "
-              />
-              <Skeleton
-                className="h-full w-10 animate-pulse rounded-[40px]  bg-slate-400 "
-              />
-              <Skeleton
-                className="h-full w-4 animate-pulse rounded-[40px]  bg-slate-400 "
-              />
-            </div>
+            <SlidingCardsSkeleton />
           )}
 
           <div className="flex justify-center p-8">
@@ -117,17 +106,7 @@ const Home: NextPageWithLayout = () => {
           {data && data.length && data.length > 1 ? (
             <SlidingCards dataList={data} />
           ) : (
-            <div className="flex h-[69vh] justify-center gap-2">
-              <Skeleton
-                className="flex-grow h-full w-full animate-pulse rounded-[40px]  bg-slate-400 "
-              />
-              <Skeleton
-                className="h-full w-10 animate-pulse rounded-[40px]  bg-slate-400 "
-              />
-              <Skeleton
-                className="h-full w-4 animate-pulse rounded-[40px]  bg-slate-400 "
-              />
-            </div>
+            <SlidingCardsSkeleton />
           )}
 
           <div className="flex justify-center p-8">
