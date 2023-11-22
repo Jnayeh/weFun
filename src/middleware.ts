@@ -6,7 +6,7 @@ import { authMiddleware, redirectToSignIn } from "@clerk/nextjs";
 export default authMiddleware({
     afterAuth(auth, req, evt) {
         // handle users who aren't authenticated
-        if (!auth.userId && req.nextUrl.pathname.toLocaleLowerCase().match(/(protected|categories\b)/gi)) {
+        if (!auth.userId && req.nextUrl.pathname.toLocaleLowerCase().match(/(protected)/gi)) {
           return redirectToSignIn({ returnBackUrl: req.url });
         }
       }

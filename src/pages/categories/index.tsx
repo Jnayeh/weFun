@@ -21,9 +21,8 @@ import { NextPageWithLayout } from "~/pages/_app";
 import Link from "next/link";
 import defaultImage from "~/Assets/Images/placeholder.webp";
 import ImageWithFallback from "~/components/ImageWithFallback";
-import { api } from "~/utils/api";
-import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import { getAuth } from "@clerk/nextjs/server";
+import MasonryGrid from "~/components/MasonryGrid";
 
 /* 
 export const getServerSideProps = async (ctx: { req: IncomingMessage & { cookies: Partial<{ [key: string]: string; }>; }; res: ServerResponse<IncomingMessage>; }) => {
@@ -113,47 +112,7 @@ const CategoriesPage: NextPageWithLayout<
               cardLinkClass="self-end bg-transparent p-0 px-1 text-sm underline-offset-4 hover:underline focus:underline hover:text-red-600"
             />
             <h2>All categories</h2>
-            <ul className={cn(`grid w-full grid-cols-1`)}>
-              <ResponsiveMasonry
-                columnsCountBreakPoints={{ 100: 2, 640: 3, 1024: 4 }}
-              >
-                <Masonry gutter="10px">
-                  {data.map((cat, index) => {
-                    return (
-                      <Card
-                        key={cat.id}
-                        className={cn(
-                          `relative flex flex-col justify-between overflow-hidden rounded-2xl bg-slate-50 hover:translate-y-1  dark:bg-slate-600`
-                        )}
-                      >
-                        {/*lg:[&:nth-child(1)]:col-span-1 [&:nth-child(3)]:row-span-2 [&:nth-child(3)>div>img]:h-full */}
-                        <CardHeader className={cn("flex flex-grow p-0")}>
-                          <ImageWithFallback
-                            src={cat.image ?? defaultImage.src}
-                            fallBackSrc={defaultImage}
-                            placeholder="blur"
-                            blurDataURL={defaultImage.src}
-                            alt={cat.label ?? "category"}
-                            className={cn(
-                              "h-full rounded-2xl object-cover shadow-md"
-                            )}
-                            width={800}
-                            height={800}
-                          />
-                          <Link
-                            className="absolute flex h-full w-full items-end bg-gradient-to-b from-transparent from-80% to-black p-1 px-3 text-lg
-                             font-bold text-white drop-shadow-xl sm:text-xl"
-                            href={`categories/${cat.id}`}
-                          >
-                            <span className="line-clamp-1">{cat.label}</span>
-                          </Link>
-                        </CardHeader>
-                      </Card>
-                    );
-                  })}
-                </Masonry>
-              </ResponsiveMasonry>
-            </ul>
+            <MasonryGrid dataList={data} detailsUrl="categories/"/>
           </>
         ) : (
           <p> Can not find any Categories </p>
