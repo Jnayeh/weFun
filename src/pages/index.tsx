@@ -53,12 +53,12 @@ const Home: NextPageWithLayout = () => {
             <div className="flex items-center ">{SpinningText}</div>
           </div>
         </div>
-        <section className=" mb-2 w-[90%] xl:max-w-[2000px]">
+        <section className=" mb-2 w-[90%] max-w-screen-xl">
           <h2 className=" p-6 text-center font-montserrat text-3xl font-extrabold uppercase">
             TOP <br /> Places
           </h2>
           {data && data.length && data.length > 1 ? (
-            <SlidingCards dataList={data} />
+            <SlidingCards dataList={data.slice(0,3)} />
           ) : (
             <SlidingCardsSkeleton />
           )}
@@ -66,7 +66,7 @@ const Home: NextPageWithLayout = () => {
           <div className="flex justify-center p-8">
             <Link
               href="regions"
-              className="inline-block rounded-full bg-gray-600 p-2 px-5 text-center font-stretch-pro text-sm leading-[140.5%] text-white"
+              className="inline-block rounded-full bg-gray-600 p-2 px-5 text-center font-stretch-pro text-lg leading-[140.5%] text-white  lg:text-2xl"
             >
               show more
             </Link>
@@ -112,7 +112,7 @@ const Home: NextPageWithLayout = () => {
           <div className="flex justify-center p-8">
             <Link
               href="activities"
-              className="inline-block rounded-full bg-gray-600 p-2 px-5 text-center font-stretch-pro text-sm leading-[140.5%] text-white"
+              className="inline-block rounded-full bg-gray-600 p-2 px-5 text-center font-stretch-pro text-md leading-[140.5%] text-white lg:text-2xl"
             >
               show more
             </Link>
