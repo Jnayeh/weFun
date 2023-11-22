@@ -91,7 +91,7 @@ module.exports = {
         },
         "scroll-right": {
           "0%": {
-            transform: "translateX(-100%)",
+            transform: "translateX(-50%)",
           },
           "100%": {
             transform: "translateX(0%)",
@@ -118,7 +118,8 @@ module.exports = {
         // => @media (min-width: 1536px) { ... }
       },
       animation: {
-        marquee: "scroll-left 30s linear infinite", // 'scroll-right' if you want the animation in the opposite direction
+        "marquee-right": "scroll-right 30s linear infinite",
+        marquee: "scroll-left 30s linear infinite",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
