@@ -23,6 +23,7 @@ import defaultImage from "~/Assets/Images/placeholder.webp";
 import ImageWithFallback from "~/components/ImageWithFallback";
 import { getAuth } from "@clerk/nextjs/server";
 import MasonryGrid from "~/components/MasonryGrid";
+import { api } from "~/utils/api";
 
 /* 
 export const getServerSideProps = async (ctx: { req: IncomingMessage & { cookies: Partial<{ [key: string]: string; }>; }; res: ServerResponse<IncomingMessage>; }) => {
@@ -53,7 +54,7 @@ const CategoriesPage: NextPage<InferGetServerSidePropsType<typeof getServerSideP
   const data = serializedData? SuperJSON.parse<Category[]>(serializedData) : [];
 
 */
-export const getServerSideProps = async (ctx: {
+/* export const getServerSideProps = async (ctx: {
   req: IncomingMessage & { cookies: Partial<{ [key: string]: string }> };
   res: ServerResponse<IncomingMessage>;
 }) => {
@@ -81,8 +82,9 @@ const CategoriesPage: NextPageWithLayout<
 > = (props: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   let data = props.trpcState
     ? SuperJSON.parse<Category[]>(props.trpcState)
-    : [];
-
+    : []; */
+const CategoriesPage: NextPageWithLayout = () => {
+  const { data } = api.category.getAll.useQuery();
   return (
     <>
       <Head>
@@ -112,7 +114,7 @@ const CategoriesPage: NextPageWithLayout<
               cardLinkClass="self-end bg-transparent p-0 px-1 text-sm underline-offset-4 hover:underline focus:underline hover:text-red-600"
             />
             <h2>All categories</h2>
-            <MasonryGrid dataList={data} detailsUrl="categories/"/>
+            <MasonryGrid dataList={data} detailsUrl="categories/" />
           </>
         ) : (
           <p> Can not find any Categories </p>
