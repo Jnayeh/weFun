@@ -50,7 +50,7 @@ const RegionsPage: NextPageWithLayout = () => {
                 <MasonryGrid dataList={data} detailsUrl="regions/" />
               </>
             ) : (
-              <p> Can not find any Categories </p>
+              <p> Can not find any places </p>
             )}
           </>
         )}
