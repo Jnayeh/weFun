@@ -22,7 +22,7 @@ import Link from "next/link";
 import defaultImage from "~/Assets/Images/placeholder.webp";
 import ImageWithFallback from "~/components/ImageWithFallback";
 import { getAuth } from "@clerk/nextjs/server";
-import MasonryGrid from "~/components/MasonryGrid";
+import MasonryGrid, { MasonryGridSkeleton } from "~/components/MasonryGrid";
 import { api } from "~/utils/api";
 
 /* 
@@ -84,7 +84,7 @@ const CategoriesPage: NextPageWithLayout<
     ? SuperJSON.parse<Category[]>(props.trpcState)
     : []; */
 const CategoriesPage: NextPageWithLayout = () => {
-  const { data } = api.category.getAll.useQuery(undefined, {
+  const { isLoading, data } = api.category.getAll.useQuery(undefined, {
     refetchOnMount: false,
     refetchOnWindowFocus: false,
     staleTime: 3000,
@@ -104,24 +104,32 @@ const CategoriesPage: NextPageWithLayout = () => {
           " mx-auto flex min-h-[300px] max-w-[97%] flex-col items-center gap-2 py-4"
         )}
       >
-        {data && data.length && data.length > 1 ? (
+        {isLoading ? (
           <>
-            <h2>Popular categories</h2>
-            <Categories
-              data={data.slice(0, 4)}
-              ulClass="grid w-full grid-cols-2 gap-2 sm:gap-4 lg:grid-cols-4 max-w-xl lg:max-w-[1200px]"
-              cardClass="relative flex justify-between rounded-xl bg-slate-50 dark:bg-slate-800"
-              cardHeaderClass="flex flex-shrink-0 flex-grow justify-center  p-1"
-              cardImageClass="aspect-square w-[60px] rounded-md object-cover"
-              cardContentClass="flex flex-col items-end justify-between rounded-r-2xl p-2 transition-all"
-              cardTitleClass="md:text-lg text-end text-base font-bold line-clamp-1 text-elipsis flex-shrink"
-              cardLinkClass="self-end bg-transparent p-0 px-1 text-sm underline-offset-4 hover:underline focus:underline hover:text-red-600"
-            />
-            <h2>All categories</h2>
-            <MasonryGrid dataList={data} detailsUrl="categories/" />
+            <MasonryGridSkeleton />
           </>
         ) : (
-          <p> Can not find any Categories </p>
+          <>
+            {data && data.length && data.length > 1 ? (
+              <>
+                <h2>Popular categories</h2>
+                <Categories
+                  data={data.slice(0, 4)}
+                  ulClass="grid w-full grid-cols-2 gap-2 sm:gap-4 lg:grid-cols-4 max-w-xl lg:max-w-[1200px]"
+                  cardClass="relative flex justify-between rounded-xl bg-slate-50 dark:bg-slate-800"
+                  cardHeaderClass="flex flex-shrink-0 flex-grow justify-center  p-1"
+                  cardImageClass="aspect-square w-[60px] rounded-md object-cover"
+                  cardContentClass="flex flex-col items-end justify-between rounded-r-2xl p-2 transition-all"
+                  cardTitleClass="md:text-lg text-end text-base font-bold line-clamp-1 text-elipsis flex-shrink"
+                  cardLinkClass="self-end bg-transparent p-0 px-1 text-sm underline-offset-4 hover:underline focus:underline hover:text-red-600"
+                />
+                <h2>All categories</h2>
+                <MasonryGrid dataList={data} detailsUrl="categories/" />
+              </>
+            ) : (
+              <p> Can not find any Categories </p>
+            )}
+          </>
         )}
       </main>
     </>
