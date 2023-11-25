@@ -8,18 +8,24 @@ import { Card, CardHeader } from "@/components/ui/card";
 import Link from "next/link";
 
 type MasonryGridProps = React.HTMLAttributes<HTMLDivElement> & {
-  dataList: {} & Category [];
-  detailsUrl:string;
+  dataList?: {} & Category[];
+  detailsUrl?: string;
+  columnsCountBreakPoints?:
+    | {
+        [key: number]: number;
+      }
+    | undefined;
 };
 
 const MasonryGrid = (props: MasonryGridProps) => {
-  const { className, dataList,detailsUrl, ...rest } = props;
+  const { className, dataList, detailsUrl, columnsCountBreakPoints, ...rest } =
+    props;
 
   return (
-    <ul className={cn(`grid w-full max-w-screen-2xl grid-cols-1 ${className}`)}>
-      <ResponsiveMasonry columnsCountBreakPoints={{ 100: 2, 640: 3, 1024: 4 }}>
+    <div className={cn(`grid w-full max-w-screen-2xl grid-cols-1 mx-auto ${className}`)}>
+      <ResponsiveMasonry columnsCountBreakPoints={columnsCountBreakPoints??{ 100: 2, 640: 3, 1024: 4 }}>
         <Masonry gutter="10px">
-          {dataList.map((cat, index) => {
+          {dataList && dataList.map((cat, index) => {
             return (
               <Card
                 key={cat.id}
@@ -42,7 +48,7 @@ const MasonryGrid = (props: MasonryGridProps) => {
                   <Link
                     className="absolute flex h-full w-full items-end bg-gradient-to-b from-transparent from-80% to-black p-1 px-3 text-lg
                              font-bold text-white drop-shadow-xl sm:text-xl"
-                    href={detailsUrl + cat.id}
+                    href={detailsUrl? detailsUrl + cat.id : ""}
                   >
                     <span className="line-clamp-1">{cat.label}</span>
                   </Link>
@@ -52,16 +58,30 @@ const MasonryGrid = (props: MasonryGridProps) => {
           })}
         </Masonry>
       </ResponsiveMasonry>
-    </ul>
+    </div>
   );
 };
-export function MasonryGridSkeleton() {
+export function MasonryGridSkeleton(props: MasonryGridProps) {
+  const { className, dataList, detailsUrl, columnsCountBreakPoints, ...rest } =
+    props;
   return (
-    <div className="flex h-[69vh] justify-center gap-2">
-      <Skeleton className="h-full w-full flex-grow animate-pulse rounded-[40px]  bg-slate-400 " />
-      <Skeleton className="h-full w-10 animate-pulse rounded-[40px]  bg-slate-400 " />
-      <Skeleton className="h-full w-4 animate-pulse rounded-[40px]  bg-slate-400 " />
-    </div>
+    <ul className={cn(`w-full max-w-screen-2xl mx-auto ${className??""}`)}>
+      <ResponsiveMasonry columnsCountBreakPoints={columnsCountBreakPoints??{ 100: 2, 640: 3, 1024: 4 }}>
+        <Masonry gutter="10px" >
+        {[0, 1, 3, 4, 5, 6, 7, 8, 9].map((i) => (
+                <div
+                  key={i}
+                  className={cn(`relative h-60 ${i%3 == 1 ? "h-96" : i%3 == 2 ? "h-48" : "" }  flex flex-col justify-end hover:translate-y-1 dark:bg-slate-600 animate-pulse rounded-2xl bg-slate-400`)}
+                >
+                  <Skeleton
+                    id="img"
+                    className="h-5 w-[80%] m-2 animate-pulse rounded-2xl bg-slate-400"
+                  />
+                </div>
+              ))}
+        </Masonry>
+      </ResponsiveMasonry>
+    </ul>
   );
 }
 export default MasonryGrid;
