@@ -14,11 +14,13 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children, navBarClass }) => {
   return (
-    <>
+    <div className="flex flex-col justify-between h-screen">
+      <div>
       <Navbar navBarClass={navBarClass}/>
       {children}
+      </div>
       <Footer />
-    </>
+    </div>
   );
 };
 

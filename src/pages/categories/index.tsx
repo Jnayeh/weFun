@@ -84,7 +84,11 @@ const CategoriesPage: NextPageWithLayout<
     ? SuperJSON.parse<Category[]>(props.trpcState)
     : []; */
 const CategoriesPage: NextPageWithLayout = () => {
-  const { data } = api.category.getAll.useQuery();
+  const { data } = api.category.getAll.useQuery(undefined, {
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    staleTime: 3000,
+  });
   return (
     <>
       <Head>
