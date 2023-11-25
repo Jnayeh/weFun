@@ -125,14 +125,14 @@ const Activities = (props: { data: Activity[] }) => {
   const images = [
     "https://www.yohoadventures.com/wp-content/uploads/2014/10/DSC02773-1-1024x768.jpg",
     "https://blog.efoodhandlers.com/wp-content/uploads/2020/01/AdobeStock_222953589-1024x683.jpeg",
-    "https://magazine.bluekarmasecrets.com/wp-content/uploads/2019/10/retreatbox4.png",
+    "https://magazine.bluekarmasecrets.com/wp-content/uploads/2019/10/retreatbox.png",
     "https://outdoortrip-web.s3.eu-central-1.amazonaws.com/130-barcelona-city-bike-tour/barcelona-city-bike-tour.5b7d66b2e8cf8-full.jpg",
-    "https://www.trendz4friend.com/wp-content/uploads/2021/06/artclasses1.jpg",
+    "https://www.trendz4friend.com/wp-content/uploads/2021/06/artclasses.jpg",
   ];
   return (
     <ul
       className={cn(
-        `grid w-full grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-x-4 md:grid-cols-3 gap-y-14 px-2`
+        `grid w-full grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-x-4 md:grid-cols-3 xl:grid-cols-4 gap-y-14 px-2`
       )}
     >
       {data.map((act, index) => {
@@ -168,24 +168,24 @@ const Activities = (props: { data: Activity[] }) => {
             </CardContent>
             <CardFooter className="flex justify-between px-5 pt-1 pb-10">
             {act.location ? (
-                <h4 className=" font-medium text-red-600 dark:text-slate-50 flex items-baseline">
+                <p className=" font-medium text-red-600 dark:text-slate-50 flex items-baseline">
                   <FaLocationArrow className=" scale-75"/>
                   {act.location}
-                </h4>
+                </p>
               ) : ""}
               
               <div className="flex">
               {act.discount ?
-              <h4 className={cn(`whitespace-nowrap pr-1 font-normal`)}>
+              <p className={cn(`whitespace-nowrap pr-1 font-normal`)}>
                 {(act.price * (100-8)/100) + " DT"}
-              </h4>
+              </p>
               : ""}
-              <h4 className={cn(`whitespace-nowrap pr-1 ${act.discount ? "line-through text-xs font-bold":'font-normal'}`)}>
+              <p className={cn(`whitespace-nowrap pr-1 ${act.discount ? "line-through text-xs font-bold":'font-normal'}`)}>
                 {act.price + " DT"}
-              </h4>
+              </p>
               </div>
             </CardFooter>
-            <Button className="absolute bottom-0 w-[94%] self-center rounded-3xl bg-tomato-300 py-1 text-lg  text-white shadow-sm h-14 -my-7 font-semibold md:scale-[80%]">
+            <Button className="absolute bottom-0 w-[94%] self-center rounded-[20px] bg-tomato-300 py-0 text-xl uppercase text-white shadow-sm h-12 -my-6 font-semibold md:scale-[90%]">
               View details
             </Button>
           </Card>
