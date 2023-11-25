@@ -87,26 +87,29 @@ const ActivitiesPage: NextPageWithLayout = () => {
         {isLoading ? (
           <>
             <p className=" sr-only">Is Loading</p>
-            <div className="grid w-full grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 ">
+            <div className="grid w-full grid-cols-1 gap-3 gap-y-14 px-2 sm:grid-cols-2 sm:gap-x-4 md:grid-cols-3 xl:grid-cols-4">
               {[0, 1, 3, 4, 5, 6, 7, 8, 9].map((i) => (
                 <div
                   key={i}
-                  className=" flex flex-col overflow-hidden rounded-3xl bg-slate-50 p-2 shadow-md dark:bg-slate-600
-              [&:nth-child(1)>#img]:h-48 lg:[&:nth-child(1)>#img]:max-h-full [&:nth-child(1)]:col-span-2 
-              lg:[&:nth-child(1)]:col-span-1 [&:nth-child(2)]:row-span-2"
+                  /* className=" flex flex-col overflow-hidden rounded-3xl bg-slate-50 p-2 shadow-md dark:bg-slate-600
+            [&:nth-child(1)>#img]:h-48 lg:[&:nth-child(1)>#img]:max-h-full [&:nth-child(1)]:col-span-2 
+            lg:[&:nth-child(1)]:col-span-1 [&:nth-child(2)]:row-span-2" */
+                  className="relative flex flex-col justify-between rounded-3xl bg-slate-50 dark:bg-slate-600"
                 >
-                  <Skeleton
-                    id="img"
-                    className="aspect-video h-full w-full animate-pulse rounded-2xl bg-slate-400 object-cover shadow-md"
-                  />
-                  <div className="space-y-2 p-2">
+                  <Skeleton className="aspect-[19/10] h-full w-full animate-pulse rounded-b-none rounded-t-3xl bg-slate-400 object-cover shadow-md lg:aspect-video" />
+                  <div className="px-5 pb-1 pt-8">
                     <Skeleton className="h-6 w-[90%] animate-pulse rounded-full bg-slate-400" />
-                    <div className=" flex justify-between">
-                      <Skeleton className="h-4 w-[20%] animate-pulse rounded-full bg-slate-400" />
-                      <Skeleton className="h-4 w-[40%] animate-pulse rounded-full bg-slate-400" />
-                    </div>
                   </div>
-                  <Skeleton className="h-9 w-[95%] shrink-0 grow-0 animate-pulse self-center rounded-xl bg-slate-400" />
+                  <div className=" flex justify-between px-5 pb-10 pt-1">
+                    <Skeleton className="h-6 w-[40%] animate-pulse rounded-full bg-slate-400" />
+                    <Skeleton className="h-6 w-[20%] animate-pulse rounded-full bg-slate-400" />
+                  </div>
+                  <div className="absolute bottom-0 -my-6 h-12 w-[94%] shrink-0 grow-0 self-center rounded-[20px] overflow-hidden bg-slate-500 
+                md:scale-[90%]">
+                  <Skeleton
+                    className=" w-full h-full bg-slate-400 "
+                  />
+                  </div>
                 </div>
               ))}
             </div>
@@ -132,7 +135,7 @@ const Activities = (props: { data: Activity[] }) => {
   return (
     <ul
       className={cn(
-        `grid w-full grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-x-4 md:grid-cols-3 xl:grid-cols-4 gap-y-14 px-2`
+        `grid w-full grid-cols-1 gap-3 gap-y-14 px-2 sm:grid-cols-2 sm:gap-x-4 md:grid-cols-3 xl:grid-cols-4`
       )}
     >
       {data.map((act, index) => {
@@ -140,7 +143,7 @@ const Activities = (props: { data: Activity[] }) => {
           <Card
             key={act.id}
             className={cn(
-              `flex flex-col justify-between rounded-3xl bg-slate-50 dark:bg-slate-600 [&>div>img]:aspect-[19/9] lg:[&>div>img]:aspect-video relative`
+              `relative flex flex-col justify-between rounded-3xl bg-slate-50 dark:bg-slate-600 [&>div>img]:aspect-[19/10] lg:[&>div>img]:aspect-video`
             )}
           >
             <CardHeader className="relative flex-shrink flex-grow p-0">
@@ -163,29 +166,41 @@ const Activities = (props: { data: Activity[] }) => {
                 </div>
               </Button>
             </CardHeader>
-            <CardContent className="px-5 pt-8 pb-1 [&>*]:line-clamp-1 ">
-              <CardTitle title={act.label ?? ''}>{act.label}</CardTitle>
+            <CardContent className="px-5 pb-1 pt-8 [&>*]:line-clamp-1 ">
+              <CardTitle title={act.label ?? ""}>{act.label}</CardTitle>
             </CardContent>
-            <CardFooter className="flex justify-between px-5 pt-1 pb-10">
-            {act.location ? (
-                <p className=" font-medium text-red-600 dark:text-slate-50 flex items-baseline">
-                  <FaLocationArrow className=" scale-75"/>
+            <CardFooter className="flex justify-between px-5 pb-10 pt-1">
+              {act.location ? (
+                <p className=" flex items-baseline font-medium text-red-600 dark:text-slate-50">
+                  <FaLocationArrow className=" scale-75" />
                   {act.location}
                 </p>
-              ) : ""}
-              
+              ) : (
+                ""
+              )}
+
               <div className="flex">
-              {act.discount ?
-              <p className={cn(`whitespace-nowrap pr-1 font-normal`)}>
-                {(act.price * (100-8)/100) + " DT"}
-              </p>
-              : ""}
-              <p className={cn(`whitespace-nowrap pr-1 ${act.discount ? "line-through text-xs font-bold":'font-normal'}`)}>
-                {act.price + " DT"}
-              </p>
+                {act.discount ? (
+                  <p className={cn(`whitespace-nowrap pr-1 font-normal`)}>
+                    {(act.price * (100 - 8)) / 100 + " DT"}
+                  </p>
+                ) : (
+                  ""
+                )}
+                <p
+                  className={cn(
+                    `whitespace-nowrap pr-1 ${
+                      act.discount
+                        ? "text-xs font-bold line-through"
+                        : "font-normal"
+                    }`
+                  )}
+                >
+                  {act.price + " DT"}
+                </p>
               </div>
             </CardFooter>
-            <Button className="absolute bottom-0 w-[94%] self-center rounded-[20px] bg-tomato-300 py-0 text-xl uppercase text-white shadow-sm h-12 -my-6 font-semibold md:scale-[90%]">
+            <Button className="absolute bottom-0 -my-6 h-12 w-[94%] self-center rounded-[20px] bg-tomato-300 py-0 text-xl font-semibold uppercase text-white shadow-sm md:scale-[90%]">
               View details
             </Button>
           </Card>

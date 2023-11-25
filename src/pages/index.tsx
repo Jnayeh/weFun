@@ -29,7 +29,7 @@ const Home: NextPageWithLayout = () => {
   const SpinningText = [0, 1, 2, 3].map((index) => {
     return (
       <div className="flex items-center " key={index}>
-        <b className=" inline-block whitespace-nowrap px-2">PLAN-BOOK-ENJOY</b>
+        <b className=" inline-block whitespace-nowrap px-4">PLAN-BOOK-ENJOY</b>
         <div className="h-4 w-[16.51px] rounded-[50%] bg-linen" />
       </div>
     );
