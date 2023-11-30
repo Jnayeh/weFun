@@ -31,7 +31,7 @@ module.exports = {
         },
         linen: "#f2f0e4",
         oldlace: "#0B2A36",
-        beige: "#e9ead8",
+        beige: "#FFF6E5",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

@@ -82,7 +82,7 @@ const SlidingCards = (props: ImageWithFallbackProps) => {
               }  rounded-3xl object-cover`
             )}
             alt=""
-            src={el.image ?? defaultImage}
+            src={el.cover ?? defaultImage}
             fallBackSrc={defaultImage}
             width={800}
             height={800}

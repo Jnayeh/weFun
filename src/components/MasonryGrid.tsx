@@ -36,7 +36,7 @@ const MasonryGrid = (props: MasonryGridProps) => {
                 {/*lg:[&:nth-child(1)]:col-span-1 [&:nth-child(3)]:row-span-2 [&:nth-child(3)>div>img]:h-full */}
                 <CardHeader className={cn("flex flex-grow p-0")}>
                   <ImageWithFallback
-                    src={cat.image ?? defaultImage.src}
+                    src={cat.cover ?? defaultImage.src}
                     fallBackSrc={defaultImage}
                     placeholder="blur"
                     blurDataURL={defaultImage.src}

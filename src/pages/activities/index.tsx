@@ -87,32 +87,6 @@ const ActivitiesPage: NextPageWithLayout = () => {
         {isLoading ? (
           <>
             <p className=" sr-only">Is Loading</p>
-            <div className="grid w-full grid-cols-1 gap-3 gap-y-14 px-2 sm:grid-cols-2 sm:gap-x-4 md:grid-cols-3 xl:grid-cols-4">
-              {[0, 1, 3, 4, 5, 6, 7, 8, 9].map((i) => (
-                <div
-                  key={i}
-                  /* className=" flex flex-col overflow-hidden rounded-3xl bg-slate-50 p-2 shadow-md dark:bg-slate-600
-            [&:nth-child(1)>#img]:h-48 lg:[&:nth-child(1)>#img]:max-h-full [&:nth-child(1)]:col-span-2 
-            lg:[&:nth-child(1)]:col-span-1 [&:nth-child(2)]:row-span-2" */
-                  className="relative flex flex-col justify-between rounded-3xl bg-slate-50 dark:bg-slate-600"
-                >
-                  <Skeleton className="aspect-[19/10] h-full w-full animate-pulse rounded-b-none rounded-t-3xl bg-slate-400 object-cover shadow-md lg:aspect-video" />
-                  <div className="px-5 pb-1 pt-8">
-                    <Skeleton className="h-6 w-[90%] animate-pulse rounded-full bg-slate-400" />
-                  </div>
-                  <div className=" flex justify-between px-5 pb-10 pt-1">
-                    <Skeleton className="h-6 w-[40%] animate-pulse rounded-full bg-slate-400" />
-                    <Skeleton className="h-6 w-[20%] animate-pulse rounded-full bg-slate-400" />
-                  </div>
-                  <div className="absolute bottom-0 -my-6 h-12 w-[94%] shrink-0 grow-0 self-center rounded-[20px] overflow-hidden bg-slate-500 
-                md:scale-[90%]">
-                  <Skeleton
-                    className=" w-full h-full bg-slate-400 "
-                  />
-                  </div>
-                </div>
-              ))}
-            </div>
           </>
         ) : data && data.length && data.length > 1 ? (
           <Activities data={data} />
@@ -123,19 +97,12 @@ const ActivitiesPage: NextPageWithLayout = () => {
     </>
   );
 };
-const Activities = (props: { data: Activity[] }) => {
+export const Activities = (props: { data: Activity[] }) => {
   const { data } = props;
-  const images = [
-    "https://www.yohoadventures.com/wp-content/uploads/2014/10/DSC02773-1-1024x768.jpg",
-    "https://blog.efoodhandlers.com/wp-content/uploads/2020/01/AdobeStock_222953589-1024x683.jpeg",
-    "https://magazine.bluekarmasecrets.com/wp-content/uploads/2019/10/retreatbox.png",
-    "https://outdoortrip-web.s3.eu-central-1.amazonaws.com/130-barcelona-city-bike-tour/barcelona-city-bike-tour.5b7d66b2e8cf8-full.jpg",
-    "https://www.trendz4friend.com/wp-content/uploads/2021/06/artclasses.jpg",
-  ];
   return (
     <ul
       className={cn(
-        `grid w-full grid-cols-1 gap-3 gap-y-14 px-2 sm:grid-cols-2 sm:gap-x-4 md:grid-cols-3 xl:grid-cols-4`
+        `grid w-full grid-cols-1 gap-3 gap-y-14 px-2 sm:grid-cols-2 sm:gap-x-4 md:grid-cols-3 xl:grid-cols-4 mb-12`
       )}
     >
       {data.map((act, index) => {
@@ -148,7 +115,7 @@ const Activities = (props: { data: Activity[] }) => {
           >
             <CardHeader className="relative flex-shrink flex-grow p-0">
               <ImageWithFallback
-                src={images[index] ?? defaultImage.src}
+                src={act.cover ?? defaultImage.src}
                 fallBackSrc={defaultImage}
                 blurDataURL={defaultImage.src}
                 alt={act.label ?? "activity"}
@@ -209,5 +176,35 @@ const Activities = (props: { data: Activity[] }) => {
     </ul>
   );
 };
+export function ActivitiesSkeleton() {
+  return (
+    <div className="grid w-full grid-cols-1 gap-3 gap-y-14 px-2 sm:grid-cols-2 sm:gap-x-4 md:grid-cols-3 xl:grid-cols-4 mb-12">
+      {[0, 1, 3, 4, 5, 6, 7, 8, 9].map((i) => (
+        <div
+          key={i}
+          /* className=" flex flex-col overflow-hidden rounded-3xl bg-slate-50 p-2 shadow-md dark:bg-slate-600
+            [&:nth-child(1)>#img]:h-48 lg:[&:nth-child(1)>#img]:max-h-full [&:nth-child(1)]:col-span-2 
+            lg:[&:nth-child(1)]:col-span-1 [&:nth-child(2)]:row-span-2" */
+          className="relative flex flex-col justify-between rounded-3xl bg-slate-50 dark:bg-slate-600"
+        >
+          <Skeleton className="aspect-[19/10] h-full w-full animate-pulse rounded-b-none rounded-t-3xl bg-slate-400 object-cover shadow-md lg:aspect-video" />
+          <div className="px-5 pb-1 pt-8">
+            <Skeleton className="h-6 w-[90%] animate-pulse rounded-full bg-slate-400" />
+          </div>
+          <div className=" flex justify-between px-5 pb-10 pt-1">
+            <Skeleton className="h-6 w-[40%] animate-pulse rounded-full bg-slate-400" />
+            <Skeleton className="h-6 w-[20%] animate-pulse rounded-full bg-slate-400" />
+          </div>
+          <div
+            className="absolute bottom-0 -my-6 h-12 w-[94%] shrink-0 grow-0 self-center overflow-hidden rounded-[20px] bg-slate-500 
+                md:scale-[90%]"
+          >
+            <Skeleton className=" h-full w-full bg-slate-400 " />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
 ActivitiesPage.getLayout = (page: React.ReactNode) => <Layout>{page}</Layout>;
 export default ActivitiesPage;

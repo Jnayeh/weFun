@@ -3,6 +3,8 @@ import MasonryGrid, { MasonryGridSkeleton } from "~/components/MasonryGrid";
 
 import { NextPageWithLayout } from "~/pages/_app";
 import { api } from "~/utils/api";
+import { Activities, ActivitiesSkeleton } from "../activities";
+import { Activity } from "~/db/schema";
 
 const ExplorePage: NextPageWithLayout = () => {
   const { data, isLoading, error } = api.category.getAll.useQuery(undefined, {
@@ -20,15 +22,17 @@ const ExplorePage: NextPageWithLayout = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="w-[90%] mx-auto py-4">
+      <main className="mx-auto w-[90%] py-4">
         {isLoading || error ? (
           <>
-            <MasonryGridSkeleton/>
+            <ActivitiesSkeleton />
+            <MasonryGridSkeleton />
           </>
         ) : (
           <>
             {data && data.length && data.length > 1 ? (
               <>
+              <Activities data={data as unknown as Activity[]}/>
                 <MasonryGrid dataList={data} detailsUrl="regions/" />
               </>
             ) : (

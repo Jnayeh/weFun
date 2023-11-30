@@ -8,6 +8,13 @@
       "when": 1697742107614,
       "tag": "0000_bumpy_timeslip",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1700923282882,
+      "tag": "0001_sturdy_moon_knight",
+      "breakpoints": true
     }
   ]
 }
