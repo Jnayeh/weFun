@@ -179,7 +179,7 @@ export const Activities = (props: { data: Activity[] }) => {
 };
 export function ActivitiesSkeleton() {
   return (
-    <div className="grid w-full grid-cols-1 gap-3 gap-y-14 px-2 sm:grid-cols-2 sm:gap-x-4 md:grid-cols-3 xl:grid-cols-4">
+    <div className="grid w-full grid-cols-1 gap-3 gap-y-14 px-2 sm:grid-cols-2 sm:gap-x-4 md:grid-cols-3 xl:grid-cols-4 mb-12">
       {[0, 1, 3, 4, 5, 6, 7, 8, 9].map((i) => (
         <div
           key={i}
