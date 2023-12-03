@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const plugin = require('tailwindcss/plugin')
 module.exports = {
   darkMode: ["class"],
   content: [
@@ -16,6 +17,11 @@ module.exports = {
       },
     },
     extend: {
+      textShadow: {
+        sm: '0.5px 0 var(--tw-shadow-color)',
+        DEFAULT: '1px 0 var(--tw-shadow-color)',
+        lg: '2px 0 var(--tw-shadow-color)',
+      },
       /* colors: {
         primary: "",
         secondary: "#151B40",
@@ -125,5 +131,16 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    plugin(function ({ matchUtilities, theme }) {
+      matchUtilities(
+        {
+          'text-shadow': (value) => ({
+            textShadow: value,
+          }),
+        },
+        { values: theme('textShadow') }
+      )
+    })],
 };
