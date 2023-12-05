@@ -8,6 +8,7 @@ import NavPopup from "./nav-popup";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@clerk/nextjs";
+import { SvgUser } from "../SvgStore";
 
 export default function Navbar(props: { navBarClass?: string }) {
   const { navBarClass } = props;
@@ -16,7 +17,6 @@ export default function Navbar(props: { navBarClass?: string }) {
 
   const location = useRouter().pathname;
   const [isSearching, setIsSearching] = useState(false);
-  const [onMobile, setOnMobile] = useState(false);
 
   function slideHorizontal(
     el: HTMLElement,
@@ -60,7 +60,6 @@ export default function Navbar(props: { navBarClass?: string }) {
       const items =
         navListRef.current.querySelectorAll<HTMLElement>(".nav-item");
       items.forEach((item) => {
-          setOnMobile(true);
         if (item && indicatorRef.current) {
           setTimeout(() => {
             item.style.transition = "0.4s";
@@ -89,7 +88,7 @@ export default function Navbar(props: { navBarClass?: string }) {
   };
   /**
    * Adding event listeners on component mount
-   * 
+   *
    */
   /* 
   useEffect(() => {
@@ -108,26 +107,14 @@ export default function Navbar(props: { navBarClass?: string }) {
     sliding();
   }, [location]);
 
-  const { isLoaded, isSignedIn, signOut} = useAuth();
+  const { isLoaded, isSignedIn, signOut } = useAuth();
   return (
     <div
-      className={cn(
-        `navigation sticky top-0 z-30 min-w-full justify-center bg-beige bg-opacity-70 backdrop-blur dark:bg-gray-800 dark:bg-opacity-20 dark:backdrop-blur-md md:bg-opacity-90 dark:md:bg-opacity-90 shadow-lg ${navBarClass}`
-      )}
+      className={cn(`navigation sticky top-0 z-30 min-w-full justify-center bg-beige bg-opacity-70 shadow-lg backdrop-blur transition-all 
+        dark:bg-gray-800 dark:bg-opacity-20 dark:backdrop-blur-md md:bg-opacity-90 dark:md:bg-opacity-90 ${navBarClass}`)}
     >
-      <nav className="mx-auto flex h-[60px] w-full max-w-[1500px] items-center justify-between p-2 pl-4">
-        <div className=" w-8  rounded-full md:hidden dark:bg-white dark:bg-opacity-60 shadow-black shadow-inner">
-          <Image
-            src="/user.svg"
-            alt="brand logo"
-            height={40}
-            width={40}
-            className="rounded-full "
-            onClick={()=>{
-              
-            }}
-          />
-        </div>
+      <nav className="mx-auto flex h-[60px] w-full max-w-[1500px] items-center justify-between p-2">
+        <SvgUser side="left" className="md:hidden" />
         <div className="brand-name flex flex-shrink-0 items-center">
           {/* <Image
             src="/brand-name.png"
@@ -145,13 +132,12 @@ export default function Navbar(props: { navBarClass?: string }) {
           </div>
         </Suspense>
 
-        <div className=" m-auto hidden h-11 w-full items-center justify-end md:flex">
+        <div className=" m-auto hidden h-11 w-full items-center justify-end pr-2 md:flex">
           <ToggleButton className="scale-75 " />
           <ul
             className={cn(
-              `nav-list hidden h-full list-none items-center p-0 text-black dark:text-white md:flex ${
-                isSearching ? "w-0" : ""
-              }`
+              `relative hidden h-full max-w-full list-none items-center overflow-hidden p-0 px-3 
+              text-black dark:text-white md:flex ${isSearching ? "w-0" : ""}`
             )}
             ref={navListRef}
           >
@@ -204,29 +190,6 @@ export default function Navbar(props: { navBarClass?: string }) {
                 Categories
               </Link>
             </li>
-            {isSignedIn ? (
-              <li>
-                <button
-                  className="rounded-md bg-slate-500 px-4 py-2 text-slate-100"
-                  onClick={() => signOut()}
-                >
-                  Sign out
-                </button>
-              </li>
-            ) : (
-              <li>
-                <Link
-                  href="/auth/signin"
-                  className={
-                    location == "/auth/signin"
-                      ? "nav-item is-active active-link"
-                      : "nav-item "
-                  }
-                >
-                  Login
-                </Link>
-              </li>
-            )}
 
             <span
               aria-hidden
@@ -234,7 +197,7 @@ export default function Navbar(props: { navBarClass?: string }) {
               ref={indicatorRef}
             ></span>
           </ul>
-
+          <SvgUser side="right" className="hidden md:block" />
           {/* <li
             ref={searchRef}
             onFocus={() => {
