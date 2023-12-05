@@ -32,7 +32,7 @@ const ExplorePage: NextPageWithLayout = () => {
           <>
             {data && data.length && data.length > 1 ? (
               <>
-              <Activities data={data as unknown as Activity[]}/>
+                <Activities data={data as unknown as Activity[]} />
                 <MasonryGrid dataList={data} detailsUrl="regions/" />
               </>
             ) : (
