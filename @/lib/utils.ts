@@ -1,7 +1,6 @@
 import { type ClassValue, clsx } from "clsx"
 import { useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge"
-import { create } from "zustand";
  
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -38,8 +37,3 @@ export const useEffectOnce = (effect: () => void | (() => void)) => {
     };
   }, []);
 };
-const useSlideStore = create<{ slide: number; nextSlide:()=>void; prevSlide:()=>void }>((set) => ({
-  slide: 1,
-  nextSlide: () => set((state: { slide: number }) => ({ slide: state.slide + 1 })),
-  prevSlide: () => set((state: { slide: number }) => ({ slide: state.slide - 1 })),
-}));
