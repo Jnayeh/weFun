@@ -5,7 +5,7 @@ export const useSideBarStore = create<{
   toggleLeftBar: () => void;
   toggleRightBar: () => void;
 }>((set) => ({
-  leftBarOpen: true,
+  leftBarOpen: false,
   rightBarOpen: false,
   toggleLeftBar: () =>
     set((state: { leftBarOpen: boolean }) => ({

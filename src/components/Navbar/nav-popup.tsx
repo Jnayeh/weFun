@@ -5,7 +5,6 @@ import Link from "next/link";
 import { Fragment } from "react";
 
 export default function NavPopup() {
-  const { isLoaded, signOut, isSignedIn } = useAuth();
   return (
     <div className="z-50 scale-90 text-right md:hidden">
       <Menu as="div" className="text-left">
@@ -86,29 +85,6 @@ export default function NavPopup() {
                     </Link>
                   )}
                 </Menu.Item>
-                {isSignedIn ? (
-                  <Menu.Item>
-                    <button
-                      className="w-full rounded-md bg-slate-500 px-4 py-1 text-slate-100"
-                      onClick={() => void signOut()}
-                    >
-                      Sign out
-                    </button>
-                  </Menu.Item>
-                ) : (
-                  <Menu.Item>
-                    {({ active }) => (
-                      <Link
-                        className={`${
-                          active ? "bg-gray-500 text-white" : "text-gray-900"
-                        } group flex w-full items-center rounded-md px-2 py-2 `}
-                        href="/auth/signin"
-                      >
-                        Log in
-                      </Link>
-                    )}
-                  </Menu.Item>
-                )}
               </Menu.Items>
             </Transition>
           </>

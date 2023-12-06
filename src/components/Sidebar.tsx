@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useSideBarStore } from "~/store/sidebar";
 import { FaFacebook } from "@react-icons/all-files/fa/FaFacebook";
 import { FcGoogle } from "@react-icons/all-files/fc/FcGoogle";
-import { useSignIn } from "@clerk/nextjs";
+import { useAuth, useSignIn } from "@clerk/nextjs";
 import { OAuthStrategy } from "@clerk/nextjs/dist/types/server";
 
 type SidebarContentProps = HTMLProps<HTMLDivElement> & {
@@ -80,6 +80,7 @@ export const LoginSideBar: React.FC<
   const { toggleLeftBar, leftBarOpen } = useSideBarStore();
   const { toggleRightBar, rightBarOpen } = useSideBarStore();
   const { isLoaded: signInLoaded, signIn, setActive } = useSignIn();
+  const { isLoaded, signOut, isSignedIn } = useAuth();
   const signInWith = (strategy: OAuthStrategy) => {
     if (!signInLoaded) {
       console.error("sigin is not loaded yet");
@@ -143,14 +144,25 @@ export const LoginSideBar: React.FC<
             <path d="M14 7L7 14M7 7L14 14" strokeLinecap="round" />
           </svg>
         </button>
-        <Link
-          href="/auth/signup"
-          className="rounded-full border-2 border-[#E95B47] px-2 py-1 
+        {isSignedIn ? (
+          <button
+            className="rounded-full border-2 border-[#E95B47] px-2 py-1 
           text-center font-montserrat text-xs uppercase tracking-[1px] text-tomato-300 shadow-[#e95b47] transition-all duration-200 
           text-shadow-sm hover:bg-tomato-300 hover:text-white hover:shadow-white"
-        >
-          Sign up ?
-        </Link>
+            onClick={() => void signOut()}
+          >
+            Sign out
+          </button>
+        ) : (
+          <Link
+            href="/auth/signup"
+            className="rounded-full border-2 border-[#E95B47] px-2 py-1 
+          text-center font-montserrat text-xs uppercase tracking-[1px] text-tomato-300 shadow-[#e95b47] transition-all duration-200 
+          text-shadow-sm hover:bg-tomato-300 hover:text-white hover:shadow-white"
+          >
+            Sign up ?
+          </Link>
+        )}
       </div>
       <div className="flex h-[calc(100%-76px)] flex-col items-center gap-4 p-6 pt-0">
         <h2 className=" py-12 text-xl font-bold uppercase md:text-2xl">
@@ -167,7 +179,7 @@ export const LoginSideBar: React.FC<
           onClick={() => signInWith("oauth_facebook")}
           className=" dark:bg-whitetext-white flex w-full items-center justify-evenly rounded-full bg-black px-2 py-2 text-xs uppercase text-white dark:bg-white dark:text-black md:text-base"
         >
-          <FaFacebook className=" h-[30px] w-[30px] rounded-full bg-white text-blue-600 dark:text-blue-50" />
+          <FaFacebook className=" h-[30px] w-[30px] rounded-full bg-white text-blue-600 " />
           Continue with google
         </button>
       </div>

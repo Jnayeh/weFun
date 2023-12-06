@@ -1,9 +1,7 @@
-/* import { useScroll } from 'Hooks/useScroll'; */
 import React, { Suspense, useEffect, useState, useRef } from "react";
 
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Image from "next/image";
 import NavPopup from "./nav-popup";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
@@ -16,7 +14,6 @@ export default function Navbar(props: { navBarClass?: string }) {
   const navListRef = useRef<HTMLUListElement>(null);
 
   const location = useRouter().pathname;
-  const [isSearching, setIsSearching] = useState(false);
 
   function slideHorizontal(
     el: HTMLElement,
@@ -58,7 +55,7 @@ export default function Navbar(props: { navBarClass?: string }) {
       slideHorizontal(elementRef.current, items, indicatorRef);
     } else if (navListRef.current) {
       const items =
-        navListRef.current.querySelectorAll<HTMLElement>(".nav-item");
+        navListRef.current.querySelectorAll<HTMLAnchorElement>(".nav-item");
       items.forEach((item) => {
         if (item && indicatorRef.current) {
           setTimeout(() => {
@@ -114,7 +111,7 @@ export default function Navbar(props: { navBarClass?: string }) {
         dark:bg-gray-800 dark:bg-opacity-20 dark:backdrop-blur-md md:bg-opacity-90 dark:md:bg-opacity-90 ${navBarClass}`)}
     >
       <nav className="mx-auto flex h-[60px] w-full max-w-[1500px] items-center justify-between p-2">
-        <SvgUser side="left" className="md:hidden" />
+        <SvgUser side="left" className="md:hidden ml-2" />
         <div className="brand-name flex flex-shrink-0 items-center">
           {/* <Image
             src="/brand-name.png"
@@ -137,7 +134,7 @@ export default function Navbar(props: { navBarClass?: string }) {
           <ul
             className={cn(
               `relative hidden h-full max-w-full list-none items-center overflow-hidden p-0 px-3 
-              text-black dark:text-white md:flex ${isSearching ? "w-0" : ""}`
+              text-black dark:text-white md:flex `
             )}
             ref={navListRef}
           >
