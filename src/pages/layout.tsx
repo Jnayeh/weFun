@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useRouter } from "next/router";
 import { lazy, useState } from "react";
 const Footer = lazy(() =>
   import("~/components/Footer/footer.component").then((res) => ({
@@ -14,6 +15,7 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
+  const router = useRouter();
   return (
     <div className="flex h-screen flex-col justify-between">
       <div>
@@ -21,13 +23,17 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <LoginSideBar side="left" className="md:hidden" />
         <LoginSideBar side="right" className="hidden md:block" />
         <motion.div
-          initial={{ x: "-100%", opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          exit={{ x: "100%", opacity: 0 }}
+          key={router.asPath}
+          initial={{ x: "100%", opacity: 0 }}
+          animate={{
+            x: 0,
+            opacity: 1,
+          }}
+          exit={{ scale: 0.7, opacity: 0 }}
           transition={{
             type: "spring",
-            stiffness: 260,
-            damping: 20,
+            stiffness: 160,
+            damping: 16,
           }}
         >
           {children}
