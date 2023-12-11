@@ -8,8 +8,7 @@ import { cn } from "@/lib/utils";
 import { useAuth } from "@clerk/nextjs";
 import { SvgUser } from "../SvgStore";
 
-export default function Navbar(props: { navBarClass?: string }) {
-  const { navBarClass } = props;
+export default function Navbar() {
   const indicatorRef = useRef<HTMLSpanElement>(null);
   const navListRef = useRef<HTMLUListElement>(null);
 
@@ -108,7 +107,7 @@ export default function Navbar(props: { navBarClass?: string }) {
   return (
     <div
       className={cn(`navigation sticky top-0 z-30 min-w-full justify-center bg-beige bg-opacity-70 shadow-lg backdrop-blur transition-all 
-        dark:bg-gray-800 dark:bg-opacity-20 dark:backdrop-blur-md md:bg-opacity-90 dark:md:bg-opacity-90 ${navBarClass}`)}
+        dark:bg-gray-800 dark:bg-opacity-20 dark:backdrop-blur-md md:bg-opacity-90 dark:md:bg-opacity-90`)}
     >
       <nav className="mx-auto flex h-[60px] w-full max-w-[1500px] items-center justify-between p-2">
         <SvgUser side="left" className="md:hidden ml-2" />
