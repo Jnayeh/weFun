@@ -6,10 +6,9 @@ export const SvgUser: React.FC<
   HTMLProps<SVGElement> & { side: "left" | "right" }
 > = ({ className, side }) => {
     
-  const {toggleLeftBar, leftBarOpen} = useSideBarStore();
-  const {toggleRightBar, rightBarOpen} = useSideBarStore();
+  const {toggleLeftBar, toggleRightBar} = useSideBarStore();
   return (
-    <div className=" w-fit h-fit" 
+    <button className=" w-fit h-fit" 
     onClick={side==="left" ? toggleLeftBar: toggleRightBar}>
     <svg
       aria-label="login icon"
@@ -34,6 +33,6 @@ export const SvgUser: React.FC<
         d="M11.5 24C17.8513 24 23 18.6274 23 12C23 5.37258 17.8513 0 11.5 0C5.14872 0 0 5.37258 0 12C0 18.6274 5.14872 24 11.5 24ZM11.5 21.9429C16.7625 21.9429 21.0286 17.4913 21.0286 12C21.0286 6.50871 16.7625 2.05714 11.5 2.05714C6.23751 2.05714 1.97143 6.50871 1.97143 12C1.97143 17.4913 6.23751 21.9429 11.5 21.9429Z"
       />
     </svg>
-    </div>
+    </button>
   );
 };
