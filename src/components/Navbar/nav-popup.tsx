@@ -33,8 +33,8 @@ export default function NavPopup() {
   var menuItems = [
     { href: "/", label: "Home" },
     { href: "/activities", label: "Activities" },
-    { href: "/categories", label: "Categories" },
-    { href: "/regions", label: "Regions" },
+    { href: "/explore", label: "Explore" },
+    { href: "/regions", label: "Places" },
   ];
   return (
     <div className="text-right md:hidden" ref={menuRef}>
