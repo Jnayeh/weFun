@@ -12,10 +12,7 @@ export default function NavPopup() {
   const menuRef = useRef<HTMLDivElement>(null);
 
   const handleClickOutside = (event: Event) => {
-    if (
-      menuRef.current &&
-      !menuRef.current.contains(event.target as Node)
-    ) {
+    if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
       toggleMenu();
     }
   };
@@ -42,13 +39,14 @@ export default function NavPopup() {
   return (
     <div className="text-right md:hidden" ref={menuRef}>
       <motion.button
-        className={cn(
-          ` right-2 flex h-9 w-9 scale-90 items-center justify-center rounded-full border-[3px] border-black bg-white bg-opacity-20 p-[4px] transition-colors dark:border-transparent dark:bg-opacity-50 ${
-            isOpen
-              ? "  border-transparent dark:bg-gray-200"
-              : " dark:border-white dark:bg-gray-700"
-          }`
-        )}
+        className={cn(`
+        right-2 flex h-9 w-9 scale-90 items-center justify-center rounded-full 
+        border-[3px] border-black bg-white bg-opacity-20 p-[4px] transition-colors 
+        dark:border-transparent dark:bg-opacity-50 ${
+          isOpen
+            ? "border-transparent dark:bg-gray-200"
+            : "dark:border-white dark:bg-gray-700"
+        }`)}
         aria-label="navigation menu button"
         aria-haspopup="listbox"
         whileHover={{ scale: 1.05 }}
@@ -67,10 +65,10 @@ export default function NavPopup() {
             initial={{ opacity: 0, scale: 0.75 }}
             animate={{ opacity: 1, scale: 1, transition: { type: "tween" } }}
             exit={{ opacity: 0, scale: 0.75 }}
-            className="absolute right-1 top-16 z-50 flex w-[calc(100vw-8px)] 
-            origin-top-right flex-col gap-1 rounded-xl overflow-hidden
-            bg-beige text-lg font-bold shadow-lg shadow-gray-500
-            dark:bg-gray-800 dark:shadow-gray-800"
+            className="absolute right-2 top-16 z-50 flex w-[calc(100vw-16px)] 
+            origin-top-right flex-col gap-1 overflow-hidden rounded-xl
+            bg-gray-100 text-lg font-bold shadow-xl
+            dark:bg-gray-800 "
           >
             {menuItems.map((el, index) => {
               return (
@@ -80,8 +78,8 @@ export default function NavPopup() {
                   passHref
                   onClick={toggleMenu}
                   className={cn(`
-                  block w-full bg-transparent px-6 py-3 text-right 
-                  text-xl text-gray-900 hover:bg-slate-400 hover:bg-opacity-40 dark:text-slate-100
+                  block w-full bg-transparent px-6 py-3 text-right text-xl text-gray-900 
+                  hover:bg-slate-400 hover:bg-opacity-40 dark:text-slate-100
                 `)}
                 >
                   {el.label}
