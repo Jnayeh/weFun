@@ -12,7 +12,6 @@ import {
 import { Activity } from "~/db/schema";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { FaHeart } from "@react-icons/all-files/fa/FaHeart";
 import { FaLocationArrow } from "@react-icons/all-files/fa/FaLocationArrow";
 import { BiHeart } from "@react-icons/all-files/bi/BiHeart";
@@ -75,19 +74,19 @@ const ActivitiesPage: NextPageWithLayout = () => {
       >
         <div className="flex w-full max-w-2xl items-center justify-center gap-1 px-6 py-4">
           <Input type="search" className="h-[46px] rounded-l-full pl-6" />
-          <Button
-            className="h-full rounded-r-full bg-slate-500 text-3xl text-white hover:bg-slate-600"
+          <button
+            className="h-full rounded-r-full bg-slate-500 px-4 py-2 text-3xl text-white hover:bg-slate-600"
             aria-label="click to search"
           >
             <BiSearchAlt />
             <span className="sr-only">Search</span>
-          </Button>
+          </button>
         </div>
 
         {isLoading ? (
           <>
             <p className=" sr-only">Is Loading</p>
-            <ActivitiesSkeleton/>
+            <ActivitiesSkeleton />
           </>
         ) : data && data.length && data.length > 1 ? (
           <Activities data={data} />
@@ -103,7 +102,7 @@ export const Activities = (props: { data: Activity[] }) => {
   return (
     <ul
       className={cn(
-        `grid w-full grid-cols-1 gap-3 gap-y-14 px-2 sm:grid-cols-2 sm:gap-x-4 md:grid-cols-3 xl:grid-cols-4 mb-12`
+        `grid w-full grid-cols-1 gap-3 px-2 sm:grid-cols-2 sm:gap-x-4 md:grid-cols-3 xl:grid-cols-4`
       )}
     >
       {data.map((act, index) => {
@@ -111,7 +110,7 @@ export const Activities = (props: { data: Activity[] }) => {
           <Card
             key={act.id}
             className={cn(
-              `relative flex flex-col justify-between rounded-3xl bg-slate-50 dark:bg-slate-600 [&>div>img]:aspect-[19/10] lg:[&>div>img]:aspect-video`
+              `relative flex flex-col justify-between rounded-3xl bg-slate-50 shadow-xl dark:bg-slate-600 [&>div>img]:aspect-[19/10] lg:[&>div>img]:aspect-video`
             )}
           >
             <CardHeader className="relative flex-shrink flex-grow p-0">
@@ -124,7 +123,7 @@ export const Activities = (props: { data: Activity[] }) => {
                 width={800}
                 height={800}
               />
-              <Button className="text-brand-500 absolute right-2 top-2 flex items-center justify-center rounded-full bg-white p-2 hover:cursor-pointer sm:scale-90 md:scale-75">
+              <button className="text-brand-500 absolute right-2 top-2 flex items-center justify-center rounded-full bg-white p-2 hover:cursor-pointer sm:scale-90 md:scale-75">
                 <div className="flex h-6 w-6 items-center justify-center rounded-full text-2xl hover:bg-gray-50">
                   {act.id % 2 == 0 ? (
                     <FaHeart fill="red" />
@@ -132,7 +131,7 @@ export const Activities = (props: { data: Activity[] }) => {
                     <BiHeart fill="red" />
                   )}
                 </div>
-              </Button>
+              </button>
             </CardHeader>
             <CardContent className="px-5 pb-1 pt-8 [&>*]:line-clamp-1 ">
               <CardTitle title={act.label ?? ""}>{act.label}</CardTitle>
@@ -168,9 +167,9 @@ export const Activities = (props: { data: Activity[] }) => {
                 </p>
               </div>
             </CardFooter>
-            <Button className="absolute bottom-0 -my-6 h-12 w-[94%] self-center rounded-[20px] bg-tomato-300 py-0 text-xl font-semibold uppercase text-white shadow-sm md:scale-[90%]">
+            <button className="h-12 w-full self-center rounded-[20px] bg-tomato-300 py-0 text-xl font-semibold uppercase text-white shadow-sm">
               View details
-            </Button>
+            </button>
           </Card>
         );
       })}
@@ -179,7 +178,7 @@ export const Activities = (props: { data: Activity[] }) => {
 };
 export function ActivitiesSkeleton() {
   return (
-    <div className="grid w-full grid-cols-1 gap-3 gap-y-14 px-2 sm:grid-cols-2 sm:gap-x-4 md:grid-cols-3 xl:grid-cols-4 mb-12">
+    <div className="mb-12 grid w-full grid-cols-1 gap-3 px-2 sm:grid-cols-2 sm:gap-x-4 md:grid-cols-3 xl:grid-cols-4">
       {[0, 1, 3, 4, 5, 6, 7, 8, 9].map((i) => (
         <div
           key={i}
@@ -196,10 +195,7 @@ export function ActivitiesSkeleton() {
             <Skeleton className="h-6 w-[40%] animate-pulse rounded-full bg-slate-400" />
             <Skeleton className="h-6 w-[20%] animate-pulse rounded-full bg-slate-400" />
           </div>
-          <div
-            className="absolute bottom-0 -my-6 h-12 w-[94%] shrink-0 grow-0 self-center overflow-hidden rounded-[20px] bg-slate-500 
-                md:scale-[90%]"
-          >
+          <div className="w-full shrink-0 grow-0 self-center overflow-hidden rounded-[20px] bg-slate-500 ">
             <Skeleton className=" h-full w-full bg-slate-400 " />
           </div>
         </div>
