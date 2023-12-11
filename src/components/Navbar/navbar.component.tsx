@@ -171,19 +171,19 @@ export default function Navbar() {
                     : "nav-item "
                 }
               >
-                Regions
+                Places
               </Link>
             </li>
             <li>
               <Link
-                href="/categories"
+                href="/explore"
                 className={
-                  location == "/categories"
+                  location == "/explore"
                     ? "nav-item is-active active-link"
                     : "nav-item "
                 }
               >
-                Categories
+                Explore
               </Link>
             </li>
 
