@@ -60,10 +60,6 @@ const Sidebar: React.FC<SidebarProps> = ({
           exit={exit}
           transition={transition}
           className={cn(`fixed z-50 box-border w-[80%] max-w-xs ${className}`)}
-          style={{
-            position: "fixed",
-            height: "100hv",
-          }}
         >
           {children}
         </motion.div>

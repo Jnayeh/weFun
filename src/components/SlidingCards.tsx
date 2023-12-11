@@ -33,7 +33,7 @@ const SlidingCards = (props: ImageWithFallbackProps) => {
           : moveEvent.touches[0]?.clientX ?? 0;
       const deltaX = clientX - startX;
       const direction = deltaX > 0 ? "right" : "left";
-     
+
       // Update the swipeValue based on the swipe distance
       swipeValue.set(deltaX);
       /* if (direction === "right" && activeCard > 0) {
@@ -87,7 +87,6 @@ const SlidingCards = (props: ImageWithFallbackProps) => {
           "px";
       } */
 
-      
       /* if (direction === "right" && activeCard > 0) {
         const activeElement = galleryRef.current?.childNodes.item(
           activeCard
@@ -109,7 +108,7 @@ const SlidingCards = (props: ImageWithFallbackProps) => {
       const velocity = endEvent instanceof MouseEvent ? endEvent.movementX : 2;
       const deltaX = endX - startX;
       const direction = deltaX > 0 ? "right" : "left";
-      const isSwipe = Math.abs(deltaX) > 100;
+      const isSwipe = Math.abs(deltaX) > 50;
       const isClick = Math.abs(deltaX) < 1;
       if (isSwipe) {
         if (direction === "right" && activeCard > 0) {
@@ -124,9 +123,6 @@ const SlidingCards = (props: ImageWithFallbackProps) => {
           detailsUrl ?? `/categories/${divElement.parentElement!.id}`
         );
       }
-
-      divElement.parentElement!.classList.add("flex-grow");
-      divElement.parentElement!.style.width = "80%";
       swipeValue.set(0);
       document.removeEventListener("touchend", handleSwipeEnd);
       document.removeEventListener("touchmove", handleSwipeMove);
@@ -160,12 +156,12 @@ const SlidingCards = (props: ImageWithFallbackProps) => {
           key={el.id}
           id={`${el.id}`}
           className={`card h-[69vh] cursor-pointer ${
-            index === activeCard ? "flex-grow" : "flex-shrink"
+            index === activeCard ? "flex-grow" : ""
           } rounded-[40px] bg-cover bg-center `}
           initial={{
             width:
               activeCard == index
-                ? "80%"
+                ? "86%"
                 : activeCard - index == 1
                 ? `40px`
                 : activeCard - index == -1
@@ -173,7 +169,7 @@ const SlidingCards = (props: ImageWithFallbackProps) => {
                 : "16px",
           }}
           animate={{
-            width: activeCard == index ?"80%":
+            width: activeCard == index ?"86%":
               activeCard - index == 1
                 ? `40px`
                 : activeCard - index == -1
@@ -185,12 +181,12 @@ const SlidingCards = (props: ImageWithFallbackProps) => {
             },
           }}
           onMouseDown={(event) => {
+            event.preventDefault();
             handleSwipeStart(
               galleryRef,
               event.target as HTMLDivElement,
               event.clientX
             );
-            event.preventDefault();
           }}
           onTouchStart={(event) => {
             const touchEvent = event.touches[0];

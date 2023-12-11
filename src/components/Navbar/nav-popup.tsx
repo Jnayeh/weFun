@@ -1,95 +1,96 @@
 import { cn } from "@/lib/utils";
 import { useAuth } from "@clerk/nextjs";
-import { Menu, Transition } from "@headlessui/react";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { Fragment } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
+import { useSideBarStore } from "~/store/sidebar";
 
 export default function NavPopup() {
+  const toggleMenu = useSideBarStore((st) => st.toggleMenutBar);
+  const isOpen = useSideBarStore((st) => st.menuBarOpen);
+
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  const handleClickOutside = (event: Event) => {
+    if (
+      menuRef.current &&
+      !menuRef.current.contains(event.target as Node)
+    ) {
+      toggleMenu();
+    }
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("ontouchstart", handleClickOutside);
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("ontouchstart", handleClickOutside);
+    };
+  }, [isOpen]);
+  var menuItems = [
+    { href: "/", label: "Home" },
+    { href: "/activities", label: "Activities" },
+    { href: "/categories", label: "Categories" },
+    { href: "/regions", label: "Regions" },
+  ];
   return (
-    <div className="z-50 scale-90 text-right md:hidden">
-      <Menu as="div" className="text-left">
-        {({ open }) => (
-          <>
-            <Menu.Button
-              className={cn(` right-2 h-10 w-10 rounded-full border-4 border-black p-[6px] transition-colors dark:border-transparent bg-white bg-opacity-20 dark:bg-opacity-50 ${
-                open
-                  ? "  dark:bg-gray-200 border-transparent"
-                  : " dark:bg-gray-700 dark:border-white"
-              }`)}
-              aria-label="navigation menu button"
-              aria-haspopup="listbox"
-            >
-              <div id="nav-icon" className={open ? " nav-open" : " [&>*]:hover:bg-red-500"}>
-                <span className="bg-black dark:bg-white"></span>
-                <span className="bg-black dark:bg-white"></span>
-                <span className="bg-black dark:bg-white"></span>
-              </div>
-            </Menu.Button>
-            <Transition
-              as={Fragment}
-              enter="transition ease-out duration-100"
-              enterFrom="transform opacity-0 scale-75"
-              enterTo="transform opacity-100 scale-100"
-              leave="transition ease-in duration-75"
-              leaveFrom="transform opacity-100 scale-100"
-              leaveTo="transform opacity-0 scale-75"
-            >
-              <Menu.Items className=" absolute right-1 top-14 z-50 flex w-[90vw] origin-top-right flex-col gap-1 divide-y divide-gray-100 rounded-md bg-white p-1 text-lg font-bold shadow-lg ring-1  ring-black ring-opacity-5 focus:outline-none">
-                <Menu.Item>
-                  {({ active }) => (
-                    <Link
-                      className={`${
-                        active ? "bg-gray-500 text-white" : "text-gray-900"
-                      } group flex w-full items-center rounded-md px-2 py-2 `}
-                      href="/"
-                    >
-                      Home
-                    </Link>
-                  )}
-                </Menu.Item>
-                <Menu.Item>
-                  {({ active }) => (
-                    <Link
-                      prefetch={true}
-                      className={`${
-                        active ? "bg-gray-500 text-white" : "text-gray-900"
-                      } group flex w-full items-center rounded-md px-2 py-2 `}
-                      href="/activities"
-                    >
-                      Activities
-                    </Link>
-                  )}
-                </Menu.Item>
-                <Menu.Item>
-                  {({ active }) => (
-                    <Link
-                      className={`${
-                        active ? "bg-gray-500 text-white" : "text-gray-900"
-                      } group flex w-full items-center rounded-md px-2 py-2 `}
-                      href="/regions"
-                    >
-                      Regions
-                    </Link>
-                  )}
-                </Menu.Item>
-                <Menu.Item>
-                  {({ active }) => (
-                    <Link
-                      prefetch
-                      className={`${
-                        active ? "bg-gray-500 text-white" : "text-gray-900"
-                      } group flex w-full items-center rounded-md px-2 py-2 `}
-                      href="/categories"
-                    >
-                      Categories
-                    </Link>
-                  )}
-                </Menu.Item>
-              </Menu.Items>
-            </Transition>
-          </>
+    <div className="text-right md:hidden" ref={menuRef}>
+      <motion.button
+        className={cn(
+          ` right-2 flex h-9 w-9 scale-90 items-center justify-center rounded-full border-[3px] border-black bg-white bg-opacity-20 p-[4px] transition-colors dark:border-transparent dark:bg-opacity-50 ${
+            isOpen
+              ? "  border-transparent dark:bg-gray-200"
+              : " dark:border-white dark:bg-gray-700"
+          }`
         )}
-      </Menu>
+        aria-label="navigation menu button"
+        aria-haspopup="listbox"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        onClick={toggleMenu}
+      >
+        <div id="nav-icon" className={isOpen ? " nav-open" : ""}>
+          <span className="bg-black dark:bg-white"></span>
+          <span className="bg-black dark:bg-white"></span>
+          <span className="bg-black dark:bg-white"></span>
+        </div>
+      </motion.button>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.75 }}
+            animate={{ opacity: 1, scale: 1, transition: { type: "tween" } }}
+            exit={{ opacity: 0, scale: 0.75 }}
+            className="absolute right-1 top-16 z-50 flex w-[calc(100vw-8px)] 
+            origin-top-right flex-col gap-1 rounded-xl overflow-hidden
+            bg-beige text-lg font-bold shadow-lg shadow-gray-500
+            dark:bg-gray-800 dark:shadow-gray-800"
+          >
+            {menuItems.map((el, index) => {
+              return (
+                <Link
+                  key={index}
+                  href={el.href}
+                  passHref
+                  onClick={toggleMenu}
+                  className={cn(`
+                  block w-full bg-transparent px-6 py-3 text-right 
+                  text-xl text-gray-900 hover:bg-slate-400 hover:bg-opacity-40 dark:text-slate-100
+                `)}
+                >
+                  {el.label}
+                </Link>
+              );
+            })}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
