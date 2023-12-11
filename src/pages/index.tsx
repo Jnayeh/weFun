@@ -5,7 +5,6 @@ import Header from "~/components/Header/header.component";
 import Layout from "./layout";
 
 import { NextPageWithLayout } from "./_app";
-import { Button } from "@/components/ui/button";
 import Reviews from "../components/reviews";
 import { useTranslations } from "next-intl";
 import { api } from "~/utils/api";
@@ -123,9 +122,9 @@ const Home: NextPageWithLayout = () => {
           className="relative mx-auto flex max-w-[90%] justify-center rounded-full py-12"
         >
           <div className="border-darkslategray-300 relative flex w-[300px] justify-start rounded-full border-2 border-black dark:border-slate-600 [&>*]:px-10">
-            <Button className="flex w-full justify-start rounded-full bg-transparent py-[2px] leading-[138%] tracking-[0.16em] hover:bg-gray-200 dark:hover:bg-gray-800">
+            <button className="flex w-full justify-start rounded-full bg-transparent py-[4px] leading-[138%] tracking-[0.16em] hover:bg-gray-200 dark:hover:bg-gray-800">
               {t("search")}
-            </Button>
+            </button>
             <Link
               href="explore"
               className=" absolute end-0 flex h-full items-center rounded-full bg-black text-sm font-black leading-[140.5%] text-white dark:bg-slate-600"
