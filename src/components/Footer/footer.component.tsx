@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { lazy } from "react";
 
 import { FaAppStore } from "@react-icons/all-files/fa/FaAppStore";
 import { FaFacebookF } from "@react-icons/all-files/fa/FaFacebookF";
@@ -64,12 +63,14 @@ export default function Footer() {
   return (
     <footer className=" m-2 rounded-xl dark:bg-gray-900">
       <div className="flex flex-col justify-center sm:items-center xl:flex-row xl:items-start">
-        <section className="w-full max-w-[1000px] hidden md:flex flex-col items-start justify-between sm:flex-row sm:justify-evenly lg:mx-auto xl:mx-2">
+        <section className="hidden w-full max-w-[1000px] flex-col items-start justify-between sm:flex-row sm:justify-evenly md:flex lg:mx-auto xl:mx-2">
           {link_list.map((item, index) => {
             return (
               <div key={index} className="p-4 sm:px-2 lg:p-4">
-                <h3 className="ul_title  text-red-700">{item.title}</h3>
-                <ul className="footer-link-list">
+                <h3 className="mb-1 text-2xl font-bold text-red-700">
+                  {item.title}
+                </h3>
+                <ul className="ml-3 mr-2 text-xl font-bold  text-gray-500 dark:text-white lg:ml-5 lg:mr-5">
                   {item.links.map((link_item, link_index) => {
                     return (
                       <li key={link_index}>
@@ -91,14 +92,18 @@ export default function Footer() {
           <div className="min-h-100 flex flex-row items-center justify-center gap-2 p-3 sm:flex-col sm:justify-start xl:flex-row">
             <Link
               href="#"
-              className="social-button text-black hover:text-blue-500  focus:bg-black focus:text-white dark:text-white dark:hover:text-blue-500"
+              className="ml-2 rounded-full border-solid p-2 text-center text-black shadow transition-colors duration-100
+              hover:cursor-pointer hover:bg-white hover:text-blue-500 hover:shadow-lg focus:bg-black focus:text-white 
+              dark:text-white dark:hover:text-blue-500"
               aria-label="Facebook page"
             >
               <FaFacebookF />
             </Link>
             <Link
               href="#"
-              className="social-button text-black hover:text-pink-500  focus:bg-black focus:text-white dark:text-white dark:hover:text-pink-500"
+              className="ml-2 rounded-full border-solid p-2 text-center text-black shadow transition-colors duration-100
+              hover:cursor-pointer hover:bg-white hover:text-pink-500 hover:shadow-lg  focus:bg-black focus:text-white 
+              dark:text-white dark:hover:text-pink-500"
               aria-label="Instagram page"
             >
               <FaInstagram />
@@ -106,7 +111,9 @@ export default function Footer() {
 
             <Link
               href="#"
-              className="social-button text-black hover:text-blue-400  focus:bg-black focus:text-white dark:text-white dark:hover:text-blue-400"
+              className="ml-2 rounded-full border-solid p-2 text-center text-black shadow transition-colors duration-100
+              hover:cursor-pointer hover:bg-white hover:text-blue-400 hover:shadow-lg  focus:bg-black focus:text-white 
+              dark:text-white dark:hover:text-blue-400"
               aria-label="Twitter page"
             >
               <FaTwitter />
@@ -121,21 +128,23 @@ export default function Footer() {
             <div className="flex flex-col justify-between self-center p-3 font-bold sm:flex-row">
               <Link
                 href="#"
-                className="store-button hover:duration:0 my-1 w-full items-center bg-black text-white transition-[color] duration-0 dark:bg-gray-600 sm:mr-3"
+                className="hover:duration:0 my-1 flex w-full flex-nowrap items-center justify-center justify-items-center rounded-[5rem]
+                bg-black px-4 py-3 text-white transition-colors duration-500 hover:cursor-pointer hover:bg-slate-50 hover:text-black
+                focus:cursor-pointer focus:bg-slate-50 focus:text-black dark:bg-gray-600 sm:mr-3"
               >
                 <FaGooglePlay />
-                <span className="store-btn-txt ml-1 inline-block">
-                  {" "}
+                <span className="ml-1 inline-block whitespace-nowrap text-center text-sm sm:text-[0.77rem]">
                   Download on playstore
                 </span>
               </Link>
               <Link
                 href="#"
-                className="store-button hover:duration:0 my-1 w-full items-center bg-black text-white transition-[color] duration-0 dark:bg-gray-600"
+                className="hover:duration:0 my-1 flex w-full flex-nowrap items-center justify-center justify-items-center rounded-[5rem]
+                bg-black px-4 py-3 text-white transition-colors duration-500 hover:cursor-pointer hover:bg-slate-50 hover:text-black
+                focus:cursor-pointer focus:bg-slate-50 focus:text-black dark:bg-gray-600"
               >
                 <FaAppStore />
-                <span className="store-btn-txt ml-1 inline-block">
-                  {" "}
+                <span className="ml-1 inline-block whitespace-nowrap text-center text-sm sm:text-[0.77rem]">
                   Download on app store
                 </span>
               </Link>
@@ -143,7 +152,7 @@ export default function Footer() {
           </div>
         </section>
       </div>
-      <p className="mt-2 p-2 text-center font-bold text-gray-400 dark:text-gray-200">
+      <p className="mt-2 p-2 text-center font-bold text-gray-600 dark:text-gray-100">
         All rights reseverved &copy; WeFun
       </p>
     </footer>
