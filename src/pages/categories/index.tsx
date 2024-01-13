@@ -9,11 +9,11 @@ import {
   CardDescription,
   CardContent,
   CardFooter,
-} from "@/components/ui/card";
+} from "~/components/ui/card";
 import { appRouter } from "~/server/api/root";
 import { Category } from "~/db/schema";
 import SuperJSON from "superjson";
-import { cn } from "@/lib/utils";
+import { cn } from "~/utils/utils";
 import { IncomingMessage, ServerResponse } from "http";
 import { createServerSideHelpers } from "@trpc/react-query/server";
 import { createInnerTRPCContext } from "~/server/api/trpc";

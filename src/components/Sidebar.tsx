@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, HTMLProps } from "react";
 import { motion, AnimatePresence, AnimationProps } from "framer-motion";
-import { cn } from "@/lib/utils";
+import { cn } from "~/utils/utils";
 import Link from "next/link";
 import { useSideBarStore } from "~/store/sidebar";
 import { FaFacebook } from "@react-icons/all-files/fa/FaFacebook";
@@ -145,7 +145,7 @@ export const LoginSideBar: React.FC<
             className="rounded-full border-2 border-[#E95B47] px-2 py-1 
           text-center font-montserrat text-xs uppercase tracking-[1px] text-tomato-300 shadow-[#e95b47] transition-all duration-200 
           text-shadow-sm hover:bg-tomato-300 hover:text-white hover:shadow-white"
-            onClick={() => void signOut()}
+            onClick={() => signOut()}
           >
             Sign out
           </button>

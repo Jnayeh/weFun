@@ -5,10 +5,11 @@ import Header from "~/components/Header/header.component";
 import Layout from "./layout";
 
 import { NextPageWithLayout } from "./_app";
-import Reviews from "../components/reviews";
+import Reviews from "~/components/reviews";
 import { useTranslations } from "next-intl";
 import { api } from "~/utils/api";
 import SlidingCards, { SlidingCardsSkeleton } from "~/components/SlidingCards";
+import Image from "next/image";
 export function getStaticProps(props: { locale: string }) {
   const { locale } = props;
   return {
@@ -54,10 +55,10 @@ const Home: NextPageWithLayout = () => {
         </div>
         <section className=" mb-2 w-[90%] max-w-screen-xl">
           <h2 className=" p-6 text-center font-montserrat text-3xl font-extrabold uppercase">
-            TOP <br /> Places
+            TOP Places
           </h2>
           {data && data.length && data.length > 1 ? (
-            <SlidingCards dataList={data.slice(0,3)} />
+            <SlidingCards dataList={data.slice(0, 3)} />
           ) : (
             <SlidingCardsSkeleton />
           )}
@@ -75,9 +76,11 @@ const Home: NextPageWithLayout = () => {
           <h2 className="absolute top-12 mx-[10%] flex w-[80%] justify-center text-center font-rubik text-[7vw] font-medium uppercase leading-[138%] tracking-[0.16em] text-black sm:text-[5vw] md:text-[38px]">
             discover <br /> the best activities <br /> with one swipe
           </h2>
-          <img
+          <Image
             className="h-full w-full object-cover"
-            alt=""
+            alt="friends sitting in front of firecamp"
+            width={1000}
+            height={1000}
             src="/unsplashuhkoydaijhw2@2x.png"
           />
           <div className="absolute bottom-[-25px] flex w-full justify-center">
@@ -88,11 +91,13 @@ const Home: NextPageWithLayout = () => {
               <span className="font-rubik text-sm font-medium leading-[138%] tracking-[0.16em] text-black">
                 show top rate places
               </span>
-              <img
+              <Image
                 className="h-[20.51px] w-[20.51px] object-cover"
-                alt=""
+                alt="arrow"
                 tabIndex={-1}
                 src="/12230001-1@2x.png"
+                width={30}
+                height={30}
               />
             </Link>
           </div>
@@ -100,7 +105,7 @@ const Home: NextPageWithLayout = () => {
 
         <section className="w-[90%] max-w-7xl ">
           <h2 className=" p-6 text-center font-montserrat text-3xl font-extrabold uppercase">
-            top <br /> activities
+            top activities
           </h2>
           {data && data.length && data.length > 1 ? (
             <SlidingCards dataList={data} />
@@ -111,7 +116,7 @@ const Home: NextPageWithLayout = () => {
           <div className="flex justify-center p-8">
             <Link
               href="activities"
-              className="inline-block rounded-full bg-gray-600 p-2 px-5 text-center font-stretch-pro text-md leading-[140.5%] text-white lg:text-2xl"
+              className="text-md inline-block rounded-full bg-gray-600 p-2 px-5 text-center font-stretch-pro leading-[140.5%] text-white lg:text-2xl"
             >
               show more
             </Link>

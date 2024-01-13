@@ -1,10 +1,10 @@
-import { cn } from "@/lib/utils";
-import { animate, motion, useMotionValue } from "framer-motion";
+import { cn } from "~/utils/utils";
+import { motion, useMotionValue } from "framer-motion";
 import { RefObject, useEffect, useRef, useState } from "react";
 import { Category } from "~/db/schema";
 import ImageWithFallback from "./ImageWithFallback";
 import defaultImage from "~/Assets/Images/placeholder.webp";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Skeleton } from "~/components/ui/skeleton";
 import { useRouter } from "next/navigation";
 
 type ImageWithFallbackProps = React.HTMLAttributes<HTMLDivElement> & {

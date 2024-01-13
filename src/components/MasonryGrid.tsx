@@ -1,10 +1,10 @@
-import { cn } from "@/lib/utils";
+import { cn } from "~/utils/utils";
 import { Category } from "~/db/schema";
 import ImageWithFallback from "./ImageWithFallback";
 import defaultImage from "~/Assets/Images/placeholder.webp";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Skeleton } from "~/components/ui/skeleton";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
-import { Card, CardHeader } from "@/components/ui/card";
+import { Card, CardHeader } from "~/components/ui/card";
 import Link from "next/link";
 
 type MasonryGridProps = React.HTMLAttributes<HTMLDivElement> & {

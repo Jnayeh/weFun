@@ -8,10 +8,10 @@ import {
   CardTitle,
   CardContent,
   CardFooter,
-} from "@/components/ui/card";
+} from "~/components/ui/card";
 import { Activity } from "~/db/schema";
-import { cn } from "@/lib/utils";
-import { Input } from "@/components/ui/input";
+import { cn } from "~/utils/utils";
+import { Input } from "~/components/ui/input";
 import { FaHeart } from "@react-icons/all-files/fa/FaHeart";
 import { FaLocationArrow } from "@react-icons/all-files/fa/FaLocationArrow";
 import { BiHeart } from "@react-icons/all-files/bi/BiHeart";
@@ -19,7 +19,7 @@ import { BiSearchAlt } from "@react-icons/all-files/bi/BiSearchAlt";
 import { NextPageWithLayout } from "~/pages/_app";
 import defaultImage from "~/Assets/Images/placeholder.webp";
 import ImageWithFallback from "~/components/ImageWithFallback";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Skeleton } from "~/components/ui/skeleton";
 
 /* type ServerSidePageProps = {
   serializedData?: string;

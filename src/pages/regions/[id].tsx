@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { cn } from "@/lib/utils";
+import { cn } from "~/utils/utils";
 import { NextPageWithLayout } from "~/pages/_app";
 
 const RegionPage: NextPageWithLayout = () => {
