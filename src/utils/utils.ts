@@ -1,6 +1,8 @@
 import { type ClassValue, clsx } from "clsx"
 import { useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge"
+import Router from "next/router";
+import NProgress from "nprogress";
  
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -37,3 +39,17 @@ export const useEffectOnce = (effect: () => void | (() => void)) => {
     };
   }, []);
 };
+export function progressBar() {
+  Router.events.on("routeChangeStart", () => {
+    NProgress.start();
+  });
+  
+  Router.events.on("routeChangeComplete", () => {
+    NProgress.done();
+  });
+  
+  Router.events.on("routeChangeError", () => {
+    NProgress.done();
+  });
+  
+}

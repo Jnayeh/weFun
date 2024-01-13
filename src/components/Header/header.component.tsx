@@ -25,9 +25,10 @@ const Header = () => {
       <div className="relative flex w-full items-center justify-center md:mt-0 md:w-1/2 ">
         <Image
           src="/Frame_hero_pic.svg"
-          alt="jumping_man"
+          alt="man doing activity"
           className=" z-0 h-[370px] w-auto md:h-auto md:w-full"
           loading="eager"
+          priority
           fetchPriority="high"
           width={600}
           height={600}

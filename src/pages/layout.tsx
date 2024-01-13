@@ -1,45 +1,39 @@
-import { motion } from "framer-motion";
-import { useRouter } from "next/router";
-import { lazy, useState } from "react";
-const Footer = lazy(() =>
-  import("~/components/Footer/footer.component").then((res) => ({
-    default: res.default,
-  }))
-);
-import Navbar from "~/components/Navbar/navbar.component";
-import { LoginSideBar } from "~/components/Sidebar";
 
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
+import "nprogress/nprogress.css";
+
+const Footer = dynamic(() => import("~/components/Footer/footer.component"), {
+  ssr: false,
+});
+import Navbar from "~/components/Navbar/navbar.component";
+import { progressBar } from "~/utils/utils";
+const LoginSideBar = dynamic(
+  () => import("~/components/Sidebar").then((module) => module.LoginSideBar),
+  {
+    ssr: false,
+  }
+);
 interface LayoutProps {
   children: React.ReactNode;
   navBarClass?: string;
 }
 
+progressBar();
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-  const router = useRouter();
   return (
     <div className="flex h-screen flex-col justify-between">
       <div>
         <Navbar />
-        <LoginSideBar side="left" className="md:hidden" />
-        <LoginSideBar side="right" className="hidden md:block" />
-        <motion.div
-          key={router.asPath}
-          initial={{ x: "100%", opacity: 0 }}
-          animate={{
-            x: 0,
-            opacity: 1,
-          }}
-          exit={{ scale: 0.7, opacity: 0 }}
-          transition={{
-            type: "spring",
-            stiffness: 160,
-            damping: 16,
-          }}
-        >
-          {children}
-        </motion.div>
+        <Suspense>
+          <LoginSideBar side="left" className="md:hidden" />
+          <LoginSideBar side="right" className="hidden md:block" />
+        </Suspense>
+        {children}
       </div>
-      <Footer />
+      <Suspense>
+        <Footer />
+      </Suspense>
     </div>
   );
 };
