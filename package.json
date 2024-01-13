@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^0.2.1",
-    "@clerk/nextjs": "^4.25.6",
+    "@clerk/nextjs": "^4.29.3",
     "@radix-ui/react-label": "^2.0.2",
     "@react-icons/all-files": "^4.1.0",
     "@t3-oss/env-nextjs": "^0.3.1",
