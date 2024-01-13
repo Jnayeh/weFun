@@ -3,8 +3,8 @@ import type { Config } from "drizzle-kit";
 export default {
   schema: "./src/db/schema.ts",
   out: "./drizzle",
-  driver: "mysql2",
+  driver: "pg",
   dbCredentials: {
-    connectionString: "mysql://root@localhost:3306/wefun"
+    connectionString: "postgresql://all_we_do:act_pass@localhost:5432/barmejha"
   }
 } satisfies Config;

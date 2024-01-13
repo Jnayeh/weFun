@@ -1,21 +1,10 @@
-import { drizzle } from "drizzle-orm/mysql2";
-import mysql from "mysql2/promise";
+import { drizzle } from "drizzle-orm/postgres-js";
+import { migrate } from "drizzle-orm/postgres-js/migrator";
+import postgres from "postgres";
 import { env } from "~/env.mjs";
-import { migrate } from "drizzle-orm/mysql2/migrator";
 
-/* const globalForPrisma = globalThis as unknown as {
-  prisma: PrismaClient | undefined;
-};
-
-export const prisma =
-  globalForPrisma.prisma ??
-  new PrismaClient({
-    log:
-      env.NODE_ENV === "development" ? ["query", "error", "warn"] : ["error"],
-  });
-
-if (env.NODE_ENV !== "production") globalForPrisma.prisma = prisma; */
-
-const client = await mysql.createConnection(env.DATABASE_URL);
+const client = postgres(env.DATABASE_URL);
+const migrationClient = postgres(env.DATABASE_URL, { max: 1 });
 export const db = drizzle(client,{ logger: true });
-/* await migrate(db, { migrationsFolder: "drizzle" }); */
+await migrate(drizzle(migrationClient,{ logger: true }), { migrationsFolder: "drizzle" });
+migrationClient.end();
