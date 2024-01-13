@@ -1,8 +1,7 @@
-import { cn } from "@/lib/utils";
-import { useAuth } from "@clerk/nextjs";
+import { cn } from "~/utils/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSideBarStore } from "~/store/sidebar";
 
 export default function NavPopup() {
