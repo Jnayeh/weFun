@@ -1,13 +1,11 @@
 
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
-import "nprogress/nprogress.css";
 
 const Footer = dynamic(() => import("~/components/Footer/footer.component"), {
   ssr: false,
 });
 import Navbar from "~/components/Navbar/navbar.component";
-import { progressBar } from "~/utils/utils";
 const LoginSideBar = dynamic(
   () => import("~/components/Sidebar").then((module) => module.LoginSideBar),
   {
@@ -19,7 +17,6 @@ interface LayoutProps {
   navBarClass?: string;
 }
 
-progressBar();
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div className="flex h-screen flex-col justify-between">
