@@ -108,7 +108,7 @@ export default function Navbar() {
   const { isLoaded, isSignedIn, signOut } = useAuth();
   return (
     <div
-      className={cn(`navigation sticky top-0 z-30 min-w-full justify-center bg-beige bg-opacity-70 shadow-lg backdrop-blur transition-all 
+      className={cn(`navigation sticky top-0 z-30 min-w-full justify-center bg-white bg-opacity-80 shadow-lg backdrop-blur transition-all 
         dark:bg-gray-800 dark:bg-opacity-20 dark:backdrop-blur-md md:bg-opacity-90 dark:md:bg-opacity-90`)}
     >
       <nav className="mx-auto flex h-[60px] w-full max-w-[1500px] items-center justify-between p-2">
