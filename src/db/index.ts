@@ -6,5 +6,5 @@ import { env } from "~/env.mjs";
 const client = postgres(env.DATABASE_URL);
 const migrationClient = postgres(env.DATABASE_URL, { max: 1 });
 export const db = drizzle(client,{ logger: true });
-await migrate(drizzle(migrationClient,{ logger: true }), { migrationsFolder: "drizzle" });
-migrationClient.end();
+await migrate(drizzle(migrationClient), { migrationsFolder: "drizzle" });
+await migrationClient.end();

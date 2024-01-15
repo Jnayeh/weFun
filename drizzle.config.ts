@@ -1,12 +1,10 @@
 import type { Config } from "drizzle-kit";
- 
-import { env } from "~/env.mjs";
 
 export default {
   schema: "./src/db/schema.ts",
   out: "./drizzle",
   driver: "pg",
   dbCredentials: {
-    connectionString: env.DATABASE_URL
+    connectionString: process.env.DATABASE_URL ?? "postgres://postgres:postgres@localhost:5432/postgres"
   }
 } satisfies Config;
