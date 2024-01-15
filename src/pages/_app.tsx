@@ -25,7 +25,7 @@ const MyApp: AppType = ({ Component, pageProps, router }: WithLayoutProps) => {
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
         <NextIntlClientProvider
           messages={pageProps.messages}
-          locale="ar-tn"
+          locale={router.locale}
           timeZone="Africa/Tunis"
         >
           {getLayout(<Component {...pageProps} key={router.asPath} />)}
