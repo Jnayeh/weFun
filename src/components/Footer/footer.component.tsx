@@ -129,23 +129,23 @@ export default function Footer() {
               <Link
                 href="#"
                 className="hover:duration:0 my-1 flex w-full flex-nowrap items-center justify-center justify-items-center rounded-[5rem]
-                bg-black px-4 py-3 text-white transition-colors duration-500 hover:cursor-pointer hover:bg-slate-50 hover:text-black
-                focus:cursor-pointer focus:bg-slate-50 focus:text-black dark:bg-gray-600 sm:mr-3"
+                bg-black px-4 py-3 text-white transition-colors duration-500 hover:cursor-pointer hover:bg-slate-200 hover:text-black
+                focus:cursor-pointer focus:bg-slate-50 focus:text-black dark:bg-gray-600 dark:hover:bg-slate-50 sm:mr-3"
               >
                 <FaGooglePlay />
                 <span className="ml-1 inline-block whitespace-nowrap text-center text-sm sm:text-[0.77rem]">
-                  Download on playstore
+                  Download on Play Store
                 </span>
               </Link>
               <Link
                 href="#"
                 className="hover:duration:0 my-1 flex w-full flex-nowrap items-center justify-center justify-items-center rounded-[5rem]
-                bg-black px-4 py-3 text-white transition-colors duration-500 hover:cursor-pointer hover:bg-slate-50 hover:text-black
-                focus:cursor-pointer focus:bg-slate-50 focus:text-black dark:bg-gray-600"
+                bg-black px-4 py-3 text-white transition-colors duration-500 hover:cursor-pointer hover:bg-slate-200 hover:text-black
+                focus:cursor-pointer focus:bg-slate-50 focus:text-black dark:bg-gray-600 dark:hover:bg-slate-50"
               >
                 <FaAppStore />
                 <span className="ml-1 inline-block whitespace-nowrap text-center text-sm sm:text-[0.77rem]">
-                  Download on app store
+                  Download on App Store
                 </span>
               </Link>
             </div>
