@@ -39,6 +39,7 @@ const Home: NextPageWithLayout = () => {
       <Head>
         <title>{t("title")}</title>
         <meta name="description" content="Stop existing & Start living" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
 
