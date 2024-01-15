@@ -1,4 +1,4 @@
-import { cn } from "~/utils/utils";
+import { cn } from "~/utils/helpers";
 import { Category } from "~/db/schema";
 import ImageWithFallback from "./ImageWithFallback";
 import defaultImage from "~/Assets/Images/placeholder.webp";

@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { cn } from "~/utils/utils";
+import { cn } from "~/utils/helpers";
 import { NextPageWithLayout } from "~/pages/_app";
 
 const CategoriesPage: NextPageWithLayout = () => {

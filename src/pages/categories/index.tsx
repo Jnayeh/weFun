@@ -13,7 +13,7 @@ import {
 import { appRouter } from "~/server/api/root";
 import { Category } from "~/db/schema";
 import SuperJSON from "superjson";
-import { cn } from "~/utils/utils";
+import { cn } from "~/utils/helpers";
 import { IncomingMessage, ServerResponse } from "http";
 import { createServerSideHelpers } from "@trpc/react-query/server";
 import { createInnerTRPCContext } from "~/server/api/trpc";

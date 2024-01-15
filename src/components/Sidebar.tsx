@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, HTMLProps } from "react";
 import { motion, AnimatePresence, AnimationProps } from "framer-motion";
-import { cn } from "~/utils/utils";
+import { cn } from "~/utils/helpers";
 import Link from "next/link";
 import { useSideBarStore } from "~/store/sidebar";
 import { FaFacebook } from "@react-icons/all-files/fa/FaFacebook";

@@ -7,7 +7,7 @@ import { NextPage } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { ClerkProvider } from "@clerk/nextjs";
 import "nprogress/nprogress.css";
-import { progressBar } from "~/utils/utils";
+import { progressBar } from "~/utils/helpers";
 
 export type NextPageWithLayout<P = {}> = NextPage<P> & {
   getLayout?: (page: React.ReactNode) => React.ReactNode;

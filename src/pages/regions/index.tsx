@@ -9,7 +9,7 @@ import {
   CardContent,
 } from "~/components/ui/card";
 import { Category } from "~/db/schema";
-import { cn } from "~/utils/utils";
+import { cn } from "~/utils/helpers";
 import { NextPageWithLayout } from "~/pages/_app";
 import Link from "next/link";
 import defaultImage from "~/Assets/Images/placeholder.webp";

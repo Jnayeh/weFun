@@ -10,7 +10,7 @@ import {
   CardFooter,
 } from "~/components/ui/card";
 import { Activity } from "~/db/schema";
-import { cn } from "~/utils/utils";
+import { cn } from "~/utils/helpers";
 import { Input } from "~/components/ui/input";
 import { FaHeart } from "@react-icons/all-files/fa/FaHeart";
 import { FaLocationArrow } from "@react-icons/all-files/fa/FaLocationArrow";

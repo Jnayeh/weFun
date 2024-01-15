@@ -1,4 +1,4 @@
-import { cn } from "~/utils/utils";
+import { cn } from "~/utils/helpers";
 import { motion, useMotionValue } from "framer-motion";
 import { RefObject, useEffect, useRef, useState } from "react";
 import { Category } from "~/db/schema";

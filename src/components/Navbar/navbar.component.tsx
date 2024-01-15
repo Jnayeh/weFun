@@ -3,7 +3,7 @@ import React, { Suspense, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import NavPopup from "./nav-popup";
-import { cn } from "~/utils/utils";
+import { cn } from "~/utils/helpers";
 import { useAuth } from "@clerk/nextjs";
 import UserSvg from "~/components/SvgStore/UserSvg";
 import dynamic from "next/dynamic";

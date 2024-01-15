@@ -1,4 +1,4 @@
-import { cn } from "~/utils/utils";
+import { cn } from "~/utils/helpers";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
