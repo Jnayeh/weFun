@@ -5,8 +5,9 @@ import { useRouter } from "next/router";
 import NavPopup from "./nav-popup";
 import { cn } from "~/utils/utils";
 import { useAuth } from "@clerk/nextjs";
-import { SvgUser } from "../SvgStore";
+import UserSvg from "~/components/SvgStore/UserSvg";
 import dynamic from "next/dynamic";
+import BrandSvg from "~/components/SvgStore/BrandSvg";
 const ToggleButton = dynamic(() => import("~/components/ui/dark-toggle"), {
   ssr: false,
 });
@@ -112,16 +113,9 @@ export default function Navbar() {
         dark:bg-gray-800 dark:bg-opacity-20 dark:backdrop-blur-md md:bg-opacity-90 dark:md:bg-opacity-90`)}
     >
       <nav className="mx-auto flex h-[60px] w-full max-w-[1500px] items-center justify-between p-2">
-        <SvgUser side="left" className="ml-2 md:hidden" />
+        <UserSvg side="left" className="ml-2 md:hidden" />
         <div className="brand-name flex flex-shrink-0 items-center">
-          {/* <Image
-            src="/brand-name.png"
-            alt="brand logo"
-            height={60}
-            width={60}
-            className=" w-12 rounded-md"
-          /> */}
-          <span> LOGO</span>
+          <BrandSvg className=" w-32 rounded-md fill-black dark:fill-slate-100"/>
         </div>
         <Suspense>
           <div className="z-40 flex items-center justify-end">
@@ -197,7 +191,7 @@ export default function Navbar() {
               ref={indicatorRef}
             ></span>
           </ul>
-          <SvgUser side="right" className="hidden md:block" />
+          <UserSvg side="right" className="hidden md:block" />
           {/* <li
             ref={searchRef}
             onFocus={() => {

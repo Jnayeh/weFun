@@ -21,10 +21,10 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "drizzle-orm": "^0.28.6",
-    "framer-motion": "^10.16.4",
+    "framer-motion": "^10.18.0",
     "lucide-react": "^0.263.1",
     "next": "^14.0.4",
-    "next-intl": "^2.20.2",
+    "next-intl": "3.0",
     "next-themes": "^0.2.1",
     "nprogress": "^0.2.0",
     "pg": "^8.11.3",
@@ -38,7 +38,7 @@
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.6",
     "zod": "^3.21.4",
-    "zustand": "^4.4.3"
+    "zustand": "^4.4.7"
   },
   "devDependencies": {
     "@types/eslint": "^8.37.0",

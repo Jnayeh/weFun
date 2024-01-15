@@ -2,7 +2,7 @@ import { cn } from "~/utils/utils";
 import React, { HTMLProps } from "react";
 import { useSideBarStore } from "~/store/sidebar";
 
-export const SvgUser: React.FC<
+const SvgUser: React.FC<
   HTMLProps<SVGElement> & { side: "left" | "right" }
 > = ({ className, side }) => {
   const { toggleLeftBar, toggleRightBar } = useSideBarStore();
@@ -34,3 +34,4 @@ export const SvgUser: React.FC<
     </button>
   );
 };
+export default SvgUser;

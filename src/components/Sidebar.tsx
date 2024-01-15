@@ -7,6 +7,7 @@ import { FaFacebook } from "@react-icons/all-files/fa/FaFacebook";
 import { FcGoogle } from "@react-icons/all-files/fc/FcGoogle";
 import { useAuth, useSignIn } from "@clerk/nextjs";
 import { OAuthStrategy } from "@clerk/nextjs/dist/types/server";
+import BrandSvg from "./SvgStore/BrandSvg";
 
 type SidebarContentProps = HTMLProps<HTMLDivElement> & {
   isOpen: boolean;
@@ -162,7 +163,7 @@ export const LoginSideBar: React.FC<
       </div>
       <div className="flex h-[calc(100%-76px)] flex-col items-center gap-4 p-6 pt-0">
         <h2 className=" py-12 text-xl font-bold uppercase md:text-2xl">
-          login to barmejha
+          Login to <BrandSvg className=" w-32 rounded-md fill-black dark:fill-slate-100 inline"/>
         </h2>
         <button
           onClick={() => signInWith("oauth_google")}
