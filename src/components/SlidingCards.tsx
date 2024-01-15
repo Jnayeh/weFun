@@ -36,67 +36,6 @@ const SlidingCards = (props: ImageWithFallbackProps) => {
 
       // Update the swipeValue based on the swipe distance
       swipeValue.set(deltaX);
-      /* if (direction === "right" && activeCard > 0) {
-        // Update the card width based on the swipe progress
-        const activeElement = galleryRef.current?.childNodes.item(
-          activeCard
-        ) as HTMLDivElement;
-        const cardWidth = activeElement.offsetWidth;
-        const width =
-          cardWidth - (swipeValue.get() - swipeValue.getPrevious()) + "px";
-        activeElement.style.width = width;
-        const previousElement =
-          activeElement.previousElementSibling as HTMLDivElement;
-        previousElement.classList.add("flex-grow");
-        previousElement.style.width =
-          previousElement.offsetWidth +
-          (swipeValue.get() - swipeValue.getPrevious()) +
-          "px";
-
-        const nextElement = activeElement.nextElementSibling as
-          | HTMLDivElement
-          | undefined;
-        if (nextElement) {
-          nextElement.classList.remove("flex-grow");
-          nextElement.style.width = "40px";
-        }
-        activeElement.classList.remove("flex-grow");
-      } else if (direction === "left" && activeCard < dataList.length - 1) {
-        // Update the card width based on the swipe progress
-        const activeElement = galleryRef.current?.childNodes.item(
-          activeCard
-        ) as HTMLDivElement;
-        const cardWidth = activeElement.offsetWidth;
-        const width =
-          // swipeValue.getPrevious()!=0 && swipeValue.get()==0 ? "90%" :
-          cardWidth - (swipeValue.getPrevious() - swipeValue.get()) + "px";
-        activeElement.style.width = width;
-        activeElement.classList.remove("flex-grow");
-        const previousElement = activeElement.previousElementSibling as
-          | HTMLDivElement
-          | undefined;
-        if (previousElement) {
-          previousElement.classList.remove("flex-grow");
-          previousElement.style.width = "40px";
-        }
-        const nextElement = activeElement.nextElementSibling as HTMLDivElement;
-        nextElement.classList.add("flex-grow");
-        nextElement.style.width =
-          nextElement.offsetWidth +
-          (swipeValue.getPrevious() - swipeValue.get()) +
-          "px";
-      } */
-
-      /* if (direction === "right" && activeCard > 0) {
-        const activeElement = galleryRef.current?.childNodes.item(
-          activeCard
-        ) as HTMLDivElement;
-      } else if (direction === "left" && activeCard < dataList.length - 1) {
-        const activeElement = galleryRef.current?.childNodes.item(
-          activeCard
-        ) as HTMLDivElement;
-      } */
-      // Calculate the swipe distance based on the event type
     };
 
     const handleSwipeEnd = (endEvent: MouseEvent | TouchEvent) => {

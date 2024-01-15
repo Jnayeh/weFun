@@ -4,8 +4,8 @@ import "~/styles/globals.css";
 import "~/styles/navbar.styles.css";
 import { ThemeProvider } from "~/utils/theme-provider";
 import { NextPage } from "next";
-import { NextIntlClientProvider} from "next-intl";
-import {ClerkProvider} from "@clerk/nextjs";
+import { NextIntlClientProvider } from "next-intl";
+import { ClerkProvider } from "@clerk/nextjs";
 import "nprogress/nprogress.css";
 import { progressBar } from "~/utils/utils";
 
@@ -23,8 +23,12 @@ const MyApp: AppType = ({ Component, pageProps, router }: WithLayoutProps) => {
   return (
     <ClerkProvider {...pageProps}>
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-        <NextIntlClientProvider messages={pageProps.messages}>
-            {getLayout(<Component {...pageProps} key={router.asPath} />)}
+        <NextIntlClientProvider
+          messages={pageProps.messages}
+          locale="ar-tn"
+          timeZone="Africa/Tunis"
+        >
+          {getLayout(<Component {...pageProps} key={router.asPath} />)}
         </NextIntlClientProvider>
       </ThemeProvider>
     </ClerkProvider>
