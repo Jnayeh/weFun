@@ -8,6 +8,13 @@
       "when": 1705164644549,
       "tag": "0000_vengeful_bucky",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1705288877469,
+      "tag": "0001_stale_fenris",
+      "breakpoints": true
     }
   ]
 }
