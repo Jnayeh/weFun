@@ -6,7 +6,7 @@ import {
 } from "~/server/api/trpc";
 
 import { migrate } from "drizzle-orm/mysql2/migrator";
-import { db } from "~/db";
+import { db } from "~/server/db";
 
 export const exampleRouter = createTRPCRouter({
   hello: publicProcedure

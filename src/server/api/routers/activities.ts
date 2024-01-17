@@ -1,6 +1,6 @@
 import { SQL, sql } from "drizzle-orm";
 import { z } from "zod";
-import { activities } from "~/db/schema";
+import { activities } from "~/server/db/schema";
 import {
   createTRPCRouter,
   publicProcedure,

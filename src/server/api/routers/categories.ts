@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { categories } from "~/db/schema";
+import { categories } from "~/server/db/schema";
 import {
   createTRPCRouter,
   publicProcedure,
