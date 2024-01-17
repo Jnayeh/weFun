@@ -1,4 +1,4 @@
-import { cn } from "~/utils/helpers";
+import { cn } from "~/utils/helpers/server";
 import React, { HTMLProps } from "react";
 
 const BrandSvg: React.FC<HTMLProps<SVGElement>> = ({

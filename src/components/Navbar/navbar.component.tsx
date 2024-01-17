@@ -1,21 +1,26 @@
+"use client";
 import React, { Suspense, useEffect, useRef } from "react";
 
-import Link from "next/link";
-import { useRouter } from "next/router";
+import "~/styles/navbar.styles.css";
+import "nprogress/nprogress.css";
+import { Link } from "~/navigation";
 import NavPopup from "./nav-popup";
-import { cn } from "~/utils/helpers";
+import { cn } from "~/utils/helpers/server";
 import { useAuth } from "@clerk/nextjs";
 import UserSvg from "~/components/SvgStore/UserSvg";
 import dynamic from "next/dynamic";
 import BrandSvg from "~/components/SvgStore/BrandSvg";
+import { usePathname } from "~/navigation";
+import { progressBar } from "~/utils/helpers/client";
 const ToggleButton = dynamic(() => import("~/components/ui/dark-toggle"), {
   ssr: false,
 });
 
 export default function Navbar() {
+  progressBar();
   const indicatorRef = useRef<HTMLSpanElement>(null);
   const navListRef = useRef<HTMLUListElement>(null);
-  const location = useRouter().pathname;
+  const location = usePathname();
 
   function slideHorizontal(
     el: HTMLElement,
@@ -104,6 +109,7 @@ export default function Navbar() {
    */
   useEffect(() => {
     sliding();
+    console.log(location);
   }, [location]);
 
   const { isLoaded, isSignedIn, signOut } = useAuth();
@@ -115,7 +121,7 @@ export default function Navbar() {
       <nav className="mx-auto flex h-[60px] w-full max-w-[1500px] items-center justify-between p-2">
         <UserSvg side="left" className="ml-2 md:hidden" />
         <div className="brand-name flex flex-shrink-0 items-center">
-          <BrandSvg className=" w-32 rounded-md fill-black dark:fill-slate-100"/>
+          <BrandSvg className=" w-32 rounded-md fill-black dark:fill-slate-100" />
         </div>
         <Suspense>
           <div className="z-40 flex items-center justify-end">
@@ -174,7 +180,7 @@ export default function Navbar() {
             </li>
             <li>
               <Link
-                href="/explore"
+                href="/exploree"
                 className={
                   location == "/explore"
                     ? "nav-item is-active active-link"

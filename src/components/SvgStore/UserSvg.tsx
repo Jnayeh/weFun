@@ -1,4 +1,4 @@
-import { cn } from "~/utils/helpers";
+import { cn } from "~/utils/helpers/server";
 import React, { HTMLProps } from "react";
 import { useSideBarStore } from "~/store/sidebar";
 

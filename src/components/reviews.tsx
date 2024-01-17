@@ -1,3 +1,5 @@
+"use client"
+
 import { motion, useTransform, useScroll } from "framer-motion";
 import { NextPage } from "next";
 import React from "react";

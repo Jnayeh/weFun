@@ -1,6 +1,7 @@
-import { cn } from "~/utils/helpers";
+"use client";
+import { cn } from "~/utils/helpers/server";
 import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
+import { Link } from "~/navigation";
 import { useEffect, useRef, useState } from "react";
 import { useSideBarStore } from "~/store/sidebar";
 
@@ -32,8 +33,8 @@ export default function NavPopup() {
   var menuItems = [
     { href: "/", label: "Home" },
     { href: "/activities", label: "Activities" },
-    { href: "/explore", label: "Explore" },
     { href: "/regions", label: "Places" },
+    { href: "/explore", label: "Explore" },
   ];
   return (
     <div className="text-right md:hidden" ref={menuRef}>

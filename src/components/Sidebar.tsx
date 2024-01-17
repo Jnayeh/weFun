@@ -1,7 +1,8 @@
+"use client"
 import React, { useRef, useEffect, HTMLProps } from "react";
 import { motion, AnimatePresence, AnimationProps } from "framer-motion";
-import { cn } from "~/utils/helpers";
-import Link from "next/link";
+import { cn } from "~/utils/helpers/server";
+import { Link } from "~/navigation";
 import { useSideBarStore } from "~/store/sidebar";
 import { FaFacebook } from "@react-icons/all-files/fa/FaFacebook";
 import { FcGoogle } from "@react-icons/all-files/fc/FcGoogle";

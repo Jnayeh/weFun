@@ -1,10 +1,10 @@
-import { cn } from "~/utils/helpers";
+"use client"
+import { cn } from "~/utils/helpers/server";
 import { motion, useMotionValue } from "framer-motion";
 import { RefObject, useEffect, useRef, useState } from "react";
-import { Category } from "~/db/schema";
+import { Category } from "~/server/db/schema";
 import ImageWithFallback from "./ImageWithFallback";
-import defaultImage from "~/Assets/Images/placeholder.webp";
-import { Skeleton } from "~/components/ui/skeleton";
+import defaultImage from "~/Assets/placeholder.webp";
 import { useRouter } from "next/navigation";
 
 type ImageWithFallbackProps = React.HTMLAttributes<HTMLDivElement> & {
@@ -155,13 +155,4 @@ const SlidingCards = (props: ImageWithFallbackProps) => {
     </div>
   );
 };
-export function SlidingCardsSkeleton() {
-  return (
-    <div className="flex h-[69vh] justify-center gap-2">
-      <Skeleton className="h-full w-full flex-grow animate-pulse rounded-[40px]  bg-slate-400 " />
-      <Skeleton className="h-full w-10 animate-pulse rounded-[40px]  bg-slate-400 " />
-      <Skeleton className="h-full w-4 animate-pulse rounded-[40px]  bg-slate-400 " />
-    </div>
-  );
-}
 export default SlidingCards;

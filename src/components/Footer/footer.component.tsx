@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "~/navigation";
 
 import { FaAppStore } from "@react-icons/all-files/fa/FaAppStore";
 import { FaFacebookF } from "@react-icons/all-files/fa/FaFacebookF";
