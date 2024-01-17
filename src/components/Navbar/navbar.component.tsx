@@ -180,7 +180,7 @@ export default function Navbar() {
             </li>
             <li>
               <Link
-                href="/exploree"
+                href="/explore"
                 className={
                   location == "/explore"
                     ? "nav-item is-active active-link"
