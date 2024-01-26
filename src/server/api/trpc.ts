@@ -13,7 +13,7 @@ import { initTRPC, TRPCError } from "@trpc/server";
 import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
 import superjson from "superjson";
 import { ZodError } from "zod";
-import { db } from "~/server/db";
+import { db } from "~/db";
 
 /**
  * 1. CONTEXT
@@ -23,7 +23,7 @@ import { db } from "~/server/db";
  * These allow you to access things when processing a request, like the database, the session, etc.
  */
 
-type CreateContextOptions = {
+type CreateContextOptions = /* CreateNextContextOptions &  */{
   auth: AuthObject | undefined;
 };
 

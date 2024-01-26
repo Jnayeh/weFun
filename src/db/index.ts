@@ -1,7 +1,9 @@
 import { drizzle } from "drizzle-orm/postgres-js";
-import { migrate } from "drizzle-orm/postgres-js/migrator";
 import postgres from "postgres";
 import { env } from "~/env.mjs";
+import { migrateDB } from "./migrate";
 
 const client = postgres(env.DATABASE_URL);
-export const db = drizzle(client,{ logger: true });
+export const db = drizzle(client,{ logger: false });
+
+migrateDB();
