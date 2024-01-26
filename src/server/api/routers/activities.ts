@@ -1,6 +1,6 @@
 import { SQL, sql } from "drizzle-orm";
 import { z } from "zod";
-import { activities } from "~/server/db/schema";
+import { activities } from "~/db/schema";
 import {
   createTRPCRouter,
   publicProcedure,
@@ -23,6 +23,41 @@ export const activityRouter = createTRPCRouter({
         .select()
         .from(activities)
         .where(sql.join(sqlChunks, sql.raw(" ")));
+    }),
+  create: publicProcedure
+    .input(
+      z.object({
+        label: z.string(),
+        description: z.string().optional(),
+        cover: z.string().optional(),
+        location: z.string().optional(),
+        price: z.number(),
+        visible: z.number().default(1),
+        discount: z.number().default(0),
+        capacity: z.number(),
+        activity_duration: z.number(),
+        categoryId: z.number(),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      return await ctx.db
+        .insert(activities)
+        .values({
+          id: new Date().getTime()-1705826340000,
+          label: input.label,
+          description: input.description,
+          cover: "test",
+          location: "test",
+          price: input.price,
+          visible: input.visible,
+          discount: input.discount,
+          capacity: input.capacity,
+          activity_duration: input.activity_duration,
+          categoryId: input.categoryId,
+          modifiedAt: new Date(),
+          createdAt: new Date(),
+        })
+        .returning();
     }),
   getSecretMessage: protectedProcedure.query(() => {
     return "you can now see this secret message!";
