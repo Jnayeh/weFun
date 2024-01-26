@@ -1,6 +1,6 @@
 "use client"
 import { cn } from "~/utils/helpers/server";
-import { Category } from "~/server/db/schema";
+import { Category } from "~/db/types";
 import ImageWithFallback from "./ImageWithFallback";
 import defaultImage from "~/Assets/placeholder.webp";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
