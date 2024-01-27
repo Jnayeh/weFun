@@ -1,0 +1,19 @@
+.add_activity_step {
+    @apply sm:mx-5  font-bold flex items-center;
+  }
+  
+  .add_activity_step-number {
+    @apply border-[1px] border-secondary h-[24px] w-[24px] rounded-full flex items-center justify-center text-black text-sm mx-2;
+  }
+  
+  .step_selected {
+    @apply border-none bg-primary h-[24px] w-[24px] rounded-full flex items-center justify-center text-white text-sm mx-2;
+  }
+  
+  .custom-scroller.select-scroll::-webkit-scrollbar-track {
+    @apply my-3;
+  }
+  .custom-scroller.select-scroll {
+    overflow-y: scroll;
+    overflow-y: overlay;
+  }
