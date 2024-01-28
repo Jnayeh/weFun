@@ -1,7 +1,18 @@
 {
-    "Home": {
-        "title": "We Fun - Your Next Experiences are here",
-        "search":"search",
-        "find-more":"find more"
-    }
+  "Home": {
+    "title": "We Fun - Vos prochaines expériences sont ici",
+    "search": "rechercher",
+    "find-more": "trouver plus"
+  },
+  "Menu": {
+    "home": "Accueil",
+    "about": "À propos",
+    "contact": "Contact",
+    "login": "Connexion",
+    "register": "S'inscrire",
+    "activities": "Activités",
+    "experiences": "Expériences",
+    "places": "Lieux",
+    "explore": "Explorer"
+  }
 }

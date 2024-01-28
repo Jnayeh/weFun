@@ -1,7 +1,18 @@
 {
-    "Home": {
-        "title": "We Fun - Your Next Experiences are here",
-        "search":"search",
-        "find-more":"find more"
-    }
+  "Home": {
+    "title": "Barmejha - Your Next Experiences are here",
+    "search": "search",
+    "find-more": "find more"
+  },
+  "Menu": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "login": "Login",
+    "register": "Register",
+    "activities": "Activities",
+    "experiences": "Experiences",
+    "places": "Places",
+    "explore": "Explore"
+  }
 }

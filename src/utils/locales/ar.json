@@ -1,7 +1,18 @@
 {
     "Home": {
-        "title": "We Fun - Your Next Experiences are here",
-        "search":"search",
-        "find-more":"find more"
+        "title": "Barmejha - تجاربك القادمة هنا",
+        "search": "بحث",
+        "find-more": "ابحث عن المزيد"
+    },
+    "Menu": {
+        "home": "الصفحة الرئيسية",
+        "about": "حولنا",
+        "contact": "اتصل بنا",
+        "login": "تسجيل الدخول",
+        "register": "تسجيل",
+        "activities": "الأنشطة",
+        "experiences": "التجارب",
+        "places": "الأماكن",
+        "explore": "استكشف"
     }
 }
