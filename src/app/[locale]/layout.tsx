@@ -12,6 +12,35 @@ const Navbar = dynamic(() => import("~/components/Navbar/navbar.component"), {
 });
 import { LoginSideBar } from "~/components/Sidebar";
 import { ThemeProvider } from "~/utils/theme-provider";
+import { ResolvingMetadata, Metadata } from "next";
+import { getTranslations } from "next-intl/server";
+
+type Props = {
+  params: { id: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const t = await getTranslations("Home");
+  return {
+    title: t("title"),
+    description: "Stop existing & Start living",
+    icons: [
+      {
+        url: "/favicon.ico",
+        type: "image/x-icon",
+      },
+      {
+        rel: "apple-touch-icon",
+        url: "/favicon.png",
+        type: "image/png",
+      },
+    ],
+  };
+}
 
 export default function LocaleLayout({
   children,
@@ -21,28 +50,24 @@ export default function LocaleLayout({
   params: { locale: string };
 }) {
   return (
-    <html lang={locale} className="scroll-smooth" suppressHydrationWarning>
-      <body className="min-h-screen bg-white dark:bg-gray-900 dark:text-white">
-        <ThemeProvider enableSystem attribute="class">
-          <ClerkProvider>
-            <TRPCReactProvider cookies={cookies().toString()}>
-              <div className="flex h-screen flex-col justify-between">
-                <div>
-                  <Navbar />
-                  <Suspense>
-                    <LoginSideBar side="left" className="md:hidden" />
-                    <LoginSideBar side="right" className="hidden md:block" />
-                  </Suspense>
-                  {children}
-                </div>
-                <Suspense>
-                  <Footer />
-                </Suspense>
-              </div>
-            </TRPCReactProvider>
-          </ClerkProvider>
-        </ThemeProvider>
-      </body>
-    </html>
+    <ThemeProvider enableSystem attribute="class">
+      <ClerkProvider>
+        <TRPCReactProvider cookies={cookies().toString()}>
+          <div className="flex h-screen flex-col justify-between">
+            <div>
+              <Navbar />
+              <Suspense>
+                <LoginSideBar side="left" className="md:hidden" />
+                <LoginSideBar side="right" className="hidden md:block" />
+              </Suspense>
+              {children}
+            </div>
+            <Suspense>
+              <Footer />
+            </Suspense>
+          </div>
+        </TRPCReactProvider>
+      </ClerkProvider>
+    </ThemeProvider>
   );
 }
