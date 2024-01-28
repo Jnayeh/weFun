@@ -6,22 +6,12 @@ import Header from "~/components/Header/header.component";
 
 import Reviews from "~/components/reviews";
 import Image from "next/image";
-import { Metadata } from "next";
 import { SlidingCardsSkeleton } from "~/components/skeletons/sliding-card";
 import { Link } from "~/navigation";
 import { TopPlaces, TopActivities } from "~/components/home-components";
-export const metadata: Metadata = {
-  description: "Stop existing & Start living",
-  icons: [
-    {
-      url: "/favicon.ico",
-      type: "image/x-icon",
-    },
-  ],
-};
+
 const Home = () => {
   const t = useTranslations("Home");
-  metadata.title = t("title");
   const SpinningText = [0, 1, 2, 3].map((index) => {
     return (
       <div className="flex items-center " key={index}>
