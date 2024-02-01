@@ -31,10 +31,10 @@ export const activityRouter = createTRPCRouter({
         description: z.string().optional(),
         cover: z.string().optional(),
         location: z.string().optional(),
-        price: z.number(),
+        price: z.number().min(0.01),
         visible: z.number().default(1),
         discount: z.number().default(0),
-        capacity: z.number(),
+        capacity: z.number().min(1),
         activity_duration: z.number(),
         categoryId: z.number(),
       })
@@ -42,22 +42,7 @@ export const activityRouter = createTRPCRouter({
     .mutation(async ({ ctx, input }) => {
       return await ctx.db
         .insert(activities)
-        .values({
-          id: new Date().getTime()-1705826340000,
-          label: input.label,
-          description: input.description,
-          cover: "test",
-          location: "test",
-          price: input.price,
-          visible: input.visible,
-          discount: input.discount,
-          capacity: input.capacity,
-          activity_duration: input.activity_duration,
-          categoryId: input.categoryId,
-          modifiedAt: new Date(),
-          createdAt: new Date(),
-        })
-        .returning();
+        .values(input);
     }),
   getSecretMessage: protectedProcedure.query(() => {
     return "you can now see this secret message!";

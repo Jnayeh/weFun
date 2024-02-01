@@ -1,48 +1,54 @@
 import {
-  pgTable,
-  integer,
-  primaryKey,
+  mysqlTable,
+  int,
   real,
   timestamp,
   text,
   varchar,
-} from "drizzle-orm/pg-core";
+  serial,
+  smallint,
+  boolean,
+  bigint,
+} from "drizzle-orm/mysql-core";
 
-export const categories = pgTable("categories", {
-  id: integer("id").notNull().primaryKey(),
+export const categories = mysqlTable("categories", {
+  id: serial("id").primaryKey(),
   label: varchar("label", { length: 255 }),
   details: text("details"),
   cover: varchar("cover", { length: 255 }),
-  visible: integer("visible").default(1),
+  visible: smallint("visible").default(1),
   createdAt: timestamp("createdAt").defaultNow(),
-  modifiedAt: timestamp("modifiedAt").defaultNow(),
+  modifiedAt: timestamp("modifiedAt").defaultNow().onUpdateNow(),
 });
 
-export const activities = pgTable("activities", {
-  id: integer("id").notNull().primaryKey(),
+export const activities = mysqlTable("activities", {
+  id: serial("id").primaryKey(),
   label: varchar("label", { length: 255 }),
   description: text("description"),
   cover: varchar("cover", { length: 255 }),
   location: varchar("location", { length: 255 }),
   price: real("price").notNull(),
-  visible: integer("visible").default(1).notNull(),
-  discount: real("discount").default(0),
-  capacity: integer("capacity").notNull(),
-  activity_duration: integer("activity_duration").notNull(),
+  visible: smallint("visible").default(1).notNull(),
+  discount: int("discount").default(0),
+  capacity: int("capacity").notNull(),
+  activity_duration: int("activity_duration").notNull(),
   createdAt: timestamp("createdAt").defaultNow(),
-  modifiedAt: timestamp("modifiedAt").defaultNow(),
-  categoryId: integer("categoryId")
+  modifiedAt: timestamp("modifiedAt").defaultNow().onUpdateNow(),
+  categoryId: int("categoryId")
     .notNull()
     .references(() => categories.id, { onDelete: "cascade" }),
 });
 
-export const images = pgTable("images", {
-  id: integer("id").notNull().primaryKey(),
+export const images = mysqlTable("images", {
+  id: serial("id").primaryKey(),
   filename: varchar("filename", { length: 255 }),
-  size: integer("size"),
+  size: bigint("size",{
+    unsigned: true,
+    mode: "number"
+  }),
   createdAt: timestamp("createdAt").defaultNow(),
-  modifiedAt: timestamp("modifiedAt").defaultNow(),
-  activityId: integer("activityId").references(() => categories.id, {
+  modifiedAt: timestamp("modifiedAt").defaultNow().onUpdateNow(),
+  activityId: int("activityId").references(() => activities.id, {
     onDelete: "cascade",
   }),
 });
