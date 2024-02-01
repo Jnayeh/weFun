@@ -1,8 +1,8 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "72211378-2ae2-42d6-b409-7ed24d002434",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "4f4ce08e-f95e-4fee-9d23-8315cd96cf39",
+  "prevId": "cc666a21-6d31-4cf7-864c-88b0e2581b39",
   "tables": {
     "activities": {
       "name": "activities",
@@ -218,7 +218,7 @@
         },
         "size": {
           "name": "size",
-          "type": "int",
+          "type": "bigint unsigned",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
@@ -250,10 +250,10 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "images_activityId_categories_id_fk": {
-          "name": "images_activityId_categories_id_fk",
+        "images_activityId_activities_id_fk": {
+          "name": "images_activityId_activities_id_fk",
           "tableFrom": "images",
-          "tableTo": "categories",
+          "tableTo": "activities",
           "columnsFrom": [
             "activityId"
           ],
