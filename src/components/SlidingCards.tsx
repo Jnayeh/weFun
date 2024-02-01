@@ -94,7 +94,7 @@ const SlidingCards = (props: ImageWithFallbackProps) => {
         <motion.div
           key={el.id}
           id={`${el.id}`}
-          className={`card h-[69vh] cursor-pointer ${
+          className={`card h-40v cursor-pointer ${
             index === activeCard ? "flex-grow" : ""
           } rounded-[40px] bg-cover bg-center `}
           initial={{
