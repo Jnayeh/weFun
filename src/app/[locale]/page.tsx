@@ -12,20 +12,20 @@ import { TopPlaces, TopActivities } from "~/components/home-components";
 
 const Home = () => {
   const t = useTranslations("Home");
-  const SpinningText = [0, 1, 2, 3].map((index) => {
+/*   const SpinningText = [0, 1, 2, 3].map((index) => {
     return (
       <div className="flex items-center " key={index}>
         <b className=" inline-block whitespace-nowrap px-4">PLAN-BOOK-ENJOY</b>
         <div className="h-4 w-[16.51px] rounded-[50%] bg-linen" />
       </div>
     );
-  });
+  }); */
   return (
     <>
       <Header />
 
       <main className=" relative mx-auto flex flex-col items-center justify-center gap-2 py-4">
-        <div className="flex h-[60px] w-full items-center gap-4 overflow-hidden bg-gray-800 font-rubik text-5xl text-beige">
+        {/* <div className="flex h-[60px] w-full items-center gap-4 overflow-hidden bg-gray-800 font-rubik text-5xl text-beige">
           <div
             className="flex animate-marquee whitespace-nowrap py-2"
             role="marquee"
@@ -33,8 +33,8 @@ const Home = () => {
             <div className="flex items-center ">{SpinningText}</div>
             <div className="flex items-center ">{SpinningText}</div>
           </div>
-        </div>
-        <section className=" mb-2 w-[90%] max-w-screen-xl">
+        </div> */}
+        {/* <section className=" mb-2 w-[90%] max-w-screen-xl">
           <h2 className=" p-6 text-center font-montserrat text-3xl font-extrabold uppercase">
             TOP Places
           </h2>
@@ -51,11 +51,12 @@ const Home = () => {
               show more
             </Link>
           </div>
-        </section>
+        </section> */}
         <section className="relative mb-4 h-[1000px] w-full">
-          <h2 className="absolute top-12 mx-[10%] flex w-[80%] justify-center text-center font-rubik text-[7vw] font-medium uppercase leading-[138%] tracking-[0.16em] text-black sm:text-[5vw] md:text-[38px]">
+          <h2 className="absolute top-12 mx-[10%] flex w-[80%] justify-center text-center font-rubik text-[7vw] font-medium uppercase leading-[138%] tracking-[0.16em] text-black sm:text-[5vw] md:text-[38px] z-[1]">
             discover <br /> the best activities <br /> with one swipe
           </h2>
+          <div className="absolute top-0 w-full h-20v bg-gradient-to-b from-white to-transparent" />
           <Image
             className="h-full w-full object-cover"
             alt="friends sitting in front of firecamp"
@@ -82,7 +83,7 @@ const Home = () => {
             </Link>
           </div>
         </section>
-        <section className="w-[90%] max-w-7xl ">
+        <section className="w-[90%] max-w-7xl">
           <h2 className=" p-6 text-center font-montserrat text-3xl font-extrabold uppercase">
             top activities
           </h2>
@@ -93,7 +94,7 @@ const Home = () => {
           <div className="flex justify-center p-8">
             <Link
               href="activities"
-              className="text-md inline-block rounded-full bg-gray-600 p-2 px-5 text-center font-stretch-pro leading-[140.5%] text-white lg:text-2xl"
+              className="text-md inline-block rounded-full bg-red-600 p-2 px-5 text-center font-stretch-pro leading-[140.5%] text-white lg:text-2xl"
             >
               show more
             </Link>
