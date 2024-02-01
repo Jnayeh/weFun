@@ -74,6 +74,7 @@ module.exports = {
       },
       fontFamily: {
         rubik: "Rubik",
+        marhey: "Marhey",
         montserrat: "Montserrat",
         "stretch-pro": "'Stretch Pro'",
         "strretch-sans": "'STRRETCH SANS'",
