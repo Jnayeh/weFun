@@ -27,6 +27,7 @@ export const activityRouter = createTRPCRouter({
   create: publicProcedure
     .input(
       z.object({
+        id: z.number().optional(),
         label: z.string(),
         description: z.string().optional(),
         cover: z.string().optional(),

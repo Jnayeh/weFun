@@ -7,18 +7,20 @@ import { useRouter } from "next/navigation";
 
 const AddActivity = () => {
   return (
-    <section className="flex flex-col">
-      <ProgressHeader />
+    <section>
+      <form className="flex flex-col">
+        <ProgressHeader />
 
-      <div className="flex h-[60dvh] justify-around">
-        <div
-          className="mx-5 mt-8 flex max-h-max w-[80%] max-w-lg justify-center dark:text-white"
-          role="main"
-        >
-          <Form />
+        <div className="flex h-[60dvh] justify-around">
+          <div
+            className="mx-5 mt-8 flex max-h-max w-[80%] max-w-lg justify-center dark:text-white"
+            role="main"
+          >
+            <Form />
+          </div>
         </div>
-      </div>
-      <ActivityButtons />
+        <ActivityButtons />
+      </form>
     </section>
   );
 };
@@ -104,17 +106,17 @@ function ActivityButtons() {
   const setProgress = useProgressStore((state) => state.setProgress);
   const router = useRouter();
   const addAct = api.activity.create.useMutation({
-     async onSuccess() {
+    async onSuccess() {
       // refetches activities after a post is added
-      router.push("../activities")
-      
+      router.push("../activities");
     },
   });
   return (
     <div className=" flex w-[35%] min-w-[360px] justify-center gap-4 self-center p-2">
       <button
         className=" rounded-lg bg-white p-2 px-4 text-sm font-bold uppercase text-red-600 shadow-md hover:bg-gray-100 disabled:bg-slate-200 disabled:font-normal disabled:text-gray-400 disabled:shadow-none"
-        onClick={() => {
+        onClick={(e) => {
+          e.preventDefault();
           setProgress(progress - 1);
         }}
         disabled={progress == 1}
@@ -124,7 +126,8 @@ function ActivityButtons() {
       {progress < 3 ? (
         <button
           className=" rounded-lg bg-red-600 p-2 px-6 text-sm font-bold uppercase text-white shadow-md hover:bg-red-700 disabled:bg-slate-200 disabled:font-normal disabled:text-gray-400 disabled:shadow-none"
-          onClick={() => {
+          onClick={(e) => {
+            e.preventDefault();
             setProgress(progress + 1);
           }}
         >
@@ -133,14 +136,15 @@ function ActivityButtons() {
       ) : (
         <button
           className=" rounded-lg bg-red-600 p-2 px-6 text-sm font-bold uppercase text-white shadow-md hover:bg-red-700 disabled:bg-slate-200 disabled:font-normal disabled:text-gray-400 disabled:shadow-none"
-          onClick={() => {
+          onClick={(e) => {
+            e.preventDefault();
             const form = useActivityStore.getState();
             const newAct = addAct.mutate({
               label: form.label,
-              price: form.price??0,
-              capacity: form.capacity??0,
-              activity_duration: form.activity_duration??0,
-              categoryId: form.categoryId??1,
+              price: form.price ?? 0,
+              capacity: form.capacity ?? 0,
+              activity_duration: form.activity_duration ?? 0,
+              categoryId: form.categoryId ?? 1,
               description: form.description,
               visible: 0,
               discount: form.discount,
@@ -156,11 +160,11 @@ function ActivityButtons() {
 function Form() {
   const progress = useProgressStore((state) => state.progress);
   return (
-    <form className="custom-scroller flex w-full flex-col items-center gap-4 overflow-auto py-4">
+    <div className="custom-scroller flex w-full flex-col items-center gap-4 overflow-auto py-4">
       {progress == 1 && <SelectCategory />}
       {progress == 2 && <AddActivityForm />}
       {progress == 3 && <>to be done</>}
-    </form>
+    </div>
   );
 }
 function SelectCategory() {
