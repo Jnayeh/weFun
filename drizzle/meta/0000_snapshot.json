@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "72211378-2ae2-42d6-b409-7ed24d002434",
+  "id": "cd3e4c47-414a-43ac-804f-c6cacf2a93fd",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "activities": {
@@ -98,7 +98,7 @@
         },
         "categoryId": {
           "name": "categoryId",
-          "type": "int",
+          "type": "bigint unsigned",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
@@ -218,7 +218,7 @@
         },
         "size": {
           "name": "size",
-          "type": "int",
+          "type": "bigint unsigned",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
@@ -242,7 +242,7 @@
         },
         "activityId": {
           "name": "activityId",
-          "type": "int",
+          "type": "bigint unsigned",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
@@ -250,10 +250,10 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "images_activityId_categories_id_fk": {
-          "name": "images_activityId_categories_id_fk",
+        "images_activityId_activities_id_fk": {
+          "name": "images_activityId_activities_id_fk",
           "tableFrom": "images",
-          "tableTo": "categories",
+          "tableTo": "activities",
           "columnsFrom": [
             "activityId"
           ],

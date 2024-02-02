@@ -11,7 +11,7 @@ CREATE TABLE `activities` (
 	`activity_duration` int NOT NULL,
 	`createdAt` timestamp DEFAULT (now()),
 	`modifiedAt` timestamp DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,
-	`categoryId` int NOT NULL,
+	`categoryId` bigint unsigned NOT NULL,
 	CONSTRAINT `activities_id` PRIMARY KEY(`id`)
 );
 --> statement-breakpoint
@@ -29,12 +29,12 @@ CREATE TABLE `categories` (
 CREATE TABLE `images` (
 	`id` serial AUTO_INCREMENT NOT NULL,
 	`filename` varchar(255),
-	`size` int,
+	`size` bigint unsigned,
 	`createdAt` timestamp DEFAULT (now()),
 	`modifiedAt` timestamp DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,
-	`activityId` int,
+	`activityId` bigint unsigned,
 	CONSTRAINT `images_id` PRIMARY KEY(`id`)
 );
 --> statement-breakpoint
 ALTER TABLE `activities` ADD CONSTRAINT `activities_categoryId_categories_id_fk` FOREIGN KEY (`categoryId`) REFERENCES `categories`(`id`) ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE `images` ADD CONSTRAINT `images_activityId_categories_id_fk` FOREIGN KEY (`activityId`) REFERENCES `categories`(`id`) ON DELETE cascade ON UPDATE no action;
+ALTER TABLE `images` ADD CONSTRAINT `images_activityId_activities_id_fk` FOREIGN KEY (`activityId`) REFERENCES `activities`(`id`) ON DELETE cascade ON UPDATE no action;

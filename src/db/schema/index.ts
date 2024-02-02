@@ -34,7 +34,10 @@ export const activities = mysqlTable("activities", {
   activity_duration: int("activity_duration").notNull(),
   createdAt: timestamp("createdAt").defaultNow(),
   modifiedAt: timestamp("modifiedAt").defaultNow().onUpdateNow(),
-  categoryId: int("categoryId")
+  categoryId: bigint("categoryId", {
+    unsigned: true,
+    mode: "number",
+  })
     .notNull()
     .references(() => categories.id, { onDelete: "cascade" }),
 });
@@ -42,14 +45,16 @@ export const activities = mysqlTable("activities", {
 export const images = mysqlTable("images", {
   id: serial("id").primaryKey(),
   filename: varchar("filename", { length: 255 }),
-  size: bigint("size",{
+  size: bigint("size", {
     unsigned: true,
-    mode: "number"
+    mode: "number",
   }),
   createdAt: timestamp("createdAt").defaultNow(),
   modifiedAt: timestamp("modifiedAt").defaultNow().onUpdateNow(),
-  activityId: int("activityId").references(() => activities.id, {
+  activityId: bigint("activityId", {
+    unsigned: true,
+    mode: "number",
+  }).references(() => activities.id, {
     onDelete: "cascade",
   }),
 });
-

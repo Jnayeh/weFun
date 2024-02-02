@@ -1,9 +1,9 @@
 import { error, log } from "console";
-import { drizzle } from "drizzle-orm/postgres-js";
-import { migrate } from "drizzle-orm/postgres-js/migrator";
-import postgres from "postgres";
+import { drizzle } from "drizzle-orm/mysql2";
+import { migrate } from "drizzle-orm/mysql2/migrator";
+import mysql from "mysql2/promise";
 import { env } from "~/env.mjs";
-const migrationClient = postgres(env.DATABASE_URL, { max: 1 });
+const migrationClient = await mysql.createConnection(env.DATABASE_URL);
 export const db = drizzle(migrationClient, { logger: true });
 export const migrateDB = async () => {
   try {

@@ -5,22 +5,8 @@
     {
       "idx": 0,
       "version": "5",
-      "when": 1706817566522,
-      "tag": "0000_cheerful_strong_guy",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "5",
-      "when": 1706819095743,
-      "tag": "0001_last_bloodstorm",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "5",
-      "when": 1706819539192,
-      "tag": "0002_nostalgic_skullbuster",
+      "when": 1706829106467,
+      "tag": "0000_bizarre_marvel_zombies",
       "breakpoints": true
     }
   ]
