@@ -1,9 +1,9 @@
 import Link from "next/link";
 import React from "react";
-import { api } from "~/trpc/server";
+import { cachableGetActivities } from "../../activities/page";
 
 const ActivitiesPage: React.FC = async () => {
-  const activities = await api.activity.getAll.query({ name: " " });
+  const activities = await cachableGetActivities({ name: " " });
 
   return (
     <main className=" mx-auto flex w-[80%] flex-col items-center pt-10">

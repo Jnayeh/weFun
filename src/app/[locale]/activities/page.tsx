@@ -28,6 +28,13 @@ export const metadata: Metadata = {
   title: "Activities - Find your new experiences",
   description: "List of activities from different providers",
 };
+export const cachableGetActivities= nextCache(
+  async ({ name }) => {
+    return api.activity.getAll.query({ name });
+  },
+  ["activities"],
+  { tags: ["getActivities"], revalidate: 1000 * 60 * 60 * 12 }
+);
 const ActivitiesPage = () => {
   return (
     <>
@@ -62,13 +69,7 @@ const ActivitiesPage = () => {
 };
 export const Activities = async () => {
   nextNoStore();
-  const data = await nextCache(
-    async () => {
-      return api.activity.getAll.query({ name: "" });
-    },
-    ["activity"],
-    { tags: ["getActivities"], revalidate: 1000 * 60 * 60 * 12 }
-  )();
+  const data = await cachableGetActivities({ name: "" });
   if (data && data.length && data.length > 1)
     return (
       <ul
@@ -104,10 +105,10 @@ export const Activities = async () => {
                   </div>
                 </button>
               </CardHeader>
-              <CardContent className="px-5 pb-1 pt-8 [&>*]:line-clamp-1 ">
+              <CardContent className="px-5 pb-1 pt-6 [&>*]:line-clamp-1 ">
                 <CardTitle title={act.label ?? ""}>{act.label}</CardTitle>
               </CardContent>
-              <CardFooter className="flex justify-between px-5 pb-10 pt-1">
+              <CardFooter className="flex justify-between px-5 pb-2">
                 {act.location ? (
                   <p className=" flex items-baseline font-medium text-red-600 dark:text-slate-50">
                     <FaLocationArrow className=" scale-75" />
@@ -120,7 +121,7 @@ export const Activities = async () => {
                 <div className="flex">
                   {act.discount ? (
                     <p className={cn(`whitespace-nowrap pr-1 font-normal`)}>
-                      {(act.price * (100 - 8)) / 100 + " DT"}
+                      {(act.price * (100 - act.discount)) / 100 + " DT"}
                     </p>
                   ) : (
                     ""
@@ -150,7 +151,7 @@ export const Activities = async () => {
     <div className="flex flex-col justify-center items-center h-full gap-3 py-4">
       <LottiePlayer
         src="/animated/search-not-found.json"
-        loop
+        loop={false}
         autoplay
         className="w-[90dvw] max-w-lg mx-auto"
       />
