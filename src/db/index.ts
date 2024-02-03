@@ -3,4 +3,4 @@ import { drizzle } from "drizzle-orm/mysql2";
 import { env } from "~/env.mjs";
 
 const client = await mysql.createConnection(env.DATABASE_URL);
-export const db = drizzle(client,{ logger: false });
+export const db = drizzle(client, { logger: true });

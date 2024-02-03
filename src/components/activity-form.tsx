@@ -4,6 +4,7 @@ import "~/styles/activity-form.css";
 import { Input } from "./ui/input";
 import { api } from "~/trpc/react";
 import { useRouter } from "next/navigation";
+import { revalidateTag } from "next/cache";
 
 const AddActivity = () => {
   return (
@@ -107,6 +108,7 @@ function ActivityButtons() {
   const router = useRouter();
   const addAct = api.activity.create.useMutation({
     async onSuccess() {
+      revalidateTag("getActivities");
       // refetches activities after a post is added
       router.push("../activities");
     },
@@ -168,7 +170,9 @@ function Form() {
   );
 }
 function SelectCategory() {
-  const { data: categories } = api.category.getAll.useQuery();
+  const { data: categories } = api.category.getAll.useQuery(undefined, {
+    staleTime: 1000 * 60 * 60 * 2,
+  });
   const catId = useActivityStore((state) => state.categoryId);
   const setCategoryId = useActivityStore((state) => state.setCategoryId);
   return (

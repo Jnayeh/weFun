@@ -5,7 +5,7 @@ import {
   CardContent,
   CardFooter,
 } from "~/components/ui/card";
-import { cn } from "~/utils/helpers/server";
+import { cn, nextCache, nextNoStore } from "~/utils/helpers/server";
 import { Input } from "~/components/ui/input";
 import { FaHeart } from "@react-icons/all-files/fa/FaHeart";
 import { FaLocationArrow } from "@react-icons/all-files/fa/FaLocationArrow";
@@ -15,8 +15,14 @@ import defaultImage from "~/Assets/placeholder.webp";
 import ImageWithFallback from "~/components/ImageWithFallback";
 import { Metadata } from "next";
 import { api } from "~/trpc/server";
-import { Suspense } from "react";
+import { Suspense, lazy } from "react";
 import { ActivitiesSkeleton } from "~/components/skeletons/activities";
+const LottiePlayer = lazy(() =>
+  import("~/components/LottiePlayer").then((mod) => ({
+    default: mod.LottiePlayer,
+    loader: <ActivitiesSkeleton />,
+  }))
+);
 
 export const metadata: Metadata = {
   title: "Activities - Find your new experiences",
@@ -55,9 +61,14 @@ const ActivitiesPage = () => {
   );
 };
 export const Activities = async () => {
-  const data = await api.activity.getAll.query({
-    name: "",
-  });
+  nextNoStore();
+  const data = await nextCache(
+    async () => {
+      return api.activity.getAll.query({ name: "" });
+    },
+    ["activity"],
+    { tags: ["getActivities"], revalidate: 1000 * 60 * 60 * 12 }
+  )();
   if (data && data.length && data.length > 1)
     return (
       <ul
@@ -135,7 +146,19 @@ export const Activities = async () => {
         })}
       </ul>
     );
-  return <p> Can not find any Activities </p>;
+  return (
+    <div className="flex flex-col justify-center items-center h-full gap-3 py-4">
+      <LottiePlayer
+        src="/animated/search-not-found.json"
+        loop
+        autoplay
+        className="w-[90dvw] max-w-lg mx-auto"
+      />
+      <p className="text-center text-2xl font-bold text-red-600 dark:text-slate-50">
+        No activities found
+      </p>
+    </div>
+  );
 };
 
 export default ActivitiesPage;
