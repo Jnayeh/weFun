@@ -40,7 +40,7 @@
     "**/*.cjs",
     "**/*.mjs",
     ".next/types/**/*.ts"
-, "next.config.js", "src/env.mjs"  ],
+, "next.config.js", "src/env.mjs", "src/db/migrate.js"  ],
   "exclude": [
     "node_modules"
   ]

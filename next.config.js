@@ -1,25 +1,26 @@
-const withNextIntl = require('next-intl/plugin')();
+const { migrateDB } = require("./src/db/migrate.js");
+const withNextIntl = require("next-intl/plugin")();
 /**
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful
  * for Docker builds.
  */
 import("./src/env.mjs");
 /** @type {import("next").NextConfig} */
-module.exports = withNextIntl({
+const nextConfig = withNextIntl({
   reactStrictMode: false,
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: '**',
-        port: '',
-        pathname: '/**',
+        protocol: "https",
+        hostname: "**",
+        port: "",
+        pathname: "/**",
       },
       {
-        protocol: 'http',
-        hostname: '**',
-        port: '',
-        pathname: '/**',
+        protocol: "http",
+        hostname: "**",
+        port: "",
+        pathname: "/**",
       },
     ],
   },
@@ -35,3 +36,10 @@ module.exports = withNextIntl({
     localeDetection: false
   },*/
 });
+
+module.exports = (/** @type {any} */ phase) => {
+  migrateDB();
+  
+  console.log("Building phase:", phase);
+  return nextConfig;
+};
