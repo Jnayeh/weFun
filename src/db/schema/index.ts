@@ -58,3 +58,14 @@ export const images = mysqlTable("images", {
     onDelete: "cascade",
   }),
 });
+
+export const locations = mysqlTable("locations", {
+  id: serial("id").primaryKey(),
+  label: varchar("label", { length: 255 }),
+  cover: varchar("cover", { length: 255 }),
+  visible: smallint("visible").default(1),
+  latitude: real("latitude"),
+  longitude: real("longitude"),
+  createdAt: timestamp("createdAt").defaultNow(),
+  modifiedAt: timestamp("modifiedAt").defaultNow().onUpdateNow(),
+});

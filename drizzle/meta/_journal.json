@@ -8,6 +8,13 @@
       "when": 1706829106467,
       "tag": "0000_bizarre_marvel_zombies",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1707040303478,
+      "tag": "0001_outstanding_the_renegades",
+      "breakpoints": true
     }
   ]
 }
