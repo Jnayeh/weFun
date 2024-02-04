@@ -2,10 +2,17 @@ import { api } from "~/trpc/server";
 import SlidingCards from "./SlidingCards";
 import { SlidingCardsSkeleton } from "./skeletons/sliding-card";
 import { cache } from "react";
+import { nextCache } from "~/utils/helpers/server";
 
-const getCategories = cache(async () => {
-  return api.category.getAll.query();
-});
+const getCategories = cache(
+  nextCache(
+    async () => {
+      return api.category.getAll.query();
+    },
+    ["categories"],
+    { tags: ["getCategories"], revalidate: 10 }
+  )
+);
 export const TopPlaces = async () => {
   const data = await getCategories();
   return (
