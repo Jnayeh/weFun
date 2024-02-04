@@ -2,7 +2,7 @@
 import React, { Suspense, useEffect, useRef } from "react";
 
 import "~/styles/navbar.styles.css";
-import "nprogress/nprogress.css";
+
 import { Link } from "~/navigation";
 import NavPopup from "./nav-popup";
 import { cn } from "~/utils/helpers/server";
@@ -11,13 +11,11 @@ import UserSvg from "~/components/SvgStore/UserSvg";
 import dynamic from "next/dynamic";
 import BrandSvg from "~/components/SvgStore/BrandSvg";
 import { usePathname } from "~/navigation";
-import { progressBar } from "~/utils/helpers/client";
 const ToggleButton = dynamic(() => import("~/components/ui/dark-toggle"), {
   ssr: false,
 });
 
 export default function Navbar() {
-  progressBar();
   const indicatorRef = useRef<HTMLSpanElement>(null);
   const navListRef = useRef<HTMLUListElement>(null);
   const location = usePathname();
