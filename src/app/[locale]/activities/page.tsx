@@ -33,7 +33,7 @@ export const cachableGetActivities= nextCache(
     return api.activity.getAll.query({ name });
   },
   ["activities"],
-  { tags: ["getActivities"], revalidate: 0.1 }
+  { tags: ["getActivities"], revalidate: 10 }
 );
 const ActivitiesPage = () => {
   return (

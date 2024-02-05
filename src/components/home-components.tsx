@@ -10,7 +10,7 @@ const getCategories = cache(
       return api.category.getAll.query();
     },
     ["categories"],
-    { tags: ["getCategories"], revalidate: 0.1 }
+    { tags: ["getCategories"], revalidate: 10 }
   )
 );
 export const TopPlaces = async () => {
