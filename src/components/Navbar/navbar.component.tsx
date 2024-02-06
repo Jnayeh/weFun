@@ -4,7 +4,6 @@ import React, { Suspense, useEffect, useRef } from "react";
 import "~/styles/navbar.styles.css";
 
 import { Link } from "~/navigation";
-import NavPopup from "./nav-popup";
 import { cn } from "~/utils/helpers/server";
 import { useAuth } from "@clerk/nextjs";
 import UserSvg from "~/components/SvgStore/UserSvg";
@@ -117,22 +116,10 @@ export default function Navbar() {
         dark:bg-gray-800 dark:bg-opacity-20 dark:backdrop-blur-md md:bg-opacity-90 dark:md:bg-opacity-90`)}
     >
       <nav className="mx-auto flex h-[60px] w-full max-w-[1500px] items-center justify-between p-2">
-        <UserSvg side="left" className="ml-2 md:hidden" />
         <div className="brand-name flex flex-shrink-0 items-center">
           <BrandSvg className=" w-32 rounded-md fill-black dark:fill-slate-100" />
         </div>
-        <Suspense>
-          <div className="z-40 flex items-center justify-end">
-            <ToggleButton className="z-10 scale-[60%] md:hidden" />
-            <NavPopup />
-          </div>
-        </Suspense>
-
-        <div className=" m-auto hidden h-11 w-full items-center justify-end pr-2 md:flex">
-          <Suspense>
-            <ToggleButton className="scale-75 " />
-          </Suspense>
-          <ul
+        <ul
             className={cn(
               `relative hidden h-full max-w-full list-none items-center overflow-hidden p-0 px-3 
               text-black dark:text-white md:flex `
@@ -195,7 +182,8 @@ export default function Navbar() {
               ref={indicatorRef}
             ></span>
           </ul>
-          <UserSvg side="right" className="hidden md:block" />
+        {/* <div className=" m-auto hidden h-11 w-full items-center justify-end pr-2 md:flex">
+          
           {/* <li
             ref={searchRef}
             onFocus={() => {
@@ -263,7 +251,13 @@ export default function Navbar() {
                 />
               </button>
             </label>
-          </li> */}
+          </li> *}
+        </div> */}
+        <div className="z-40 flex items-center justify-end p-2 h-full">
+          <Suspense>
+            <ToggleButton className="z-10 scale-[60%] " />
+          </Suspense>
+          <UserSvg side="right" className="ml-4 block" />
         </div>
       </nav>
     </div>
