@@ -1,5 +1,5 @@
 const { migrate } = require("drizzle-orm/mysql2/migrator");
-const mysql = require("mysql2");
+const mysql = require("mysql2/promise");
 const { drizzle } = require("drizzle-orm/mysql2");
 var { once } = require("lodash");
 
@@ -11,11 +11,11 @@ let connect;
 const migrateDB = once(async () => {
   try {
     if (connect === undefined) {
-      connect = mysql.createConnection(process.env.DATABASE_URL ?? "");
+      connect = await mysql.createConnection(process.env.DATABASE_URL ?? "");
     }
     const db = drizzle(connect, { logger: true });
     await migrate(db, { migrationsFolder: "./drizzle" });
-    connect.end();
+    await connect.end();
     console.log("Migration complete");
   } catch (err) {
     console.error(err);
