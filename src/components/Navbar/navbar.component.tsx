@@ -253,11 +253,12 @@ export default function Navbar() {
             </label>
           </li> *}
         </div> */}
-        <div className="z-40 flex items-center justify-end p-2 h-full">
+        <div className="z-40 flex items-center justify-end p-2 h-full gap-3">
           <Suspense>
-            <ToggleButton className="z-10 scale-[60%] " />
+            <ToggleButton className="z-10" />
           </Suspense>
-          <UserSvg side="right" className="ml-4 block" />
+          <UserSvg side="right" className="block" />
+
         </div>
       </nav>
     </div>

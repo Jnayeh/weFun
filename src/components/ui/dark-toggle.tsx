@@ -25,7 +25,7 @@ export default function ToggleButton({
     <button {...props} onClick={toggleTheme} aria-label="dark mode toggle">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="53"
+        width="33"
         height="56"
         viewBox="0 0 53 56"
       >

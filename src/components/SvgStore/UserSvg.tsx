@@ -1,22 +1,22 @@
 import { cn } from "~/utils/helpers/server";
 import React, { HTMLProps } from "react";
 import { useSideBarStore } from "~/store/sidebar";
-
-const SvgUser: React.FC<
-  HTMLProps<SVGElement> & { side: "left" | "right" }
-> = ({ className, side }) => {
+const SvgUser: React.FC<HTMLProps<SVGElement> & { side: "left" | "right" }> = ({
+  className,
+  side,
+}) => {
   const { toggleLeftBar, toggleRightBar } = useSideBarStore();
   return (
     <button
       className={cn(`h-fit w-fit ${className}`)}
       onClick={side === "left" ? toggleLeftBar : toggleRightBar}
+      aria-label="login icon"
     >
       <svg
-        aria-label="login icon"
         width="24"
         height="24"
         viewBox="0 0 24 24"
-        className={cn(`scale-150 cursor-pointer fill-black dark:fill-white`)}
+        className={cn(`scale-150  fill-black dark:fill-white`)}
         xmlns="http://www.w3.org/2000/svg"
       >
         <path d="M7.71991 18.473L7.70872 18.477L7.69662 18.4811C7.67463 18.4885 7.65251 18.4952 7.6303 18.5011C7.16705 18.6252 6.66284 18.4374 6.42746 17.9915C6.16441 17.4932 6.33686 16.8623 6.83518 16.6316C8.29867 15.9539 9.88521 15.6009 11.4936 15.6C13.102 15.5991 14.6889 15.9501 16.1531 16.6262C16.6516 16.8563 16.8248 17.487 16.5623 17.9856C16.3274 18.4318 15.8234 18.6202 15.36 18.4966C15.3378 18.4907 15.3156 18.4841 15.2936 18.4767C15.2858 18.4741 15.2781 18.4714 15.2703 18.4686C15.2463 18.46 15.2224 18.4504 15.1987 18.44C14.0294 17.9259 12.7702 17.6594 11.4947 17.6601C10.2192 17.6609 8.9603 17.9289 7.79154 18.4443C7.76786 18.4548 7.74397 18.4643 7.71991 18.473Z" />
