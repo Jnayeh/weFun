@@ -28,12 +28,12 @@ export const metadata: Metadata = {
   title: "Activities - Find your new experiences",
   description: "List of activities from different providers",
 };
-export const cachableGetActivities= nextCache(
+export const cachableGetActivities = nextCache(
   async ({ name }) => {
     return api.activity.getAll.query({ name });
   },
   ["activities"],
-  { tags: ["getActivities"], revalidate: 10 }
+  { tags: ["getActivities"], revalidate: 60 }
 );
 const ActivitiesPage = () => {
   return (
@@ -148,12 +148,12 @@ export const Activities = async () => {
       </ul>
     );
   return (
-    <div className="flex flex-col justify-center items-center h-full gap-3 py-4">
+    <div className="flex h-full flex-col items-center justify-center gap-3 py-4">
       <LottiePlayer
         src="/animated/search-not-found.json"
         loop={false}
         autoplay
-        className="w-[90dvw] max-w-lg mx-auto"
+        className="mx-auto w-[90dvw] max-w-lg"
       />
       <p className="text-center text-2xl font-bold text-red-600 dark:text-slate-50">
         No activities found
