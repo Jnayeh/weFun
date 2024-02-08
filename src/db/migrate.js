@@ -1,3 +1,4 @@
+// @ts-nocheck
 const { migrate } = require("drizzle-orm/mysql2/migrator");
 const mysql = require("mysql2/promise");
 const { drizzle } = require("drizzle-orm/mysql2");
@@ -25,6 +26,24 @@ const migrateDB = async () => {
     console.info("Connection destroyed");
   }
 };
+'use strict';
+
+
+function once(func) {
+  function _f() {
+    if (!_f.isCalled) {
+      _f.isCalled = true;
+      _f.res = func.apply(this, arguments);
+    }
+    return _f.res;
+  }
+
+  _f.prototype = func.prototype;
+  _f.isCalled = false;
+
+  return _f;
+}
+
 module.exports = {
-  migrateDB,
+  migrateDB, once
 };

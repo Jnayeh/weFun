@@ -1,4 +1,4 @@
-const { migrateDB } = require("./src/db/migrate.js");
+const { migrateDB, once } = require("./src/db/migrate.js");
 const withNextIntl = require("next-intl/plugin")();
 /**
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful
@@ -37,9 +37,9 @@ const nextConfig = withNextIntl({
   },*/
 });
 
-module.exports = (/** @type {any} */ phase) => {
+module.exports = once((/** @type {any} */ phase) => {
   if (
-    phase === "phase-development-server" &&
+    phase === "phase-development-server" ||
     phase === "phase-production-server"
   ) {
     migrateDB();
@@ -47,4 +47,4 @@ module.exports = (/** @type {any} */ phase) => {
 
   console.log("Building phase:", phase);
   return nextConfig;
-};
+});
