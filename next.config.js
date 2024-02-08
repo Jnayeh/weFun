@@ -38,10 +38,13 @@ const nextConfig = withNextIntl({
 });
 
 module.exports = (/** @type {any} */ phase) => {
-  if (phase === "phase-development-server" || phase === "phase-production-server"){
+  if (
+    phase === "phase-development-server" &&
+    phase === "phase-production-server"
+  ) {
     migrateDB();
   }
-  
+
   console.log("Building phase:", phase);
   return nextConfig;
 };
