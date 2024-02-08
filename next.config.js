@@ -39,8 +39,8 @@ const nextConfig = withNextIntl({
 
 module.exports = once((/** @type {any} */ phase) => {
   if (
-    phase === "phase-development-server" ||
-    phase === "phase-production-server"
+    phase === "phase-development-server" &&
+    phase === "phase-production-build"
   ) {
     migrateDB();
   }
