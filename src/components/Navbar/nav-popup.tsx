@@ -1,35 +1,8 @@
 "use client";
 import { cn } from "~/utils/helpers/server";
-import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "~/navigation";
-import { useEffect, useRef, useState } from "react";
-import { useSideBarStore } from "~/store/sidebar";
 
 export default function NavPopup() {
-  const toggleMenu = useSideBarStore((st) => st.toggleMenutBar);
-  const isOpen = useSideBarStore((st) => st.menuBarOpen);
-
-  const menuRef = useRef<HTMLDivElement>(null);
-
-  const handleClickOutside = (event: Event) => {
-    if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-      toggleMenu();
-    }
-  };
-
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-      document.addEventListener("mousedown", handleClickOutside);
-      document.addEventListener("ontouchstart", handleClickOutside);
-    }
-
-    return () => {
-      document.body.style.overflow = "auto";
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("ontouchstart", handleClickOutside);
-    };
-  }, [isOpen]);
   var menuItems = [
     { href: "/", label: "Home" },
     { href: "/activities", label: "Activities" },
@@ -37,58 +10,44 @@ export default function NavPopup() {
     { href: "/explore", label: "Explore" },
   ];
   return (
-    <div className="text-right md:hidden" ref={menuRef}>
-      <motion.button
-        className={cn(`
-        right-2 flex h-9 w-9 scale-90 items-center justify-center rounded-full 
-        border-[3px] border-black bg-white bg-opacity-20 p-[4px] transition-colors 
-        dark:border-transparent dark:bg-opacity-50 ${
-          isOpen
-            ? "border-transparent dark:bg-gray-200"
-            : "dark:border-white dark:bg-gray-700"
-        }`)}
-        aria-label="navigation menu button"
-        aria-haspopup="listbox"
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        onClick={toggleMenu}
-      >
-        <div id="nav-icon" className={isOpen ? " nav-open" : ""}>
-          <span className="bg-black dark:bg-white"></span>
-          <span className="bg-black dark:bg-white"></span>
-          <span className="bg-black dark:bg-white"></span>
-        </div>
-      </motion.button>
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.75 }}
-            animate={{ opacity: 1, scale: 1, transition: { type: "tween" } }}
-            exit={{ opacity: 0, scale: 0.75 }}
-            className="absolute right-2 top-16 z-50 flex w-[calc(100vw-16px)] 
-            origin-top-right flex-col gap-1 overflow-hidden rounded-xl
-            bg-gray-100 text-lg font-bold shadow-xl
-            dark:bg-gray-800 "
-          >
-            {menuItems.map((el, index) => {
-              return (
-                <Link
+    <div
+      className=" sticky bottom-0 left-0 right-0 z-50 flex h-fit w-full justify-between
+     gap-1 bg-stone-300 p-2 text-right dark:bg-stone-700 md:hidden"
+    >
+      {menuItems.map((el, index) => {
+        return (
+          <>
+            {index === Math.floor(menuItems.length / 2) && (
+              <div
+                key={index}
+                className="relative min-w-10 justify-self-center"
+              >
+                <button
                   key={index}
-                  href={el.href}
-                  passHref
-                  onClick={toggleMenu}
-                  className={cn(`
-                  block w-full bg-transparent px-6 py-3 text-right text-xl text-gray-900 
-                  hover:bg-slate-400 hover:bg-opacity-40 dark:text-slate-100
-                `)}
+                  aria-label="Menu button"
+                  className={cn(
+                    `absolute -top-4 right-1/2 flex h-14 w-14 translate-x-1/2 items-center justify-center rounded-full bg-red-600 p-2 text-2xl text-white hover:bg-red-900`
+                  )}
                 >
-                  {el.label}
-                </Link>
-              );
-            })}
-          </motion.div>
-        )}
-      </AnimatePresence>
+                  +
+                </button>
+              </div>
+            )}
+            <Link
+              prefetch
+              key={index}
+              href={el.href}
+              aria-label={el.label}
+              passHref
+              className={cn(` block rounded-full px-4 py-2 text-center text-base 
+              text-gray-900 transition-all duration-100 hover:bg-red-500 
+              hover:text-white dark:bg-opacity-50 dark:text-white`)}
+            >
+              {el.label}
+            </Link>
+          </>
+        );
+      })}
     </div>
   );
 }
