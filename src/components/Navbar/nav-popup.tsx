@@ -1,6 +1,7 @@
 "use client";
 import { cn } from "~/utils/helpers/server";
 import { Link } from "~/navigation";
+import { Fragment } from "react";
 
 export default function NavPopup() {
   var menuItems = [
@@ -16,17 +17,13 @@ export default function NavPopup() {
     >
       {menuItems.map((el, index) => {
         return (
-          <>
+          <Fragment key={index}>
             {index === Math.floor(menuItems.length / 2) && (
-              <div
-                key={index}
-                className="relative min-w-10 justify-self-center"
-              >
+              <div className="relative min-w-10 justify-self-center">
                 <button
-                  key={index}
                   aria-label="Menu button"
                   className={cn(
-                    `absolute -top-4 right-1/2 flex h-14 w-14 translate-x-1/2 items-center justify-center rounded-full bg-red-600 p-2 text-2xl text-white hover:bg-red-900`
+                    `absolute -top-4 right-1/2 flex h-12 w-12 translate-x-1/2 items-center justify-center rounded-full bg-red-600 p-2 text-2xl text-white hover:bg-red-900`
                   )}
                 >
                   +
@@ -35,7 +32,6 @@ export default function NavPopup() {
             )}
             <Link
               prefetch
-              key={index}
               href={el.href}
               aria-label={el.label}
               passHref
@@ -45,7 +41,7 @@ export default function NavPopup() {
             >
               {el.label}
             </Link>
-          </>
+          </Fragment>
         );
       })}
     </div>

@@ -1,7 +1,6 @@
 "use client"
 import { useRouter } from "next/navigation";
-import "~/styles/globals.css";
-export const GoBack = () => {
+export default function GoBack () {
     const router = useRouter();
     return (
       <button

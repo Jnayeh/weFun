@@ -1,4 +1,4 @@
-"use cient"
+"use client"
 /**
  * Dark theme toggle
  * React Element

@@ -1,16 +1,10 @@
-"use client";
 import "~/styles/globals.css";
-import dynamic from "next/dynamic";
-import { useRouter } from "next/navigation";
+import { Suspense, lazy } from "react";
+import { Skeleton } from "~/components/ui/skeleton";
 import Link from "next/link";
 
-const LazyGoBack = dynamic(
-  () => import("./not-found").then((mod) => mod.GoBack),
-  {
-    ssr: false,
-  }
-);
-export default function NotFound({ children }: { children: React.ReactNode }) {
+const GoBack = lazy(() => import("~/components/go-back-button"));
+export default function NotFound() {
   return (
     <div className="flex min-h-screen min-w-full items-center">
       <section className="mx-auto px-6 lg:flex lg:items-center lg:gap-12">
@@ -24,7 +18,13 @@ export default function NotFound({ children }: { children: React.ReactNode }) {
           </p>
 
           <div className="mt-6 flex items-center gap-x-3 text-center">
-            <LazyGoBack />
+            <Suspense
+              fallback={
+                <Skeleton className="flex h-[36px] w-1/2 items-center justify-center gap-x-2 rounded-lg bg-slate-300 text-sm dark:bg-slate-400 sm:w-28" />
+              }
+            >
+              <GoBack />
+            </Suspense>
             <Link
               href="/"
               className="w-1/2 shrink-0 rounded-lg bg-primary px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 hover:bg-red-600 sm:w-auto "
@@ -45,30 +45,3 @@ export default function NotFound({ children }: { children: React.ReactNode }) {
     </div>
   );
 }
-
-export const GoBack = () => {
-  const router = useRouter();
-  return (
-    <button
-      onClick={() => router.back()}
-      className="flex w-1/2 items-center justify-center gap-x-2 rounded-lg border bg-white px-5 py-2 text-sm text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800 sm:w-auto"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth="1.5"
-        stroke="currentColor"
-        className="h-5 w-5 rtl:rotate-180"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18"
-        />
-      </svg>
-
-      <span>Go back</span>
-    </button>
-  );
-};
