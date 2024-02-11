@@ -105,8 +105,8 @@ export const Activities = async () => {
                   </div>
                 </button>
               </CardHeader>
-              <CardContent className="px-5 pb-1 pt-6 [&>*]:line-clamp-1 ">
-                <CardTitle title={act.label ?? ""}>{act.label}</CardTitle>
+              <CardContent className="px-5 pb-1 pt-6 [&>*]:line-clamp-1">
+                <CardTitle className=" leading-normal" title={act.label ?? ""}>{act.label}</CardTitle>
               </CardContent>
               <CardFooter className="flex justify-between px-5 pb-2">
                 {act.location ? (
