@@ -69,7 +69,7 @@ const ActivitiesPage = () => {
 };
 export const Activities = async () => {
   nextNoStore();
-  const data = await cachableGetActivities({ name: "" });
+  const data = await cachableGetActivities({ name: "55" });
   if (data && data.length && data.length > 1)
     return (
       <ul
@@ -149,15 +149,15 @@ export const Activities = async () => {
     );
   return (
     <div className="flex h-full flex-col items-center justify-center gap-3 py-4">
-      <LottiePlayer
-        src="/animated/search-not-found.json"
-        loop={false}
-        autoplay
-        className="mx-auto w-[90dvw] max-w-lg"
-      />
       <p className="text-center text-2xl font-bold text-red-600 dark:text-slate-50">
         No activities found
       </p>
+      <LottiePlayer
+        src="/animated/not-found.lottie"
+        loop
+        autoplay
+        className="mx-auto w-[90dvw] max-w-lg"
+      />
     </div>
   );
 };
