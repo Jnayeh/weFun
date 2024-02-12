@@ -69,7 +69,7 @@ const ActivitiesPage = () => {
 };
 export const Activities = async () => {
   nextNoStore();
-  const data = await cachableGetActivities({ name: "55" });
+  const data = await cachableGetActivities({ name: "" });
   if (data && data.length && data.length > 1)
     return (
       <ul
@@ -110,8 +110,8 @@ export const Activities = async () => {
               </CardContent>
               <CardFooter className="flex justify-between px-5 pb-2">
                 {act.location ? (
-                  <p className=" flex items-baseline font-medium text-red-600 dark:text-slate-50">
-                    <FaLocationArrow className=" scale-75" />
+                  <p className=" flex items-center font-medium text-red-600 dark:text-slate-50">
+                    <FaLocationArrow className=" scale-[80%]" />
                     {act.location}
                   </p>
                 ) : (

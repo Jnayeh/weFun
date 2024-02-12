@@ -9,6 +9,8 @@ import { LottiePlayer } from "~/components/LottiePlayer";
 const RegionsPage = () => {
   const { data, isLoading } = api.category.getAll.useQuery(undefined, {
     staleTime: 1000 * 60 * 60 * 5,
+    refetchOnWindowFocus: false,
+    retry:1,
   });
   return (
     <>
