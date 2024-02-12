@@ -60,7 +60,7 @@ const MasonryGrid = (props: MasonryGridProps) => {
                              font-bold text-white drop-shadow-xl sm:text-xl"
                       href={detailsUrl ? detailsUrl + cat.id : ""}
                     >
-                      <span className="line-clamp-1">{cat.label}</span>
+                      <span className="line-clamp-1 py-2">{cat.label}</span>
                     </Link>
                   </CardHeader>
                 </Card>

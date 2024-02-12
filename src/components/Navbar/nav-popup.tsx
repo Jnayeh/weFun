@@ -12,7 +12,7 @@ export default function NavPopup() {
   ];
   return (
     <div
-      className=" sticky bottom-0 left-0 right-0 z-50 flex h-fit w-full justify-between
+      className=" sticky -bottom-1 left-0 right-0 z-50 flex h-fit w-full justify-between
      gap-1 bg-stone-300 p-2 text-right dark:bg-stone-700 md:hidden"
     >
       {menuItems.map((el, index) => {
