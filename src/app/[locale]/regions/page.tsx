@@ -4,10 +4,11 @@ import MasonryGrid from "~/components/MasonryGrid";
 import Head from "next/head";
 import { api } from "~/trpc/react";
 import { MasonryGridSkeleton } from "~/components/skeletons/masonry-grid";
+import { LottiePlayer } from "~/components/LottiePlayer";
 
 const RegionsPage = () => {
   const { data, isLoading } = api.category.getAll.useQuery(undefined, {
-    staleTime: 1000 * 60 * 60 * 5
+    staleTime: 1000 * 60 * 60 * 5,
   });
   return (
     <>
@@ -25,10 +26,20 @@ const RegionsPage = () => {
         ) : data && data.length && data.length > 1 ? (
           <>
             <h2>All regions</h2>
-            <MasonryGrid dataList={data} detailsUrl="regions/"/>
+            <MasonryGrid dataList={data} detailsUrl="regions/" />
           </>
         ) : (
-          <p> Can not find any places </p>
+          <>
+            <p className="text-center text-2xl font-bold text-red-600 dark:text-slate-50">
+              Can not find any places
+            </p>
+            <LottiePlayer
+              src="/animated/not-found.lottie"
+              loop
+              autoplay
+              className="mx-auto w-[90dvw] max-w-lg"
+            />
+          </>
         )}
       </main>
     </>
