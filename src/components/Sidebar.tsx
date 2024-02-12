@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useRef, useEffect, HTMLProps } from "react";
 import { motion, AnimatePresence, AnimationProps } from "framer-motion";
 import { cn } from "~/utils/helpers/server";
@@ -41,12 +41,14 @@ const Sidebar: React.FC<SidebarProps> = ({
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
+      document.body.style.pointerEvents = "none";
       document.addEventListener("mousedown", handleClickOutside);
       document.addEventListener("ontouchstart", handleClickOutside);
     }
 
     return () => {
       document.body.style.overflow = "auto";
+      document.body.style.pointerEvents = "auto";
       document.removeEventListener("mousedown", handleClickOutside);
       document.removeEventListener("ontouchstart", handleClickOutside);
     };
@@ -164,7 +166,8 @@ export const LoginSideBar: React.FC<
       </div>
       <div className="flex h-[calc(100%-76px)] flex-col items-center gap-4 p-6 pt-0">
         <h2 className=" py-12 text-xl font-bold uppercase md:text-2xl">
-          Login to <BrandSvg className=" w-32 rounded-md fill-black dark:fill-slate-100 inline"/>
+          Login to{" "}
+          <BrandSvg className=" inline w-32 rounded-md fill-black dark:fill-slate-100" />
         </h2>
         <button
           onClick={() => signInWith("oauth_google")}
