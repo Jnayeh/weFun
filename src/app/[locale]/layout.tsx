@@ -14,7 +14,7 @@ import { LoginSideBar } from "~/components/Sidebar";
 import { ThemeProvider } from "~/utils/theme-provider";
 import { ResolvingMetadata, Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import NavPopup from "~/components/Navbar/nav-popup";
+import BottomNav from "~/components/Navbar/bottom-nav";
 
 type Props = {
   params: { id: string };
@@ -65,7 +65,7 @@ export default function LocaleLayout({
             <Suspense>
               <Footer />
             </Suspense>
-            <NavPopup />
+            <BottomNav />
           </div>
         </TRPCReactProvider>
       </ClerkProvider>

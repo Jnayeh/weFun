@@ -15,12 +15,10 @@ import {
   ClapperboardIcon,
   FlameKindlingIcon,
   TentTreeIcon,
-  Plus,
 } from "lucide-react";
-import { Button } from "../ui/button";
-import SheetComponent from "../sheet-component";
+import MenuSheet from "~/components/ui/sheets/menu-sheet";
 
-export default function NavPopup() {
+export default function BottomNav() {
   const icons = [
     <BikeIcon />,
     <Gamepad2Icon />,
@@ -58,19 +56,7 @@ export default function NavPopup() {
       className=" sticky bottom-0 left-0 right-0 z-10 flex h-fit w-full justify-between
      gap-1 bg-white p-1 text-right dark:bg-slate-900 md:hidden"
     >
-      <SheetComponent
-        side="bottom"
-        button={
-          <Button
-            aria-label="Menu button"
-            className={cn(
-              `absolute bottom-20 right-2 flex h-12 w-12  items-center justify-center rounded-full bg-slate-600 p-2 text-2xl text-white hover:bg-red-900`
-            )}
-          >
-            <Plus />
-          </Button>
-        }
-      />
+      <MenuSheet side="bottom" />
       {menuItems.map((el, index) => {
         return (
           <div key={index} className="group flex-1">
