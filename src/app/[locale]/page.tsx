@@ -52,7 +52,7 @@ const Home = () => {
             </Link>
           </div>
         </section> */}
-        <section className="sticky top-0 z-0 h-[80dvh] w-full">
+        <section className="sticky top-0 z-0 h-[85dvh] w-full">
           <div className="relative h-full w-full">
           <h2 className="absolute top-12 mx-[10%] flex w-[80%] justify-center text-center font-rubik text-[7vw] font-medium uppercase leading-[138%] tracking-[0.16em] text-black sm:text-[5vw] md:text-[38px] z-[1]">
             discover <br /> the best activities <br /> with one swipe
@@ -66,7 +66,7 @@ const Home = () => {
           />
           </div>
         </section>
-        <section className="z-0 bg-slate-600">
+        <section className="w-full z-0 bg-slate-600">
           <div className="w-[90%] max-w-7xl">
           <h2 className=" p-6 text-center font-montserrat text-3xl font-extrabold uppercase">
             top activities
