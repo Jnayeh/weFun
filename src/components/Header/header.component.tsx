@@ -3,7 +3,7 @@ import { Link } from "~/navigation";
 
 const Header = () => {
   return (
-    <header className="mx-auto  flex max-w-[1600px] flex-col-reverse items-center justify-center pb-4 md:flex-row md:px-12 md:pt-4 ">
+    <header className="sticky top-0 z-0 mx-auto flex max-w-[1600px] flex-col-reverse items-center justify-center pb-4 md:flex-row md:px-12 md:pt-4 ">
       <div className="flex w-4/5 flex-col  items-center sm:pt-0 md:w-1/2 md:items-start ">
         <h1 className=" flex flex-col justify-start text-center text-4xl font-extrabold dark:text-white md:text-start md:text-5xl lg:text-6xl xl:text-7xl font-marhey">
           Barmej Kharja 

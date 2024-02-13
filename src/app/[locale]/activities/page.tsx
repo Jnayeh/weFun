@@ -74,7 +74,7 @@ export const Activities = async () => {
     return (
       <ul
         className={cn(
-          `grid w-full grid-cols-1 gap-3 p-2 sm:grid-cols-2 sm:gap-x-4 md:grid-cols-3 xl:grid-cols-4`
+          `grid w-full grid-cols-1 gap-4 p-2 sm:grid-cols-2 sm:gap-x-4 md:grid-cols-3 xl:grid-cols-4`
         )}
       >
         {data.map((act, index) => {
@@ -82,10 +82,10 @@ export const Activities = async () => {
             <Card
               key={act.id}
               className={cn(
-                `relative flex flex-col justify-between rounded-3xl bg-slate-50 shadow-xl dark:bg-slate-600 [&>div>img]:aspect-[19/10] lg:[&>div>img]:aspect-video`
+                `relative flex flex-col justify-between rounded-3xl bg-slate-50 shadow-lg dark:bg-slate-600 [&>div>img]:aspect-[19/10] lg:[&>div>img]:aspect-video`
               )}
             >
-              <CardHeader className="relative flex-shrink flex-grow p-0">
+              <CardHeader className="relative flex-shrink flex-grow p-0 aspect-video">
                 <ImageWithFallback
                   src={act.cover ?? defaultImage.src}
                   fallBackSrc={defaultImage}

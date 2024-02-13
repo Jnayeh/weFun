@@ -24,7 +24,7 @@ const Home = () => {
     <>
       <Header />
 
-      <main className=" relative mx-auto flex flex-col items-center justify-center gap-2 py-4">
+      <main className=" relative mx-auto flex flex-col items-center justify-center py-4">
         {/* <div className="flex h-[60px] w-full items-center gap-4 overflow-hidden bg-gray-800 font-rubik text-5xl text-beige">
           <div
             className="flex animate-marquee whitespace-nowrap py-2"
@@ -52,11 +52,11 @@ const Home = () => {
             </Link>
           </div>
         </section> */}
-        <section className="relative mb-4 h-[1000px] w-full">
+        <section className="sticky top-0 z-0 h-[80dvh] w-full">
+          <div className="relative h-full w-full">
           <h2 className="absolute top-12 mx-[10%] flex w-[80%] justify-center text-center font-rubik text-[7vw] font-medium uppercase leading-[138%] tracking-[0.16em] text-black sm:text-[5vw] md:text-[38px] z-[1]">
             discover <br /> the best activities <br /> with one swipe
           </h2>
-          <div className="absolute top-0 w-full h-20v bg-gradient-to-b from-white to-transparent" />
           <Image
             className="h-full w-full object-cover"
             alt="friends sitting in front of firecamp"
@@ -64,26 +64,10 @@ const Home = () => {
             height={1000}
             src="/unsplashuhkoydaijhw2@2x.png"
           />
-          <div className="absolute bottom-[-25px] flex w-full justify-center">
-            <Link
-              href="regions"
-              className=" mx-auto line-clamp-1 flex h-[50px] items-center gap-1 rounded-full bg-gray-100 bg-opacity-70 p-5 backdrop-blur-sm hover:bg-opacity-100"
-            >
-              <span className="font-rubik text-sm font-medium leading-[138%] tracking-[0.16em] text-black">
-                show top rated places
-              </span>
-              <Image
-                className="h-[20.51px] w-[20.51px] object-cover"
-                alt="arrow"
-                tabIndex={-1}
-                src="/12230001-1@2x.png"
-                width={30}
-                height={30}
-              />
-            </Link>
           </div>
         </section>
-        <section className="w-[90%] max-w-7xl">
+        <section className="z-0 bg-slate-600">
+          <div className="w-[90%] max-w-7xl">
           <h2 className=" p-6 text-center font-montserrat text-3xl font-extrabold uppercase">
             top activities
           </h2>
@@ -98,6 +82,7 @@ const Home = () => {
             >
               show more
             </Link>
+          </div>
           </div>
         </section>
         <section

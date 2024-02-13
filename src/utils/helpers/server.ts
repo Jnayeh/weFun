@@ -15,14 +15,21 @@ export const nextCache = unstable_cache;
  * @return {*} Service instance.
  */
 
-export function registerService<Type> (name:string, initFn: ()=> Type): Type {
+export function registerService<Type>(name: string, initFn: () => Type): Type {
   if (process.env.NODE_ENV === "development") {
     if (!(name in global)) {
-      console.log("reusing client");
-
+      console.log(`Service "${name}" registered.`);
       (global as any)[name] = initFn();
+    } else {
+      console.warn(`Service "${name}" already registered.`);
     }
+
     return (global as any)[name];
   }
   return initFn();
-};
+}
+export function unregisterService(name: string) {
+  if (process.env.NODE_ENV === "development") {
+    delete (global as any)[name];
+  }
+}
