@@ -1,7 +1,5 @@
-"use client"
-
 import { NextPage } from "next";
-import React from "react";
+import { ReviewCarousel } from "./ui/carousels/review-carousel";
 
 const Reviews: NextPage = () => {
   const reviews = [
@@ -9,7 +7,7 @@ const Reviews: NextPage = () => {
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod",
       user: {
-        name: "Jane Doe",
+        name: "Mourad Slim Jnayeh",
         image: "/ellipse-5@2x.png",
       },
     },
@@ -17,7 +15,7 @@ const Reviews: NextPage = () => {
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod",
       user: {
-        name: "Jane Doe",
+        name: "Hamida Oura",
         image: "/ellipse-5@2x.png",
       },
     },
@@ -25,7 +23,7 @@ const Reviews: NextPage = () => {
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod",
       user: {
-        name: "Jane Doe",
+        name: "Atef Baghli",
         image: "/ellipse-5@2x.png",
       },
     },
@@ -33,26 +31,24 @@ const Reviews: NextPage = () => {
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod",
       user: {
-        name: "Jane Doe",
+        name: "Dhia Jaghli",
+        image: "/ellipse-5@2x.png",
+      },
+    },
+    {
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod",
+      user: {
+        name: "Aminus Omri",
         image: "/ellipse-5@2x.png",
       },
     },
   ];
 
-  const [cards] = React.useState(reviews);
-
   return (
-    <section className="relative flex h-[35vh] w-full items-end justify-center overflow-hidden bg-slate-300 text-center font-rubik text-sm ">
-      <ul className="relative h-[70%] w-[80%] max-w-md ">
-        {cards.map((review, index) => {
-          return (
-            <li
-              key={index}
-              className={`list-none rounded-md bg-slate-200 shadow-sm shadow-gray-700 `}
-            >{review.description}</li>
-          );
-        })}
-      </ul>
+    <section className="w-full h-fit flex flex-col items-center bg-slate-300 p-4 z-0 gap-10">
+      <h2 className="text-[10dvw] sm:text-7xl font-extrabold uppercase ">reviews</h2>
+      <ReviewCarousel reviews={reviews}/>
     </section>
   );
 };

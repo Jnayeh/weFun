@@ -54,48 +54,59 @@ const Home = () => {
         </section> */}
         <section className="sticky top-0 z-0 h-[85dvh] w-full">
           <div className="relative h-full w-full">
-          <h2 className="absolute top-12 mx-[10%] flex w-[80%] justify-center text-center font-rubik text-[7vw] font-medium uppercase leading-[138%] tracking-[0.16em] text-black sm:text-[5vw] md:text-[38px] z-[1]">
-            discover <br /> the best activities <br /> with one swipe
-          </h2>
-          <Image
-            className="h-full w-full object-cover"
-            alt="friends sitting in front of firecamp"
-            width={1000}
-            height={1000}
-            src="/unsplashuhkoydaijhw2@2x.png"
-          />
+            <h2
+              className="absolute top-12 z-0 mx-[10%] flex w-[80%] justify-center text-center 
+            font-rubik text-[5vw] font-medium uppercase text-black sm:text-4xl md:text-5xl"
+            >
+              discover the best activities <br /> with one swipe
+            </h2>
+            <Image
+              className="h-full w-full object-cover"
+              alt="friends sitting in front of firecamp"
+              width={1000}
+              height={1000}
+              src="/unsplashuhkoydaijhw2@2x.png"
+            />
           </div>
         </section>
-        <section className="w-full z-0 bg-slate-600">
+        <section className="z-0 w-full bg-slate-200 dark:bg-slate-600">
           <div className="w-[90%] max-w-7xl">
-          <h2 className=" p-6 text-center font-montserrat text-3xl font-extrabold uppercase">
-            top activities
-          </h2>
-          <Suspense fallback={<SlidingCardsSkeleton />}>
-            <TopActivities />
-          </Suspense>
+            <h2 className=" p-6 text-center font-montserrat text-3xl font-extrabold uppercase">
+              top activities
+            </h2>
+            <Suspense fallback={<SlidingCardsSkeleton />}>
+              <TopActivities />
+            </Suspense>
 
-          <div className="flex justify-center p-8">
-            <Link
-              href="activities"
-              className="text-md inline-block rounded-full bg-red-600 p-2 px-5 text-center font-stretch-pro leading-[140.5%] text-white lg:text-2xl"
-            >
-              show more
-            </Link>
-          </div>
+            <div className="flex justify-center p-8">
+              <Link
+                href="activities"
+                className="text-md inline-block rounded-full bg-red-600 p-2 px-5 text-center font-stretch-pro leading-[140.5%] text-white lg:text-2xl"
+              >
+                show more
+              </Link>
+            </div>
           </div>
         </section>
         <section
           id="searchAndFindMore"
-          className="relative mx-auto flex max-w-[90%] justify-center rounded-full py-12"
+          className="relative flex w-full justify-center bg-white bg-opacity-30 py-12
+          backdrop-blur-sm dark:bg-black"
         >
-          <div className="border-darkslategray-300 relative flex w-[300px] justify-start rounded-full border-2 border-black dark:border-slate-600 [&>*]:px-10">
-            <button className="flex w-full justify-start rounded-full bg-transparent py-[4px] leading-[138%] tracking-[0.16em] hover:bg-gray-200 dark:hover:bg-gray-800">
+          <div
+            className="relative flex w-[300px] justify-start rounded-full border-2 
+          border-black dark:border-slate-600 [&>*]:px-10"
+          >
+            <button
+              className="flex w-full justify-start rounded-full bg-transparent py-[4px]
+              leading-[138%] tracking-[0.16em] hover:bg-gray-200 dark:hover:bg-gray-800"
+            >
               {t("search")}
             </button>
             <Link
               href="explore"
-              className=" absolute end-0 flex h-full items-center rounded-full bg-black text-sm font-black leading-[140.5%] text-white dark:bg-slate-600"
+              className=" absolute end-0 flex h-full items-center rounded-full bg-black 
+              text-sm font-black leading-[140.5%] text-white dark:bg-slate-600"
             >
               <span className="text-center uppercase">
                 {t("find-more")

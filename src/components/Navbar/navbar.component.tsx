@@ -112,153 +112,75 @@ export default function Navbar() {
   const { isLoaded, isSignedIn, signOut } = useAuth();
   return (
     <div
-      className={cn(`items-center sticky top-0 z-30 min-w-full justify-center bg-white bg-opacity-80 shadow-lg backdrop-blur transition-all 
-        dark:bg-gray-800 dark:bg-opacity-20 dark:backdrop-blur-md md:bg-opacity-90 dark:md:bg-opacity-90`)}
+      className={cn(`sticky top-0 z-30 min-w-full items-center justify-center bg-white bg-opacity-70 shadow-lg backdrop-blur transition-all 
+        dark:bg-gray-800 dark:bg-opacity-60 dark:backdrop-blur-md md:bg-opacity-80 dark:md:bg-opacity-90`)}
     >
       <nav className="mx-auto flex h-[60px] w-full max-w-[1500px] items-center justify-between p-2">
         <div className="brand-name flex flex-shrink-0 items-center">
           <BrandSvg className=" w-32 rounded-md fill-black dark:fill-slate-100" />
         </div>
         <ul
-            className={cn(
-              `relative hidden h-full max-w-full list-none items-center overflow-hidden p-0 px-3 
+          className={cn(
+            `relative hidden h-full max-w-full list-none items-center overflow-hidden p-0 px-3 
               text-black dark:text-white md:flex `
-            )}
-            ref={navListRef}
-          >
-            <li>
-              <Link
-                href="/"
-                className={
-                  location == "/"
-                    ? "nav-item is-active active-link"
-                    : "nav-item "
-                }
-              >
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/activities"
-                className={
-                  location == "/activities"
-                    ? "nav-item is-active active-link"
-                    : "nav-item "
-                }
-              >
-                Activities
-              </Link>
-            </li>
-
-            <li>
-              <Link
-                href="/regions"
-                className={
-                  location == "/regions"
-                    ? "nav-item is-active active-link"
-                    : "nav-item "
-                }
-              >
-                Places
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/explore"
-                className={
-                  location == "/explore"
-                    ? "nav-item is-active active-link"
-                    : "nav-item "
-                }
-              >
-                Explore
-              </Link>
-            </li>
-
-            <span
-              aria-hidden
-              className="nav-indicator"
-              ref={indicatorRef}
-            ></span>
-          </ul>
-        {/* <div className=" m-auto hidden h-11 w-full items-center justify-end pr-2 md:flex">
-          
-          {/* <li
-            ref={searchRef}
-            onFocus={() => {
-              inputRef.current?.onfocus;
-              setIsSearching(true);
-            }}
-          >
-            <label
-              id="search-label"
-              defaultValue="search activities by name"
-              className={`mx-2 hidden items-center gap-x-2 fill-red-700 px-4 dark:fill-yellow-400 dark:hover:fill-white md:flex`}
+          )}
+          ref={navListRef}
+        >
+          <li>
+            <Link
+              href="/"
+              className={
+                location == "/" ? "nav-item is-active active-link" : "nav-item "
+              }
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="25"
-                height="25"
-                viewBox="0 0 24.316 24.316"
-              >
-                <g id="find" transform="translate(0 -3.5)">
-                  <path
-                    id="Path_1"
-                    data-name="Path 1"
-                    d="M14.4,3.5A10.9,10.9,0,1,1,6.693,6.693,10.831,10.831,0,0,1,14.4,3.5Zm0,20.09a9.188,9.188,0,1,0-6.5-2.691A9.128,9.128,0,0,0,14.4,23.59Z"
-                    transform="translate(-3.5)"
-                  />
-                  <path
-                    id="Path_2"
-                    data-name="Path 2"
-                    d="M30.294,31.151a.854.854,0,0,1-.606-.251l-5.462-5.462a.857.857,0,0,1,1.212-1.212L30.9,29.688a.857.857,0,0,1-.606,1.463Z"
-                    transform="translate(-6.836 -3.336)"
-                  />
-                </g>
-              </svg>
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/activities"
+              className={
+                location == "/activities"
+                  ? "nav-item is-active active-link"
+                  : "nav-item "
+              }
+            >
+              Activities
+            </Link>
+          </li>
 
-              <input
-                aria-labelledby="search-label"
-                type="text"
-                name="searching"
-                ref={inputRef}
-                value={searched}
-                onChange={(e) => {
-                  setSearched(e.currentTarget.value);
-                }}
-                className={
-                  isSearching
-                    ? " w-[30rem] rounded-[20px] border-solid p-2 px-4 focus:border-[1px]  focus:border-red-700 focus:outline-none dark:text-white dark:focus:border-white"
-                    : "w-0"
-                }
-              />
+          <li>
+            <Link
+              href="/regions"
+              className={
+                location == "/regions"
+                  ? "nav-item is-active active-link"
+                  : "nav-item "
+              }
+            >
+              Places
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/explore"
+              className={
+                location == "/explore"
+                  ? "nav-item is-active active-link"
+                  : "nav-item "
+              }
+            >
+              Explore
+            </Link>
+          </li>
 
-              <button
-                className={
-                  isSearching
-                    ? " rounded-full bg-red-600 p-2 text-2xl text-white dark:bg-yellow-500"
-                    : " w-0 text-transparent"
-                }
-                onBlur={() => {
-                  setIsSearching(false);
-                  navListRef.current?.classList.add("");
-                }}
-              >
-                <BsArrowRight
-                  strokeWidth={0.7}
-                  className={isSearching ? "" : " hidden"}
-                />
-              </button>
-            </label>
-          </li> *}
-        </div> */}
-        <div className="z-40 flex items-center justify-end p-2 h-full gap-3">
+          <span aria-hidden className="nav-indicator" ref={indicatorRef}></span>
+        </ul>
+        <div className="z-40 flex h-full items-center justify-end gap-3 p-2">
           <Suspense>
             <ToggleButton className="z-10" />
           </Suspense>
           <UserSvg side="right" className="block" />
-
         </div>
       </nav>
     </div>
