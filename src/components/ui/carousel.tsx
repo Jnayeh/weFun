@@ -1,11 +1,12 @@
+"use client"
 import * as React from "react"
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from "embla-carousel-react"
-import { ArrowLeft, ArrowRight } from "lucide-react"
 
 import { Button } from "~/components/ui/button"
 import { cn } from "~/utils/helpers/client"
+import Arrow from "~/components/SvgStore/arrow"
 
 type CarouselApi = UseEmblaCarouselType[1]
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>
@@ -214,7 +215,7 @@ const CarouselPrevious = React.forwardRef<
       onClick={scrollPrev}
       {...props}
     >
-      <ArrowLeft className="h-4 w-4" />
+      <Arrow className="h-4 w-4 stroke-current rotate-180" />
       <span className="sr-only">Previous slide</span>
     </Button>
   )
@@ -243,7 +244,7 @@ const CarouselNext = React.forwardRef<
       onClick={scrollNext}
       {...props}
     >
-      <ArrowRight className="h-4 w-4" />
+      <Arrow className="h-4 w-4 stroke-current" />
       <span className="sr-only">Next slide</span>
     </Button>
   )
