@@ -30,14 +30,9 @@ module.exports = {
         },
       }, */
       colors: {
-        tomato: {
-          100: "#f65e39",
-          200: "#ec6139",
-          300: "#e95b47",
+        orange: {
+          350: "#F6AA83",
         },
-        linen: "#f2f0e4",
-        oldlace: "#0B2A36",
-        beige: "#FFF6E5",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

@@ -36,26 +36,29 @@ export function ReviewCarousel(
       }}
       className="w-full max-w-xs md:max-w-xl lg:max-w-4xl"
     >
-      <CarouselContent>
+      <CarouselContent className="pt-7">
         {reviews.map((_, index) => (
           <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-            <Card>
-              <div className="flex gap-2 p-2 items-center">
-                <Avatar className=" h-12 w-12 ">
-                  <AvatarImage src={_.user.image} alt="@shadcn" />
-                  <AvatarFallback>{getInitials(_.user.name)}</AvatarFallback>
-                </Avatar>
-                <span className=" text-gray-600 font-bold drop-shadow-md">{_.user.name}</span>
-              </div>
-              <CardContent className=" p-3 pt-0 text-start">
-                <span className="text-xl font-semibold">{_.description}</span>
+            <Card className="relative aspect-square flex flex-col gap-2 justify-between items-start ">
+              <Avatar className=" absolute left-4 -top-6 h-12 w-12 ">
+                <AvatarImage src={_.user.image} alt="@shadcn" />
+                <AvatarFallback>{getInitials(_.user.name)}</AvatarFallback>
+              </Avatar>
+              <CardContent className=" p-4 pt-10 text-start">
+                <span className=" text-base font-semibold">{_.description}</span>
               </CardContent>
+              
+              <span className="font-bold text-blue-700 drop-shadow-md p-4">
+                  {_.user.name}
+                </span>
             </Card>
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
+      <div className=" flex items-center justify-center gap-5 pt-10">
+        <CarouselPrevious variant="default" className=" static bg-orange-350" />
+        <CarouselNext variant="default" className=" static bg-orange-350" />
+      </div>
     </Carousel>
   );
 }

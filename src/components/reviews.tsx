@@ -46,7 +46,8 @@ const Reviews: NextPage = () => {
   ];
 
   return (
-    <section className="relative flex w-full items-end justify-center overflow-hidden bg-slate-300 text-center font-rubik text-sm py-4 px-1">
+    <section className="w-full h-fit flex flex-col items-center bg-slate-300 p-4 z-0 gap-10">
+      <h2 className="text-[10dvw] sm:text-7xl font-extrabold uppercase ">reviews</h2>
       <ReviewCarousel reviews={reviews}/>
     </section>
   );
