@@ -8,11 +8,10 @@ import Reviews from "~/components/reviews";
 import Image from "next/image";
 import { SlidingCardsSkeleton } from "~/components/skeletons/sliding-card";
 import { Link } from "~/navigation";
-import { TopPlaces, TopActivities } from "~/components/home-components";
 
 const Home = () => {
   const t = useTranslations("Home");
-/*   const SpinningText = [0, 1, 2, 3].map((index) => {
+  /*   const SpinningText = [0, 1, 2, 3].map((index) => {
     return (
       <div className="flex items-center " key={index}>
         <b className=" inline-block whitespace-nowrap px-4">PLAN-BOOK-ENJOY</b>
@@ -70,12 +69,12 @@ const Home = () => {
           </div>
         </section>
         <section className="z-0 w-full bg-slate-200 dark:bg-slate-600">
-          <div className="w-[90%] max-w-7xl">
+          <div className="mx-auto w-[90%] max-w-7xl">
             <h2 className=" p-6 text-center font-montserrat text-3xl font-extrabold uppercase">
               top activities
             </h2>
-            <Suspense fallback={<SlidingCardsSkeleton />}>
-              <TopActivities />
+            <Suspense fallback="...">
+              <SlidingCardsSkeleton />
             </Suspense>
 
             <div className="flex justify-center p-8">

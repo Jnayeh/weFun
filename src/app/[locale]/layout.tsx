@@ -58,7 +58,7 @@ export default function LocaleLayout({
             <div>
               <Navbar />
               <Suspense>
-                <LoginSideBar side="right" className="block" />
+                <LoginSideBar/>
               </Suspense>
               {children}
             </div>
