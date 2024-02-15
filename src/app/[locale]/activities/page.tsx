@@ -139,7 +139,7 @@ export const Activities = async () => {
                   </p>
                 </div>
               </CardFooter>
-              <button className="h-12 w-full self-center rounded-[20px] bg-tomato-300 py-0 text-xl font-semibold uppercase text-white shadow-sm">
+              <button className="h-12 w-full self-center rounded-[20px] bg-red-500 py-0 text-xl font-semibold uppercase text-white shadow-sm">
                 View details
               </button>
             </Card>
