@@ -5,7 +5,7 @@ import {
   CardContent,
   CardFooter,
 } from "~/components/ui/card";
-import { cn, nextCache, nextNoStore } from "~/utils/helpers/server";
+import { cn, nextNoStore } from "~/utils/helpers/server";
 import { Input } from "~/components/ui/input";
 import { FaHeart } from "@react-icons/all-files/fa/FaHeart";
 import { FaLocationArrow } from "@react-icons/all-files/fa/FaLocationArrow";
@@ -14,9 +14,9 @@ import { BiSearchAlt } from "@react-icons/all-files/bi/BiSearchAlt";
 import defaultImage from "~/Assets/placeholder.webp";
 import ImageWithFallback from "~/components/ImageWithFallback";
 import { Metadata } from "next";
-import { api } from "~/trpc/server";
 import { Suspense, lazy } from "react";
 import { ActivitiesSkeleton } from "~/components/skeletons/activities";
+import { cachableGetActivities } from "~/server/actions/cachable-get-activities";
 const LottiePlayer = lazy(() =>
   import("~/components/LottiePlayer").then((mod) => ({
     default: mod.LottiePlayer,
@@ -28,13 +28,6 @@ export const metadata: Metadata = {
   title: "Activities - Find your new experiences",
   description: "List of activities from different providers",
 };
-export const cachableGetActivities = nextCache(
-  async ({ name }) => {
-    return api.activity.getAll.query({ name });
-  },
-  ["activities"],
-  { tags: ["getActivities"], revalidate: 60 }
-);
 const ActivitiesPage = () => {
   return (
     <>

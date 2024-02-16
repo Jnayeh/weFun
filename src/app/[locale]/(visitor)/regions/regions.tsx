@@ -24,13 +24,17 @@ export default function Regions() {
         <ul className=" grid grid-cols-2 gap-3 md:grid-cols-3">
           {data.map((cat, index) => {
             return (
+              <li key={cat.id}
+              className={cn(
+                `rounded-2xl hover:translate-y-1 row-span-4 ${
+                  index % 3 == 1 ? "row-span-5" : index % 3 == 2 ? "row-span-3" : ""
+                }`
+              )}>
               <Card
                 key={cat.id}
                 className={cn(
-                  `relative flex flex-col justify-between overflow-hidden rounded-2xl 
-                  bg-slate-50 hover:translate-y-1  dark:bg-slate-600 row-span-4 ${
-                    index % 3 == 1 ? "row-span-5" : index % 3 == 2 ? "row-span-3" : ""
-                  }`
+                  `relative flex flex-col justify-between overflow-hidden h-full rounded-2xl 
+                  bg-slate-50 dark:bg-slate-600 `
                 )}
               >
                 {/*lg:[&:nth-child(1)]:col-span-1 [&:nth-child(3)]:row-span-2 [&:nth-child(3)>div>img]:h-full */}
@@ -54,6 +58,7 @@ export default function Regions() {
                   </Link>
                 </CardHeader>
               </Card>
+              </li>
             );
           })}
         </ul>
