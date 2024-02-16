@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+
 import { cachableGetActivities } from "~/app/[locale]/(visitor)/activities/page";
 
 const ActivitiesPage: React.FC = async () => {
