@@ -32,13 +32,13 @@ export function ReviewCarousel(
   return (
     <Carousel
       opts={{
-        align: "start",
+        align: "center",
       }}
-      className="w-full max-w-xs md:max-w-xl lg:max-w-4xl"
+      className="w-11/12"
     >
       <CarouselContent className="pt-7">
         {reviews.map((_, index) => (
-          <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+          <CarouselItem key={index} className="md:basis-1/3 lg:basis-1/5">
             <Card className="relative aspect-square flex flex-col gap-2 justify-between items-start ">
               <Avatar className=" absolute left-4 -top-6 h-12 w-12 ">
                 <AvatarImage src={_.user.image} alt="@shadcn" />
@@ -48,7 +48,7 @@ export function ReviewCarousel(
                 <span className=" text-base font-semibold">{_.description}</span>
               </CardContent>
               
-              <span className="font-bold text-blue-700 drop-shadow-md p-4">
+              <span className=" line-clamp-1 text-blue-700 drop-shadow-md py-2 px-4">
                   {_.user.name}
                 </span>
             </Card>
