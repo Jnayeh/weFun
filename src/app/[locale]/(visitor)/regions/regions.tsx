@@ -21,18 +21,20 @@ export default function Regions() {
     return (
       <>
         <h2>All regions</h2>
-        <ul className=" grid grid-cols-2 gap-2 sm:grid-cols-3">
+        <ul className=" grid grid-cols-2 gap-3 md:grid-cols-3">
           {data.map((cat, index) => {
             return (
               <Card
                 key={cat.id}
                 className={cn(
                   `relative flex flex-col justify-between overflow-hidden rounded-2xl 
-                  bg-slate-50 hover:translate-y-1  dark:bg-slate-600 odd:row-span-5 even:row-span-6 `
+                  bg-slate-50 hover:translate-y-1  dark:bg-slate-600 row-span-4 ${
+                    index % 3 == 1 ? "row-span-5" : index % 3 == 2 ? "row-span-3" : ""
+                  }`
                 )}
               >
                 {/*lg:[&:nth-child(1)]:col-span-1 [&:nth-child(3)]:row-span-2 [&:nth-child(3)>div>img]:h-full */}
-                <CardHeader className={cn("flex flex-grow p-0 h-64 space-y-0")}>
+                <CardHeader className={cn("flex flex-grow p-0 h-80 space-y-0")}>
                   <ImageWithFallback
                     src={cat.cover ?? defaultImage.src}
                     fallBackSrc={defaultImage}

@@ -51,12 +51,18 @@ export default function LocaleLayout({
   params: { locale: string };
 }) {
   return (
-    <ThemeProvider enableSystem attribute="class">
-      <ClerkProvider>
-        <TRPCReactProvider cookies={cookies().toString()}>
-          {children}
-        </TRPCReactProvider>
-      </ClerkProvider>
-    </ThemeProvider>
+    <div className="flex h-screen flex-col justify-between">
+      <div>
+        <Navbar />
+        <Suspense>
+          <LoginSideBar />
+        </Suspense>
+        {children}
+      </div>
+      <Suspense>
+        <Footer />
+      </Suspense>
+      <BottomNav />
+    </div>
   );
 }
