@@ -113,7 +113,7 @@ export default function Navbar() {
   return (
     <div
       className={cn(`sticky top-0 z-30 min-w-full items-center justify-center bg-white bg-opacity-70 shadow-lg backdrop-blur transition-all 
-        dark:bg-gray-800 dark:bg-opacity-60 dark:backdrop-blur-md md:bg-opacity-80 dark:md:bg-opacity-90`)}
+        dark:bg-gray-800 dark:bg-opacity-60 dark:backdrop-blur-md md:bg-opacity-80 dark:md:bg-opacity-90 max-w-[1600px] md:px-12`)}
     >
       <nav className="mx-auto flex h-[60px] w-full max-w-[1500px] items-center justify-between p-2">
         <div className="brand-name flex flex-shrink-0 items-center">
