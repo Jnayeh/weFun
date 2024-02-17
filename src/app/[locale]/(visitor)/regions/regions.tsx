@@ -4,7 +4,7 @@ import { LottiePlayer } from "~/components/LottiePlayer";
 import { MasonryGridSkeleton } from "~/components/skeletons/masonry-grid";
 import { api } from "~/trpc/react";
 import Link from "next/link";
-import ImageWithFallback from "~/components/ImageWithFallback";
+import ImageWithFallback from "~/components/image-with-fallback";
 import defaultImage from "~/Assets/placeholder.webp";
 import { Card, CardHeader } from "~/components/ui/card";
 import { cn } from "~/utils/helpers/server";
@@ -43,7 +43,7 @@ export default function Regions() {
                     src={cat.cover ?? defaultImage.src}
                     fallBackSrc={defaultImage}
                     placeholder="blur"
-                    blurDataURL={defaultImage.src}
+                    blurDataURL={cat.blurUrl?? defaultImage.src}
                     alt={cat.label ?? "category"}
                     className={cn("h-full rounded-2xl object-cover shadow-md")}
                     width={800}
