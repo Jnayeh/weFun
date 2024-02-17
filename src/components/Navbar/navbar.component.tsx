@@ -6,7 +6,7 @@ import "~/styles/navbar.styles.css";
 import { Link } from "~/navigation";
 import { cn } from "~/utils/helpers/server";
 import { useAuth } from "@clerk/nextjs";
-import UserSvg from "~/components/SvgStore/UserSvg";
+import UserSvg from "~/components/SvgStore/menu";
 import dynamic from "next/dynamic";
 import BrandSvg from "~/components/SvgStore/BrandSvg";
 import { usePathname } from "~/navigation";
@@ -112,7 +112,7 @@ export default function Navbar() {
   const { isLoaded, isSignedIn, signOut } = useAuth();
   return (
     <div
-      className={cn(`sticky top-0 z-30 min-w-full items-center justify-center bg-white bg-opacity-70 shadow-lg backdrop-blur transition-all 
+      className={cn(`sticky top-0 z-30 min-w-full items-center justify-center bg-white bg-opacity-70 backdrop-blur transition-all 
         dark:bg-gray-800 dark:bg-opacity-60 dark:backdrop-blur-md md:bg-opacity-80 dark:md:bg-opacity-90 max-w-[1600px] md:px-12`)}
     >
       <nav className="mx-auto flex h-[60px] w-full max-w-[1500px] items-center justify-between p-2">

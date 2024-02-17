@@ -3,7 +3,7 @@ import { cn } from "~/utils/helpers/server";
 import { motion, useMotionValue } from "framer-motion";
 import { RefObject, useEffect, useRef, useState } from "react";
 import { Category } from "~/db/types";
-import ImageWithFallback from "./ImageWithFallback";
+import ImageWithFallback from "./image-with-fallback";
 import defaultImage from "~/Assets/placeholder.webp";
 import { useRouter } from "next/navigation";
 

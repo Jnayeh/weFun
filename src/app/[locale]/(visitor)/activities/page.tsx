@@ -12,7 +12,7 @@ import { FaLocationArrow } from "@react-icons/all-files/fa/FaLocationArrow";
 import { BiHeart } from "@react-icons/all-files/bi/BiHeart";
 import { BiSearchAlt } from "@react-icons/all-files/bi/BiSearchAlt";
 import defaultImage from "~/Assets/placeholder.webp";
-import ImageWithFallback from "~/components/ImageWithFallback";
+import ImageWithFallback from "~/components/image-with-fallback";
 import { Metadata } from "next";
 import { Suspense, lazy } from "react";
 import { ActivitiesSkeleton } from "~/components/skeletons/activities";
