@@ -8,43 +8,12 @@ const Navbar = dynamic(() => import("~/components/Navbar/navbar.component"), {
   ssr: true,
 });
 import { LoginSideBar } from "~/components/Sidebar";
-import { ResolvingMetadata, Metadata } from "next";
-import { getTranslations } from "next-intl/server";
 import BottomNav from "~/components/Navbar/bottom-nav";
-
-type Props = {
-  params: { id: string };
-  searchParams: { [key: string]: string | string[] | undefined };
-};
-
-export async function generateMetadata(
-  { params, searchParams }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
-  const t = await getTranslations("Home");
-  return {
-    title: t("title"),
-    description: "Stop existing & Start living",
-    icons: [
-      {
-        url: "/favicon.ico",
-        type: "image/x-icon",
-      },
-      {
-        rel: "apple-touch-icon",
-        url: "/favicon.png",
-        type: "image/png",
-      },
-    ],
-  };
-}
 
 export default function LocaleLayout({
   children,
-  params: { locale },
 }: {
   children: React.ReactNode;
-  params: { locale: string };
 }) {
   return (
     <div className="flex h-screen flex-col justify-between">

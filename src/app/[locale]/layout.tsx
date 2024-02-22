@@ -2,19 +2,10 @@ import "~/styles/globals.css";
 import { TRPCReactProvider } from "~/trpc/react";
 import { cookies } from "next/headers";
 import { ClerkProvider } from "@clerk/nextjs";
-import { Suspense } from "react";
-import dynamic from "next/dynamic";
-const Footer = dynamic(() => import("~/components/Footer/footer.component"), {
-  ssr: true,
-});
-const Navbar = dynamic(() => import("~/components/Navbar/navbar.component"), {
-  ssr: true,
-});
-import { LoginSideBar } from "~/components/Sidebar";
+
 import { ThemeProvider } from "~/utils/theme-provider";
 import { ResolvingMetadata, Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import BottomNav from "~/components/Navbar/bottom-nav";
 
 type Props = {
   params: { id: string };

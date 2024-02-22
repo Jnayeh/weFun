@@ -1,6 +1,8 @@
 "use server";
 
 import { revalidateTag } from "next/cache";
+import { api } from "~/trpc/server";
+import { nextCache } from "~/utils/helpers/server";
 
 export async function nextRevalidate(tag: string) {
   revalidateTag(tag);
@@ -34,3 +36,11 @@ export async function dynamicBlurDataUrl(url: string) {
 
   return `data:image/svg+xml;base64,${toBase64(blurSvg)}`;
 }
+export const cacheableCategories = nextCache(
+  () => api.category.getAll.query(),
+  ["categories"],
+  {
+    revalidate: 60,
+    tags: ["categories"],
+  }
+)
