@@ -27,7 +27,7 @@ export default function Regions() {
               <li key={cat.id}
               className={cn(
                 `rounded-2xl hover:translate-y-1 row-span-4 ${
-                  index % 3 == 1 ? "row-span-5" : index % 3 == 2 ? "row-span-3" : ""
+                  index % 3 == 1 ? "row-span-5" : index % 3 == 2 && "row-span-3"
                 }`
               )}>
               <Card
