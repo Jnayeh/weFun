@@ -38,8 +38,8 @@ export function ReviewCarousel(
     >
       <CarouselContent className="pt-7">
         {reviews.map((_, index) => (
-          <CarouselItem key={index} className="md:basis-1/3 lg:basis-1/5">
-            <Card className="relative flex min-h-20 flex-col items-start justify-between gap-2 ">
+          <CarouselItem key={index} className="basis-1/2 md:basis-1/3 xl:basis-1/5">
+            <Card className="relative flex aspect-square flex-col items-start justify-between gap-2 ">
               <Avatar className=" absolute -top-6 left-4 h-12 w-12 ">
                 <AvatarImage src={_.user.image} alt="@shadcn" />
                 <AvatarFallback>{getInitials(_.user.name)}</AvatarFallback>
