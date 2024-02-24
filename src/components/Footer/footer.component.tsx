@@ -61,7 +61,7 @@ export default function Footer() {
     },
   ];
   return (
-    <footer className=" m-2 rounded-xl dark:bg-gray-900">
+    <footer className=" rounded-xl dark:bg-gray-900 pb-[72px] md:pb-2">
       <div className="flex flex-col justify-center sm:items-center xl:flex-row xl:items-start">
         <section className="hidden w-full max-w-[1000px] flex-col items-start justify-between sm:flex-row sm:justify-evenly md:flex lg:mx-auto xl:mx-2">
           {link_list.map((item, index) => {

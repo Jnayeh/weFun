@@ -19,6 +19,7 @@ export default function LocaleLayout({
     <div className="flex h-screen flex-col justify-between">
       <div>
         <Navbar />
+        <BottomNav />
         <Suspense>
           <LoginSideBar />
         </Suspense>
@@ -27,7 +28,6 @@ export default function LocaleLayout({
       <Suspense>
         <Footer />
       </Suspense>
-      <BottomNav />
     </div>
   );
 }

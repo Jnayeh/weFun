@@ -45,8 +45,8 @@ const Reviews = () => {
   ];
 
   return (
-    <section className="w-full h-fit flex flex-col items-center bg-slate-300 dark:bg-slate-700 p-4 z-0 gap-10">
-      <h2 className="text-[10dvw] sm:text-7xl font-extrabold uppercase ">reviews</h2>
+    <section className={`w-full aspect-video flex flex-col justify-center items-center bg-slate-700 p-4 z-0 gap-10 bg-[url("/images/reviews-back.jpg")] bg-cover`}>
+      <h2 className="text-[10dvw] sm:text-7xl font-extrabold uppercase text-white ">reviews</h2>
       <ReviewCarousel reviews={reviews}/>
     </section>
   );
