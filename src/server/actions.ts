@@ -33,7 +33,8 @@ export async function dynamicBlurDataUrl(url: string) {
     typeof window === "undefined"
       ? Buffer.from(str).toString("base64")
       : window.btoa(str);
-
+      console.log("blur Data For : ", url);
+      
   return `data:image/svg+xml;base64,${toBase64(blurSvg)}`;
 }
 export const cacheableCategories = nextCache(

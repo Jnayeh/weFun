@@ -14,10 +14,10 @@ const Header = () => {
     >
       <Image
         priority
-        src="/new_hero.jpg"
-        alt="man doing activity"
+        src="/new_hero.webp"
+        alt="spider web"
+        aria-hidden
         className=" absolute h-[120vh] w-screen bg-gradient-to-b from-[#e8614e] via-[#dd867c] to-[#e8614e] brightness-90 contrast-150"
-        loading="eager"
         height={2000}
         width={3000}
         fetchPriority="high"
@@ -57,21 +57,21 @@ const Header = () => {
 const FloatingCards = async () => {
   const activities = [
     {
-      src: "/images/dodge.jpg",
+      src: "/images/dodge.webp",
       placing:
         "left-[33%] top-[8%] h-32 w-24 md:brightness-90 brightness-[60%]",
     },
     {
-      src: "/images/paraglider.jpg",
+      src: "/images/paraglider.webp",
       placing: "bottom-[6%] left-[12%] h-72 w-52",
     },
-    { src: "/images/hiking.jpg", placing: "left-[3%] top-[20%] h-56 w-40" },
+    { src: "/images/hiking.webp", placing: "left-[3%] top-[20%] h-56 w-40" },
     {
-      src: "/images/billard.jpg",
+      src: "/images/billard.webp",
       placing: "right-[8%] sm:right-[10%] top-20 h-60 w-44",
     },
     {
-      src: "/images/basketball.jpg",
+      src: "/images/basketball.webp",
       placing: "bottom-[14%] right-[12%] sm:right-[16%] h-64 w-48",
     },
   ];
@@ -86,11 +86,12 @@ const FloatingCards = async () => {
         return (
           <Image
             key={index}
-            tabIndex={-1}
+            aria-hidden
             src={activity.src ?? ""}
             alt="activity"
             placeholder="blur"
             blurDataURL={blurData[index] ?? ""}
+            priority
             width={300}
             height={300}
             className={cn(
