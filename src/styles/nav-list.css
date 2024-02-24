@@ -32,14 +32,6 @@
   @apply opacity-75;
 }
 
-.nav-indicator {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 100%;
-  z-index: 0;
-  border-radius: 14px;
-}
 
 @media (max-width: 580px) {
   .nav {

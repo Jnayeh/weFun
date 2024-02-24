@@ -44,7 +44,6 @@
     "react-day-picker": "^8.10.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.45.4",
-    "react-responsive-masonry": "^2.1.7",
     "sharp": "^0.32.5",
     "superjson": "1.12.2",
     "tailwind-merge": "^1.14.0",

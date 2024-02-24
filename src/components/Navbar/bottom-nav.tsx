@@ -62,6 +62,7 @@ export default function BottomNav() {
           <div key={index} className="group flex-1">
             <Link
               prefetch
+              tabIndex={0}
               href={el.href}
               aria-label={el.label}
               passHref

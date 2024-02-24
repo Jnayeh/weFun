@@ -1,37 +1,45 @@
-import * as React from "react"
+"use client";
+import * as React from "react";
+import CategoryCarouselSkeleton from "~/components/skeletons/category-carousel";
 
-import { Card, CardContent } from "~/components/ui/card"
+import { Card, CardContent } from "~/components/ui/card";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "~/components/ui/carousel"
+} from "~/components/ui/carousel";
+import { api } from "~/trpc/react";
 
 export function CategoryCarousel() {
+  const { data: categories, isLoading} = api.category.getAll.useQuery(undefined, {
+    staleTime: 1000 * 60 * 60 * 5,
+    refetchOnWindowFocus: false,
+    retry: 1,
+  });
+  if (isLoading) return <CategoryCarouselSkeleton />;
   return (
     <Carousel
       opts={{
-        align: "start",
+        align: "center",
       }}
-      className="w-full max-w-sm"
+      className="w-full max-w-fit"
     >
-      <CarouselContent>
-        {Array.from({ length: 5 }).map((_, index) => (
-          <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-            <div className="p-1">
-              <Card>
-                <CardContent className="flex aspect-square items-center justify-center p-6">
-                  <span className="text-3xl font-semibold">{index + 1}</span>
-                </CardContent>
-              </Card>
-            </div>
+      <CarouselContent radioGroup="categories">
+        {categories && categories.map((cat, index) => (
+          <CarouselItem
+            key={index}
+            className=" w-fit min-w-max flex-initial pl-2 first:pl-4"
+          >
+            <Card tabIndex={0} className="bg-slate-500 text-white">
+              <CardContent className="flex items-center justify-center whitespace-nowrap p-3">
+                <span className="text-xs md:text-base font-semibold select-none">{cat.label}</span>
+              </CardContent>
+            </Card>
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
     </Carousel>
-  )
+  );
 }

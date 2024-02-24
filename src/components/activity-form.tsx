@@ -6,6 +6,16 @@ import { api } from "~/trpc/react";
 import { useRouter } from "next/navigation";
 import { nextRevalidate } from "~/server/actions";
 
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "~/components/ui/select";
+import Image from "next/image";
 const AddActivity = () => {
   return (
     <section>
@@ -170,36 +180,61 @@ function Form() {
   );
 }
 function SelectCategory() {
-  const { data: categories } = api.category.getAll.useQuery(undefined, {
-    staleTime: 1000 * 60 * 60 * 2,
-  });
+  const { data: categories, isLoading } = api.category.getAll.useQuery(
+    undefined,
+    {
+      staleTime: 1000 * 60 * 60 * 2,
+    }
+  );
   const catId = useActivityStore((state) => state.categoryId);
   const setCategoryId = useActivityStore((state) => state.setCategoryId);
+
   return (
     <>
-      <select
-        defaultValue={catId}
-        onSelect={(value) => {
+      <Select
+        onValueChange={(value) => {
           setCategoryId(Number(value));
           console.log(value);
         }}
-        className="w-[90%] max-w-sm rounded-xl border-2 border-transparent p-2 shadow-md focus:border-primary focus:outline-none dark:bg-gray-500"
       >
-        {categories &&
-          categories.map((cat) => {
-            return (
-              <option key={cat.id} value={cat.id}>
-                {cat.label}
-              </option>
-            );
-          })}
-      </select>
-      <img
-        src={categories?.filter((cat) => cat.id == catId).pop()?.cover ?? ""}
-        alt=""
-        width={90}
-        className=" mt-6 max-h-96 min-h-[200px] w-[90%] max-w-sm rounded-xl object-cover"
-      />
+        <SelectTrigger className="w-[90%] max-w-sm rounded-xl border-2 border-transparent p-2 shadow-md focus:border-primary focus:outline-none dark:bg-gray-500">
+          <SelectValue placeholder="Select a category" />
+        </SelectTrigger>
+        <SelectContent className=" rounded-xl ">
+          {isLoading && (
+            <SelectItem disabled value="disabled" className="rounded-lg ">
+              loading categories
+            </SelectItem>
+          )}
+          {categories &&
+            categories.map((cat) => {
+              return (
+                <SelectItem
+                  key={cat.id}
+                  value={cat.id + ""}
+                  className="rounded-lg "
+                >
+                  {cat.label}
+                </SelectItem>
+              );
+            })}
+          {!isLoading && (!categories || categories.length == 0) && (
+            <SelectItem disabled value="disabled" className="rounded-lg ">
+              no categories
+            </SelectItem>
+          )}
+        </SelectContent>
+      </Select>
+      {catId && (
+        <Image
+          src={categories?.filter((cat) => cat.id == catId).pop()?.cover ?? ""}
+          alt=""
+          width={400}
+          height={400}
+          placeholder="blur"
+          className=" mt-6 max-h-96 min-h-[200px] w-[90%] max-w-sm rounded-xl object-cover"
+        />
+      )}
     </>
   );
 }

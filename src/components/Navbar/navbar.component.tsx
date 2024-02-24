@@ -6,10 +6,12 @@ import "~/styles/navbar.styles.css";
 import { Link } from "~/navigation";
 import { cn } from "~/utils/helpers/server";
 import { useAuth } from "@clerk/nextjs";
-import UserSvg from "~/components/SvgStore/UserSvg";
+import UserSvg from "~/components/SvgStore/menu";
 import dynamic from "next/dynamic";
 import BrandSvg from "~/components/SvgStore/BrandSvg";
 import { usePathname } from "~/navigation";
+import { useScroll } from "~/utils/helpers/client";
+import Arrow from "../SvgStore/arrow";
 const ToggleButton = dynamic(() => import("~/components/ui/dark-toggle"), {
   ssr: false,
 });
@@ -110,19 +112,37 @@ export default function Navbar() {
   }, [location]);
 
   const { isLoaded, isSignedIn, signOut } = useAuth();
+  const isHome = location === "/";
+  const scroll = useScroll() || !isHome;
   return (
     <div
-      className={cn(`sticky top-0 z-30 min-w-full items-center justify-center bg-white bg-opacity-70 shadow-lg backdrop-blur transition-all 
-        dark:bg-gray-800 dark:bg-opacity-60 dark:backdrop-blur-md md:bg-opacity-80 dark:md:bg-opacity-90`)}
+      className={cn(`${
+        isHome ? "fixed" : "sticky"
+      } top-0 z-30 min-w-full max-w-[1600px] items-center justify-center 
+        transition-all duration-200  ${
+          scroll &&
+          "bg-white bg-opacity-70 backdrop-blur dark:bg-gray-800 dark:bg-opacity-60 dark:backdrop-blur-md md:bg-opacity-80 dark:md:bg-opacity-90"
+        }`)}
     >
-      <nav className="mx-auto flex h-[60px] w-full max-w-[1500px] items-center justify-between p-2">
-        <div className="brand-name flex flex-shrink-0 items-center">
-          <BrandSvg className=" w-32 rounded-md fill-black dark:fill-slate-100" />
+      <nav
+        className={cn(
+          "mx-auto flex h-[60px] w-full max-w-[1500px] items-center justify-between p-2 lg:px-12"
+        )}
+      >
+        <div className=" flex flex-shrink-0 items-center">
+          <BrandSvg
+            className={cn(
+              "w-32 rounded-md fill-black transition-all dark:fill-slate-100",
+              !scroll && "scale-125 pl-3"
+            )}
+          />
         </div>
         <ul
           className={cn(
-            `relative hidden h-full max-w-full list-none items-center overflow-hidden p-0 px-3 
-              text-black dark:text-white md:flex `
+            `relative hidden h-full max-w-full list-none items-center overflow-hidden p-0 px-3 text-black transition-transform
+              duration-100 dark:text-white ${
+                !scroll && " scale-110 text-white drop-shadow-md"
+              } md:flex `
           )}
           ref={navListRef}
         >
@@ -174,13 +194,32 @@ export default function Navbar() {
             </Link>
           </li>
 
-          <span aria-hidden className="nav-indicator" ref={indicatorRef}></span>
+          <span
+            aria-hidden
+            className="nav-indicator absolute bottom-0 left-0 z-0 h-full rounded-2xl"
+            ref={indicatorRef}
+          ></span>
         </ul>
-        <div className="z-40 flex h-full items-center justify-end gap-3 p-2">
+        <div className="z-40 flex h-full items-center justify-end gap-1 p-2 lg:gap-2">
           <Suspense>
-            <ToggleButton className="z-10" />
+            <ToggleButton className={cn("z-10 ")} />
           </Suspense>
-          <UserSvg side="right" className="block" />
+          <UserSvg className={cn("block", !scroll && " text-white")} />
+          <Link
+            href="/auth/signup"
+            className={cn(
+              "group hidden h-10 items-center gap-1 rounded-full border-2 border-black p-2 px-3 text-sm font-semibold uppercase transition-all duration-75 hover:border-transparent hover:bg-red-500 hover:text-white dark:border-white dark:hover:border-transparent md:flex",
+              !scroll && " border-white text-white"
+            )}
+          >
+            Sign up
+            <Arrow
+              className={cn(
+                "scale-75 fill-black stroke-black group-hover:fill-white group-hover:stroke-white dark:fill-white dark:stroke-white",
+                !scroll && "fill-white stroke-white"
+              )}
+            />
+          </Link>
         </div>
       </nav>
     </div>

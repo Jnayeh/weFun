@@ -5,18 +5,18 @@ import {
   CardContent,
   CardFooter,
 } from "~/components/ui/card";
-import { cn, nextCache, nextNoStore } from "~/utils/helpers/server";
+import { cn, nextNoStore } from "~/utils/helpers/server";
 import { Input } from "~/components/ui/input";
 import { FaHeart } from "@react-icons/all-files/fa/FaHeart";
 import { FaLocationArrow } from "@react-icons/all-files/fa/FaLocationArrow";
 import { BiHeart } from "@react-icons/all-files/bi/BiHeart";
 import { BiSearchAlt } from "@react-icons/all-files/bi/BiSearchAlt";
 import defaultImage from "~/Assets/placeholder.webp";
-import ImageWithFallback from "~/components/ImageWithFallback";
+import ImageWithFallback from "~/components/image-with-fallback";
 import { Metadata } from "next";
-import { api } from "~/trpc/server";
 import { Suspense, lazy } from "react";
 import { ActivitiesSkeleton } from "~/components/skeletons/activities";
+import { cachableGetActivities } from "~/server/actions/cachable-get-activities";
 const LottiePlayer = lazy(() =>
   import("~/components/LottiePlayer").then((mod) => ({
     default: mod.LottiePlayer,
@@ -28,13 +28,6 @@ export const metadata: Metadata = {
   title: "Activities - Find your new experiences",
   description: "List of activities from different providers",
 };
-export const cachableGetActivities = nextCache(
-  async ({ name }) => {
-    return api.activity.getAll.query({ name });
-  },
-  ["activities"],
-  { tags: ["getActivities"], revalidate: 60 }
-);
 const ActivitiesPage = () => {
   return (
     <>
@@ -85,8 +78,10 @@ export const Activities = async () => {
                 `relative flex flex-col justify-between rounded-3xl bg-slate-50 shadow-lg dark:bg-slate-600 [&>div>img]:aspect-[19/10] lg:[&>div>img]:aspect-video`
               )}
             >
-              <CardHeader className="relative flex-shrink flex-grow p-0 aspect-video">
+              <CardHeader className="relative aspect-video flex-shrink flex-grow p-0">
                 <ImageWithFallback
+                  priority
+                  loading="eager"
                   src={act.cover ?? defaultImage.src}
                   fallBackSrc={defaultImage}
                   blurDataURL={defaultImage.src}
@@ -106,7 +101,9 @@ export const Activities = async () => {
                 </button>
               </CardHeader>
               <CardContent className="px-5 pb-1 pt-6 [&>*]:line-clamp-1">
-                <CardTitle className=" leading-normal" title={act.label ?? ""}>{act.label}</CardTitle>
+                <CardTitle className=" leading-normal" title={act.label ?? ""}>
+                  {act.label}
+                </CardTitle>
               </CardContent>
               <CardFooter className="flex justify-between px-5 pb-2">
                 {act.location ? (
@@ -139,7 +136,7 @@ export const Activities = async () => {
                   </p>
                 </div>
               </CardFooter>
-              <button className="h-12 w-full self-center rounded-[20px] bg-tomato-300 py-0 text-xl font-semibold uppercase text-white shadow-sm">
+              <button className="h-12 w-full self-center rounded-[20px] bg-red-500 py-0 text-xl font-semibold uppercase text-white shadow-sm">
                 View details
               </button>
             </Card>

@@ -1,7 +1,6 @@
-import { NextPage } from "next";
 import { ReviewCarousel } from "./ui/carousels/review-carousel";
 
-const Reviews: NextPage = () => {
+const Reviews = () => {
   const reviews = [
     {
       description:
@@ -46,7 +45,7 @@ const Reviews: NextPage = () => {
   ];
 
   return (
-    <section className="w-full h-fit flex flex-col items-center bg-slate-300 p-4 z-0 gap-10">
+    <section className="w-full h-fit flex flex-col items-center bg-slate-300 dark:bg-slate-700 p-4 z-0 gap-10">
       <h2 className="text-[10dvw] sm:text-7xl font-extrabold uppercase ">reviews</h2>
       <ReviewCarousel reviews={reviews}/>
     </section>

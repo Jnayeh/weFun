@@ -39,3 +39,39 @@ export const useEffectOnce = (effect: () => void | (() => void)) => {
     };
   }, []);
 };
+export const useScroll = (): boolean => {
+  /**
+   * Scroll state
+   */
+  const [scrolled, setScrolled] = useState(false);
+
+  /**
+   * Sets scroll state depending on scroll position
+   */
+  const detectScroll = () => {
+    if (window.scrollY > 100) {
+      setScrolled(true);
+    } else {
+      setScrolled(false);
+    }
+  };
+
+  /**
+   * Listens to every scroll event
+   */
+  useEffect(() => {
+    window.addEventListener('scroll', detectScroll);
+    return function cleanup() {
+      window.removeEventListener('scroll', () => {
+        console.log('Unmounted scrolling behavior');
+      });
+    };
+  });
+
+  /**
+   * Detects the position when the page loads
+   */
+  useEffect(detectScroll, []);
+
+  return scrolled;
+};

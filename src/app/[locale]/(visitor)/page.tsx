@@ -8,11 +8,11 @@ import Reviews from "~/components/reviews";
 import Image from "next/image";
 import { SlidingCardsSkeleton } from "~/components/skeletons/sliding-card";
 import { Link } from "~/navigation";
-import { TopPlaces, TopActivities } from "~/components/home-components";
+import dynamic from "next/dynamic";
 
 const Home = () => {
   const t = useTranslations("Home");
-/*   const SpinningText = [0, 1, 2, 3].map((index) => {
+  /*   const SpinningText = [0, 1, 2, 3].map((index) => {
     return (
       <div className="flex items-center " key={index}>
         <b className=" inline-block whitespace-nowrap px-4">PLAN-BOOK-ENJOY</b>
@@ -24,7 +24,7 @@ const Home = () => {
     <>
       <Header />
 
-      <main className=" relative mx-auto flex flex-col items-center justify-center py-4">
+      <main className=" relative mx-auto flex flex-col items-center justify-center">
         {/* <div className="flex h-[60px] w-full items-center gap-4 overflow-hidden bg-gray-800 font-rubik text-5xl text-beige">
           <div
             className="flex animate-marquee whitespace-nowrap py-2"
@@ -52,7 +52,7 @@ const Home = () => {
             </Link>
           </div>
         </section> */}
-        <section className="sticky top-0 z-0 h-[85dvh] w-full">
+        <section className="h-[85dvh] w-full overflow-hidden">
           <div className="relative h-full w-full">
             <h2
               className="absolute top-12 z-0 mx-[10%] flex w-[80%] justify-center text-center 
@@ -61,7 +61,7 @@ const Home = () => {
               discover the best activities <br /> with one swipe
             </h2>
             <Image
-              className="h-full w-full object-cover"
+              className="h-[90dvh] w-full object-cover"
               alt="friends sitting in front of firecamp"
               width={1000}
               height={1000}
@@ -70,12 +70,12 @@ const Home = () => {
           </div>
         </section>
         <section className="z-0 w-full bg-slate-200 dark:bg-slate-600">
-          <div className="w-[90%] max-w-7xl">
+          <div className="mx-auto w-[90%] max-w-7xl">
             <h2 className=" p-6 text-center font-montserrat text-3xl font-extrabold uppercase">
               top activities
             </h2>
-            <Suspense fallback={<SlidingCardsSkeleton />}>
-              <TopActivities />
+            <Suspense fallback="...">
+              <SlidingCardsSkeleton />
             </Suspense>
 
             <div className="flex justify-center p-8">
