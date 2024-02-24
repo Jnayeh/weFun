@@ -126,7 +126,7 @@ export default function Navbar() {
     >
       <nav
         className={cn(
-          "mx-auto flex h-[60px] w-full max-w-[1500px] items-center justify-between p-2"
+          "mx-auto flex h-[60px] w-full max-w-[1500px] items-center justify-between p-2 lg:px-12"
         )}
       >
         <div className=" flex flex-shrink-0 items-center">
@@ -200,7 +200,7 @@ export default function Navbar() {
             ref={indicatorRef}
           ></span>
         </ul>
-        <div className="z-40 flex h-full items-center justify-end gap-1 p-2">
+        <div className="z-40 flex h-full items-center justify-end gap-1 p-2 lg:gap-2">
           <Suspense>
             <ToggleButton className={cn("z-10 ")} />
           </Suspense>

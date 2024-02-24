@@ -21,43 +21,53 @@ export default function Regions() {
     return (
       <>
         <h2>All regions</h2>
-        <ul className=" grid grid-cols-2 gap-3 md:grid-cols-3">
+        <ul className=" grid grid-cols-1 gap-3 xs:grid-cols-2 md:grid-cols-3">
           {data.map((cat, index) => {
             return (
-              <li key={cat.id}
-              className={cn(
-                `rounded-2xl hover:translate-y-1 row-span-4 ${
-                  index % 3 == 1 ? "row-span-5" : index % 3 == 2 && "row-span-3"
-                }`
-              )}>
-              <Card
+              <li
                 key={cat.id}
                 className={cn(
-                  `relative flex flex-col justify-between overflow-hidden h-full rounded-2xl 
-                  bg-slate-300 dark:bg-slate-600 `
+                  `row-span-4 rounded-2xl hover:translate-y-1 ${
+                    index % 3 == 1
+                      ? "row-span-5"
+                      : index % 3 == 2 && "row-span-3"
+                  }`
                 )}
               >
-                {/*lg:[&:nth-child(1)]:col-span-1 [&:nth-child(3)]:row-span-2 [&:nth-child(3)>div>img]:h-full */}
-                <CardHeader className={cn("flex flex-grow p-0 h-80 space-y-0")}>
-                  <ImageWithFallback
-                    src={cat.cover ?? defaultImage.src}
-                    fallBackSrc={defaultImage}
-                    placeholder="blur"
-                    blurDataURL={cat.blurUrl?? defaultImage.src}
-                    alt={cat.label ?? "category"}
-                    className={cn("h-full rounded-2xl object-cover shadow-md")}
-                    width={800}
-                    height={800}
-                  />
-                  <Link
-                    className="absolute m-0 hover:opacity-0 focus:opacity-0 transition-opacity duration-200 flex h-full w-full items-end p-1 px-3 text-lg
-                         font-bold text-white drop-shadow-xl sm:text-xl z-0 bg-gradient-to-b from-transparent from-85% to-black"
-                    href={"regions/" + cat.id}
+                <Card
+                  key={cat.id}
+                  className={cn(
+                    `relative flex h-full flex-col justify-between overflow-hidden rounded-2xl 
+                  bg-slate-300 dark:bg-slate-600 `
+                  )}
+                >
+                  {/*lg:[&:nth-child(1)]:col-span-1 [&:nth-child(3)]:row-span-2 [&:nth-child(3)>div>img]:h-full */}
+                  <CardHeader
+                    className={cn("flex h-64 flex-grow space-y-0 p-0 sm:h-80")}
                   >
-                    <span className="line-clamp-1 py-1">{cat.label}</span>
-                  </Link>
-                </CardHeader>
-              </Card>
+                    <ImageWithFallback
+                      priority
+                      loading="eager"
+                      src={cat.cover ?? defaultImage.src}
+                      fallBackSrc={defaultImage}
+                      placeholder="blur"
+                      blurDataURL={cat.blurUrl ?? defaultImage.src}
+                      alt={cat.label ?? "category"}
+                      className={cn(
+                        "h-full rounded-2xl object-cover shadow-md"
+                      )}
+                      width={800}
+                      height={800}
+                    />
+                    <Link
+                      className="absolute z-0 m-0 flex h-full w-full items-end bg-gradient-to-b from-transparent from-85% to-black p-1 px-3
+                         text-lg font-bold text-white drop-shadow-xl transition-opacity duration-200 hover:opacity-0 focus:opacity-0 sm:text-xl"
+                      href={"regions/" + cat.id}
+                    >
+                      <span className="line-clamp-1 py-1">{cat.label}</span>
+                    </Link>
+                  </CardHeader>
+                </Card>
               </li>
             );
           })}

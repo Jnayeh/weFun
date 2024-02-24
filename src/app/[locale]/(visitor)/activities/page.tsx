@@ -80,6 +80,8 @@ export const Activities = async () => {
             >
               <CardHeader className="relative aspect-video flex-shrink flex-grow p-0">
                 <ImageWithFallback
+                  priority
+                  loading="eager"
                   src={act.cover ?? defaultImage.src}
                   fallBackSrc={defaultImage}
                   blurDataURL={defaultImage.src}
