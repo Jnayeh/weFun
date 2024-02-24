@@ -3,10 +3,14 @@ import { drizzle } from "drizzle-orm/mysql2";
 import { env } from "~/env.mjs";
 import { registerService } from "~/utils/helpers/server";
 
-let client = await mysql.createConnection(env.DATABASE_URL);
+let client = mysql.createPool({
+  uri: env.DATABASE_URL,
+  connectionLimit: 3,
+});
 try {
-  await client.connect();
-  console.log("Database connection successful");
+  client.once("connect", () => {
+    console.log("Database connection successful");
+  });
 } catch (error) {
   console.error("Database connection error:", error);
 }
