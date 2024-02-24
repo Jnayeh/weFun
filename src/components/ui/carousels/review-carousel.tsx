@@ -34,7 +34,7 @@ export function ReviewCarousel(
       opts={{
         align: "center",
       }}
-      className="w-11/12"
+      className="w-11/12 pb-10"
     >
       <CarouselContent className="pt-7">
         {reviews.map((_, index) => (
@@ -59,8 +59,8 @@ export function ReviewCarousel(
         ))}
       </CarouselContent>
       <div className=" flex items-center justify-center gap-5 pt-10">
-        <CarouselPrevious variant="default" className=" static bg-orange-350" />
-        <CarouselNext variant="default" className=" static bg-orange-350" />
+        <CarouselPrevious variant="default" className=" static bg-[#004449] md:bg-orange-350" />
+        <CarouselNext variant="default" className=" static bg-[#004449] md:bg-orange-350" />
       </div>
     </Carousel>
   );

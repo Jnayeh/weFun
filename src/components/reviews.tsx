@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ReviewCarousel } from "./ui/carousels/review-carousel";
 
 const Reviews = () => {
@@ -7,7 +8,7 @@ const Reviews = () => {
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod",
       user: {
         name: "Mourad Slim Jnayeh",
-        image: "/ellipse-5@2x.png",
+        image: "/review.webp",
       },
     },
     {
@@ -15,7 +16,7 @@ const Reviews = () => {
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod",
       user: {
         name: "Hamida Oura",
-        image: "/ellipse-5@2x.png",
+        image: "/review.webp",
       },
     },
     {
@@ -23,7 +24,7 @@ const Reviews = () => {
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod",
       user: {
         name: "Atef Baghli",
-        image: "/ellipse-5@2x.png",
+        image: "/review.webp",
       },
     },
     {
@@ -31,7 +32,7 @@ const Reviews = () => {
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod",
       user: {
         name: "Dhia Jaghli",
-        image: "/ellipse-5@2x.png",
+        image: "/review.webp",
       },
     },
     {
@@ -39,15 +40,28 @@ const Reviews = () => {
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod",
       user: {
         name: "Aminus Omri",
-        image: "/ellipse-5@2x.png",
+        image: "/review.webp",
       },
     },
   ];
 
   return (
-    <section className={`w-full aspect-video flex flex-col justify-center items-center bg-slate-700 p-4 z-0 gap-10 bg-[url("/images/reviews-back.jpg")] bg-cover`}>
-      <h2 className="text-[10dvw] sm:text-7xl font-extrabold uppercase text-white ">reviews</h2>
-      <ReviewCarousel reviews={reviews}/>
+    <section
+      className={`relative z-0 flex h-fit w-full flex-col items-center justify-center gap-10 overflow-hidden bg-slate-700 bg-cover p-4`}
+    >
+      <Image
+        src="/images/reviews-back.webp"
+        className="absolute h-[120%] w-screen object-cover"
+        width={1920}
+        height={1280}
+        priority
+        alt="reviews background"
+        aria-hidden
+      />
+      <h2 className="z-0 text-[10dvw] font-extrabold uppercase text-white sm:text-7xl">
+        reviews
+      </h2>
+      <ReviewCarousel reviews={reviews} />
     </section>
   );
 };
