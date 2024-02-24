@@ -21,7 +21,7 @@ export default function Regions() {
     return (
       <>
         <h2>All regions</h2>
-        <ul className=" grid grid-cols-1 gap-3 xs:grid-cols-2 md:grid-cols-3">
+        <ul className="mx-auto grid w-full max-w-screen-2xl grid-cols-1 gap-3 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           {data.map((cat, index) => {
             return (
               <li

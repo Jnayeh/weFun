@@ -5,7 +5,7 @@ export function MasonryGridSkeleton() {
   return (
     <ul
       className={cn(
-        `mx-auto grid w-full max-w-screen-2xl grid-cols-1 gap-3 xs:grid-cols-2 md:grid-cols-3 `
+        `mx-auto grid w-full max-w-screen-2xl grid-cols-1 gap-3 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5`
       )}
     >
       {[0, 1, 3, 4, 5, 6, 7, 8, 9].map((i) => (
