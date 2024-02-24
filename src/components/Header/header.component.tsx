@@ -15,7 +15,6 @@ const Header = () => {
       )}
     >
       <Image
-        priority
         src="/new_hero.webp"
         alt="spider web"
         aria-hidden
@@ -29,7 +28,7 @@ const Header = () => {
           <FloatingCards />
         </Suspense>
         <div className="z-0 flex w-full flex-col items-center justify-center text-white shadow-black drop-shadow ">
-          <h1 className=" flex flex-col justify-center text-center font-extrabold transition-all duration-500 dark:text-white text-2xl xs:text-4xl sm:text-5xl md:text-6xl ">
+          <h1 className=" flex flex-col justify-center text-center text-2xl font-extrabold transition-all duration-500 dark:text-white xs:text-4xl sm:text-5xl md:text-6xl ">
             <span className="flex justify-center">Barmej Kharja</span>
             <span className="leading-snug ">m3a Shella</span>
           </h1>
@@ -51,11 +50,11 @@ const Header = () => {
           </div>
         </div>
       </div>
-      <div className="flex justify-center items-start h-[14%] gap-1 pt-4">
-        <Skeleton className="h-10 w-24"/>
-        <Skeleton className="h-10 w-24"/>
-        <Skeleton className="h-10 w-24"/>
-        <Skeleton className="h-10 w-24"/>
+      <div className="flex h-[14%] items-start justify-center gap-1 pt-4">
+        <Skeleton className="h-10 w-24" />
+        <Skeleton className="h-10 w-24" />
+        <Skeleton className="h-10 w-24" />
+        <Skeleton className="h-10 w-24" />
       </div>
     </header>
   );
@@ -65,6 +64,7 @@ const FloatingCards = async () => {
   const activities = [
     {
       src: "/images/dodge.webp",
+      priority: false,
       placing:
         "left-[33%] top-[8%] h-32 w-24 md:brightness-90 brightness-[60%]",
       width: 96,
@@ -72,24 +72,28 @@ const FloatingCards = async () => {
     },
     {
       src: "/images/paraglider.webp",
+      priority: true,
       placing: "bottom-2 left-[12%] h-72 w-52",
       width: 208,
       height: 288,
     },
     {
       src: "/images/hiking.webp",
+      priority: false,
       placing: "left-[3%] top-[20%] h-56 w-40",
       width: 160,
       height: 224,
     },
     {
       src: "/images/billard.webp",
+      priority: false,
       placing: "right-[8%] sm:right-[10%] top-20 h-60 w-44",
       width: 176,
       height: 240,
     },
     {
       src: "/images/basketball.webp",
+      priority: false,
       placing: "bottom-4 right-[12%] sm:right-[16%] h-64 w-48",
       width: 192,
       height: 256,
@@ -111,7 +115,7 @@ const FloatingCards = async () => {
             alt="activity"
             placeholder="blur"
             blurDataURL={blurData[index] ?? ""}
-            priority
+            priority={activity.priority}
             width={activity.width}
             height={activity.height}
             className={cn(

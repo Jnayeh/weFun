@@ -54,7 +54,6 @@ const Reviews = () => {
         className="absolute h-[120%] w-screen object-cover"
         width={1920}
         height={1280}
-        priority
         alt="reviews background"
         aria-hidden
       />
