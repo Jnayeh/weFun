@@ -113,15 +113,13 @@ export default function Navbar() {
 
   const { isLoaded, isSignedIn, signOut } = useAuth();
   const isHome = location === "/";
-  const scroll = useScroll() || !isHome;
   return (
     <div
       className={cn(`${
         isHome ? "fixed" : "sticky"
       } top-0 z-30 min-w-full max-w-[1600px] items-center justify-center 
-        transition-all duration-200  ${
-          scroll &&
-          "bg-white bg-opacity-70 backdrop-blur dark:bg-gray-800 dark:bg-opacity-60 dark:backdrop-blur-md md:bg-opacity-80 dark:md:bg-opacity-90"
+        bg-white bg-opacity-70 backdrop-blur transition-all duration-200 dark:bg-gray-800 dark:bg-opacity-60 dark:backdrop-blur-md md:bg-opacity-80 dark:md:bg-opacity-90 ${
+          isHome && "bg-scroll"
         }`)}
     >
       <nav
@@ -129,20 +127,17 @@ export default function Navbar() {
           "mx-auto flex h-[60px] w-full max-w-[1500px] items-center justify-between p-2 lg:px-12"
         )}
       >
-        <div className=" flex flex-shrink-0 items-center">
+        <div className=" flex items-center">
           <BrandSvg
             className={cn(
-              "w-32 rounded-md fill-black transition-all dark:fill-slate-100",
-              !scroll && "scale-125 pl-3"
+              "w-32 rounded-md fill-black transition-all dark:fill-slate-100"
             )}
           />
         </div>
         <ul
           className={cn(
             `relative hidden h-full max-w-full list-none items-center overflow-hidden p-0 px-3 text-black transition-transform
-              duration-100 dark:text-white ${
-                !scroll && " scale-110 text-white drop-shadow-md"
-              } md:flex `
+              duration-100 dark:text-white ${isHome && "link-scale"} md:flex `
           )}
           ref={navListRef}
         >
@@ -204,19 +199,19 @@ export default function Navbar() {
           <Suspense>
             <ToggleButton className={cn("z-10 ")} />
           </Suspense>
-          <UserSvg className={cn("block", !scroll && " text-white")} />
+          <UserSvg className={cn("block", isHome && "white-menu")} />
           <Link
             href="/auth/signup"
             className={cn(
-              "group hidden h-10 items-center gap-1 rounded-full border-2 border-black p-2 px-3 text-sm font-semibold uppercase transition-all duration-75 hover:border-transparent hover:bg-red-500 hover:text-white dark:border-white dark:hover:border-transparent md:flex",
-              !scroll && " border-white text-white"
+              "group hidden h-10 items-center gap-1 rounded-full border-2 border-black p-2 px-3 text-sm font-semibold uppercase transition-all duration-75 hover:scale-90 hover:border-transparent hover:bg-slate-800 hover:text-white dark:border-white dark:hover:border-transparent md:flex",
+              isHome && "white-borders"
             )}
           >
             Sign up
             <Arrow
               className={cn(
                 "scale-75 fill-black stroke-black group-hover:fill-white group-hover:stroke-white dark:fill-white dark:stroke-white",
-                !scroll && "fill-white stroke-white"
+                isHome && "white-arrow"
               )}
             />
           </Link>

@@ -1,2 +1,60 @@
-@import url('./menu-button.css');
-@import url('./nav-list.css');
+@import url("./menu-button.css");
+@import url("./nav-list.css");
+
+@keyframes fade-background {
+  from {
+    @apply bg-transparent backdrop-blur-none;
+  }
+  to {
+  }
+}
+.bg-scroll {
+  animation: fade-background linear both;
+}
+@keyframes scale-in {
+  0% {
+    @apply scale-110 text-white drop-shadow-md;
+  }
+  10% {
+    @apply text-current;
+  }
+}
+
+@keyframes whiten-border {
+  0% {
+    @apply border-white;
+  }
+}
+
+@keyframes whiten-text {
+  0% {
+    @apply text-white;
+  }
+}
+
+@keyframes whiten-arrow {
+  0% {
+    @apply fill-white stroke-white;
+  }
+}
+
+.white-borders {
+  animation: whiten-border, whiten-text linear both;
+}
+.white-menu {
+  animation: whiten-text linear both;
+}
+.white-arrow {
+  animation: whiten-arrow linear both;
+}
+.link-scale {
+  animation: scale-in linear both;
+}
+.bg-scroll,
+.link-scale,
+.white-borders,
+.white-menu,
+.white-arrow {
+  animation-timeline: scroll();
+  animation-range: 0 150px;
+}
