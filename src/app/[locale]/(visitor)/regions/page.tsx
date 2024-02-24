@@ -1,7 +1,5 @@
 import { cn } from "~/utils/helpers/server";
-import { MasonryGridSkeleton } from "~/components/skeletons/masonry-grid";
 import { Metadata } from "next";
-import { Suspense } from "react";
 import Regions from "./regions";
 
 export const metadata: Metadata = {

@@ -8,6 +8,7 @@ import Reviews from "~/components/reviews";
 import Image from "next/image";
 import { SlidingCardsSkeleton } from "~/components/skeletons/sliding-card";
 import { Link } from "~/navigation";
+import dynamic from "next/dynamic";
 
 const Home = () => {
   const t = useTranslations("Home");
@@ -23,7 +24,7 @@ const Home = () => {
     <>
       <Header />
 
-      <main className=" relative mx-auto flex flex-col items-center justify-center py-4">
+      <main className=" relative mx-auto flex flex-col items-center justify-center">
         {/* <div className="flex h-[60px] w-full items-center gap-4 overflow-hidden bg-gray-800 font-rubik text-5xl text-beige">
           <div
             className="flex animate-marquee whitespace-nowrap py-2"
@@ -51,7 +52,7 @@ const Home = () => {
             </Link>
           </div>
         </section> */}
-        <section className="sticky top-0 z-0 h-[85dvh] w-full">
+        <section className="h-[85dvh] w-full overflow-hidden">
           <div className="relative h-full w-full">
             <h2
               className="absolute top-12 z-0 mx-[10%] flex w-[80%] justify-center text-center 
@@ -60,7 +61,7 @@ const Home = () => {
               discover the best activities <br /> with one swipe
             </h2>
             <Image
-              className="h-full w-full object-cover"
+              className="h-[90dvh] w-full object-cover"
               alt="friends sitting in front of firecamp"
               width={1000}
               height={1000}

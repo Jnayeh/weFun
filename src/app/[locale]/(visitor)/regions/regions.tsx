@@ -34,7 +34,7 @@ export default function Regions() {
                 key={cat.id}
                 className={cn(
                   `relative flex flex-col justify-between overflow-hidden h-full rounded-2xl 
-                  bg-slate-50 dark:bg-slate-600 `
+                  bg-slate-300 dark:bg-slate-600 `
                 )}
               >
                 {/*lg:[&:nth-child(1)]:col-span-1 [&:nth-child(3)]:row-span-2 [&:nth-child(3)>div>img]:h-full */}
@@ -51,7 +51,7 @@ export default function Regions() {
                   />
                   <Link
                     className="absolute m-0 hover:opacity-0 focus:opacity-0 transition-opacity duration-200 flex h-full w-full items-end p-1 px-3 text-lg
-                         font-bold text-white drop-shadow-xl sm:text-xl z-0 bg-gradient-to-b from-transparent from-80% to-black"
+                         font-bold text-white drop-shadow-xl sm:text-xl z-0 bg-gradient-to-b from-transparent from-85% to-black"
                     href={"regions/" + cat.id}
                   >
                     <span className="line-clamp-1 py-1">{cat.label}</span>

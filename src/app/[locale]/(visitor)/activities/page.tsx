@@ -78,7 +78,7 @@ export const Activities = async () => {
                 `relative flex flex-col justify-between rounded-3xl bg-slate-50 shadow-lg dark:bg-slate-600 [&>div>img]:aspect-[19/10] lg:[&>div>img]:aspect-video`
               )}
             >
-              <CardHeader className="relative flex-shrink flex-grow p-0 aspect-video">
+              <CardHeader className="relative aspect-video flex-shrink flex-grow p-0">
                 <ImageWithFallback
                   src={act.cover ?? defaultImage.src}
                   fallBackSrc={defaultImage}
@@ -99,7 +99,9 @@ export const Activities = async () => {
                 </button>
               </CardHeader>
               <CardContent className="px-5 pb-1 pt-6 [&>*]:line-clamp-1">
-                <CardTitle className=" leading-normal" title={act.label ?? ""}>{act.label}</CardTitle>
+                <CardTitle className=" leading-normal" title={act.label ?? ""}>
+                  {act.label}
+                </CardTitle>
               </CardContent>
               <CardFooter className="flex justify-between px-5 pb-2">
                 {act.location ? (
