@@ -4,18 +4,11 @@ import { cookies } from "next/headers";
 import { ClerkProvider } from "@clerk/nextjs";
 
 import { ThemeProvider } from "~/utils/theme-provider";
-import { ResolvingMetadata, Metadata } from "next";
+import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 
-type Props = {
-  params: { id: string };
-  searchParams: { [key: string]: string | string[] | undefined };
-};
 
-export async function generateMetadata(
-  { params, searchParams }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("Home");
   return {
     title: t("title"),
