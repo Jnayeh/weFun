@@ -231,7 +231,6 @@ function SelectCategory() {
           alt=""
           width={400}
           height={400}
-          placeholder="blur"
           className=" mt-6 max-h-96 min-h-[200px] w-[90%] max-w-sm rounded-xl object-cover"
         />
       )}

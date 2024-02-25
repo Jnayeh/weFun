@@ -31,7 +31,7 @@ export default async function PlanningSteps() {
           <span>in 3 words</span>
         </h2>
         <Image
-          className="absolute -top-10 -z-10 h-[150%] w-full object-cover "
+          className="absolute -top-10 -z-10 h-[150%] w-full object-cover brightness-75"
           alt="friends sitting in front of firecamp"
           placeholder="blur"
           blurDataURL={blurData}

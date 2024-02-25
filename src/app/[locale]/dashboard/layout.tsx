@@ -10,6 +10,8 @@ import {
 } from "lucide-react";
 import { Link, usePathname } from "~/navigation";
 import "./style.css";
+import LoadingLogo from "~/components/SvgStore/LoadingLogo";
+import BrandSvg from "~/components/SvgStore/BrandSvg";
 
 export default function DashboardLayout({
   children,
@@ -20,12 +22,8 @@ export default function DashboardLayout({
   return (
       <main>
         <nav className="main-menu">
-          <h1>Fitness App</h1>
-          <img
-            className="logo"
-            src="https://github.com/ecemgo/mini-samples-great-tricks/Linkssets/13468728/4cfdcb5a-0137-4457-8be1-6e7bd1f29ebb"
-            alt=""
-          />
+          <h1 className="h-24"><BrandSvg className="absolute  -translate-y-1/3 fill-white w-10/12 mx-auto" /> </h1>
+          <LoadingLogo className=" xl:hidden fill-white" />
           <ul className=" grid grid-flow-row grid-cols-1 h-max">
             <li className={`nav-it ${location == "/dashboard" && "active"}`}>
               <b></b>
