@@ -22,7 +22,7 @@ export function CategoryCarousel() {
   return (
     <Carousel
       opts={{
-        align: "center",
+        align: "start",
       }}
       className="w-full max-w-fit"
     >
@@ -33,8 +33,8 @@ export function CategoryCarousel() {
             className=" w-fit min-w-max flex-initial pl-2 first:pl-4"
           >
             <Card tabIndex={0} className="bg-slate-500 text-white">
-              <CardContent className="flex items-center justify-center whitespace-nowrap p-3">
-                <span className="text-xs md:text-base font-semibold select-none">{cat.label}</span>
+              <CardContent className="flex items-center justify-center whitespace-nowrap py-2 px-3">
+                <span className="text-sm md:text-base font-semibold select-none">{cat.label}</span>
               </CardContent>
             </Card>
           </CarouselItem>
