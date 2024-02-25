@@ -11,7 +11,7 @@ const Header = () => {
   return (
     <header
       className={cn(
-        "font-ubuntu relative mx-auto flex h-[calc(110dvh-72px)] max-h-[1080px] min-h-fit flex-col items-center overflow-hidden pb-20 md:h-[110dvh] md:h-[110vh] md:px-12 md:pb-4 "
+        "relative mx-auto flex h-[calc(110dvh-72px)] max-h-[1080px] min-h-fit flex-col items-center overflow-hidden pb-20 font-ubuntu md:h-[110dvh] md:h-[110vh] md:px-12 md:pb-4 "
       )}
     >
       <Image
@@ -27,7 +27,7 @@ const Header = () => {
         <Suspense>
           <FloatingCards />
         </Suspense>
-        <div className="z-0 flex w-full flex-col items-center justify-center text-white shadow-black drop-shadow ">
+        <div className="z-0 flex w-full flex-col items-center justify-center text-white shadow-black drop-shadow pt-32 ">
           <h1 className=" flex flex-col justify-center text-center text-2xl font-extrabold transition-all duration-500 dark:text-white xs:text-4xl sm:text-5xl md:text-6xl ">
             <span className="flex justify-center">Barmej Kharja</span>
             <span className="leading-snug ">m3a Shella</span>
@@ -65,8 +65,7 @@ const FloatingCards = async () => {
     {
       src: "/images/dodge.webp",
       priority: false,
-      placing:
-        "left-[26%] top-24 h-32 w-24 md:brightness-90 brightness-[60%]",
+      placing: "left-[26%] top-24 h-32 w-24 md:brightness-90 brightness-[60%]",
       width: 96,
       height: 128,
     },
@@ -119,7 +118,7 @@ const FloatingCards = async () => {
             width={activity.width}
             height={activity.height}
             className={cn(
-              " absolute rounded-lg bg-slate-300 object-cover shadow-2xl brightness-50 md:brightness-75",
+              " absolute rounded-lg bg-slate-300 object-cover shadow-2xl shadow-[black/30%] brightness-50 md:brightness-75",
               activity.placing
             )}
           />

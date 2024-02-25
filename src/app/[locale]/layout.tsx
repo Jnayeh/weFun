@@ -7,7 +7,6 @@ import { ThemeProvider } from "~/utils/theme-provider";
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 
-
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("Home");
   return {
@@ -35,7 +34,7 @@ export default function LocaleLayout({
   params: { locale: string };
 }) {
   return (
-    <ThemeProvider enableSystem attribute="class">
+    <ThemeProvider enableSystem attribute="class" locale={locale}>
       <ClerkProvider>
         <TRPCReactProvider cookies={cookies().toString()}>
           {children}

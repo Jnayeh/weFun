@@ -110,12 +110,6 @@ main {
 	@apply text-current bg-white dark:bg-slate-900;
 }
 
-.nav-icon {
-	width: 60px;
-	height: 20px;
-	font-size: 20px;
-	text-align: center;
-}
 
 .nav-text {
 	display: block;

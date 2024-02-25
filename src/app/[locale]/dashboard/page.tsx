@@ -144,10 +144,6 @@ export default function Home() {
 
 			<div className="right-content">
 				<div className="user-info">
-					<div className="icon-container">
-						<i className="fa fa-bell nav-icon"></i>
-						<i className="fa fa-message nav-icon"></i>
-					</div>
 					<h4>Kelsey Miller</h4>
 					<img src="https://github.com/ecemgo/mini-samples-great-tricks/Linkssets/13468728/40b7cce2-c289-4954-9be0-938479832a9c" alt="user" />
 				</div>

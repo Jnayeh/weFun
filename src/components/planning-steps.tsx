@@ -24,14 +24,14 @@ export default async function PlanningSteps() {
     <section className="relative h-fit w-full">
       <div className="relative h-fit w-full">
         <h2
-          className=" z-10 flex w-[80%] flex-col justify-center text-center font-ubuntu text-[15vw] font-medium pt-16 sm:pt-0
+          className=" z-10 flex w-[80%] flex-col justify-center text-center font-ubuntu text-[15vw] leading-tight font-medium pt-10 sm:pt-0
             text-white 2xs:text-7xl md:flex-row md:gap-2 sm:text-8xl md:absolute md:-top-16 mx-[10%] md:text-6xl xl:text-7xl"
         >
           <span>Barmejha</span>
           <span>in 3 words</span>
         </h2>
         <Image
-          className="absolute -top-10 -z-10 h-[150%] w-full object-cover object-bottom"
+          className="absolute -top-10 -z-10 h-[150%] w-full object-cover "
           alt="friends sitting in front of firecamp"
           placeholder="blur"
           blurDataURL={blurData}
@@ -40,7 +40,7 @@ export default async function PlanningSteps() {
           src="/beach.webp"
         />
 
-        <div className="z-10 flex h-full w-full flex-col items-center justify-center gap-6 p-4 py-32 pb-16 md:flex-row md:gap-4 md:pb-32">
+        <div className="z-10 flex h-full w-full flex-col items-center justify-center gap-8 p-8 pt-24 pb-16 md:flex-row md:gap-4 md:pt-48 md:pb-32">
           {steps.map((step, index) => (
             <div
               key={index}
@@ -52,7 +52,7 @@ export default async function PlanningSteps() {
               <Image
                 src={step.src}
                 alt={step.alt}
-                className=" h-32 object-contain md:absolute md:top-0 md:-z-10 md:-translate-y-3/4"
+                className=" h-32 w-auto object-contain md:absolute md:top-0 md:-z-10 md:-translate-y-3/4"
                 width={170}
                 height={140}
               />
