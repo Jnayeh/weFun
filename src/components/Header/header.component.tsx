@@ -11,7 +11,7 @@ const Header = () => {
   return (
     <header
       className={cn(
-        " relative mx-auto flex h-[calc(100dvh-72px)] max-h-[1080px] min-h-fit flex-col items-center overflow-hidden pb-20 md:h-dvh md:h-screen md:px-12 md:pb-4 "
+        "font-ubuntu relative mx-auto flex h-[calc(110dvh-72px)] max-h-[1080px] min-h-fit flex-col items-center overflow-hidden pb-20 md:h-[110dvh] md:h-[110vh] md:px-12 md:pb-4 "
       )}
     >
       <Image
@@ -23,7 +23,7 @@ const Header = () => {
         width={1900}
         fetchPriority="high"
       />
-      <div className=" relative flex h-[86%] w-full flex-col justify-center">
+      <div className=" relative flex h-[86vh] w-full flex-col justify-center">
         <Suspense>
           <FloatingCards />
         </Suspense>
@@ -32,7 +32,7 @@ const Header = () => {
             <span className="flex justify-center">Barmej Kharja</span>
             <span className="leading-snug ">m3a Shella</span>
           </h1>
-          <p className="py-4 text-center text-base font-semibold capitalize transition-all duration-500 dark:text-white xs:text-xl md:text-2xl ">
+          <p className=" py-4 text-center text-base font-semibold capitalize transition-all duration-500 dark:text-white xs:text-xl md:text-2xl ">
             <span className="font-marhey ">و أصنع جوك مع صحابك </span> Plani
             <br />
             new connections <span className="font-marhey">ولا</span>
@@ -50,7 +50,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-      <div className="flex h-[14%] items-start justify-center gap-1 pt-4">
+      <div className="flex h-[20%] items-start justify-center gap-1 pt-4">
         <Skeleton className="h-10 w-24" />
         <Skeleton className="h-10 w-24" />
         <Skeleton className="h-10 w-24" />
@@ -66,7 +66,7 @@ const FloatingCards = async () => {
       src: "/images/dodge.webp",
       priority: false,
       placing:
-        "left-[33%] top-[8%] h-32 w-24 md:brightness-90 brightness-[60%]",
+        "left-[26%] top-24 h-32 w-24 md:brightness-90 brightness-[60%]",
       width: 96,
       height: 128,
     },
