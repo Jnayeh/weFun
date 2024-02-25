@@ -17,6 +17,7 @@ import { Metadata } from "next";
 import { api } from "~/trpc/server";
 import { Suspense, lazy } from "react";
 import { ActivitiesSkeleton } from "~/components/skeletons/activities";
+
 const LottiePlayer = lazy(() =>
   import("~/components/LottiePlayer").then((mod) => ({
     default: mod.LottiePlayer,
@@ -25,9 +26,10 @@ const LottiePlayer = lazy(() =>
 );
 
 export const metadata: Metadata = {
-  title: "Activities - Find your new experiences",
-  description: "List of activities from different providers",
+  title: "Locations - Find your new experiences",
+  description: "List of places for activities",
 };
+
 export const cachableGetActivities = nextCache(
   async ({ name }) => {
     return api.activity.getAll.query({ name });
@@ -35,6 +37,8 @@ export const cachableGetActivities = nextCache(
   ["activities"],
   { tags: ["getActivities"], revalidate: 60 }
 );
+
+
 const ActivitiesPage = () => {
   return (
     <>
