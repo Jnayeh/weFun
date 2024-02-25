@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-const plugin = require('tailwindcss/plugin')
+const plugin = require("tailwindcss/plugin");
 module.exports = {
   darkMode: ["class"],
   content: [
@@ -18,9 +18,9 @@ module.exports = {
     },
     extend: {
       textShadow: {
-        sm: '0.5px 0 var(--tw-shadow-color)',
-        DEFAULT: '1px 0 var(--tw-shadow-color)',
-        lg: '2px 0 var(--tw-shadow-color)',
+        sm: "0.5px 0 var(--tw-shadow-color)",
+        DEFAULT: "1px 0 var(--tw-shadow-color)",
+        lg: "2px 0 var(--tw-shadow-color)",
       },
       /* colors: {
         primary: "",
@@ -68,11 +68,9 @@ module.exports = {
         },
       },
       fontFamily: {
-        rubik: "Rubik",
-        marhey: "Marhey",
-        montserrat: "Montserrat",
-        "stretch-pro": "'Stretch Pro'",
-        "strretch-sans": "'STRRETCH SANS'",
+        marhey: ["var(--font-marhey)"],
+        "roboto-slab": ["var(--font-roboto-slab)"],
+        ubuntu: ["var(--font-ubuntu)"],
       },
       keyframes: {
         "accordion-down": {
@@ -132,11 +130,12 @@ module.exports = {
     plugin(function ({ matchUtilities, theme }) {
       matchUtilities(
         {
-          'text-shadow': (value) => ({
+          "text-shadow": (value) => ({
             textShadow: value,
           }),
         },
-        { values: theme('textShadow') }
-      )
-    })],
+        { values: theme("textShadow") }
+      );
+    }),
+  ],
 };
