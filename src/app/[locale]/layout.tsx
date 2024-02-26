@@ -1,4 +1,3 @@
-import "~/styles/globals.css";
 import { TRPCReactProvider } from "~/trpc/react";
 import { cookies } from "next/headers";
 import { ClerkProvider } from "@clerk/nextjs";

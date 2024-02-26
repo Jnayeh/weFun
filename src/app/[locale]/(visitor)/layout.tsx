@@ -1,4 +1,3 @@
-import "~/styles/globals.css";
 import { Suspense } from "react";
 import dynamic from "next/dynamic";
 const Footer = dynamic(() => import("~/components/Footer/footer.component"), {

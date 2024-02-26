@@ -10,17 +10,20 @@ export function ThemeProvider({
   locale,
   ...props
 }: ThemeProviderProps & { locale?: string }) {
-  if (typeof window !== "undefined" && locale)
-    window.document.documentElement.lang = locale;
   return (
-    <NextThemesProvider {...props}>
-      <AppProgressBar
-        height="8px"
-        color="#E60000"
-        options={{ showSpinner: false }}
-        shallowRouting
-      />
-      {children}
-    </NextThemesProvider>
+    <body
+      className="min-h-screen bg-white dark:bg-gray-900 dark:text-white"
+      lang={locale}
+    >
+      <NextThemesProvider {...props}>
+        <AppProgressBar
+          height="6px"
+          color="red"
+          options={{ showSpinner: false }}
+          shallowRouting
+        />
+        {children}
+      </NextThemesProvider>
+    </body>
   );
 }

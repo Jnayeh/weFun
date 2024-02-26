@@ -1,5 +1,4 @@
 import "~/styles/globals.css";
-import { ThemeProvider } from "~/utils/theme-provider";
 
 import { Marhey, Roboto_Slab, Ubuntu } from "next/font/google";
 const marhey = Marhey({
@@ -25,15 +24,10 @@ export default function RootLayout({
 }) {
   return (
     <html
-      style={robotoSlab.style}
-      className={` ${marhey.variable} ${robotoSlab.variable} ${ubuntu.variable} scroll-smooth `}
+      className={` ${marhey.variable} ${robotoSlab.variable} ${ubuntu.variable} scroll-smooth ${robotoSlab.className}`}
       suppressHydrationWarning
     >
-      <body className="min-h-screen bg-white dark:bg-gray-900 dark:text-white">
-        <ThemeProvider enableSystem attribute="class">
-          {children}
-        </ThemeProvider>
-      </body>
+      {children}
     </html>
   );
 }
