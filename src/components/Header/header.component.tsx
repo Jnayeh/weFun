@@ -67,8 +67,7 @@ const FloatingCards = async () => {
     {
       src: "/images/dodge.webp",
       priority: false,
-      placing:
-        "left-[26%] top-24 h-32 w-auto md:brightness-90 brightness-75",
+      placing: "left-[26%] top-24 h-32 w-auto md:brightness-90 brightness-75",
       width: 96,
       height: 128,
     },

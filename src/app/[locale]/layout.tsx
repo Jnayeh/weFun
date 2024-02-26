@@ -33,17 +33,12 @@ export default function LocaleLayout({
   params: { locale: string };
 }) {
   return (
-    <body
-      className="min-h-screen bg-white dark:bg-gray-900 dark:text-white"
-      lang={locale}
-    >
-      <ThemeProvider enableSystem attribute="class" locale={locale}>
-        <ClerkProvider>
-          <TRPCReactProvider cookies={cookies().toString()}>
-            {children}
-          </TRPCReactProvider>
-        </ClerkProvider>
-      </ThemeProvider>
-    </body>
+    <ThemeProvider enableSystem attribute="class" locale={locale}>
+      <ClerkProvider>
+        <TRPCReactProvider cookies={cookies().toString()}>
+          {children}
+        </TRPCReactProvider>
+      </ClerkProvider>
+    </ThemeProvider>
   );
 }

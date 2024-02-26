@@ -25,10 +25,10 @@ export default function RootLayout({
 }) {
   return (
     <html
-      className={` ${marhey.variable} ${robotoSlab.variable} ${ubuntu.variable} scroll-smooth ${robotoSlab.className}`}
+      className={` ${marhey.variable} ${robotoSlab.variable} ${ubuntu.variable} scroll-smooth ${robotoSlab.className} bg-white dark:bg-gray-900 dark:text-white`}
       suppressHydrationWarning
     >
-      {children}
+      <body className="min-h-screen">{children}</body>
     </html>
   );
 }

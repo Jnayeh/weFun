@@ -53,7 +53,7 @@ const Home = () => {
           </div>
         </section> */}
         <PlanningSteps />
-        <section className="z-0 w-full bg-slate-200 dark:bg-slate-600">
+        <section className="z-0 w-full bg-slate-200 dark:bg-slate-900">
           <div className="mx-auto w-[90%] max-w-7xl">
             <h2 className=" p-6 text-center font-montserrat text-3xl font-extrabold uppercase">
               top activities
