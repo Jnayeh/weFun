@@ -1,6 +1,7 @@
 import "~/styles/globals.css";
 
 import { Marhey, Roboto_Slab, Ubuntu } from "next/font/google";
+import { ThemeProvider } from "~/utils/theme-provider";
 const marhey = Marhey({
   subsets: ["arabic"],
   variable: "--font-marhey",

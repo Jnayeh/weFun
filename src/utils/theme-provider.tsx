@@ -11,19 +11,14 @@ export function ThemeProvider({
   ...props
 }: ThemeProviderProps & { locale?: string }) {
   return (
-    <body
-      className="min-h-screen bg-white dark:bg-gray-900 dark:text-white"
-      lang={locale}
-    >
-      <NextThemesProvider {...props}>
-        <AppProgressBar
-          height="6px"
-          color="red"
-          options={{ showSpinner: false }}
-          shallowRouting
-        />
-        {children}
-      </NextThemesProvider>
-    </body>
+    <NextThemesProvider {...props}>
+      <AppProgressBar
+        height="6px"
+        color="red"
+        options={{ showSpinner: false }}
+        shallowRouting
+      />
+      {children}
+    </NextThemesProvider>
   );
 }
