@@ -1,9 +1,10 @@
-"use client";
+
 
 import { Metadata } from "next";
 import { CategoryCarousel } from "~/components/ui/carousels/category-carousel";
 import { cn } from "~/utils/helpers/server";
 import { Activities } from "../../activities/page";
+
 export const metadata: Metadata = {
   title: "Places - Find your new experiences",
   description: "Details about the category",
