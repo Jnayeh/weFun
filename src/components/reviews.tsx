@@ -49,14 +49,15 @@ const Reviews = () => {
     <section
       className={`relative z-0 flex h-fit w-full flex-col items-center justify-center gap-10 overflow-hidden bg-slate-700 bg-cover p-4`}
     >
-      <Image
-        src="/images/reviews-back.webp"
-        className="absolute h-[120%] w-screen object-cover"
-        width={1920}
-        height={1280}
-        alt="reviews background"
-        aria-hidden
-      />
+      <div className="absolute h-[120%] w-screen">
+        <Image
+          src="/images/reviews-back.webp"
+          className="object-cover"
+          fill
+          alt="reviews background"
+          aria-hidden
+        />
+      </div>
       <h2 className="z-0 text-[10dvw] font-extrabold uppercase text-white sm:text-7xl">
         reviews
       </h2>

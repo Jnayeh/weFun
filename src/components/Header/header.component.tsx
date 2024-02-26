@@ -14,20 +14,22 @@ const Header = () => {
         "relative mx-auto flex h-[calc(110dvh-72px)] max-h-[1080px] min-h-fit flex-col items-center overflow-hidden pb-20 font-ubuntu md:h-[110dvh] md:h-[110vh] md:px-12 md:pb-4 "
       )}
     >
-      <Image
-        src="/new_hero.webp"
-        alt="spider web"
-        aria-hidden
-        className=" absolute h-[120vh] w-screen bg-gradient-to-b from-[#e8614e] via-[#dd867c] to-[#e8614e] brightness-90 contrast-150"
-        height={1200}
-        width={1900}
-        fetchPriority="high"
-      />
+      <div className="absolute h-[120vh] w-screen">
+        <Image
+          src="/new_hero.webp"
+          alt="spider web"
+          aria-hidden
+          className="bg-gradient-to-b from-[#e8614e] via-[#dd867c] to-[#e8614e] brightness-90 contrast-150"
+          fill
+          quality={100}
+          fetchPriority="high"
+        />
+      </div>
       <div className=" relative flex h-[86vh] w-full flex-col justify-center">
         <Suspense>
           <FloatingCards />
         </Suspense>
-        <div className="z-0 flex w-full flex-col items-center justify-center text-white shadow-black drop-shadow pt-32 ">
+        <div className="z-0 flex w-full flex-col items-center justify-center pt-32 text-white shadow-black drop-shadow ">
           <h1 className=" flex flex-col justify-center text-center text-2xl font-extrabold transition-all duration-500 dark:text-white xs:text-4xl sm:text-5xl md:text-6xl ">
             <span className="flex justify-center">Barmej Kharja</span>
             <span className="leading-snug ">m3a Shella</span>
@@ -65,35 +67,36 @@ const FloatingCards = async () => {
     {
       src: "/images/dodge.webp",
       priority: false,
-      placing: "left-[26%] top-24 h-32 w-24 md:brightness-90 brightness-[60%]",
+      placing:
+        "left-[26%] top-24 h-32 w-auto md:brightness-90 brightness-75",
       width: 96,
       height: 128,
     },
     {
       src: "/images/paraglider.webp",
       priority: true,
-      placing: "bottom-2 left-[12%] h-72 w-52",
+      placing: "bottom-2 left-[12%] h-60 md:h-72 w-auto ",
       width: 208,
       height: 288,
     },
     {
       src: "/images/hiking.webp",
-      priority: false,
-      placing: "left-[3%] top-[20%] h-56 w-40",
+      priority: true,
+      placing: " left-[10%] md:left-[3%] top-[20%] h-72 w-auto md:h-56",
       width: 160,
       height: 224,
     },
     {
       src: "/images/billard.webp",
       priority: false,
-      placing: "right-[8%] sm:right-[10%] top-20 h-60 w-44",
+      placing: "right-[8%] sm:right-[10%] top-20 h-60 w-auto ",
       width: 176,
       height: 240,
     },
     {
       src: "/images/basketball.webp",
       priority: false,
-      placing: "bottom-4 right-[12%] sm:right-[16%] h-64 w-48",
+      placing: "bottom-4 right-[12%] sm:right-[16%] h-64 w-auto",
       width: 192,
       height: 256,
     },
@@ -118,7 +121,7 @@ const FloatingCards = async () => {
             width={activity.width}
             height={activity.height}
             className={cn(
-              " absolute rounded-lg bg-slate-300 object-cover shadow-2xl shadow-[black/30%] brightness-50 md:brightness-75",
+              " absolute rounded-lg bg-slate-300 object-cover shadow-2xl shadow-black/60 brightness-50 md:brightness-75",
               activity.placing
             )}
           />

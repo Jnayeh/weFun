@@ -24,23 +24,24 @@ export default async function PlanningSteps() {
     <section className="relative h-fit w-full">
       <div className="relative h-fit w-full">
         <h2
-          className=" z-10 flex w-[80%] flex-col justify-center text-center font-ubuntu text-[15vw] leading-tight font-medium pt-10 sm:pt-0
-            text-white 2xs:text-7xl md:flex-row md:gap-2 sm:text-8xl md:absolute md:-top-16 mx-[10%] md:text-6xl xl:text-7xl"
+          className=" z-10 mx-[10%] flex w-[80%] flex-col justify-center pt-10 text-center font-ubuntu text-[15vw] font-medium leading-tight
+            text-white 2xs:text-7xl sm:pt-0 sm:text-8xl md:absolute md:-top-16 md:flex-row md:gap-2 md:text-6xl xl:text-7xl"
         >
           <span>Barmejha</span>
           <span>in 3 words</span>
         </h2>
-        <Image
-          className="absolute -top-10 -z-10 h-[150%] w-full object-cover brightness-75"
-          alt="friends sitting in front of firecamp"
-          placeholder="blur"
-          blurDataURL={blurData}
-          width={1600}
-          height={1000}
-          src="/beach.webp"
-        />
+        <div className="absolute -top-10 -z-10 h-[150%] w-full">
+          <Image
+            className="object-cover brightness-90"
+            alt="friends sitting in front of firecamp"
+            placeholder="blur"
+            blurDataURL={blurData}
+            fill
+            src="/beach.webp"
+          />
+        </div>
 
-        <div className="z-10 flex h-full w-full flex-col items-center justify-center gap-8 p-8 pt-24 pb-16 md:flex-row md:gap-4 md:pt-48 md:pb-32">
+        <div className="z-10 flex h-full w-full flex-col items-center justify-center gap-8 p-8 pb-16 pt-24 md:flex-row md:gap-4 md:pb-32 md:pt-48">
           {steps.map((step, index) => (
             <div
               key={index}
@@ -56,7 +57,9 @@ export default async function PlanningSteps() {
                 width={170}
                 height={140}
               />
-              <p className=" px-4 pt-4 md:pt-2 font-medium">{step.description}</p>
+              <p className=" px-4 pt-4 font-medium md:pt-2">
+                {step.description}
+              </p>
             </div>
           ))}
         </div>
