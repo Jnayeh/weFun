@@ -6,6 +6,7 @@ import {
   CalendarRangeIcon,
   Handshake,
   Settings2,
+  MapIcon,
   User2Icon,
 } from "lucide-react";
 import { Link, usePathname } from "~/navigation";
@@ -70,6 +71,19 @@ export default function DashboardLayout({
               <Link href="/dashboard/activities">
                 <BikeIcon className="nav-icon" />
                 <span className="nav-text">Activities</span>
+              </Link>
+            </li>
+
+            <li
+              className={`nav-it ${
+                location == "/dashboard/locations" && "active"
+              }`}
+            >
+              <b></b>
+              <b></b>
+              <Link href="/dashboard/locations">
+                <MapIcon className="nav-icon" />
+                <span className="nav-text">Locations</span>
               </Link>
             </li>
 
