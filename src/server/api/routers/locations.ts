@@ -31,8 +31,8 @@ export const locationRouter = createTRPCRouter({
         label: z.string(),
         cover: z.string().optional(),
         location: z.string().optional(),
-        latitude: z.number().min(0.01),
-        longitude: z.number().min(0.01),
+        latitude: z.number().optional(),
+        longitude: z.number().optional(),
         visible: z.number().default(1),
       })
     )
@@ -42,7 +42,24 @@ export const locationRouter = createTRPCRouter({
         .values(input);
     }),
 
-
+    update: publicProcedure
+    .input(
+      z.object({
+        id: z.number(),
+        label: z.string(),
+        cover: z.string().optional(),
+        location: z.string().optional(),
+        latitude: z.number().optional(),
+        longitude: z.number().optional(),
+        visible: z.number().default(1),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      return await ctx.db
+        .update(locations)
+        .set(input)
+        .where(eq(locations.id, input.id));
+    }),
 
     delete: protectedProcedure.input(
       z.object({

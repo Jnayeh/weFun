@@ -7,7 +7,9 @@ import {
   protectedProcedure,
 } from "~/server/api/trpc";
 
-export const activityRouter = createTRPCRouter({
+// Todo : Add category id as optional input 
+// Todo : if category exists add a where clause 
+export  const activityRouter = createTRPCRouter({
   getAll: publicProcedure
     .input(z.object({ name: z.string() }))
     .query(({ ctx, input }) => {
