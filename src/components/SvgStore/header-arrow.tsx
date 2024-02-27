@@ -1,4 +1,7 @@
-export default function HeaderArrow(props: React.SVGProps<SVGSVGElement>) {
+export default function HeaderArrow({
+  id,
+  ...props
+}: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -21,7 +24,7 @@ export default function HeaderArrow(props: React.SVGProps<SVGSVGElement>) {
         </g>
       </g>
       <defs>
-        <clipPath id="clip0_42_2544">
+        <clipPath id={id ?? "clip0_42_2544"}>
           <rect
             width="120"
             height="56"

@@ -39,7 +39,7 @@ const Header = () => {
             new connections <span className="font-marhey">ولا</span>
           </p>
           <div className="flex w-[70%] max-w-sm justify-center transition-all duration-300 2xs:w-[90%] ">
-            <HeaderArrow className="-scale-x-100" />
+            <HeaderArrow id="arrow-left" className="-scale-x-100" />
             <Button
               className="mt-5 flex h-fit items-center justify-center rounded-full bg-slate-50
             px-5 py-2 font-bold text-black transition-all hover:bg-red-700 
@@ -47,7 +47,7 @@ const Header = () => {
             >
               Barmejha
             </Button>
-            <HeaderArrow />
+            <HeaderArrow id="arrow-right"/>
           </div>
         </div>
       </div>
