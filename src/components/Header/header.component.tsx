@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { Link } from "~/navigation";
 import HeaderArrow from "../SvgStore/header-arrow";
 import { cn } from "~/utils/helpers/server";
 import { dynamicBlurDataUrl } from "~/server/actions";
@@ -67,7 +66,7 @@ const FloatingCards = async () => {
     {
       src: "/images/dodge.webp",
       priority: false,
-      placing: "left-[26%] top-24 h-32 w-auto md:brightness-90 brightness-75",
+      placing: "left-[26%] top-24 h-32 md:brightness-90 brightness-75",
       width: 96,
       height: 128,
     },
@@ -88,14 +87,14 @@ const FloatingCards = async () => {
     {
       src: "/images/billard.webp",
       priority: false,
-      placing: "right-[8%] sm:right-[10%] top-20 h-60 w-auto ",
+      placing: "right-[8%] sm:right-[10%] top-20 h-60 ",
       width: 176,
       height: 240,
     },
     {
       src: "/images/basketball.webp",
       priority: false,
-      placing: "bottom-4 right-[12%] sm:right-[16%] h-64 w-auto",
+      placing: "bottom-4 right-[12%] sm:right-[16%] h-64",
       width: 192,
       height: 256,
     },

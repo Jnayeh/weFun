@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidateTag } from "next/cache";
+import { headers } from "next/headers";
 import { api } from "~/trpc/server";
 import { nextCache } from "~/utils/helpers/server";
 
@@ -12,8 +13,13 @@ const baseUrl =
     ? "http://localhost:3000/"
     : process.env.NEXT_PUBLIC_DOMAIN;
 
-export async function dynamicBlurDataUrl(url: string) {
-  const req = new Request(`${baseUrl}/_next/image?url=${url}&w=16&q=75`);
+export const dynamicBlurDataUrl = async function (url: string) {
+  const headersList = headers();
+  let host = (headersList.get("host")?? baseUrl)?? "";
+
+  host = host.includes("127.0.0.1") ? "http://".concat(host) : host
+
+  const req = new Request(`${host}/_next/image?url=${url}&w=16&q=75`);
   const base64str = await fetch(req).then(async (res) =>
     Buffer.from(await res.arrayBuffer()).toString("base64")
   );
@@ -33,8 +39,8 @@ export async function dynamicBlurDataUrl(url: string) {
     typeof window === "undefined"
       ? Buffer.from(str).toString("base64")
       : window.btoa(str);
-      console.log("blur Data For : ", url);
-      
+  console.log("blur Data For : ", host+url);
+
   return `data:image/svg+xml;base64,${toBase64(blurSvg)}`;
 }
 export const cacheableCategories = nextCache(
@@ -44,4 +50,4 @@ export const cacheableCategories = nextCache(
     revalidate: 60,
     tags: ["categories"],
   }
-)
+);
