@@ -97,6 +97,14 @@ module.exports = {
             transform: "translateX(0%)",
           },
         },
+        "float": {
+          "0%": {
+            transform: " rotate(0deg) translateY(-5px) rotate(0deg)",
+          },
+          "100%": {
+            transform: " rotate(360deg) translateY(-5px) rotate(-360deg)",
+          },
+        },
       },
       height: {
         "10v": "10dvh",
@@ -123,6 +131,7 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "ping-slow": "ping 2s cubic-bezier(0, 0, 0.2, 1) infinite",
+        "floating-card": " float 4s linear infinite",
       },
     },
   },

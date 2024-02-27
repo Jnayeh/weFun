@@ -28,7 +28,7 @@ const Header = () => {
         <Suspense>
           <FloatingCards />
         </Suspense>
-        <div className="z-0 flex w-full flex-col items-center justify-center pt-32 text-white shadow-black drop-shadow ">
+        <div className="z-10 flex w-full flex-col items-center justify-center pt-32 text-white shadow-black drop-shadow ">
           <h1 className=" flex flex-col justify-center text-center text-2xl font-extrabold transition-all duration-500 dark:text-white xs:text-4xl sm:text-5xl md:text-6xl ">
             <span className="flex justify-center">Barmej Kharja</span>
             <span className="leading-snug ">m3a Shella</span>
@@ -64,39 +64,29 @@ const Header = () => {
 const FloatingCards = async () => {
   const activities = [
     {
-      src: "/images/dodge.webp",
-      priority: false,
-      placing: "left-[26%] top-24 h-32 md:brightness-90 brightness-75",
-      width: 96,
-      height: 128,
-    },
-    {
       src: "/images/paraglider.webp",
-      priority: true,
-      placing: "bottom-2 left-[12%] h-60 md:h-72 w-auto ",
-      width: 208,
-      height: 288,
+      priority: false,
+      placing: "bottom-[10%] left-[22%] h-60 w-40",
     },
     {
       src: "/images/hiking.webp",
       priority: true,
-      placing: " left-[10%] md:left-[3%] top-[20%] h-72 w-auto md:h-56",
-      width: 160,
-      height: 224,
+      placing: " left-[10%] md:left-[3%] top-[20%] h-72 w-52",
+    },
+    {
+      src: "/images/dodge.webp",
+      priority: false,
+      placing: "left-[26%] top-[10%] h-32 w-24 md:brightness-90 brightness-75",
     },
     {
       src: "/images/billard.webp",
       priority: false,
-      placing: "right-[8%] sm:right-[10%] top-20 h-60 ",
-      width: 176,
-      height: 240,
+      placing: "right-[8%] sm:right-[10%] top-20 h-60 w-44",
     },
     {
       src: "/images/basketball.webp",
       priority: false,
-      placing: "bottom-4 right-[12%] sm:right-[16%] h-64",
-      width: 192,
-      height: 256,
+      placing: "bottom-4 right-[12%] sm:right-[16%] h-64 w-48",
     },
   ];
   const blurData: string[] = [];
@@ -108,21 +98,24 @@ const FloatingCards = async () => {
     <>
       {activities.map((activity, index) => {
         return (
-          <Image
-            key={index}
-            aria-hidden
-            src={activity.src ?? ""}
-            alt="activity"
-            placeholder="blur"
-            blurDataURL={blurData[index] ?? ""}
-            priority={activity.priority}
-            width={activity.width}
-            height={activity.height}
+          <div
             className={cn(
-              " absolute rounded-lg bg-slate-300 object-cover shadow-2xl shadow-black/60 brightness-50 md:brightness-75",
+              "animate-floating-card absolute overflow-hidden rounded-2xl bg-slate-300 shadow-2xl shadow-black/60 brightness-50 md:brightness-75",
               activity.placing
             )}
-          />
+          >
+            <Image
+              key={index}
+              aria-hidden
+              src={activity.src ?? ""}
+              alt="activity"
+              placeholder="blur"
+              blurDataURL={blurData[index] ?? ""}
+              priority={activity.priority}
+              fill
+              className="object-cover"
+            />
+          </div>
         );
       })}
     </>
