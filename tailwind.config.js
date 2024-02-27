@@ -99,10 +99,13 @@ module.exports = {
         },
         "float": {
           "0%": {
-            transform: " rotate(0deg) translateY(-5px) rotate(0deg)",
+            transform: " rotate(0deg) translateX(-5px) rotate(0deg)",
+          },
+          "50%": {
+            transform: " rotate(-180deg) translateX(-10px) rotate(180deg)",
           },
           "100%": {
-            transform: " rotate(360deg) translateY(-5px) rotate(-360deg)",
+            transform: " rotate(0deg) translateX(-5px) rotate(0deg)",
           },
         },
       },
@@ -131,7 +134,7 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "ping-slow": "ping 2s cubic-bezier(0, 0, 0.2, 1) infinite",
-        "floating-card": " float 6s linear infinite",
+        "floating-card": " float 6s ease-in-out infinite",
       },
     },
   },
