@@ -27,6 +27,7 @@ export default function RootLayout({
     <html
       className={` ${marhey.variable} ${robotoSlab.variable} ${ubuntu.variable} scroll-smooth ${robotoSlab.className} bg-white dark:bg-gray-900 dark:text-white`}
       suppressHydrationWarning
+      lang="en"
     >
       <body className="min-h-screen">{children}</body>
     </html>
