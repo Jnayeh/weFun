@@ -131,7 +131,7 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "ping-slow": "ping 2s cubic-bezier(0, 0, 0.2, 1) infinite",
-        "floating-card": " float 4s linear infinite",
+        "floating-card": " float 6s linear infinite",
       },
     },
   },

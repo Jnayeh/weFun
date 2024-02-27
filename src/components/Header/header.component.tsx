@@ -10,7 +10,7 @@ const Header = () => {
   return (
     <header
       className={cn(
-        "relative mx-auto flex h-[calc(110dvh-72px)] max-h-[1080px] min-h-fit flex-col items-center overflow-hidden pb-20 font-ubuntu md:h-[110dvh] md:h-[110vh] md:px-12 md:pb-4 "
+        "relative mx-auto flex h-[calc(110dvh-72px)] max-h-[1080px] min-h-fit flex-col items-center overflow-hidden pb-2 font-ubuntu md:h-[110dvh] md:h-[110vh] md:px-12 md:pb-20 "
       )}
     >
       <div className="absolute h-[120vh] w-screen">
