@@ -20,7 +20,7 @@ export const dynamicBlurDataUrl = async function (url: string) {
     host = host.includes("127.0.0.1")
       ? "http://".concat(host)
       : "https://".concat(host);
-  } else host = baseUrl ?? "no-host";
+  } else host = baseUrl ?? "no-host-add-to-env";
 
   const req = new Request(`${host}/_next/image?url=${url}&w=16&q=75`);
   const base64str = await fetch(req).then(async (res) =>
