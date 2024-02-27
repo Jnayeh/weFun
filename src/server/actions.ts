@@ -15,9 +15,12 @@ const baseUrl =
 
 export const dynamicBlurDataUrl = async function (url: string) {
   const headersList = headers();
-  let host = (headersList.get("host")?? baseUrl)?? "";
-
-  host = host.includes("127.0.0.1") ? "http://".concat(host) : host
+  let host = headersList.get("host");
+  if (host) {
+    host = host.includes("127.0.0.1")
+      ? "http://".concat(host)
+      : "https://".concat(host);
+  } else host = baseUrl ?? "no-host";
 
   const req = new Request(`${host}/_next/image?url=${url}&w=16&q=75`);
   const base64str = await fetch(req).then(async (res) =>
@@ -39,10 +42,10 @@ export const dynamicBlurDataUrl = async function (url: string) {
     typeof window === "undefined"
       ? Buffer.from(str).toString("base64")
       : window.btoa(str);
-  console.log("blur Data For : ", host+url);
+  console.log("blur Data For : ", host + url);
 
   return `data:image/svg+xml;base64,${toBase64(blurSvg)}`;
-}
+};
 export const cacheableCategories = nextCache(
   () => api.category.getAll.query(),
   ["categories"],
