@@ -1,5 +1,4 @@
 import "~/styles/globals.css";
-import { Suspense, lazy } from "react";
 import { Skeleton } from "~/components/ui/skeleton";
 import Link from "next/link";
 import { ThemeProvider } from "~/utils/theme-provider";
@@ -12,7 +11,6 @@ const GoBack = dynamic(() => import("~/components/ui/back-button"), {
   ssr: false,
 });
 export default function NotFound() {
-  console.log("Not found");
   return (
     <html className={`scroll-smooth`} suppressHydrationWarning lang="en">
       <body className="min-h-screen bg-white dark:bg-gray-900 dark:text-white">

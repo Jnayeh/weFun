@@ -9,8 +9,10 @@ import Image from "next/image";
 import { SlidingCardsSkeleton } from "~/components/skeletons/sliding-card";
 import { Link } from "~/navigation";
 import PlanningSteps from "~/components/planning-steps";
+import { unstable_setRequestLocale } from "next-intl/server";
 
-const Home = () => {
+const Home = ({ params: { locale } }: { params: { locale: string } }) => {
+  unstable_setRequestLocale(locale);
   const t = useTranslations("Home");
   /*   const SpinningText = [0, 1, 2, 3].map((index) => {
     return (
@@ -55,7 +57,7 @@ const Home = () => {
         <PlanningSteps />
         <section className="z-0 w-full">
           <div className="mx-auto w-[90%] max-w-7xl">
-            <h2 className=" p-6 text-center font-montserrat text-3xl font-extrabold uppercase">
+            <h2 className=" font-montserrat p-6 text-center text-3xl font-extrabold uppercase">
               top activities
             </h2>
             <Suspense fallback="...">
@@ -65,7 +67,7 @@ const Home = () => {
             <div className="flex justify-center p-8">
               <Link
                 href="activities"
-                className="text-md inline-block rounded-full bg-red-600 p-2 px-5 text-center font-stretch-pro leading-[140.5%] text-white lg:text-2xl"
+                className="text-md font-stretch-pro inline-block rounded-full bg-red-600 p-2 px-5 text-center leading-[140.5%] text-white lg:text-2xl"
               >
                 show more
               </Link>
