@@ -53,7 +53,7 @@ const Home = () => {
           </div>
         </section> */}
         <PlanningSteps />
-        <section className="z-0 w-full bg-slate-200 dark:bg-slate-900">
+        <section className="z-0 w-full">
           <div className="mx-auto w-[90%] max-w-7xl">
             <h2 className=" p-6 text-center font-montserrat text-3xl font-extrabold uppercase">
               top activities
@@ -74,8 +74,7 @@ const Home = () => {
         </section>
         <section
           id="searchAndFindMore"
-          className="relative flex w-full justify-center bg-white bg-opacity-30 py-12
-          backdrop-blur-sm dark:bg-black"
+          className="relative flex w-full justify-center py-12"
         >
           <div
             className="relative flex w-[300px] justify-start rounded-full border-2 

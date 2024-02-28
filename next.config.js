@@ -24,17 +24,6 @@ const nextConfig = withNextIntl({
       },
     ],
   },
-  /**
-   * If you have `experimental: { appDir: true }` set, then you must comment the below `i18n` config
-   * out.
-   *
-   * @see https://github.com/vercel/next.js/issues/41980
-   
-  i18n: {
-    locales: ["en","ar-tn","ar","fr"],
-    defaultLocale: "ar-tn",
-    localeDetection: false
-  },*/
 });
 
 module.exports = once((/** @type {any} */ phase) => {
