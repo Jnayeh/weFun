@@ -47,7 +47,7 @@ const Header = () => {
             >
               Barmejha
             </Button>
-            <HeaderArrow id="arrow-right"/>
+            <HeaderArrow id="arrow-right" />
           </div>
         </div>
       </div>
@@ -99,13 +99,13 @@ const FloatingCards = async () => {
       {activities.map((activity, index) => {
         return (
           <div
+            key={index}
             className={cn(
-              "animate-floating-card absolute overflow-hidden rounded-2xl bg-slate-300 shadow-2xl shadow-black/60 brightness-50 md:brightness-75",
+              "absolute animate-floating-card overflow-hidden rounded-2xl bg-slate-300 shadow-2xl shadow-black/60 brightness-50 md:brightness-75",
               activity.placing
             )}
           >
             <Image
-              key={index}
               aria-hidden
               src={activity.src ?? ""}
               alt="activity"
