@@ -3,9 +3,16 @@ import { Suspense, lazy } from "react";
 import { Skeleton } from "~/components/ui/skeleton";
 import Link from "next/link";
 import { ThemeProvider } from "~/utils/theme-provider";
+import dynamic from "next/dynamic";
 
-const GoBack = lazy(() => import("~/components/ui/back-button"));
+const GoBack = dynamic(() => import("~/components/ui/back-button"), {
+  loading: () => (
+    <Skeleton className="flex h-[36px] w-1/2 items-center justify-center gap-x-2 rounded-lg bg-slate-300 text-sm dark:bg-slate-400 sm:w-28" />
+  ),
+  ssr: false,
+});
 export default function NotFound() {
+  console.log("Not found");
   return (
     <html className={`scroll-smooth`} suppressHydrationWarning lang="en">
       <body className="min-h-screen bg-white dark:bg-gray-900 dark:text-white">
@@ -22,13 +29,7 @@ export default function NotFound() {
                 </p>
 
                 <div className="mt-6 flex items-center gap-x-3 text-center">
-                  <Suspense
-                    fallback={
-                      <Skeleton className="flex h-[36px] w-1/2 items-center justify-center gap-x-2 rounded-lg bg-slate-300 text-sm dark:bg-slate-400 sm:w-28" />
-                    }
-                  >
-                    <GoBack />
-                  </Suspense>
+                  <GoBack />
                   <Link
                     href="/"
                     className="w-1/2 shrink-0 rounded-lg bg-primary px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 hover:bg-red-600 sm:w-auto "

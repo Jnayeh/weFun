@@ -6,6 +6,7 @@ import { ThemeProvider } from "~/utils/theme-provider";
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { Marhey, Roboto_Slab, Ubuntu } from "next/font/google";
+import { locales } from "~/navigation";
 const marhey = Marhey({
   subsets: ["arabic"],
   variable: "--font-marhey",
@@ -41,6 +42,9 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
 export default function LocaleLayout({
   children,
   params: { locale },
