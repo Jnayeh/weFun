@@ -53,7 +53,7 @@ export default function BottomNav() {
   ];
   return (
     <div
-      className=" fixed bottom-0 left-0 right-0 z-10 flex h-fit w-full justify-between
+      className=" fixed bottom-0 left-0 right-0 z-30 flex h-fit w-full justify-between
      gap-1 bg-white p-1 text-right dark:bg-slate-900 md:hidden"
     >
       {/* <MenuSheet side="bottom"/> */}
@@ -67,8 +67,8 @@ export default function BottomNav() {
               aria-label={el.label}
               passHref
               className={cn(
-                `mx-auto flex w-4/5 items-center justify-center text-center text-gray-400 group-hover:text-red-500 ${
-                  location == el.href ? "text-red-500" : ""
+                `mx-auto flex w-4/5 items-center justify-center text-center font-semibold text-gray-800 dark:text-gray-300 group-hover:text-red-600 ${
+                  location == el.href ? "text-red-600" : ""
                 }`
               )}
             >
