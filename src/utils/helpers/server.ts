@@ -1,5 +1,6 @@
 import { type ClassValue, clsx } from "clsx";
 import { unstable_cache, unstable_noStore } from "next/cache";
+import React from "react";
 import { twMerge } from "tailwind-merge";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -32,4 +33,25 @@ export function unregisterService(name: string) {
   if (process.env.NODE_ENV === "development") {
     delete (global as any)[name];
   }
+}
+export function useTranslatedElements(
+  keys: number[],
+  translation: (key: string) => string
+) {
+  return keys.map((i) => {
+    try {
+      if (!translation(`${i}.element`).includes(`${i}.element`)) {
+        if (translation(`${i}.element`).includes("br")) {
+          return React.createElement("br", { key: i });
+        }
+        return React.createElement(
+          translation(`${i}.element`),
+          { className: translation(`${i}.class`), key: i },
+          translation(`${i}.text`)
+        );
+      }
+    } catch (error) {
+      return null;
+    }
+  });
 }
