@@ -99,13 +99,13 @@ module.exports = {
         },
         float: {
           "0%": {
-            transform: " rotate(1deg) translateX(-3px) rotate(0deg) scale(1.07)",
+            transform: " rotate(0deg) translateX(-0px) rotate(0deg)",
           },
           "50%": {
-            transform: " rotate(-180deg) translateX(-5px) rotate(180deg)",
+            transform: " rotate(-181deg) translateX(-5px) rotate(180deg) scale(0.93)",
           },
           "100%": {
-            transform: " rotate(1deg) translateX(-3px) rotate(0deg) scale(1.07)",
+            transform: " rotate(0deg) translateX(-0px) rotate(0deg)",
           },
         },
       },

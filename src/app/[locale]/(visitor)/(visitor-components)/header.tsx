@@ -12,8 +12,7 @@ const Header = () => {
   const t = useTranslations("Home.header");
   const defaultFont = useTranslations("fonts");
   const headerTitle = useTranslations("Home.header.title");
-  console.log(headerTitle);
-  const key = [1, 2, 3, 4, 5];
+  const key = [1, 2];
 
   return (
     <header
@@ -103,7 +102,8 @@ const FloatingCards = async () => {
             key={index}
             className={cn(
               "absolute animate-floating-card overflow-hidden rounded-2xl bg-slate-300 shadow-2xl shadow-black/60 brightness-50 md:brightness-75",
-              activity.placing
+              activity.placing,
+              index % 3 == 0 ? "delay-400" : index % 3 == 2 ? "" : " delay-1000"
             )}
           >
             <Image
