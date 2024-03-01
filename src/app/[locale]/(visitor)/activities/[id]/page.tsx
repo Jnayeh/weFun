@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { cn } from "~/utils/helpers/server";
+import { ActivityPicturesCarousel } from "./activity-pictures-carousel";
 export const metadata: Metadata = {
   title: "Places - Find your new experiences",
   description: "Details about the category",
@@ -7,12 +8,10 @@ export const metadata: Metadata = {
 const RegionPage = () => {
   return (
     <>
-      <main
-        className={cn(
-          " mx-auto flex min-h-screen max-w-[97%] flex-col items-center gap-2 py-4"
-        )}
-      >
-        heyy region
+      <main>
+        <div className=" h-dvh min-h-screen overflow-hidden">
+          <ActivityPicturesCarousel />
+        </div>
       </main>
     </>
   );

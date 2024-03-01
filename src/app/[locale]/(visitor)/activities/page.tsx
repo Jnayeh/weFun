@@ -17,10 +17,10 @@ import { Metadata } from "next";
 import { Suspense, lazy } from "react";
 import { ActivitiesSkeleton } from "~/components/skeletons/activities";
 import { cachableGetActivities } from "~/server/actions/cachable-get-activities";
+import Link from "next/link";
 const LottiePlayer = lazy(() =>
   import("~/components/LottiePlayer").then((mod) => ({
     default: mod.LottiePlayer,
-    loader: <ActivitiesSkeleton />,
   }))
 );
 
@@ -86,7 +86,7 @@ export const Activities = async () => {
                   fallBackSrc={defaultImage}
                   blurDataURL={defaultImage.src}
                   alt={act.label ?? "activity"}
-                  className="aspect-video h-full w-full rounded-t-3xl object-cover shadow-md"
+                  className="aspect-video h-full w-full rounded-t-3xl object-cover"
                   width={800}
                   height={800}
                 />
@@ -136,9 +136,12 @@ export const Activities = async () => {
                   </p>
                 </div>
               </CardFooter>
-              <button className="h-12 w-full self-center rounded-[20px] bg-red-500 py-0 text-xl font-semibold uppercase text-white shadow-sm">
+              <Link
+                href={"activities/"+act.id }
+                className=" flex flex-col justify-center items-center px-4 h-12 w-full self-center rounded-[20px] bg-red-500 text-xl font-semibold uppercase text-white shadow-sm"
+              >
                 View details
-              </button>
+              </Link>
             </Card>
           );
         })}
