@@ -12,6 +12,7 @@ import BrandSvg from "~/components/SvgStore/BrandSvg";
 import { usePathname } from "~/navigation";
 import Arrow from "../SvgStore/arrow";
 import { useMediaQuery } from "~/utils/helpers/client";
+import { useParams } from "next/navigation";
 const ToggleButton = dynamic(() => import("~/components/ui/dark-toggle"), {
   ssr: false,
 });
@@ -23,6 +24,7 @@ export default function Navbar() {
   const { isLoaded, isSignedIn, signOut } = useAuth();
   const isHome = location === "/";
   const isMobile = useMediaQuery("(max-width: 767px)");
+  const id = useParams().id;
   function slideHorizontal(
     el: HTMLElement,
     items: NodeListOf<HTMLElement>,
@@ -114,12 +116,16 @@ export default function Navbar() {
 
   return (
     <div
-      className={cn(`${
-        isHome ? "fixed" : "fixed md:sticky"
-      } top-0 z-30 min-w-full max-w-[1600px] items-center justify-center 
-        bg-white bg-opacity-70 backdrop-blur transition-all duration-200 dark:bg-gray-800 dark:bg-opacity-60 dark:backdrop-blur-md md:bg-opacity-80 dark:md:bg-opacity-90 ${
-          isHome && "bg-scroll"
-        }`)}
+      className={cn(
+        `top-0 z-30 min-w-full max-w-[1600px] items-center justify-center 
+      bg-white/70 backdrop-blur transition-all duration-200 dark:bg-gray-800/60 
+      dark:backdrop-blur-md md:bg-opacity-80 dark:md:bg-opacity-90`,
+        isHome ? "fixed bg-scroll" : "sticky",
+        id && " fixed md:sticky",
+        id &&
+          isMobile &&
+          "bg-transparent backdrop-blur-none dark:bg-transparent dark:backdrop-blur-none"
+      )}
     >
       <nav
         className={cn(
@@ -127,11 +133,23 @@ export default function Navbar() {
         )}
       >
         <div className=" flex items-center">
-          <BrandSvg
-            className={cn(
-              "w-32 rounded-md fill-black transition-all dark:fill-slate-100"
-            )}
-          />
+          {isMobile && !isHome ? (
+            <button
+              onClick={() => window.history.back()}
+              className="aspect-square rounded-full bg-white/40 p-2 
+              transition-colors duration-200 hover:bg-gray-100/70 
+              dark:bg-gray-900/60 dark:hover:bg-gray-900/70"
+            >
+              <Arrow className={cn("-scale-90 text-black dark:text-white")} />
+              <span className="sr-only">Go back</span>
+            </button>
+          ) : (
+            <BrandSvg
+              className={cn(
+                "w-32 rounded-md fill-black transition-all dark:fill-slate-100"
+              )}
+            />
+          )}
         </div>
         <ul
           className={cn(
@@ -194,11 +212,20 @@ export default function Navbar() {
             ref={indicatorRef}
           ></span>
         </ul>
-        <div className="z-40 flex h-full items-center justify-end gap-1 p-2 lg:gap-2">
+        <div className="z-40 flex h-full flex-row-reverse items-center justify-end gap-1 p-2 md:flex-row lg:gap-2">
+          <div
+            className={
+              id &&
+              `flex aspect-square h-9 items-center justify-center rounded-full 
+              bg-white/40 p-2 transition-colors duration-200 hover:bg-gray-100/70 
+              dark:bg-gray-900/60 dark:hover:bg-gray-900/70`
+            }
+          >
+            <UserSvg className={cn("block", isHome && "white-menu")} />
+          </div>
           <Suspense>
             <ToggleButton className={cn("z-10 ")} />
           </Suspense>
-          <UserSvg className={cn("block", isHome && "white-menu")} />
           <Link
             href="/auth/signup"
             className={cn(
@@ -209,8 +236,8 @@ export default function Navbar() {
             Sign up
             <Arrow
               className={cn(
-                "scale-75 fill-black stroke-black group-hover:fill-white group-hover:stroke-white dark:fill-white dark:stroke-white",
-                isHome && "white-arrow"
+                "scale-75 text-black group-hover:text-white dark:text-white",
+                isHome && "white-borders"
               )}
             />
           </Link>

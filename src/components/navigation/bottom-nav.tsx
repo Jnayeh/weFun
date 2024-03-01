@@ -17,6 +17,7 @@ import {
   TentTreeIcon,
 } from "lucide-react";
 import MenuSheet from "~/components/sheets/menu-sheet";
+import { useParams } from "next/navigation";
 
 export default function BottomNav() {
   const icons = [
@@ -41,6 +42,7 @@ export default function BottomNav() {
   }, []);
 
   const location = usePathname();
+  const id = useParams().id;
   var menuItems = [
     { href: "/", label: "Home", icon: <Home /> },
     {
@@ -53,8 +55,10 @@ export default function BottomNav() {
   ];
   return (
     <div
-      className=" fixed bottom-0 left-0 right-0 z-30 flex h-fit w-full justify-between
-     gap-1 bg-white p-1 text-right dark:bg-slate-900 md:hidden"
+      className={`fixed bottom-0 left-0 right-0 z-30 flex h-fit w-screen justify-between
+      gap-1 bg-white p-1 text-right transition-transform duration-200 dark:bg-slate-900 md:hidden ${
+        id ? " translate-y-full select-none" : ""
+      }`}
     >
       {/* <MenuSheet side="bottom"/> */}
       {menuItems.map((el, index) => {
@@ -67,8 +71,8 @@ export default function BottomNav() {
               aria-label={el.label}
               passHref
               className={cn(
-                `mx-auto flex w-4/5 items-center justify-center text-center font-semibold text-gray-800 dark:text-gray-300 group-hover:text-red-600 ${
-                  location == el.href ? "text-red-600" : ""
+                `mx-auto flex w-4/5 items-center justify-center text-center font-semibold text-gray-800 group-hover:text-red-600 ${
+                  location == el.href ? "text-red-600" : " dark:text-gray-300"
                 }`
               )}
             >
@@ -77,8 +81,8 @@ export default function BottomNav() {
                 <span className="block pb-2 text-xs">{el.label}</span>
                 <span
                   className={cn(
-                    `mx-auto block h-1 w-5 rounded-full group-hover:bg-red-500  ${
-                      location == el.href ? "bg-red-500" : ""
+                    `mx-auto block h-1 w-5 rounded-full group-hover:bg-red-600  ${
+                      location == el.href ? "bg-red-600" : ""
                     }`
                   )}
                 ></span>
