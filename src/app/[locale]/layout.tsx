@@ -6,6 +6,7 @@ import { ThemeProvider } from "~/utils/theme-provider";
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { Marhey, Roboto_Slab, Ubuntu } from "next/font/google";
+import { useTranslations } from "next-intl";
 const marhey = Marhey({
   subsets: ["arabic"],
   variable: "--font-marhey",
@@ -48,9 +49,15 @@ export default function LocaleLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
+  const t = useTranslations("fonts");
   return (
     <html
-      className={` ${marhey.variable} ${robotoSlab.variable} ${ubuntu.variable} scroll-smooth ${robotoSlab.className}`}
+      className={` ${marhey.variable} ${robotoSlab.variable} ${
+        ubuntu.variable
+      } scroll-smooth ${
+        locale === "ar" ? marhey.className : robotoSlab.className
+      }`}
+      dir={locale === "ar" ? "rtl" : "ltr"}
       suppressHydrationWarning
       lang={locale}
     >

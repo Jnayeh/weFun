@@ -2,14 +2,20 @@ import { useTranslations } from "next-intl";
 
 import { Suspense } from "react";
 
-import Header from "~/components/Header/header.component";
+import Header from "~/app/[locale]/(visitor)/(visitor-components)/header";
 
+const Footer = dynamic(
+  () => import("~/app/[locale]/(visitor)/(visitor-components)/footer"),
+  {
+    ssr: true,
+  }
+);
 import Reviews from "~/components/reviews";
-import Image from "next/image";
 import { SlidingCardsSkeleton } from "~/components/skeletons/sliding-card";
 import { Link } from "~/navigation";
 import PlanningSteps from "~/components/planning-steps";
 import { unstable_setRequestLocale } from "next-intl/server";
+import dynamic from "next/dynamic";
 
 const Home = ({ params: { locale } }: { params: { locale: string } }) => {
   unstable_setRequestLocale(locale);
@@ -25,7 +31,6 @@ const Home = ({ params: { locale } }: { params: { locale: string } }) => {
   return (
     <>
       <Header />
-
       <main className=" relative mx-auto flex flex-col items-center justify-center">
         {/* <div className="flex h-[60px] w-full items-center gap-4 overflow-hidden bg-gray-800 font-rubik text-5xl text-beige">
           <div
@@ -56,7 +61,7 @@ const Home = ({ params: { locale } }: { params: { locale: string } }) => {
         </section> */}
         <PlanningSteps />
         <section className="z-0 w-full">
-          <div className="mx-auto w-[90%] max-w-7xl">
+          <div className="mx-auto w-[90%] max-w-4xl">
             <h2 className=" font-montserrat p-6 text-center text-3xl font-extrabold uppercase">
               top activities
             </h2>
@@ -111,6 +116,9 @@ const Home = ({ params: { locale } }: { params: { locale: string } }) => {
         </section>
         <Reviews />
       </main>
+      <Suspense>
+        <Footer />
+      </Suspense>
     </>
   );
 };

@@ -10,6 +10,7 @@ import { useTranslations } from "next-intl";
 
 const Header = () => {
   const t = useTranslations("Home.header");
+  const defaultFont = useTranslations("fonts");
   const headerTitle = useTranslations("Home.header.title");
   console.log(headerTitle);
   const key = [1, 2, 3, 4, 5];
@@ -17,7 +18,9 @@ const Header = () => {
   return (
     <header
       className={cn(
-        "relative mx-auto flex h-[calc(110dvh-72px)] max-h-[1080px] min-h-fit flex-col items-center overflow-hidden pb-2 font-ubuntu md:h-[110dvh] md:h-[110vh] md:px-12 md:pb-20 "
+        `relative mx-auto flex h-[calc(110dvh-72px)] max-h-[1080px] min-h-fit flex-col items-center overflow-hidden pb-2 
+        ${defaultFont("title")} 
+        md:h-[110vh] md:px-12 md:pb-20`
       )}
     >
       <div className="absolute h-[120vh] w-screen bg-gradient-to-b from-[#e8614e] via-[#dd867c] to-[#e8614e] brightness-90 contrast-150">

@@ -1,13 +1,10 @@
 import { Suspense } from "react";
 import dynamic from "next/dynamic";
-const Footer = dynamic(() => import("~/components/Footer/footer.component"), {
-  ssr: true,
-});
-const Navbar = dynamic(() => import("~/components/Navbar/navbar.component"), {
+const Navbar = dynamic(() => import("~/components/navigation/navbar"), {
   ssr: true,
 });
 import { LoginSideBar } from "~/components/Sidebar";
-import BottomNav from "~/components/Navbar/bottom-nav";
+import BottomNav from "~/components/navigation/bottom-nav";
 import { unstable_setRequestLocale } from "next-intl/server";
 import { locales } from "~/navigation";
 export function generateStaticParams() {
@@ -31,9 +28,6 @@ export default function LocaleLayout({
         </Suspense>
         {children}
       </div>
-      <Suspense>
-        <Footer />
-      </Suspense>
     </div>
   );
 }
