@@ -11,10 +11,12 @@
       "title": {
         "1": {
           "element": "span",
+          "class": "flex justify-center",
           "text": "Planifiez votre sortie"
         },
         "2": {
           "element": "span",
+          "class": "leading-snug",
           "text": " avec vos amis"
         }
       }

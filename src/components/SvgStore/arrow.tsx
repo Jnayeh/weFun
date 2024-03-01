@@ -12,16 +12,20 @@ export default function Arrow(props: React.SVGProps<SVGSVGElement>) {
         d="M4 12.8H20"
         strokeWidth="2"
         strokeLinecap="square"
+        fill="currentColor"
+        stroke="currentColor"
       />
       <path
         d="M20 12.8C15.5817 12.8 12 9.21833 12 4.80005"
         strokeWidth="2"
         strokeLinecap="square"
+        stroke="currentColor"
       />
       <path
         d="M20 12.8C15.5817 12.8 12 16.3817 12 20.8"
         strokeWidth="2"
         strokeLinecap="square"
+        stroke="currentColor"
       />
     </svg>
   );
