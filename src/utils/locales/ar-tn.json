@@ -1,6 +1,27 @@
 {
+  "fonts": {
+    "title": "font-ubuntu",
+    "subtitle": "font-ubuntu",
+    "default": "font-roboto-slab"
+  },
   "Home": {
     "title": "Barmejha - Your Next Experiences are here",
+    "subtitle": "Find your next experiences and activities with Barmejha",
+    "header": {
+      "button": "Barmejha",
+      "title": {
+        "1": {
+          "element": "span",
+          "class": "flex justify-center",
+          "text": "Barmej Kharja"
+        },
+        "2": {
+          "element": "span",
+          "class": "leading-snug",
+          "text": "m3a Shella"
+        }
+      }
+    },
     "search": "search",
     "find-more": "find more"
   },

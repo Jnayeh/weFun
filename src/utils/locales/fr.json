@@ -1,6 +1,24 @@
 {
+  "fonts": {
+    "title": "font-ubuntu",
+    "subtitle": "font-ubuntu",
+    "default": "font-roboto-slab"
+  },
   "Home": {
     "title": "We Fun - Vos prochaines expériences sont ici",
+    "header": {
+      "button": "Barmejha",
+      "title": {
+        "1": {
+          "element": "span",
+          "text": "Planifiez votre sortie"
+        },
+        "2": {
+          "element": "span",
+          "text": " avec vos amis"
+        }
+      }
+    },
     "search": "rechercher",
     "find-more": "trouver plus"
   },

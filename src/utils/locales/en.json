@@ -1,6 +1,26 @@
 {
+  "fonts": {
+    "title": "font-ubuntu",
+    "subtitle": "font-ubuntu",
+    "default": "font-roboto-slab"
+  },
   "Home": {
     "title": "We Fun - Your Next Experiences are here",
+    "header": {
+      "button": "Barmejha",
+      "title": {
+        "1": {
+          "element": "span",
+          "class": "flex justify-center ",
+          "text": "Plan it with"
+        },
+        "2": {
+          "element": "span",
+          "class": "leading-snug",
+          "text": "the homies"
+        }
+      }
+    },
     "search": "search",
     "find-more": "find more"
   },

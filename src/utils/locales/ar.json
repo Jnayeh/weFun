@@ -1,18 +1,38 @@
 {
-    "Home": {
-        "title": "Barmejha - تجاربك القادمة هنا",
-        "search": "بحث",
-        "find-more": "ابحث عن المزيد"
+  "fonts":{
+    "title":"font-marhey",
+    "subtitle":"font-marhey",
+    "default":"font-marhey"
+  },
+  "Home": {
+    "title": "Barmejha - تجاربك القادمة هنا",
+    "header": {
+      "button": "برمجها",
+      "title": {
+        "1": {
+          "element": "span",
+          "class": "flex justify-center",
+          "text": "خطط لمغامرتك القادمة "
+        },
+        "2": {
+          "element": "span",
+          "class": "leading-snug",
+          "text": "مع أصدقائك"
+        }
+      }
     },
-    "Menu": {
-        "home": "الصفحة الرئيسية",
-        "about": "حولنا",
-        "contact": "اتصل بنا",
-        "login": "تسجيل الدخول",
-        "register": "تسجيل",
-        "activities": "الأنشطة",
-        "experiences": "التجارب",
-        "places": "الأماكن",
-        "explore": "استكشف"
-    }
+    "search": "ابحث",
+    "find-more": "ابحث عن المزيد"
+  },
+  "Menu": {
+    "home": "الصفحة الرئيسية",
+    "about": "حولنا",
+    "contact": "اتصل بنا",
+    "login": "تسجيل الدخول",
+    "register": "تسجيل",
+    "activities": "الأنشطة",
+    "experiences": "التجارب",
+    "places": "الأماكن",
+    "explore": "استكشف"
+  }
 }
