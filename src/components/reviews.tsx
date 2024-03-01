@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ReviewCarousel } from "./ui/carousels/review-carousel";
+import { ReviewCarousel } from "./carousels/review-carousel";
 
 const Reviews = () => {
   const reviews = [

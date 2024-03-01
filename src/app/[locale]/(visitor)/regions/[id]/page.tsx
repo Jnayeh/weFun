@@ -1,7 +1,7 @@
 
 
 import { Metadata } from "next";
-import { CategoryCarousel } from "~/components/ui/carousels/category-carousel";
+import { CategoryCarousel } from "~/components/carousels/category-carousel";
 import { cn } from "~/utils/helpers/server";
 import { Activities } from "../../activities/page";
 
