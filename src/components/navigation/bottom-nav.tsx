@@ -16,7 +16,7 @@ import {
   FlameKindlingIcon,
   TentTreeIcon,
 } from "lucide-react";
-import MenuSheet from "~/components/ui/sheets/menu-sheet";
+import MenuSheet from "~/components/sheets/menu-sheet";
 
 export default function BottomNav() {
   const icons = [

@@ -10,8 +10,8 @@ import UserSvg from "~/components/SvgStore/menu";
 import dynamic from "next/dynamic";
 import BrandSvg from "~/components/SvgStore/BrandSvg";
 import { usePathname } from "~/navigation";
-import { useScroll } from "~/utils/helpers/client";
 import Arrow from "../SvgStore/arrow";
+import { useMediaQuery } from "~/utils/helpers/client";
 const ToggleButton = dynamic(() => import("~/components/ui/dark-toggle"), {
   ssr: false,
 });
@@ -20,7 +20,9 @@ export default function Navbar() {
   const indicatorRef = useRef<HTMLSpanElement>(null);
   const navListRef = useRef<HTMLUListElement>(null);
   const location = usePathname();
-
+  const { isLoaded, isSignedIn, signOut } = useAuth();
+  const isHome = location === "/";
+  const isMobile = useMediaQuery("(max-width: 767px)");
   function slideHorizontal(
     el: HTMLElement,
     items: NodeListOf<HTMLElement>,
@@ -108,15 +110,12 @@ export default function Navbar() {
    */
   useEffect(() => {
     sliding();
-    console.log(location);
-  }, [location]);
+  }, [location, isMobile]);
 
-  const { isLoaded, isSignedIn, signOut } = useAuth();
-  const isHome = location === "/";
   return (
     <div
       className={cn(`${
-        isHome ? "fixed" : "sticky"
+        isHome ? "fixed" : "fixed md:sticky"
       } top-0 z-30 min-w-full max-w-[1600px] items-center justify-center 
         bg-white bg-opacity-70 backdrop-blur transition-all duration-200 dark:bg-gray-800 dark:bg-opacity-60 dark:backdrop-blur-md md:bg-opacity-80 dark:md:bg-opacity-90 ${
           isHome && "bg-scroll"
