@@ -97,15 +97,15 @@ module.exports = {
             transform: "translateX(0%)",
           },
         },
-        "float": {
+        float: {
           "0%": {
-            transform: " rotate(0deg) translateX(-5px) rotate(0deg)",
+            transform: " rotate(1deg) translateX(-3px) rotate(0deg) scale(1.07)",
           },
           "50%": {
-            transform: " rotate(-180deg) translateX(-10px) rotate(180deg)",
+            transform: " rotate(-180deg) translateX(-5px) rotate(180deg)",
           },
           "100%": {
-            transform: " rotate(0deg) translateX(-5px) rotate(0deg)",
+            transform: " rotate(1deg) translateX(-3px) rotate(0deg) scale(1.07)",
           },
         },
       },
