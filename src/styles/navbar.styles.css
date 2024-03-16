@@ -7,12 +7,12 @@
   to {
   }
 }
-.bg-scroll {
+.from-bg-transparent-scroll {
   animation: fade-background linear both;
 }
 @keyframes scale-in {
   0% {
-    @apply scale-110 text-white drop-shadow-md;
+    @apply scale-110 text-white;
   }
   10% {
     @apply text-current;
@@ -26,34 +26,34 @@
 }
 
 @keyframes whiten-text {
-  0% {
+  from {
     @apply text-white;
   }
 }
 
-@keyframes whiten-arrow {
-  0% {
+@keyframes whiten-svg {
+  from {
     @apply fill-white stroke-white;
   }
 }
 
-.white-borders {
+.from-white-borders {
   animation: whiten-border, whiten-text linear both;
 }
-.white-menu {
+.from-white-text {
   animation: whiten-text linear both;
 }
-.white-arrow {
-  animation: whiten-arrow linear both;
+.from-white-svg {
+  animation: whiten-svg linear both;
 }
 .link-scale {
   animation: scale-in linear both;
 }
-.bg-scroll,
+.from-bg-transparent-scroll,
 .link-scale,
-.white-borders,
-.white-menu,
-.white-arrow {
+.from-white-borders,
+.from-white-text,
+.from-white-svg {
   animation-timeline: scroll();
   animation-range: 0 150px;
 }

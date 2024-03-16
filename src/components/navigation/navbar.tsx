@@ -6,13 +6,13 @@ import "~/styles/navbar.styles.css";
 import { Link } from "~/navigation";
 import { cn } from "~/utils/helpers/server";
 import { useAuth } from "@clerk/nextjs";
-import UserSvg from "~/components/SvgStore/menu";
 import dynamic from "next/dynamic";
 import BrandSvg from "~/components/SvgStore/BrandSvg";
 import { usePathname } from "~/navigation";
-import Arrow from "../SvgStore/arrow";
+import Arrow from "~/components/SvgStore/arrow";
 import { useMediaQuery } from "~/utils/helpers/client";
 import { useParams } from "next/navigation";
+import { LoginSideBar } from "~/components/Sidebar";
 const ToggleButton = dynamic(() => import("~/components/ui/dark-toggle"), {
   ssr: false,
 });
@@ -117,64 +117,68 @@ export default function Navbar() {
   return (
     <div
       className={cn(
-        `top-0 z-30 min-w-full max-w-[1600px] items-center justify-center 
-      bg-white/70 backdrop-blur transition-all duration-200 dark:bg-gray-800/60 
-      dark:backdrop-blur-md md:bg-opacity-80 dark:md:bg-opacity-90`,
-        isHome ? "fixed bg-scroll" : "sticky",
-        id && " fixed md:sticky",
-        id &&
-          isMobile &&
-          "bg-transparent backdrop-blur-none dark:bg-transparent dark:backdrop-blur-none"
+        `top-0 z-50 min-w-full max-w-[1600px] items-center justify-center 
+      bg-white/70 backdrop-blur-md transition-all duration-200 dark:bg-gray-800/60 `,
+        isHome
+          ? "from-bg-transparent-scroll fixed"
+          : "fixed bg-transparent backdrop-blur-none dark:bg-transparent md:sticky md:bg-white/60 md:backdrop-blur-md md:dark:bg-gray-800/60",
+        id && " fixed md:sticky"
       )}
     >
       <nav
         className={cn(
-          "mx-auto flex h-[60px] w-full max-w-[1500px] items-center justify-between p-2 lg:px-12"
+          "mx-auto flex w-full max-w-[1500px] items-center justify-between p-2 lg:px-12"
         )}
       >
-        <div className=" flex items-center">
-          {isMobile && !isHome ? (
-            <button
-              onClick={() => window.history.back()}
-              className="aspect-square rounded-full bg-white/40 p-2 
-              transition-colors duration-200 hover:bg-gray-100/70 
-              dark:bg-gray-900/60 dark:hover:bg-gray-900/70"
-            >
-              <Arrow className={cn("-scale-90 text-black dark:text-white")} />
-              <span className="sr-only">Go back</span>
-            </button>
-          ) : (
+        <div className=" flex h-10 items-center">
+          <button
+            onClick={() => window.history.back()}
+            className={cn(
+              `"aspect-square dark:hover:bg-gray-900/60" rounded-full bg-white/20 
+              p-2 transition-colors duration-200 
+              hover:bg-gray-200/60 dark:bg-gray-900/20`,
+              isHome ? "hidden" : "md:hidden"
+            )}
+          >
+            <Arrow className={cn("-scale-90 text-black dark:text-white")} />
+            <span className="sr-only">Go back</span>
+          </button>
+          <Link href="/" className={cn(!isHome && "hidden md:block")}>
             <BrandSvg
               className={cn(
-                "w-32 rounded-md fill-black transition-all dark:fill-slate-100"
+                "w-32 rounded-md from-white-text"
               )}
             />
-          )}
+          </Link>
         </div>
         <ul
           className={cn(
-            `relative hidden h-full max-w-full list-none items-center overflow-hidden p-0 px-3 text-black transition-transform
+            `relative hidden h-11  max-w-full list-none items-center overflow-hidden p-0 px-3 text-black transition-transform
               duration-100 dark:text-white ${isHome && "link-scale"} md:flex `
           )}
           ref={navListRef}
         >
-          <li>
+          <li aria-hidden="true">
             <Link
               href="/"
+              className={`nav-item ${location == "/" && "is-active"} hidden`}
+            />
+          </li>
+          <li>
+            <Link
+              href="/plans"
               className={
-                location == "/" ? "nav-item is-active active-link" : "nav-item "
+                location == "/plans" ? "nav-item is-active" : "nav-item "
               }
             >
-              Home
+              Plans
             </Link>
           </li>
           <li>
             <Link
               href="/activities"
               className={
-                location == "/activities"
-                  ? "nav-item is-active active-link"
-                  : "nav-item "
+                location == "/activities" ? "nav-item is-active" : "nav-item "
               }
             >
               Activities
@@ -185,9 +189,7 @@ export default function Navbar() {
             <Link
               href="/regions"
               className={
-                location == "/regions"
-                  ? "nav-item is-active active-link"
-                  : "nav-item "
+                location == "/regions" ? "nav-item is-active" : "nav-item "
               }
             >
               Places
@@ -197,9 +199,7 @@ export default function Navbar() {
             <Link
               href="/explore"
               className={
-                location == "/explore"
-                  ? "nav-item is-active active-link"
-                  : "nav-item "
+                location == "/explore" ? "nav-item is-active" : "nav-item "
               }
             >
               Explore
@@ -212,32 +212,23 @@ export default function Navbar() {
             ref={indicatorRef}
           ></span>
         </ul>
-        <div className="z-40 flex h-full flex-row-reverse items-center justify-end gap-1 p-2 md:flex-row lg:gap-2">
-          <div
-            className={
-              id &&
-              `flex aspect-square h-9 items-center justify-center rounded-full 
-              bg-white/40 p-2 transition-colors duration-200 hover:bg-gray-100/70 
-              dark:bg-gray-900/60 dark:hover:bg-gray-900/70`
-            }
-          >
-            <UserSvg className={cn("block", isHome && "white-menu")} />
-          </div>
+        <div className="z-40 flex h-full items-center justify-end gap-1 lg:gap-2">
           <Suspense>
             <ToggleButton className={cn("z-10 ")} />
           </Suspense>
+          <LoginSideBar />
           <Link
             href="/auth/signup"
             className={cn(
               "group hidden h-10 items-center gap-1 rounded-full border-2 border-black p-2 px-3 text-sm font-semibold uppercase transition-all duration-75 hover:scale-90 hover:border-transparent hover:bg-slate-800 hover:text-white dark:border-white dark:hover:border-transparent md:flex",
-              isHome && "white-borders"
+              isHome && "from-white-borders"
             )}
           >
             Sign up
             <Arrow
               className={cn(
                 "scale-75 text-black group-hover:text-white dark:text-white",
-                isHome && "white-borders"
+                isHome && "from-white-borders"
               )}
             />
           </Link>

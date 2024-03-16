@@ -1,9 +1,7 @@
-import { Suspense } from "react";
 import dynamic from "next/dynamic";
 const Navbar = dynamic(() => import("~/components/navigation/navbar"), {
   ssr: true,
 });
-import { LoginSideBar } from "~/components/Sidebar";
 import BottomNav from "~/components/navigation/bottom-nav";
 import { unstable_setRequestLocale } from "next-intl/server";
 import { locales } from "~/navigation";
@@ -23,9 +21,6 @@ export default function LocaleLayout({
       <div>
         <Navbar />
         <BottomNav />
-        <Suspense>
-          <LoginSideBar />
-        </Suspense>
         {children}
       </div>
     </div>

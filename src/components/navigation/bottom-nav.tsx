@@ -55,9 +55,10 @@ export default function BottomNav() {
   ];
   return (
     <div
+      aria-hidden={id ? "true" : "false"}
       className={`fixed bottom-0 left-0 right-0 z-30 flex h-fit w-screen justify-between
       gap-1 bg-white p-1 text-right transition-transform duration-200 dark:bg-slate-900 md:hidden ${
-        id ? " translate-y-full select-none" : ""
+        id ? " translate-y-full" : ""
       }`}
     >
       {/* <MenuSheet side="bottom"/> */}
