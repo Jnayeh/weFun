@@ -12,13 +12,13 @@
       "title": {
         "1": {
           "element": "span",
-          "class": "flex justify-center",
-          "text": "Barmej Kharja"
+          "class": "flex justify-center font-marhey",
+          "text": "برمج خرجة"
         },
         "2": {
           "element": "span",
-          "class": "leading-snug",
-          "text": "m3a Shella"
+          "class": "p-4 font-marhey",
+          "text": "مع الشلة "
         }
       }
     },

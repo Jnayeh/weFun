@@ -146,7 +146,8 @@ export default function Navbar() {
           <Link href="/" className={cn(!isHome && "hidden md:block")}>
             <BrandSvg
               className={cn(
-                "w-32 rounded-md from-white-text"
+                "w-32 rounded-md",
+                isHome && "from-white-text"
               )}
             />
           </Link>
