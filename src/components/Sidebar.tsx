@@ -11,9 +11,15 @@ import {
   SheetContent,
   SheetContentProps,
   Sheet,
+  SheetTrigger,
 } from "~/components/ui/sheet";
+import MenuIcon from "./SvgStore/menu";
 
-export const LoginSideBar = ({ className, ...props }: SheetContentProps) => {
+export const LoginSideBar = ({
+  className,
+  isHome,
+  ...props
+}: SheetContentProps & { isHome?: boolean }) => {
   const { toggleRightBar, rightBarOpen } = useSideBarStore();
   const { isLoaded: signInLoaded, signIn, setActive } = useSignIn();
   const { isLoaded, signOut, isSignedIn } = useAuth();
@@ -30,13 +36,21 @@ export const LoginSideBar = ({ className, ...props }: SheetContentProps) => {
   };
   return (
     <Sheet open={rightBarOpen} onOpenChange={toggleRightBar}>
+      <SheetTrigger
+        className="flex aspect-square h-9 items-center justify-center rounded-full
+              bg-white/20 p-2 transition-colors duration-200 hover:bg-gray-200/60
+              dark:bg-gray-900/10 dark:hover:bg-gray-900/70"
+      >
+        <MenuIcon className={cn("block", isHome && "from-white-svg")} />
+      </SheetTrigger>
       <SheetContent
         closeButton={false}
         {...props}
-        overlayClassName="bg-transparent" 
+        overlayClassName="bg-black/20"
         className={cn(
-          `border-0 z-50 box-border h-screen w-[80%] max-w-xs bg-slate-100 bg-opacity-20 shadow-2xl shadow-gray-500 backdrop-blur-[20px] 
-            dark:bg-gray-800 dark:bg-opacity-20 dark:shadow-gray-800 md:bg-opacity-50 md:backdrop-blur-2xl`,
+          `z-50 box-border h-screen w-[80%] max-w-xs border-0
+          bg-slate-100/50 shadow-2xl shadow-gray-500 backdrop-blur-2xl
+          dark:bg-gray-900/50 dark:shadow-gray-800`,
           className
         )}
       >
@@ -45,9 +59,10 @@ export const LoginSideBar = ({ className, ...props }: SheetContentProps) => {
         >
           {isSignedIn ? (
             <button
-              className="rounded-full border-2 border-[#E95B47] px-2 py-1 
-          text-center font-montserrat text-xs uppercase tracking-[1px] text-red-500 shadow-[#e95b47] transition-all duration-200 
-          text-shadow-sm hover:bg-red-500 hover:text-white hover:shadow-white"
+              className="rounded-full border-2 border-red-600 px-2 py-1 
+              text-center text-xs uppercase tracking-[1px] text-red-600 
+              shadow-red-600 transition-all duration-200 text-shadow-sm 
+              hover:bg-red-600 hover:text-white hover:shadow-white"
               onClick={() => signOut()}
             >
               Sign out
@@ -56,9 +71,10 @@ export const LoginSideBar = ({ className, ...props }: SheetContentProps) => {
             <Link
               onClick={toggleRightBar}
               href="/auth/signup"
-              className="rounded-full border-2 border-[#E95B47] px-2 py-1 
-          text-center font-montserrat text-xs uppercase tracking-[1px] text-red-500 shadow-[#e95b47] transition-all duration-200 
-          text-shadow-sm hover:bg-red-500 hover:text-white hover:shadow-white"
+              className="rounded-full border-2 border-red-600 px-2 py-1
+              text-center text-xs uppercase tracking-[1px] text-red-600
+              shadow-red-600 transition-all duration-200 text-shadow-sm
+              hover:bg-red-600 hover:text-white hover:shadow-white"
             >
               Sign up ?
             </Link>
@@ -81,22 +97,25 @@ export const LoginSideBar = ({ className, ...props }: SheetContentProps) => {
         </div>
         <div className="flex h-[calc(100%-76px)] flex-col items-center gap-4 p-0">
           <h2 className=" py-12 text-xl font-bold uppercase md:text-2xl">
-            Login to{" "}
-            <BrandSvg className=" inline w-32 rounded-md fill-black dark:fill-slate-100" aria-label="Barmejha" />
+            Login to
+            <BrandSvg
+              className=" inline w-32 rounded-md fill-black dark:fill-slate-100"
+              aria-label=" Barmejha"
+            />
           </h2>
           <button
             onClick={() => signInWith("oauth_google")}
-            className=" flex w-[90%] items-center justify-between gap-4 rounded-full bg-black  px-2 py-2 text-xs uppercase text-white dark:bg-white dark:text-black md:text-base"
+            className=" flex w-full items-center justify-between gap-4 rounded-full bg-black p-2 text-sm capitalize text-white dark:bg-white dark:text-black md:text-base"
           >
             <FcGoogle className=" flex h-[30px] w-[30px] items-center justify-center rounded-full " />
-            <span className="px-2">Continue with google</span>
+            <span>Continue with google</span>
           </button>
           <button
             onClick={() => signInWith("oauth_facebook")}
-            className=" dark:bg-whitetext-white flex w-[90%] items-center justify-between gap-4 rounded-full bg-black px-2 py-2 text-xs uppercase text-white dark:bg-white dark:text-black md:text-base"
+            className="flex w-full items-center justify-between gap-4 rounded-full bg-black p-2 text-sm capitalize text-white dark:bg-white dark:text-black md:text-base"
           >
-            <FaFacebook className=" h-[30px] w-[30px] rounded-full bg-white text-blue-600 " />
-            <span className="px-2">Continue with Facebook</span>
+            <FaFacebook className=" h-[30px] w-[30px] rounded-full text-blue-600 " />
+            <span>Continue with Facebook</span>
           </button>
         </div>
       </SheetContent>
