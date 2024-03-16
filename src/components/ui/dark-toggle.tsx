@@ -26,7 +26,7 @@ export default function ToggleButton({
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="33"
-        height="56"
+        height="44"
         viewBox="0 0 53 56"
       >
         <g id="Group_19" data-name="Group 19" transform="translate(-384 -20)">
