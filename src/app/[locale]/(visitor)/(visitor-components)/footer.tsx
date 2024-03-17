@@ -128,7 +128,7 @@ export default function Footer() {
             <div className="flex flex-col justify-between self-center p-3 font-bold sm:flex-row">
               <Link
                 href="#"
-                className="hover:duration:0 my-1 flex w-full flex-nowrap items-center justify-center justify-items-center rounded-[5rem]
+                className="hover:duration:0 my-1 flex w-full flex-nowrap items-center justify-center justify-items-center rounded-full
                 bg-black px-4 py-3 text-white transition-colors duration-500 hover:cursor-pointer hover:bg-slate-200 hover:text-black
                 focus:cursor-pointer focus:bg-slate-50 focus:text-black dark:bg-gray-600 dark:hover:bg-slate-50 sm:mr-3"
               >
@@ -139,7 +139,7 @@ export default function Footer() {
               </Link>
               <Link
                 href="download-from-app-store"
-                className="hover:duration:0 my-1 flex w-full flex-nowrap items-center justify-center justify-items-center rounded-[5rem]
+                className="hover:duration:0 my-1 flex w-full flex-nowrap items-center justify-center justify-items-center rounded-full
                 bg-black px-4 py-3 text-white transition-colors duration-500 hover:cursor-pointer hover:bg-slate-200 hover:text-black
                 focus:cursor-pointer focus:bg-slate-50 focus:text-black dark:bg-gray-600 dark:hover:bg-slate-50"
               >

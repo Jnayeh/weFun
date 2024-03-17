@@ -44,13 +44,13 @@ export default async function PlanningSteps() {
           </div>
         </div>
 
-        <div className="z-10 flex h-full w-full flex-col items-center justify-center gap-8 p-8 pb-16 pt-24 md:flex-row md:gap-4 md:pb-32 md:pt-48">
+        <div className="z-10 mx-auto flex h-full w-full flex-col items-center justify-center gap-12 p-12 py-20 md:flex-row md:gap-4 md:pb-32 md:pt-48">
           {steps.map((step, index) => (
             <div
               key={index}
-              className="relative flex aspect-video w-full flex-col items-center justify-center gap-2 rounded-2xl bg-slate-100 p-3 py-4 text-center dark:bg-slate-700 md:w-1/3"
+              className="relative flex aspect-video w-full flex-col items-center gap-3 rounded-3xl bg-background py-4 text-center md:w-1/3"
             >
-              <h3 className=" text-[6vw] font-semibold text-[#004449] dark:text-white md:text-2xl">
+              <h3 className=" pt-2 text-[6vw] font-bold text-[#004449] dark:text-white md:text-xl">
                 {step.alt}
               </h3>
               <Image
@@ -60,11 +60,28 @@ export default async function PlanningSteps() {
                 width={170}
                 height={140}
               />
-              <p className=" px-4 pt-4 font-medium md:pt-2">
-                {step.description}
-              </p>
+              <p className=" p-4 pb-0 md:pt-2">{step.description}</p>
             </div>
           ))}
+        </div>
+        <div className="relative z-10 h-fit md:mb-24 md:h-64">
+          <div className="mx-auto flex w-full flex-col items-center justify-center gap-10 bg-orange-350 p-4 py-12 md:max-w-2xl md:rounded-[40px] md:p-6">
+            <h3 className="text-center text-5xl font-extrabold text-white">
+              Plani, Reservi, 3ishha
+            </h3>
+            <p className="text-center">
+              something aboute friends and going out and let's adventure
+              together. something aboute friends and going out and let's
+              adventure together. something aboute friends and going out and
+              let's adventure together
+            </p>
+            <button
+              type="button"
+              className=" rounded-full bg-blue-600 p-4 px-6 text-2xl font-bold uppercase text-white"
+            >
+              Make your plan
+            </button>
+          </div>
         </div>
       </div>
     </section>
