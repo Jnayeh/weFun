@@ -30,8 +30,8 @@ export function CategoryCarousel() {
       className="w-full max-w-fit"
     >
       <CarouselContent radioGroup="categories">
-        <CarouselItem className=" w-fit min-w-max flex-initial pl-2 first:pl-4">
-          <Card tabIndex={0} className="bg-slate-500 text-white">
+        <CarouselItem className=" w-fit min-w-max flex-initial pl-4">
+          <Card key="all" tabIndex={0} className="bg-slate-500 text-white">
             <CardContent className="flex items-center justify-center whitespace-nowrap px-3 py-2">
               <span className="select-none text-sm font-semibold md:text-base">
                 All
@@ -42,8 +42,8 @@ export function CategoryCarousel() {
         {categories &&
           categories.map((cat, index) => (
             <CarouselItem
-              key={index}
-              className=" w-fit min-w-max flex-initial pl-2 first:pl-4"
+              key={cat.id}
+              className=" w-fit min-w-max flex-initial pl-2"
             >
               <Card tabIndex={0} className="bg-slate-500 text-white">
                 <CardContent className="flex items-center justify-center whitespace-nowrap px-3 py-2">
