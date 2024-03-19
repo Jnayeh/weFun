@@ -18,7 +18,7 @@ export default function ActivityDetailsDrawer({ details }: { details?: any }) {
       <Drawer
         open={true}
         modal={false}
-        snapPoints={[0.3, 0.9]}
+        snapPoints={[0.3,0.6, 0.9]}
         dismissible={false}
         activeSnapPoint={snap}
         setActiveSnapPoint={setSnap}
@@ -31,8 +31,8 @@ export default function ActivityDetailsDrawer({ details }: { details?: any }) {
         >
           <DrawerHeader
             className={cn("text-start", {
-              "overflow-y-auto": snap === 0.8,
-              "overflow-hidden": snap !== 0.8,
+              "overflow-y-auto": snap === 0.9,
+              "overflow-hidden": snap !== 0.9,
             })}
           >
             <DrawerTitle>Are you absolutely sure?</DrawerTitle>

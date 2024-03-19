@@ -117,7 +117,7 @@ export default function Navbar() {
   return (
     <div
       className={cn(
-        `top-0 z-50 min-w-full max-w-[1600px] items-center justify-center 
+        `top-0 z-50 min-w-full items-center justify-center 
       bg-white/70 backdrop-blur-md transition-all duration-200 dark:bg-gray-800/60 `,
         isHome
           ? "from-bg-transparent-scroll fixed"
@@ -127,7 +127,7 @@ export default function Navbar() {
     >
       <nav
         className={cn(
-          "mx-auto flex w-full max-w-[1500px] items-center justify-between p-2 lg:px-12"
+          "mx-auto flex w-full max-w-screen-2xl items-center justify-between p-2 lg:px-12"
         )}
       >
         <div className=" flex h-10 items-center">

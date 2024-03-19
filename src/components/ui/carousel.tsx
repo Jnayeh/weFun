@@ -334,7 +334,7 @@ const CarouselDots = React.forwardRef<
               onClick={() => onDotButtonClick(index)}
               onFocus={() => onDotButtonClick(index)}
               className={cn(
-                "h-4 w-4 rounded-full border-2 border-muted-foreground transition-all duration-300",
+                "h-4 w-4 animate-scale-up rounded-full border-2 border-muted-foreground transition-all duration-300",
                 index === selectedIndex &&
                   "w-12 border-primary bg-primary hover:bg-primary"
               )}

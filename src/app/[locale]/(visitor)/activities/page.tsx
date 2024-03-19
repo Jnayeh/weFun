@@ -18,6 +18,7 @@ import { Suspense, lazy } from "react";
 import { ActivitiesSkeleton } from "~/components/skeletons/activities";
 import { cachableGetActivities } from "~/server/actions/cachable-get-activities";
 import Link from "next/link";
+import Image from "next/image";
 const LottiePlayer = lazy(() =>
   import("~/components/LottiePlayer").then((mod) => ({
     default: mod.LottiePlayer,
@@ -31,9 +32,17 @@ export const metadata: Metadata = {
 const ActivitiesPage = () => {
   return (
     <>
+      <div className="relative aspect-video overflow-hidden">
+        <Image
+          className="object-cover object-center brightness-90"
+          alt="friends sitting in front of firecamp"
+          fill
+          src="/beach.webp"
+        />
+      </div>
       <main
         className={cn(
-          " mx-auto flex min-h-[300px] max-w-[97%] flex-col items-center gap-2 pb-4"
+          " mx-auto flex flex-col items-center gap-2 pb-4"
         )}
       >
         <div className="flex w-full max-w-2xl items-center justify-center gap-1 px-6 py-4">
@@ -75,13 +84,11 @@ export const Activities = async () => {
             <Card
               key={act.id}
               className={cn(
-                `relative flex flex-col justify-between rounded-3xl bg-slate-50 shadow-lg dark:bg-slate-600 [&>div>img]:aspect-[19/10] lg:[&>div>img]:aspect-video`
+                `relative flex flex-col justify-between rounded-3xl bg-slate-50 shadow-lg dark:bg-slate-600`
               )}
             >
               <CardHeader className="relative aspect-video flex-shrink flex-grow p-0">
                 <ImageWithFallback
-                  priority
-                  loading="eager"
                   src={act.cover ?? defaultImage.src}
                   fallBackSrc={defaultImage}
                   blurDataURL={defaultImage.src}
@@ -91,7 +98,7 @@ export const Activities = async () => {
                   height={800}
                 />
                 <button className="text-brand-500 absolute right-2 top-2 flex items-center justify-center rounded-full bg-white p-2 hover:cursor-pointer sm:scale-90 md:scale-75">
-                  <div className="flex h-6 w-6 items-center justify-center rounded-full text-2xl hover:bg-gray-50">
+                  <div className="flex h-4 w-4 items-center justify-center rounded-full text-2xl hover:bg-gray-50">
                     {act.id % 2 == 0 ? (
                       <FaHeart fill="red" />
                     ) : (
@@ -107,9 +114,9 @@ export const Activities = async () => {
               </CardContent>
               <CardFooter className="flex justify-between px-5 pb-2">
                 {act.location ? (
-                  <p className=" flex items-center font-medium text-red-600 dark:text-slate-50">
-                    <FaLocationArrow className=" scale-[80%]" />
-                    {act.location}
+                  <p className="flex items-center font-medium text-red-600 dark:text-slate-50">
+                    <FaLocationArrow className="scale-75" />
+                    <span className="line-clamp-1">{act.location}</span>
                   </p>
                 ) : (
                   ""
@@ -137,8 +144,8 @@ export const Activities = async () => {
                 </div>
               </CardFooter>
               <Link
-                href={"activities/"+act.id }
-                className=" flex flex-col justify-center items-center px-4 h-12 w-full self-center rounded-[20px] bg-red-500 text-xl font-semibold uppercase text-white shadow-sm"
+                href={"/activities/" + act.id}
+                className=" flex h-12 w-full flex-col items-center justify-center self-center rounded-[20px] bg-red-500 px-4 text-xl font-semibold uppercase text-white shadow-sm"
               >
                 View details
               </Link>
@@ -156,7 +163,7 @@ export const Activities = async () => {
         src="/animated/not-found.lottie"
         loop
         autoplay
-        className="mx-auto w-[90dvw] max-w-lg"
+        className="mx-auto w-[90%] max-w-lg"
       />
     </div>
   );
