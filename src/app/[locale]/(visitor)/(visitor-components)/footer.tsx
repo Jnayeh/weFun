@@ -9,53 +9,36 @@ import { FaTwitter } from "@react-icons/all-files/fa/FaTwitter";
 export default function Footer() {
   const link_list = [
     {
-      title: "Company",
+      title: "Service providers",
       links: [
         {
           href: "#",
-          link: "About",
+          link: "What we offer you",
         },
         {
           href: "#",
-          link: "This is a log",
+          link: "contact-us",
         },
         {
           href: "#",
-          link: "This is a log",
+          link: "Some dumb shiiii",
         },
       ],
     },
     {
-      title: "Company",
+      title: "About us",
       links: [
         {
           href: "#",
-          link: "This is a log",
+          link: "Freaquently asked questions",
         },
         {
           href: "#",
-          link: "About",
+          link: "Learn about our team",
         },
         {
           href: "#",
-          link: "This is a log",
-        },
-      ],
-    },
-    {
-      title: "Company",
-      links: [
-        {
-          href: "#",
-          link: "This is a log",
-        },
-        {
-          href: "#",
-          link: "This is a log",
-        },
-        {
-          href: "#",
-          link: "About",
+          link: "Our mission",
         },
       ],
     },
@@ -63,10 +46,10 @@ export default function Footer() {
   return (
     <footer className=" rounded-xl dark:bg-gray-900 pb-[72px] md:pb-2">
       <div className="flex flex-col justify-center sm:items-center xl:flex-row xl:items-start">
-        <section className="hidden w-full max-w-[1000px] flex-col items-start justify-between sm:flex-row sm:justify-evenly md:flex lg:mx-auto xl:mx-2">
+        <section className="w-full max-w-screen-lg flex-col items-start justify-between sm:flex-row sm:justify-start md:flex lg:mx-auto xl:mx-2">
           {link_list.map((item, index) => {
             return (
-              <div key={index} className="p-4 sm:px-2 lg:p-4">
+              <div key={index} className="p-4">
                 <h3 className="mb-1 text-2xl font-bold text-red-700">
                   {item.title}
                 </h3>
@@ -76,7 +59,7 @@ export default function Footer() {
                       <li key={link_index}>
                         <Link
                           href={link_item.href}
-                          className="dark:hover:text-gray-400"
+                          className="hover:text-gray-600 dark:hover:text-gray-400"
                         >
                           {link_item.link}
                         </Link>
@@ -121,16 +104,16 @@ export default function Footer() {
           </div>
 
           <div className="w-full sm:w-max">
-            <p className=" p-3 text-2xl font-bold text-gray-500 dark:text-white sm:text-3xl">
+            <p className=" p-3 text-2xl font-bold text-red-700 sm:text-3xl">
               Discover our app
             </p>
 
-            <div className="flex flex-col justify-between self-center p-3 font-bold sm:flex-row">
+            <div className="flex flex-col justify-between self-center p-3 font-bold sm:flex-row gap-2">
               <Link
                 href="#"
-                className="hover:duration:0 my-1 flex w-full flex-nowrap items-center justify-center justify-items-center rounded-full
+                className="hover:duration:0 flex w-full flex-nowrap items-center justify-center justify-items-center rounded-full
                 bg-black px-4 py-3 text-white transition-colors duration-500 hover:cursor-pointer hover:bg-slate-200 hover:text-black
-                focus:cursor-pointer focus:bg-slate-50 focus:text-black dark:bg-gray-600 dark:hover:bg-slate-50 sm:mr-3"
+                focus:cursor-pointer focus:bg-slate-50 focus:text-black dark:bg-gray-600 dark:hover:bg-slate-50"
               >
                 <FaGooglePlay />
                 <span className="ml-1 inline-block whitespace-nowrap text-center text-sm sm:text-[0.77rem]">
@@ -139,7 +122,7 @@ export default function Footer() {
               </Link>
               <Link
                 href="download-from-app-store"
-                className="hover:duration:0 my-1 flex w-full flex-nowrap items-center justify-center justify-items-center rounded-full
+                className="hover:duration:0 flex w-full flex-nowrap items-center justify-center justify-items-center rounded-full
                 bg-black px-4 py-3 text-white transition-colors duration-500 hover:cursor-pointer hover:bg-slate-200 hover:text-black
                 focus:cursor-pointer focus:bg-slate-50 focus:text-black dark:bg-gray-600 dark:hover:bg-slate-50"
               >
