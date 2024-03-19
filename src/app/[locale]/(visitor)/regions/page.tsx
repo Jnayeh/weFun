@@ -1,6 +1,7 @@
 import { cn } from "~/utils/helpers/server";
 import { Metadata } from "next";
 import Regions from "./regions";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Places - Find your new experiences",
@@ -9,9 +10,17 @@ export const metadata: Metadata = {
 const RegionsPage = async () => {
   return (
     <>
+      <div className="relative aspect-video overflow-hidden">
+        <Image
+          className="object-cover object-center brightness-90"
+          alt="friends sitting in front of firecamp"
+          fill
+          src="/beach.webp"
+        />
+      </div>
       <main
         className={cn(
-          " mx-auto flex min-h-[300px] max-w-[97%] flex-col items-center gap-2 py-4"
+          " mx-auto flex flex-col items-center gap-2 py-4"
         )}
       >
         <Regions />

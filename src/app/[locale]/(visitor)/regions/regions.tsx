@@ -83,7 +83,7 @@ export default function Regions() {
         src="/animated/not-found.lottie"
         loop
         autoplay
-        className="mx-auto w-[90dvw] max-w-lg"
+        className="mx-auto w-[90%] max-w-lg"
       />
     </>
   );
