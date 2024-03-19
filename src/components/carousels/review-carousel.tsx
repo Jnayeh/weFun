@@ -58,7 +58,7 @@ export function ReviewCarousel(
           </CarouselItem>
         ))}
       </CarouselContent>
-      <div className=" flex items-center justify-center gap-5 pt-10">
+      <div className=" flex items-center justify-center gap-4 pt-10">
         <CarouselPrevious variant="default" className=" static bg-[#004449] md:bg-orange-350" />
         <CarouselNext variant="default" className=" static bg-[#004449] md:bg-orange-350" />
       </div>

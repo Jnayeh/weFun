@@ -11,8 +11,11 @@ import {
   CarouselPrevious,
 } from "~/components/ui/carousel";
 import { api } from "~/trpc/react";
+import { cn } from "~/utils/helpers/client";
 
-export function CategoryCarousel() {
+export function CategoryCarousel({
+  className,
+}: React.HTMLProps<HTMLDivElement>) {
   const { data: categories, isLoading } = api.category.getAll.useQuery(
     undefined,
     {
@@ -27,7 +30,7 @@ export function CategoryCarousel() {
       opts={{
         align: "start",
       }}
-      className="w-full max-w-fit"
+      className={cn("w-full max-w-fit", className)}
     >
       <CarouselContent radioGroup="categories">
         <CarouselItem className=" w-fit min-w-max flex-initial pl-4">
