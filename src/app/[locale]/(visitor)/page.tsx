@@ -84,33 +84,21 @@ const Home = ({ params: { locale } }: { params: { locale: string } }) => {
           className="relative flex w-full justify-center py-12"
         >
           <div
-            className="relative flex w-[300px] justify-start rounded-full border-2 
+            className="relative flex w-80 justify-start rounded-full border-2 
           border-black dark:border-slate-600 [&>*]:px-10"
           >
             <button
-              className="flex w-full justify-start rounded-full bg-transparent py-[4px]
-              leading-[138%] tracking-[0.16em] hover:bg-gray-200 dark:hover:bg-gray-800"
+              className="flex w-full justify-start rounded-full bg-transparent py-1
+               leading-snug tracking-[0.16rem] hover:bg-gray-200 dark:hover:bg-gray-800"
             >
               {t("search")}
             </button>
             <Link
               href="explore"
               className=" absolute end-0 flex h-full items-center rounded-full bg-black 
-              text-sm font-black leading-[140.5%] text-white dark:bg-slate-600"
+              text-sm font-black text-white dark:bg-slate-600"
             >
-              <span className="text-center uppercase">
-                {t("find-more")
-                  .split("<br/>")
-                  .map((it, idx, its) =>
-                    idx + 1 != its.length ? (
-                      <>
-                        {it} <br />
-                      </>
-                    ) : (
-                      it
-                    )
-                  )}
-              </span>
+              <span className="text-center uppercase">{t("find-more")}</span>
             </Link>
           </div>
         </section>
