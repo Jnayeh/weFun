@@ -68,14 +68,14 @@ const SignUp = () => {
   };
 
   return (
-    <div className=" mt-5 flex flex-col items-center p-5">
+    <div className=" mt-4 flex flex-col items-center p-5">
       {isSignedIn ? <p>You are already signed in as {user.fullName}</p> : null}
       {success ? <p>Sign-up successful!</p> : null}
       {!isSignedIn ? (
         <>
           <form
             onSubmit={handleSubmit(handleSignIn)}
-            className="mt-5 flex w-[90vw] max-w-md flex-col gap-4 rounded-2xl bg-slate-200 p-5 font-mono shadow-xl dark:bg-slate-700"
+            className="mt-4 flex w-[90vw] max-w-md flex-col gap-4 rounded-2xl bg-slate-200 p-5 font-mono shadow-xl dark:bg-slate-700"
           >
             <h2 className=" text-center text-3xl font-bold">Sign Up</h2>
             <div className=" flex flex-col gap-2 text-start">
@@ -141,7 +141,7 @@ const SignUp = () => {
           <div className="flex items-center justify-center gap-2 p-4">
             <button
               onClick={() => signInWith("oauth_google")}
-              className=" flex h-[36px] w-[36px] items-center justify-center rounded-full bg-white text-2xl "
+              className=" flex h-9 w-9 items-center justify-center rounded-full bg-white text-2xl "
             >
               <FcGoogle />
             </button>
