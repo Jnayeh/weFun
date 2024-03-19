@@ -251,6 +251,102 @@ const CarouselNext = React.forwardRef<
 });
 CarouselNext.displayName = "CarouselNext";
 
+type UseDotButtonType = {
+  selectedIndex: number;
+  scrollSnaps: number[];
+  onDotButtonClick: (index: number) => void;
+};
+
+export const useDotButton = (): UseDotButtonType => {
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
+  const [scrollSnaps, setScrollSnaps] = React.useState<number[]>([]);
+  const { api: emblaApi } = useCarousel();
+  const onDotButtonClick = React.useCallback(
+    (index: number) => {
+      if (!emblaApi) return;
+      emblaApi.scrollTo(index);
+    },
+    [emblaApi]
+  );
+
+  const onInit = React.useCallback((emblaApi: CarouselApi) => {
+    if (emblaApi) setScrollSnaps(emblaApi.scrollSnapList());
+    else alert("u fucked up");
+  }, []);
+
+  const onSelect = React.useCallback((emblaApi: CarouselApi) => {
+    if (emblaApi) setSelectedIndex(emblaApi.selectedScrollSnap());
+    else alert("u fucked up");
+  }, []);
+
+  React.useEffect(() => {
+    if (!emblaApi) return;
+
+    onInit(emblaApi);
+    onSelect(emblaApi);
+    emblaApi.on("reInit", onInit);
+    emblaApi.on("reInit", onSelect);
+    emblaApi.on("select", onSelect);
+  }, [emblaApi, onInit, onSelect]);
+
+  return {
+    selectedIndex,
+    scrollSnaps,
+    onDotButtonClick,
+  };
+};
+
+const CarouselDotButton = React.forwardRef<
+  HTMLButtonElement,
+  React.ComponentProps<typeof Button>
+>(({ className, variant = "outline", size = "icon", ...props }, ref) => {
+  return (
+    <Button
+      ref={ref}
+      variant={variant}
+      className={className}
+      size={size}
+      type="button"
+      {...props}
+    />
+  );
+});
+CarouselDotButton.displayName = "CarouselDotButton";
+
+const CarouselDots = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => {
+  const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton();
+  return (
+    <div
+      className={cn(
+        "absolute bottom-[30vh] left-1/2 flex flex-auto -translate-x-1/2 gap-1 p-2 ",
+        className
+      )}
+      ref={ref}
+      {...props}
+    >
+      {scrollSnaps.map((_, index) => (
+        <React.Fragment key={index}>
+          {Math.abs(selectedIndex - index) <= 3 && (
+            <CarouselDotButton
+              onClick={() => onDotButtonClick(index)}
+              onFocus={() => onDotButtonClick(index)}
+              className={cn(
+                "h-4 w-4 rounded-full border-2 border-muted-foreground transition-all duration-300",
+                index === selectedIndex &&
+                  "w-12 border-primary bg-primary hover:bg-primary"
+              )}
+            />
+          )}
+        </React.Fragment>
+      ))}
+    </div>
+  );
+});
+CarouselDots.displayName = "CarouselDots";
+
 export {
   type CarouselApi,
   Carousel,
@@ -258,4 +354,5 @@ export {
   CarouselItem,
   CarouselPrevious,
   CarouselNext,
+  CarouselDots,
 };

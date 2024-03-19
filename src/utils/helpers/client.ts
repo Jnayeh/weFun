@@ -1,11 +1,11 @@
 "use client";
 
-import { type ClassValue, clsx } from "clsx"
+import { type ClassValue, clsx } from "clsx";
 import { useEffect, useRef, useState } from "react";
-import { twMerge } from "tailwind-merge"
+import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }
 export const useEffectOnce = (effect: () => void | (() => void)) => {
   const destroyFunc = useRef<void | (() => void)>();
@@ -60,10 +60,10 @@ export const useScroll = (): boolean => {
    * Listens to every scroll event
    */
   useEffect(() => {
-    window.addEventListener('scroll', detectScroll);
+    window.addEventListener("scroll", detectScroll);
     return function cleanup() {
-      window.removeEventListener('scroll', () => {
-        console.log('Unmounted scrolling behavior');
+      window.removeEventListener("scroll", () => {
+        console.log("Unmounted scrolling behavior");
       });
     };
   });

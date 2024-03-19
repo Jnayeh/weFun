@@ -81,7 +81,7 @@ export const LoginSideBar = ({
           )}
           <button onClick={toggleRightBar}>
             <svg
-              className="scale-[140%] stroke-black stroke-[1.6] transition-colors 
+              className="scale-150 stroke-black transition-colors 
               duration-200 hover:stroke-red-500 dark:stroke-white"
               width="21"
               height="21"

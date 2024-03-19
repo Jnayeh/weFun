@@ -1,10 +1,10 @@
 import Image from "next/image";
 import * as React from "react";
 
-import { Card, CardContent } from "~/components/ui/card";
 import {
   Carousel,
   CarouselContent,
+  CarouselDots,
   CarouselItem,
 } from "~/components/ui/carousel";
 import { dynamicBlurDataUrl } from "~/server/actions";
@@ -16,6 +16,24 @@ export async function ActivityPicturesCarousel() {
     },
     {
       src: "/images/paraglider.webp",
+    },
+    {
+      src: "/images/hiking.webp",
+    },
+    {
+      src: "/images/dodge.webp",
+    },
+    {
+      src: "/images/billard.webp",
+    },
+    {
+      src: "/images/hiking.webp",
+    },
+    {
+      src: "/images/dodge.webp",
+    },
+    {
+      src: "/images/billard.webp",
     },
     {
       src: "/images/hiking.webp",
@@ -48,12 +66,13 @@ export async function ActivityPicturesCarousel() {
                 placeholder={"blur"}
                 blurDataURL={blurData[index] ?? ""}
                 fill
-                className="object-cover"
+                className="fixed top-0 object-cover"
               />
             </div>
           </CarouselItem>
         ))}
       </CarouselContent>
+      <CarouselDots />
     </Carousel>
   );
 }
