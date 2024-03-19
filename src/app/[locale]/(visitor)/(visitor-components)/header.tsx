@@ -17,7 +17,7 @@ const Header = () => {
   return (
     <header
       className={cn(
-        `relative mx-auto flex h-[calc(110dvh-72px)] max-h-[1300px] min-h-fit flex-col items-center overflow-hidden pb-2 
+        `relative mx-auto flex h-[calc(110svh-72px)] max-h-[80rem] min-h-fit flex-col items-center overflow-hidden pb-2 
         ${defaultFont("title")} 
         md:h-[120vh] md:px-12 md:pb-20`
       )}
@@ -41,7 +41,7 @@ const Header = () => {
           <div className="flex w-[70%] max-w-sm justify-center transition-all duration-300 2xs:w-[90%] ">
             <HeaderArrow id="arrow-left" className="-scale-x-100" />
             <Button
-              className="mt-5 flex h-fit items-center justify-center rounded-full bg-slate-50 
+              className="mt-4 flex h-fit items-center justify-center rounded-full bg-slate-50 
               px-5 py-2 font-bold text-black transition-all hover:bg-red-700 
               hover:text-white 2xs:text-2xl "
             >
