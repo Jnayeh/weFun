@@ -105,16 +105,16 @@ export const LoginSideBar = ({
           </h2>
           <button
             onClick={() => signInWith("oauth_google")}
-            className=" flex w-full items-center justify-between gap-4 rounded-full bg-black p-2 text-sm capitalize text-white dark:bg-white dark:text-black md:text-base"
+            className=" flex w-full items-center justify-between rounded-full bg-black p-2 pe-4 text-sm capitalize text-white dark:bg-white dark:text-black md:text-base font-bold"
           >
-            <FcGoogle className=" flex h-[30px] w-[30px] items-center justify-center rounded-full " />
+            <FcGoogle className=" flex h-9 w-9 items-center justify-center rounded-full " />
             <span>Continue with google</span>
           </button>
           <button
             onClick={() => signInWith("oauth_facebook")}
-            className="flex w-full items-center justify-between gap-4 rounded-full bg-black p-2 text-sm capitalize text-white dark:bg-white dark:text-black md:text-base"
+            className="flex w-full items-center justify-between rounded-full bg-black p-2 pe-4 text-sm capitalize text-white dark:bg-white dark:text-black md:text-base font-bold"
           >
-            <FaFacebook className=" h-[30px] w-[30px] rounded-full text-blue-600 " />
+            <FaFacebook className=" h-9 w-9 rounded-full text-blue-600 " />
             <span>Continue with Facebook</span>
           </button>
         </div>

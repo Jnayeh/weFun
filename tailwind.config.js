@@ -77,6 +77,10 @@ module.exports = {
           from: { height: 0 },
           to: { height: "var(--radix-accordion-content-height)" },
         },
+        scale: {
+          "0%": { scale: 0 },
+          "100%": { scale: 1 },
+        },
         "accordion-up": {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: 0 },
@@ -135,6 +139,8 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
         "ping-slow": "ping 2s cubic-bezier(0, 0, 0.2, 1) infinite",
         "floating-card": " float 6s ease-in-out infinite",
+        "scale-up": "scale 0.3s ease-out",
+        "scale-down": "scale 0.3s reverse ease-out",
       },
     },
   },
