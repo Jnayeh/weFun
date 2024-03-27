@@ -7,7 +7,7 @@ import { SlidingCardsSkeleton } from "~/components/skeletons/sliding-card";
 const getCategories = cache(
   nextCache(
     async () => {
-      return api.category.getAll.query();
+      return api.category.getAllv1.query();
     },
     ["categories"],
     { tags: ["getCategories"], revalidate: 10 }
