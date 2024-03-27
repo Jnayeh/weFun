@@ -7,6 +7,7 @@ import {
   Handshake,
   Settings2,
   MapIcon,
+  Cat,
   User2Icon,
 } from "lucide-react";
 import { Link, usePathname } from "~/navigation";
@@ -86,6 +87,21 @@ export default function DashboardLayout({
                 <span className="nav-text">Locations</span>
               </Link>
             </li>
+
+
+            <li
+              className={`nav-it ${
+                location == "/dashboard/categories" && "active"
+              }`}
+            >
+              <b></b>
+              <b></b>
+              <Link href="/dashboard/categories">
+                <Cat className="nav-icon" />
+                <span className="nav-text">Categories</span>
+              </Link>
+            </li>
+
 
             <li
               className={`nav-it ${location == "/dashboard/ads" && "active"} pointer-events-none`}

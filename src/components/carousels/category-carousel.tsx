@@ -16,7 +16,7 @@ import { cn } from "~/utils/helpers/client";
 export function CategoryCarousel({
   className,
 }: React.HTMLProps<HTMLDivElement>) {
-  const { data: categories, isLoading } = api.category.getAll.useQuery(
+  const { data: categories, isLoading } = api.category.getAllv1.useQuery(
     undefined,
     {
       staleTime: 1000 * 60 * 60 * 5,

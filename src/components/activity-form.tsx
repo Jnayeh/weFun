@@ -180,7 +180,7 @@ function Form() {
   );
 }
 function SelectCategory() {
-  const { data: categories, isLoading } = api.category.getAll.useQuery(
+  const { data: categories, isLoading } = api.category.getAllv1.useQuery(
     undefined,
     {
       staleTime: 1000 * 60 * 60 * 2,
