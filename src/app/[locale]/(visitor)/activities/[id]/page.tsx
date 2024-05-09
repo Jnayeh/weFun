@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import { cn } from "~/utils/helpers/server";
 import { ActivityPicturesCarousel } from "./activity-pictures-carousel";
 import ActivityDetailsDrawer from "./activity-details";
 export const metadata: Metadata = {
@@ -9,11 +8,9 @@ export const metadata: Metadata = {
 const RegionPage = () => {
   return (
     <>
-      <main>
-        <div className=" h-dvh min-h-screen overflow-hidden">
+      <main className="h-dvh min-h-screen overflow-hidden">
           <ActivityPicturesCarousel />
           <ActivityDetailsDrawer />
-        </div>
       </main>
     </>
   );

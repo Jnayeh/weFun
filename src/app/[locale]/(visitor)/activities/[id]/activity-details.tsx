@@ -6,67 +6,47 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
+  DrawerTrigger,
 } from "~/components/ui/drawer";
 import { Button } from "~/components/ui/button";
-import { useState } from "react";
 import { cn } from "~/utils/helpers/client";
+import { useState } from "react";
 
 export default function ActivityDetailsDrawer({ details }: { details?: any }) {
-  const [snap, setSnap] = useState<number | string | null>(0.3);
   return (
     <>
-      <Drawer
-        open={true}
-        modal={false}
-        snapPoints={[0.3,0.6, 0.9]}
-        dismissible={false}
-        activeSnapPoint={snap}
-        setActiveSnapPoint={setSnap}
-      >
-        <DrawerContent
-          onInteractOutside={(e) => {
-            e.preventDefault();
-          }}
-          className={snap === null ? "h-30v" : `h-${Number(snap) * 100}v`}
-        >
-          <DrawerHeader
-            className={cn("text-start", {
-              "overflow-y-auto": snap === 0.9,
-              "overflow-hidden": snap !== 0.9,
-            })}
+      <Drawer>
+        <DrawerTrigger asChild>
+          <div
+            className={cn(
+              "fixed bottom-0 z-50 h-[25dvh] w-full flex-col rounded-t-3xl border-none bg-slate-50"
+            )}
           >
-            <DrawerTitle>Are you absolutely sure?</DrawerTitle>
+          </div>
+        </DrawerTrigger>
+        <DrawerContent style={{ height: "80%" }}>
+          <DrawerHeader className={cn("text-start gap-0", "overflow-y-auto")}>
+            <DrawerTitle className="text-2xl font-ubuntu">Terrain BasketBall</DrawerTitle>
             <DrawerDescription>
-              This action cannot be undone.This action cannot be undone.This
-              action cannot be undone.This action cannot be undone.This action
-              cannot be undone.This action cannot be undone.This action cannot
-              be undone.This action cannot be undone.This action cannot be
-              undone.This action cannot be undone.This action cannot be
-              undone.This action cannot be undone.This action cannot be
-              undone.This action cannot be undone.This action cannot be
-              undone.This action cannot be undone.This action cannot be
-              undone.This action cannot be undone.This action cannot be
-              undone.This action cannot be undone.This action cannot be
-              undone.This action cannot be undone.This action cannot be
-              undone.This action cannot be undone.This action cannot be
-              undone.This action cannot be undone.This action cannot be
-              undone.This action cannot be undone.This action cannot be
-              undone.This action cannot be undone.This action cannot be
-              undone.This action cannot be undone.This action cannot be
-              undone.This action cannot be undone.This action cannot be
-              undone.This action cannot be undone.This action cannot be
-              undone.This action cannot be undone.This action cannot be
-              undone.This action cannot be undone.This action cannot be
-              undone.This action cannot be undone.This action cannot be
-              undone.This action cannot be undone.This action cannot be
-              undone.This action cannot be undone.This action cannot be
-              undone.This action cannot be undone.This action cannot be
-              undone.This action cannot be undone.This action cannot be
-              undone.This action cannot be undone.This action cannot be
-              undone.This action cannot be undone.This action cannot be
-              undone.This action cannot be undone.This action cannot be
-              undone.This action cannot be undone.This action cannot be
-              undone.This action cannot be undone.
+              <div className="font-bold text-muted-foreground pb-2">
+                sports, basketball, fun
+              </div>
+              <div className="flex gap-2 w-full flex-wrap dark:text-black text-white text-center">
+                <div className="min-w-12 rounded-full bg-muted-foreground flex-auto p-2">
+                  20 people
+                </div>
+                <div className="min-w-12 rounded-full bg-muted-foreground flex-auto p-2">
+                  40 dinars
+                </div>
+                <div className="min-w-12 rounded-full bg-muted-foreground flex-auto p-2">
+                  something
+                </div>
+                <div className="min-w-12 rounded-full bg-muted-foreground flex-auto p-2">max 9</div>
+                <div className="min-w-12 rounded-full bg-muted-foreground flex-auto p-2">a9reb wa9t</div>
+                <div className="min-w-12 rounded-full bg-muted-foreground flex-auto p-2">Tunis</div>
+                <div className="min-w-12 rounded-full bg-muted-foreground flex-auto p-2"></div>
+                <div className="min-w-12 rounded-full bg-muted-foreground flex-auto p-2"></div>
+              </div>
             </DrawerDescription>
           </DrawerHeader>
           <DrawerFooter className=" sticky bottom-0 z-30 w-full p-0">
