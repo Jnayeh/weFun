@@ -17,7 +17,7 @@ export const dynamicBlurDataUrl = async function (url: string) {
   const headersList = headers();
   let host = headersList.get("host");
   if (host && !host.includes("localhost")) {
-    host = host.includes("127.0.0.1")
+    host = host.includes("127.0.0.1") || host.includes("10.") || host.includes("192.") || host.includes("172.")
       ? "http://".concat(host)
       : "https://".concat(host);
   } else host = baseUrl ?? "no-host-add-to-env";
