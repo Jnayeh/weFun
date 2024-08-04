@@ -46,7 +46,7 @@ const ActivitiesPage = () => {
         )}
       >
         <div className="flex w-full max-w-2xl items-center justify-center gap-1 px-6 py-4">
-          <Input type="search" className="h-[46px] rounded-l-full pl-6" />
+          <Input type="search" className="h-12 rounded-l-full pl-6" />
           <button
             className="h-full rounded-r-full bg-slate-500 px-4 py-2 text-3xl text-white hover:bg-slate-600"
             aria-label="click to search"

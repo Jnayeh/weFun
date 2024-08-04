@@ -10,7 +10,6 @@ import {
 } from "~/components/ui/drawer";
 import { Button } from "~/components/ui/button";
 import { cn } from "~/utils/helpers/client";
-import { useState } from "react";
 
 export default function ActivityDetailsDrawer({ details }: { details?: any }) {
   return (
@@ -19,7 +18,7 @@ export default function ActivityDetailsDrawer({ details }: { details?: any }) {
         <DrawerTrigger asChild>
           <div
             className={cn(
-              "fixed bottom-0 z-50 h-[25dvh] w-full flex-col rounded-t-3xl border-none bg-slate-50"
+              "fixed bottom-0 z-50 h-[20%] w-full flex-col rounded-t-3xl border-none bg-slate-50"
             )}
           >
           </div>
@@ -42,10 +41,7 @@ export default function ActivityDetailsDrawer({ details }: { details?: any }) {
                   something
                 </div>
                 <div className="min-w-12 rounded-full bg-muted-foreground flex-auto p-2">max 9</div>
-                <div className="min-w-12 rounded-full bg-muted-foreground flex-auto p-2">a9reb wa9t</div>
                 <div className="min-w-12 rounded-full bg-muted-foreground flex-auto p-2">Tunis</div>
-                <div className="min-w-12 rounded-full bg-muted-foreground flex-auto p-2"></div>
-                <div className="min-w-12 rounded-full bg-muted-foreground flex-auto p-2"></div>
               </div>
             </DrawerDescription>
           </DrawerHeader>

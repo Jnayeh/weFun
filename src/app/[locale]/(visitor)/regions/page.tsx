@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 const RegionsPage = async () => {
   return (
     <>
-      <div className="relative aspect-video overflow-hidden">
+      <div className="relative aspect-video overflow-hidden md:hidden">
         <Image
           className="object-cover object-center brightness-90"
           alt="friends sitting in front of firecamp"

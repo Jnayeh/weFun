@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 const RegionPage = () => {
   return (
     <>
-      <div className="relative h-56 w-full overflow-hidden">
+      <div className="relative h-56 w-full overflow-hidden md:hidden">
         <Image
           className="object-cover object-center brightness-90"
           alt="friends sitting in front of firecamp"
@@ -21,7 +21,7 @@ const RegionPage = () => {
       </div>
       <main
         className={cn(
-          "relative z-10 mx-auto -mt-4 flex min-h-screen flex-col items-center gap-2 rounded-t-2xl bg-slate-900 p-2"
+          "relative z-10 mx-auto -mt-4 flex min-h-screen flex-col items-center gap-2 rounded-t-2xl bg-slate-50 dark:bg-slate-900 p-2 md:mt-0"
         )}
       >
         {/* Details of the place */}
