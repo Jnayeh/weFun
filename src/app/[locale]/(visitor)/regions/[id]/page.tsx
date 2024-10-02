@@ -21,11 +21,11 @@ const RegionPage = () => {
       </div>
       <main
         className={cn(
-          "relative z-10 mx-auto -mt-4 flex min-h-screen flex-col items-center gap-2 rounded-t-2xl bg-slate-50 dark:bg-slate-900 p-2 md:mt-0"
+          "relative z-10 mx-auto -mt-4 flex min-h-screen flex-col items-center gap-2 rounded-t-2xl bg-slate-50 dark:bg-slate-900 md:mt-0"
         )}
       >
         {/* Details of the place */}
-        <CategoryCarousel className="mt-2" />
+        <CategoryCarousel className="mt-2" addGradient />
         <Activities />
       </main>
     </>
