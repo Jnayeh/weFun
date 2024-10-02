@@ -3,12 +3,11 @@ import React, { Suspense, useEffect, useRef } from "react";
 
 import "~/styles/navbar.styles.css";
 
-import { Link, useRouter } from "~/navigation";
+import { Link, useRouter, usePathname } from "~/navigation";
 import { cn } from "~/utils/helpers/server";
 import { useAuth } from "@clerk/nextjs";
 import dynamic from "next/dynamic";
 import BrandSvg from "~/components/SvgStore/BrandSvg";
-import { usePathname } from "~/navigation";
 import Arrow from "~/components/SvgStore/arrow";
 import { useMediaQuery } from "~/utils/helpers/client";
 import { useParams } from "next/navigation";
@@ -61,7 +60,7 @@ export default function Navbar() {
         indicatorRef.current.style.transition = "0.4s";
       }
     }, 0);
-    if (elementRef && elementRef.current && navListRef.current) {
+    if (elementRef?.current && navListRef.current) {
       const items =
         navListRef.current.querySelectorAll<HTMLElement>(".nav-item");
       slideHorizontal(elementRef.current, items, indicatorRef);
@@ -179,6 +178,7 @@ export default function Navbar() {
           <li>
             <Link
               href="/plans"
+              prefetch
               className={
                 location == "/plans" ? "nav-item is-active" : "nav-item "
               }
@@ -189,6 +189,7 @@ export default function Navbar() {
           <li>
             <Link
               href="/activities"
+              prefetch
               className={
                 location == "/activities" ? "nav-item is-active" : "nav-item "
               }
@@ -200,6 +201,7 @@ export default function Navbar() {
           <li>
             <Link
               href="/regions"
+              prefetch
               className={
                 location == "/regions" ? "nav-item is-active" : "nav-item "
               }
@@ -210,6 +212,7 @@ export default function Navbar() {
           <li>
             <Link
               href="/explore"
+              prefetch
               className={
                 location == "/explore" ? "nav-item is-active" : "nav-item "
               }
