@@ -5,24 +5,9 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "~/utils/theme-provider";
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { Marhey, Roboto_Slab, Ubuntu } from "next/font/google";
-import { useTranslations } from "next-intl";
-const marhey = Marhey({
-  subsets: ["arabic"],
-  variable: "--font-marhey",
-  display: "swap",
-});
-const robotoSlab = Roboto_Slab({
-  subsets: ["latin", "latin-ext"],
-  variable: "--font-roboto-slab",
-  display: "swap",
-});
-export const ubuntu = Ubuntu({
-  subsets: ["latin", "latin-ext"],
-  variable: "--font-ubuntu",
-  display: "swap",
-  weight: ["300", "400", "500", "700"],
-});
+import {marhey, robotoSlab, ubuntu} from "~/Assets/fonts";
+import React from "react";
+
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("Home");
   return {
@@ -42,14 +27,23 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+function directionByLang(locale: string) {
+  switch (locale) {
+    case "ar":
+    case "ar-tn":
+      return "rtl";
+    default:
+      return "ltr";
+  }
+}
+
 export default function LocaleLayout({
   children,
   params: { locale },
-}: {
+}: Readonly<{
   children: React.ReactNode;
   params: { locale: string };
-}) {
-  const t = useTranslations("fonts");
+}>) {
   return (
     <html
       className={` ${marhey.variable} ${robotoSlab.variable} ${
@@ -57,7 +51,7 @@ export default function LocaleLayout({
       } scroll-smooth ${
         locale === "ar" ? marhey.className : robotoSlab.className
       }`}
-      dir={locale === "ar" ? "rtl" : "ltr"}
+      dir={directionByLang(locale)}
       suppressHydrationWarning
       lang={locale}
     >
