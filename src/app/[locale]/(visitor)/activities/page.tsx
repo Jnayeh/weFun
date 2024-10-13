@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 const ActivitiesPage = () => {
   return (
     <>
-      <div className="relative aspect-video overflow-hidden">
+      <div className="relative aspect-video overflow-hidden md:hidden">
         <Image
           className="object-cover object-center brightness-90"
           alt="friends sitting in front of firecamp"
@@ -46,7 +46,7 @@ const ActivitiesPage = () => {
         )}
       >
         <div className="flex w-full max-w-2xl items-center justify-center gap-1 px-6 py-4">
-          <Input type="search" className="h-[46px] rounded-l-full pl-6" />
+          <Input type="search" className="h-12 rounded-l-full pl-6" />
           <button
             className="h-full rounded-r-full bg-slate-500 px-4 py-2 text-3xl text-white hover:bg-slate-600"
             aria-label="click to search"
@@ -97,7 +97,7 @@ export const Activities = async () => {
                   width={800}
                   height={800}
                 />
-                <button className="text-brand-500 absolute right-2 top-2 flex items-center justify-center rounded-full bg-white p-2 hover:cursor-pointer sm:scale-90 md:scale-75">
+                <button className="text-brand-500 absolute right-2 top-2 flex items-center justify-center rounded-full bg-white p-2 hover:cursor-pointer sm:scale-90 md:scale-100">
                   <div className="flex h-4 w-4 items-center justify-center rounded-full text-2xl hover:bg-gray-50">
                     {act.id % 2 == 0 ? (
                       <FaHeart fill="red" />

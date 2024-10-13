@@ -321,7 +321,7 @@ const CarouselDots = React.forwardRef<
   return (
     <div
       className={cn(
-        "absolute bottom-[30vh] left-1/2 flex flex-auto -translate-x-1/2 gap-1 p-2 ",
+        "absolute bottom-[20%] left-1/2 flex flex-auto -translate-x-1/2 gap-1 p-2 ",
         className
       )}
       ref={ref}

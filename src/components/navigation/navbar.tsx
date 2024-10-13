@@ -3,16 +3,16 @@ import React, { Suspense, useEffect, useRef } from "react";
 
 import "~/styles/navbar.styles.css";
 
-import { Link } from "~/navigation";
+import { Link, useRouter, usePathname } from "~/navigation";
 import { cn } from "~/utils/helpers/server";
 import { useAuth } from "@clerk/nextjs";
 import dynamic from "next/dynamic";
 import BrandSvg from "~/components/SvgStore/BrandSvg";
-import { usePathname } from "~/navigation";
 import Arrow from "~/components/SvgStore/arrow";
 import { useMediaQuery } from "~/utils/helpers/client";
 import { useParams } from "next/navigation";
 import { LoginSideBar } from "~/components/Sidebar";
+import { Home } from "lucide-react";
 const ToggleButton = dynamic(() => import("~/components/ui/dark-toggle"), {
   ssr: false,
 });
@@ -21,6 +21,7 @@ export default function Navbar() {
   const indicatorRef = useRef<HTMLSpanElement>(null);
   const navListRef = useRef<HTMLUListElement>(null);
   const location = usePathname();
+  const router = useRouter();
   const { isLoaded, isSignedIn, signOut } = useAuth();
   const isHome = location === "/";
   const isMobile = useMediaQuery("(max-width: 767px)");
@@ -59,7 +60,7 @@ export default function Navbar() {
         indicatorRef.current.style.transition = "0.4s";
       }
     }, 0);
-    if (elementRef && elementRef.current && navListRef.current) {
+    if (elementRef?.current && navListRef.current) {
       const items =
         navListRef.current.querySelectorAll<HTMLElement>(".nav-item");
       slideHorizontal(elementRef.current, items, indicatorRef);
@@ -130,7 +131,7 @@ export default function Navbar() {
           "mx-auto flex w-full max-w-screen-2xl items-center justify-between p-2 lg:px-12"
         )}
       >
-        <div className=" flex h-10 items-center">
+        <div className=" flex h-10 items-center gap-2">
           <button
             onClick={() => window.history.back()}
             className={cn(
@@ -143,12 +144,21 @@ export default function Navbar() {
             <Arrow className={cn("-scale-90 text-black dark:text-white")} />
             <span className="sr-only">Go back</span>
           </button>
+          <button
+            onClick={() => router.push("/")}
+            className={cn(
+              `"aspect-square dark:hover:bg-gray-900/60" rounded-full bg-white/20 
+              p-2 transition-colors duration-200
+              hover:bg-gray-200/60 dark:bg-gray-900/20`,
+              id ? "md:hidden" : "hidden"
+            )}
+          >
+            <Home />
+            <span className="sr-only">Go Home</span>
+          </button>
           <Link href="/" className={cn(!isHome && "hidden md:block")}>
             <BrandSvg
-              className={cn(
-                "w-32 rounded-md",
-                isHome && "from-white-text"
-              )}
+              className={cn("w-32 rounded-md", isHome && "from-white-text")}
             />
           </Link>
         </div>
@@ -168,6 +178,7 @@ export default function Navbar() {
           <li>
             <Link
               href="/plans"
+              prefetch
               className={
                 location == "/plans" ? "nav-item is-active" : "nav-item "
               }
@@ -178,6 +189,7 @@ export default function Navbar() {
           <li>
             <Link
               href="/activities"
+              prefetch
               className={
                 location == "/activities" ? "nav-item is-active" : "nav-item "
               }
@@ -189,6 +201,7 @@ export default function Navbar() {
           <li>
             <Link
               href="/regions"
+              prefetch
               className={
                 location == "/regions" ? "nav-item is-active" : "nav-item "
               }
@@ -199,6 +212,7 @@ export default function Navbar() {
           <li>
             <Link
               href="/explore"
+              prefetch
               className={
                 location == "/explore" ? "nav-item is-active" : "nav-item "
               }

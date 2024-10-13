@@ -30,7 +30,9 @@ const Home = ({ params: { locale } }: { params: { locale: string } }) => {
   }); */
   return (
     <>
+      <Suspense>
       <Header />
+      </Suspense>
       <main className=" relative mx-auto flex flex-col items-center justify-center">
         {/* <div className="flex h-[60px] w-full items-center gap-4 overflow-hidden bg-gray-800 font-rubik text-5xl text-beige">
           <div

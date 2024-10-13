@@ -22,7 +22,7 @@ const AddLocation = () => {
       <form className="flex flex-col">
         <ProgressHeader />
 
-        <div className="flex h-[60dvh] justify-around">
+        <div className="flex h-60v justify-around">
           <div
             className="mx-5 mt-8 flex max-h-max w-[80%] max-w-lg justify-center dark:text-white"
             role="main"
