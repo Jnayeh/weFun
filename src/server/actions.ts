@@ -47,7 +47,7 @@ export const dynamicBlurDataUrl = async function (url: string) {
   return `data:image/svg+xml;base64,${toBase64(blurSvg)}`;
 };
 export const cacheableCategories = nextCache(
-  () => api.category.getAll.query(),
+  () => api.category.getAllv1.query(),
   ["categories"],
   {
     revalidate: 60,

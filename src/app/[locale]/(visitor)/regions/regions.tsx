@@ -10,7 +10,7 @@ import { Card, CardHeader } from "~/components/ui/card";
 import { cn } from "~/utils/helpers/server";
 
 export default function Regions() {
-  const { data, isLoading } = api.category.getAll.useQuery(undefined, {
+  const { data, isLoading } = api.category.getAllv1.useQuery(undefined, {
     staleTime: 1000 * 60 * 60 * 5,
     refetchOnWindowFocus: false,
     retry: 1,
