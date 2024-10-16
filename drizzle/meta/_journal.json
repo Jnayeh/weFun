@@ -1,19 +1,19 @@
 {
-  "version": "5",
-  "dialect": "pg",
+  "version": "7",
+  "dialect": "mysql",
   "entries": [
     {
       "idx": 0,
       "version": "5",
-      "when": 1706829106467,
-      "tag": "0000_bizarre_marvel_zombies",
+      "when": 1729071770572,
+      "tag": "0000_happy_pyro",
       "breakpoints": true
     },
     {
       "idx": 1,
       "version": "5",
-      "when": 1707040303478,
-      "tag": "0001_outstanding_the_renegades",
+      "when": 1729071865993,
+      "tag": "0001_left_jigsaw",
       "breakpoints": true
     }
   ]

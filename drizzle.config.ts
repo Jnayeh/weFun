@@ -1,10 +1,12 @@
-import type { Config } from "drizzle-kit";
+import { type Config } from "drizzle-kit";
+
+import { env } from "@/env";
 
 export default {
-  schema: "./src/db/schema*",
-  out: "./drizzle",
-  driver:"mysql2",
+  schema: "./src/server/db/schema*",
+  dialect: "mysql",
   dbCredentials: {
-    uri: process.env.DATABASE_URL??"",
+    url: env.DATABASE_URL??"",
   },
+  tablesFilter: ["we_fun_*"],
 } satisfies Config;
