@@ -3,10 +3,13 @@ import { fontFamily } from "tailwindcss/defaultTheme";
 
 export default {
     darkMode: ["class"],
-    content: ["./src/**/*.tsx"],
+    content: ["./src/**/*.{ts,tsx}"],
   theme: {
   	extend: {
   		fontFamily: {
+				marhey: ["var(--font-marhey)"],
+				"roboto-slab": ["var(--font-roboto-slab)"],
+				ubuntu: ["var(--font-ubuntu)"],
   			sans: ["var(--font-geist-sans)", ...fontFamily.sans]
   		},
   		borderRadius: {
@@ -55,7 +58,65 @@ export default {
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
   			}
-  		}
+  		},
+			keyframes: {
+				scale: {
+					"0%": { scale: "0" },
+					"100%": { scale: "1" },
+				},
+				"scroll-left": {
+					"0%": {
+						transform: "translateX(0%)",
+					},
+					"100%": {
+						transform: "translateX(-50%)",
+					},
+				},
+				"scroll-right": {
+					"0%": {
+						transform: "translateX(-50%)",
+					},
+					"100%": {
+						transform: "translateX(0%)",
+					},
+				},
+				float: {
+					"0%": {
+						transform: " rotate(0deg) translateX(-0px) rotate(0deg)",
+					},
+					"50%": {
+						transform: " rotate(-181deg) translateX(-5px) rotate(180deg) scale(0.93)",
+					},
+					"100%": {
+						transform: " rotate(0deg) translateX(-0px) rotate(0deg)",
+					},
+				},
+			},
+			height: {
+				"h-dynamic-1": "var(--h-dynamic-1)",
+				"h-dynamic-2": "var(--h-dynamic-2)",
+				"h-dynamic-3": "var(--h-dynamic-3)",
+				"h-dynamic-4": "var(--h-dynamic-4)",
+				"h-dynamic-5": "var(--h-dynamic-5)",
+				"h-dynamic-6": "var(--h-dynamic-6)",
+				"h-dynamic-7": "var(--h-dynamic-7)",
+				"h-dynamic-8": "var(--h-dynamic-8)",
+				"h-dynamic-9": "var(--h-dynamic-9)",
+				"h-dynamic-10": "var(--h-dynamic-10)",
+			},
+			screens: {
+				xs: "18.75rem", // 300px / 16
+				"2xs": "27.5rem", // 440px / 16
+				"2xl": "96rem", // 1536px / 16
+			},
+			animation: {
+				"marquee-right": "scroll-right 30s linear infinite",
+				marquee: "scroll-left 30s linear infinite",
+				"ping-slow": "ping 2s cubic-bezier(0, 0, 0.2, 1) infinite",
+				"floating-card": " float 6s ease-in-out infinite",
+				"scale-up": "scale 0.3s ease-out",
+				"scale-down": "scale 0.3s reverse ease-out",
+			},
   	}
   },
   plugins: [require("tailwindcss-animate")],

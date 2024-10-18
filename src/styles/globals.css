@@ -10,6 +10,16 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  --h-dynamic-1: 10vh; 
+  --h-dynamic-2: 20vh; 
+  --h-dynamic-3: 30vh; 
+  --h-dynamic-4: 40vh; 
+  --h-dynamic-5: 50vh; 
+  --h-dynamic-6: 60vh; 
+  --h-dynamic-7: 70vh; 
+  --h-dynamic-8: 80vh; 
+  --h-dynamic-9: 90vh; 
+  --h-dynamic-10: 100vh; 
 }
 
 @layer base {
@@ -64,7 +74,17 @@
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%
+    --chart-5: 340 75% 55%;
+    --h-dynamic-1: 10dvh;
+    --h-dynamic-2: 20dvh;
+    --h-dynamic-3: 30dvh;
+    --h-dynamic-4: 40dvh;
+    --h-dynamic-5: 50dvh;
+    --h-dynamic-6: 60dvh;
+    --h-dynamic-7: 70dvh;
+    --h-dynamic-8: 80dvh;
+    --h-dynamic-9: 90dvh;
+    --h-dynamic-10: 100dvh;
   }
 }
 @layer base {
