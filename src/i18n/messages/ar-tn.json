@@ -4,6 +4,13 @@
     "subtitle": "font-ubuntu",
     "default": "font-roboto-slab"
   },
+  "not-found": {
+    "title": "Barmeja - Not Found",
+    "page-not-found": "Page does not exist",
+    "description": "8lot f el tari9 ? enzel houni:",
+    "go-back": "Arja3 ltéli",
+    "go-home": "Take me home"
+  },
   "Home": {
     "title": "Barmejha - 3ich Tounsi",
     "description": "Al9a your next experiences and activities m3a Barmejha",

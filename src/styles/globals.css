@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-
+  color: #242424;
   color-scheme: dark light;
 
   font-synthesis: none;

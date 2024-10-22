@@ -1,5 +1,6 @@
 import { type Config } from "tailwindcss";
 import { fontFamily } from "tailwindcss/defaultTheme";
+import * as tailwindAnimate from "tailwindcss-animate";
 
 export default {
     darkMode: ["class"],
@@ -72,14 +73,6 @@ export default {
 						transform: "translateX(-50%)",
 					},
 				},
-				"scroll-right": {
-					"0%": {
-						transform: "translateX(-50%)",
-					},
-					"100%": {
-						transform: "translateX(0%)",
-					},
-				},
 				float: {
 					"0%": {
 						transform: " rotate(0deg) translateX(-0px) rotate(0deg)",
@@ -110,7 +103,7 @@ export default {
 				"2xl": "96rem", // 1536px / 16
 			},
 			animation: {
-				"marquee-right": "scroll-right 30s linear infinite",
+				"marquee-right": "scroll-left 30s linear infinite reverse",
 				marquee: "scroll-left 30s linear infinite",
 				"ping-slow": "ping 2s cubic-bezier(0, 0, 0.2, 1) infinite",
 				"floating-card": " float 6s ease-in-out infinite",
@@ -119,5 +112,5 @@ export default {
 			},
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [tailwindAnimate],
 } satisfies Config;
