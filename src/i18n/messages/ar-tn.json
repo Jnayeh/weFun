@@ -1,0 +1,39 @@
+{
+  "fonts": {
+    "title": "font-ubuntu",
+    "subtitle": "font-ubuntu",
+    "default": "font-roboto-slab"
+  },
+  "Home": {
+    "title": "Barmejha - 3ich Tounsi w 3ich M3ana",
+    "description": "Al9a your next experiences and activities m3a Barmejha",
+    "header": {
+      "button": "Barmejha",
+      "title": {
+        "1": {
+          "element": "span",
+          "class": "flex justify-center font-marhey",
+          "text": "برمج خرجة"
+        },
+        "2": {
+          "element": "span",
+          "class": "p-4 font-marhey",
+          "text": "مع الشلة "
+        }
+      }
+    },
+    "search": "search",
+    "find-more": "find more"
+  },
+  "Menu": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "login": "Login",
+    "register": "Register",
+    "activities": "Activities",
+    "experiences": "Experiences",
+    "places": "Places",
+    "explore": "Explore"
+  }
+}
